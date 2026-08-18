@@ -2,3 +2,5 @@ pandas
 openpyxl
 python-pptx
 matplotlib
+pymupdf
+Pillow
