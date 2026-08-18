@@ -1,0 +1,113 @@
+:root {
+  --bg: #1c1410;
+  --card: #2a1f18;
+  --accent: #e8b04b;
+  --accent-strong: #d9963a;
+  --text: #f5eee3;
+  --muted: #c9b8a5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: radial-gradient(circle at top, #2c2018, var(--bg));
+  color: var(--text);
+  min-height: 100vh;
+}
+
+.hero {
+  text-align: center;
+  padding: 3rem 1rem 1.5rem;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin: 0;
+}
+
+.hero p {
+  color: var(--muted);
+  font-size: 1.15rem;
+}
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 4rem;
+}
+
+.menu {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+.dish {
+  background: var(--card);
+  border: 1px solid rgba(232, 176, 75, 0.15);
+  border-radius: 14px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.dish h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.dish p {
+  margin: 0;
+  color: var(--muted);
+  flex: 1;
+}
+
+.dish .row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+
+.price {
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 1.1rem;
+}
+
+button {
+  background: var(--accent);
+  color: #241a12;
+  border: none;
+  border-radius: 999px;
+  padding: 0.55rem 1.15rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.05s ease;
+}
+
+button:hover {
+  background: var(--accent-strong);
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+.ticket {
+  margin-top: 2rem;
+  background: #14311f;
+  border: 1px solid rgba(120, 220, 150, 0.3);
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+}
+
+.ticket h2 {
+  margin: 0 0 0.5rem;
+}

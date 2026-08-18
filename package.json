@@ -1,0 +1,19 @@
+{
+  "name": "pasta",
+  "version": "1.0.0",
+  "description": "A small pasta menu web app used to demonstrate the development environment end to end.",
+  "type": "module",
+  "main": "src/server.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test",
+    "lint": "node --check src/server.js && node --check src/app.js && node --check src/menu.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
