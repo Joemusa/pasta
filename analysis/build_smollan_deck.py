@@ -141,12 +141,16 @@ def add_table(slide, l, t, w, h, headers, rows, col_widths=None):
     return table
 
 
+LOGO_CONTENT = ROOT / "templates" / "smollan_logo_content.png"
+
+
 def content_shell(slide, title, page_no, total=5):
     add_rect(slide, 0, 0, SLIDE_W, SLIDE_H, WHITE)
     add_rect(slide, 0, 0, Inches(0.12), SLIDE_H, NAVY)
     add_rect(slide, 0, 0, SLIDE_W, Inches(0.08), NAVY)
-    add_text(slide, Inches(0.38), Inches(0.18), Inches(12.4), Inches(0.46), title, size=26, bold=True, color=NAVY)
+    add_text(slide, Inches(0.38), Inches(0.18), Inches(10.4), Inches(0.46), title, size=24, bold=True, color=NAVY)
     add_rect(slide, Inches(0.38), Inches(0.66), Inches(2.2), Inches(0.06), ORANGE)
+    slide.shapes.add_picture(str(LOGO_CONTENT), Inches(11.05), Inches(0.14), Inches(1.95), Inches(0.42))
     add_rect(slide, 0, Inches(7.18), SLIDE_W, Inches(0.32), LIGHT)
     add_text(
         slide,
@@ -169,22 +173,34 @@ def kpi(slide, l, t, w, h, label, value, note, accent=BLUE):
     add_text(slide, l + Inches(0.20), t + Inches(0.72), w - Inches(0.28), Inches(0.28), note, size=12, color=INK)
 
 
-def barh(labels, values, path, xlabel, colors, fmt):
-    plt.rcParams.update({"font.size": 12, "font.family": "DejaVu Sans"})
-    fig, ax = plt.subplots(figsize=(6.4, 3.15), dpi=180)
-    ax.barh(list(reversed(labels)), list(reversed(values)), color=list(reversed(colors)), height=0.62)
-    ax.set_xlabel(xlabel, fontsize=12, color="#111111")
-    ax.tick_params(labelsize=12, colors="#111111")
+def barh(labels, values, path, xlabel, colors, fmt, figsize=(6.6, 3.4), bar_height=0.58, label_size=13):
+    plt.rcParams.update({"font.size": label_size, "font.family": "DejaVu Sans"})
+    fig, ax = plt.subplots(figsize=figsize, dpi=180)
+    y = list(range(len(labels)))
+    ax.barh(y, list(reversed(values)), color=list(reversed(colors)), height=bar_height)
+    ax.set_yticks(y)
+    ax.set_yticklabels(list(reversed(labels)))
+    ax.set_xlabel(xlabel, fontsize=label_size, color="#111111")
+    ax.tick_params(axis="both", labelsize=label_size, colors="#111111", pad=6)
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
     ax.spines["left"].set_color("#C8D0D8")
     ax.spines["bottom"].set_color("#C8D0D8")
-    xmax = max(values) * 1.32 if values else 1
+    ax.margins(y=0.20)
+    xmax = max(values) * 1.42 if values else 1
     ax.set_xlim(0, xmax)
     for bar, val in zip(ax.patches, reversed(values)):
-        ax.text(val + xmax * 0.02, bar.get_y() + bar.get_height() / 2, fmt(val), va="center", fontsize=12, color="#111111", fontweight="bold")
-    fig.tight_layout()
-    fig.savefig(path, bbox_inches="tight", facecolor="white")
+        ax.text(
+            val + xmax * 0.03,
+            bar.get_y() + bar.get_height() / 2,
+            fmt(val),
+            va="center",
+            fontsize=label_size,
+            color="#111111",
+            fontweight="bold",
+        )
+    fig.subplots_adjust(left=0.32, right=0.80, top=0.84, bottom=0.24)
+    fig.savefig(path, facecolor="white", pad_inches=0.16)
     plt.close(fig)
 
 
@@ -194,14 +210,18 @@ def build():
     CHART_DIR.mkdir(parents=True, exist_ok=True)
 
     sub = a["sub"].sort_values("share_mat", ascending=False)
+    sub_labels = [{"Pasta Miscellaneous": "Other pasta"}.get(i, i) for i in sub.index]
     sub_colors = ["#122A4A", "#1F5FA8", "#D05A1A", "#5A6A78", "#B02828", "#7A6A4F"]
     barh(
-        sub.index.tolist(),
+        sub_labels,
         sub["share_mat"].tolist(),
         CHART_DIR / "data_subcat.png",
         "12-month Pasta value share (%)",
         sub_colors[: len(sub)],
         lambda v: f"{v:.0f}%",
+        figsize=(6.6, 2.85),
+        bar_height=0.52,
+        label_size=13,
     )
     brands = a["n_brand"].head(6)
     barh(
@@ -211,6 +231,9 @@ def build():
         "12-month Noodles value share (%)",
         ["#1F5FA8" if pp >= 0 else "#B02828" for pp in brands["pp"]],
         lambda v: f"{v:.0f}%",
+        figsize=(6.6, 2.25),
+        bar_height=0.48,
+        label_size=13,
     )
     ladder = a["ladder"]
     barh(
@@ -220,6 +243,9 @@ def build():
         "Typical unit pack price (R)",
         ["#D05A1A" if b == "Knorr" else "#1F5FA8" for b in ladder.index],
         lambda v: f"R{v:.2f}",
+        figsize=(7.0, 2.05),
+        bar_height=0.42,
+        label_size=12,
     )
 
     prs = Presentation()
@@ -246,7 +272,7 @@ def build():
     kpi(s, Inches(9.98), Inches(0.88), Inches(2.96), Inches(1.08), "Category price", f"R{a['pasta_mat']['price']:.0f}/kg", f"Noodles R{a['n_mat']['price']:.0f}  ·  dry ~R32–35", RED)
 
     add_text(s, Inches(0.38), Inches(2.12), Inches(6.3), Inches(0.32), "Where the value sits", size=16, bold=True, color=NAVY)
-    s.shapes.add_picture(str(CHART_DIR / "data_subcat.png"), Inches(0.28), Inches(2.44), Inches(6.45), Inches(3.20))
+    s.shapes.add_picture(str(CHART_DIR / "data_subcat.png"), Inches(0.28), Inches(2.58), width=Inches(6.40))
 
     add_text(s, Inches(6.90), Inches(2.12), Inches(6.0), Inches(0.32), "Key players — winning and losing", size=16, bold=True, color=NAVY)
     mfr_rows = []
@@ -268,7 +294,7 @@ def build():
     add_table(
         s,
         Inches(6.90),
-        Inches(2.48),
+        Inches(2.58),
         Inches(6.05),
         Inches(3.15),
         ["Manufacturer", "Share", "vs YA", "Value", "R/kg"],
@@ -278,9 +304,9 @@ def build():
     add_text(
         s,
         Inches(0.38),
-        Inches(5.78),
+        Inches(5.55),
         Inches(12.55),
-        Inches(1.22),
+        Inches(1.45),
         "Noodles is the Pasta category (64% of value, growing faster than dry pasta). Kellogg's and Indomie are taking share. Nestlé, Mr Pasta and Tiger Brands are losing it. Unilever does not appear in Pasta until Noodles, and only in June.",
         size=15,
         color=INK,
@@ -289,44 +315,58 @@ def build():
     # 3. Noodles
     s = prs.slides.add_slide(blank)
     content_shell(s, "Noodles: players, winners, price — and where Unilever sits", 3)
-    kpi(s, Inches(0.38), Inches(0.88), Inches(3.10), Inches(1.08), "12-month value", fmt_r(a["n_mat"]["value"]), f"{fmt_pct(a['n_g']['value'])}  ·  vol {fmt_pct(a['n_g']['volume'])}", BLUE)
-    kpi(s, Inches(3.58), Inches(0.88), Inches(3.10), Inches(1.08), "June 2026", fmt_r(a["n_jun"]["value"]), f"{fmt_pct(a['n_jun_g']['value'])} vs Jun 25", RGBColor(0x0E, 0x7C, 0x7B))
-    kpi(s, Inches(6.78), Inches(0.88), Inches(3.10), Inches(1.08), "Mass price", "R5–8 sachet", f"{a['sachet_share']*100:.0f}% of noodles value", ORANGE)
-    kpi(s, Inches(9.98), Inches(0.88), Inches(2.96), Inches(1.08), "Unilever (Jun)", f"{a['u_share_n_jun']*100:.2f}% share", f"R{a['u_jun']['value'].sum()/1e6:.2f}m  ·  3 Pasta Pots", RED)
+    kpi(s, Inches(0.38), Inches(0.86), Inches(3.10), Inches(0.96), "12-month value", fmt_r(a["n_mat"]["value"]), f"{fmt_pct(a['n_g']['value'])}  ·  vol {fmt_pct(a['n_g']['volume'])}", BLUE)
+    kpi(s, Inches(3.58), Inches(0.86), Inches(3.10), Inches(0.96), "June 2026", fmt_r(a["n_jun"]["value"]), f"{fmt_pct(a['n_jun_g']['value'])} vs Jun 25", RGBColor(0x0E, 0x7C, 0x7B))
+    kpi(s, Inches(6.78), Inches(0.86), Inches(3.10), Inches(0.96), "Mass price", "R5–8 sachet", f"{a['sachet_share']*100:.0f}% of noodles value", ORANGE)
+    kpi(s, Inches(9.98), Inches(0.86), Inches(2.96), Inches(0.96), "Unilever (Jun)", f"{a['u_share_n_jun']*100:.2f}% share", f"R{a['u_jun']['value'].sum()/1e6:.2f}m  ·  3 Pasta Pots", RED)
 
-    add_text(s, Inches(0.38), Inches(2.10), Inches(6.3), Inches(0.30), "Who is winning and losing", size=16, bold=True, color=NAVY)
-    s.shapes.add_picture(str(CHART_DIR / "data_brands.png"), Inches(0.22), Inches(2.38), Inches(6.40), Inches(2.55))
+    add_text(s, Inches(0.38), Inches(1.96), Inches(6.3), Inches(0.32), "Who is winning and losing", size=16, bold=True, color=NAVY)
+    s.shapes.add_picture(str(CHART_DIR / "data_brands.png"), Inches(0.22), Inches(2.62), width=Inches(6.40))
 
     rows = []
-    for name in ["Kellogg's", "Maggi", "Indomie", "Roka", "Samyang", "Mr Pasta", "Knorr"]:
+    for name in ["Kellogg's", "Maggi", "Indomie", "Roka", "Samyang", "Knorr"]:
         if name not in a["n_brand"].index:
             continue
         r = a["n_brand"].loc[name]
         jun = a["n_jun_brand"].loc[name, "share"] if name in a["n_jun_brand"].index else 0
         rows.append([name, f"{r['share_mat']:.1f}%", f"{jun:.1f}%", fmt_pp(r["pp"]), fmt_pct(r["val_chg"]), f"R{r['price_mat']:.0f}"])
-    add_text(s, Inches(6.80), Inches(2.10), Inches(6.1), Inches(0.30), "12-month vs June scorecard", size=16, bold=True, color=NAVY)
+    add_text(s, Inches(6.80), Inches(1.96), Inches(6.1), Inches(0.32), "12-month vs June scorecard", size=16, bold=True, color=NAVY)
     add_table(
         s,
         Inches(6.80),
-        Inches(2.42),
+        Inches(2.62),
         Inches(6.15),
-        Inches(2.55),
+        Inches(2.05),
         ["Brand", "12m", "Jun", "vs YA", "Value", "R/kg"],
         rows,
         col_widths=[Inches(1.35), Inches(0.85), Inches(0.85), Inches(0.95), Inches(1.05), Inches(1.10)],
     )
 
-    add_text(s, Inches(0.38), Inches(5.02), Inches(6.3), Inches(0.28), "Price ladder (typical unit)", size=16, bold=True, color=NAVY)
-    s.shapes.add_picture(str(CHART_DIR / "data_price.png"), Inches(0.20), Inches(5.28), Inches(6.40), Inches(1.78))
+    add_text(s, Inches(0.38), Inches(5.00), Inches(6.3), Inches(0.32), "Price ladder (typical unit)", size=16, bold=True, color=NAVY)
+    price_cards = [
+        ("Roka", "R5.88", "Value sachet", BLUE),
+        ("Kellogg's", "R6.09", "Maggi R6.79  ·  Indomie R7.90", BLUE),
+        ("Samyang", "R39.24", "Ramen / cup", RGBColor(0x0E, 0x7C, 0x7B)),
+        ("Knorr", "R49.11", "Pasta Pots  ·  ~8× sachet", ORANGE),
+    ]
+    for i, (brand, price, role, accent) in enumerate(price_cards):
+        col, row = i % 2, i // 2
+        l = Inches(0.38 + col * 3.20)
+        t = Inches(5.44 + row * 0.82)
+        add_rect(s, l, t, Inches(3.05), Inches(0.74), LIGHT, LINE)
+        add_rect(s, l, t, Inches(0.09), Inches(0.74), accent)
+        add_text(s, l + Inches(0.20), t + Inches(0.05), Inches(2.72), Inches(0.20), brand.upper(), size=11, bold=True, color=MUTED)
+        add_text(s, l + Inches(0.20), t + Inches(0.24), Inches(2.72), Inches(0.26), price, size=20, bold=True, color=NAVY)
+        add_text(s, l + Inches(0.20), t + Inches(0.50), Inches(2.72), Inches(0.20), role, size=12, color=INK)
 
-    add_text(s, Inches(6.80), Inches(5.02), Inches(6.1), Inches(0.28), "Unilever SKUs — June 2026 only", size=16, bold=True, color=NAVY)
+    add_text(s, Inches(6.80), Inches(5.00), Inches(6.1), Inches(0.32), "Unilever SKUs — June 2026 only", size=16, bold=True, color=NAVY)
     u_rows = []
     for _, r in a["u_jun"].sort_values("value", ascending=False).iterrows():
         u_rows.append([r["short"], f"R{r['value']/1000:.0f}k", f"{r['share']*100:.0f}%", f"R{r['pack_price']:.2f}"])
     add_table(
         s,
         Inches(6.80),
-        Inches(5.32),
+        Inches(5.52),
         Inches(6.15),
         Inches(1.55),
         ["SKU", "Value", "Mix", "R/pot"],
