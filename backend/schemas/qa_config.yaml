@@ -22,6 +22,7 @@ outlier:
 duplicate_key_fields:
   - date
   - retailer
+  - manufacturer
   - sku
   - product
   - region

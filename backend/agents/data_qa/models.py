@@ -88,7 +88,7 @@ class QAConfig(BaseModel):
     min_header_alias_matches: int = 2
     outlier: OutlierConfig = Field(default_factory=OutlierConfig)
     duplicate_key_fields: list[str] = Field(
-        default_factory=lambda: ["date", "retailer", "sku", "product", "region"]
+        default_factory=lambda: ["date", "retailer", "manufacturer", "sku", "product", "region"]
     )
     constant_columns: dict[str, str] = Field(default_factory=dict)
     text_case: dict[str, str] = Field(default_factory=dict)
@@ -185,10 +185,19 @@ class QAReport(BaseModel):
     row_count_clean: int = 0
     rows_dropped: int = 0
     distinct_dates: int = 0
+    date_min: str | None = None
+    date_max: str | None = None
+    invalid_date_count: int = 0
+    numeric_parse_failures: dict[str, int] = Field(default_factory=dict)
+    source_columns: list[str] = Field(default_factory=list)
+    header_row_index: int = 0
+    sheet_name: str | None = None
     input_file: str
     raw_preserved_at: str
     clean_output_path: str | None = None
     report_output_path: str | None = None
+    exclusions_output_path: str | None = None
+    exclusion_reason_counts: dict[str, int] = Field(default_factory=dict)
     generated_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
 
     def to_json_dict(self) -> dict[str, Any]:

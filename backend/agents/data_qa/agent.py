@@ -234,7 +234,7 @@ def run_data_qa(
     mapped.insert(0, "_source_row", range(1, len(mapped) + 1))
 
     standardised, transformations, invalid_parses = standardise_frame(mapped, schema, config)
-    issues, dup_summary, drop_mask = validate(
+    issues, dup_summary, drop_mask, exclusion_reasons = validate(
         standardised,
         schema,
         config,
@@ -242,26 +242,23 @@ def run_data_qa(
         invalid_parses=invalid_parses,
         constants_applied=list(config.constant_columns),
     )
+    kept = standardised.loc[~drop_mask] if drop_mask.any() else standardised
     outlier_summary, outlier_issue = detect_outliers(
-        standardised.loc[~drop_mask] if drop_mask.any() else standardised,
+        kept,
         config,
         source_rows=standardised["_source_row"],
     )
     if outlier_issue:
         issues.append(outlier_issue)
 
-    clean = standardised.loc[~drop_mask].copy()
-    if dup_summary.unsafe_group_count == 0:
-        # Dropped rows already included in drop_mask; keep remaining order stable.
-        clean = clean.reset_index(drop=True)
-    else:
-        # Unsafe duplicates: do not emit a clean commercial table.
-        clean = clean.iloc[0:0]
-
+    clean = kept.copy().reset_index(drop=True)
     clean = _order_columns(clean)
+    excluded = standardised.loc[drop_mask].copy()
+    if not excluded.empty:
+        excluded.insert(0, "exclusion_reason", exclusion_reasons.loc[excluded.index])
     blocking = any(issue.code in BLOCKING_CODES and issue.severity == Severity.CRITICAL for issue in issues)
     ready = analysis_ready(clean, blocking)
-    capabilities = check_capabilities(clean if ready else standardised.loc[~drop_mask], config, ready=ready)
+    capabilities = check_capabilities(clean if not clean.empty else kept, config, ready=ready)
 
     drop_rate = (len(standardised) - len(clean)) / len(standardised) if len(standardised) else 1.0
     critical = [issue for issue in issues if issue.severity == Severity.CRITICAL]
@@ -291,12 +288,36 @@ def run_data_qa(
         for col in CANONICAL_OUTPUT_ORDER
         if col in standardised.columns and int(standardised[col].isna().sum()) > 0
     }
+    reason_counts: dict[str, int] = {}
+    if not excluded.empty:
+        for reason in excluded["exclusion_reason"].astype(str):
+            for code in reason.split(";"):
+                if code:
+                    reason_counts[code] = reason_counts.get(code, 0) + 1
+
+    if "date" in standardised.columns:
+        dates = pd.to_datetime(standardised["date"], errors="coerce")
+    else:
+        dates = pd.Series(dtype="datetime64[ns]")
+    valid_dates = dates.dropna()
+    date_min = valid_dates.min().strftime("%Y-%m-%d") if not valid_dates.empty else None
+    date_max = valid_dates.max().strftime("%Y-%m-%d") if not valid_dates.empty else None
 
     clean_path: Path | None = None
-    if write_outputs and ready and not clean.empty:
-        clean_path = clean_dir / f"{source.stem}.clean.csv"
-        _write_clean_csv(clean, clean_path)
-        logger.info("clean_written path=%s rows=%s", clean_path, len(clean))
+    exclusions_path: Path | None = None
+    if write_outputs:
+        if not clean.empty:
+            clean_path = clean_dir / f"{source.stem}.clean.csv"
+            _write_clean_csv(clean, clean_path)
+            logger.info("clean_written path=%s rows=%s", clean_path, len(clean))
+        if not excluded.empty:
+            exclusions_path = reports_dir / f"{source.stem}.exclusions.csv"
+            exclusions_path.parent.mkdir(parents=True, exist_ok=True)
+            export_ex = excluded.copy()
+            if "date" in export_ex.columns:
+                export_ex["date"] = pd.to_datetime(export_ex["date"], errors="coerce").dt.strftime("%Y-%m-%d")
+            export_ex.to_csv(exclusions_path, index=False)
+            logger.info("exclusions_written path=%s rows=%s", exclusions_path, len(export_ex))
 
     report = QAReport(
         status=status,
@@ -316,10 +337,19 @@ def run_data_qa(
         row_count_raw=len(standardised),
         row_count_clean=len(clean),
         rows_dropped=len(standardised) - len(clean),
-        distinct_dates=distinct_dates(clean if ready else standardised),
+        distinct_dates=distinct_dates(standardised),
+        date_min=date_min,
+        date_max=date_max,
+        invalid_date_count=int(invalid_parses.get("date", 0)),
+        numeric_parse_failures={k: v for k, v in invalid_parses.items() if v},
+        source_columns=list(frame.columns),
+        header_row_index=mapping.header_row_index,
+        sheet_name=mapping.sheet_name,
         input_file=_display_path(source),
         raw_preserved_at=_display_path(raw_copy),
         clean_output_path=_display_path(clean_path) if clean_path else None,
+        exclusions_output_path=_display_path(exclusions_path) if exclusions_path else None,
+        exclusion_reason_counts=reason_counts,
     )
     return _persist_report(report, reports_dir, source.stem, write_outputs)
 

@@ -61,21 +61,17 @@ def duplicate_key_columns(frame: pd.DataFrame, config: QAConfig) -> list[str]:
 def detect_duplicates(
     frame: pd.DataFrame,
     config: QAConfig,
-) -> tuple[DuplicateSummary, pd.Series, bool]:
-    """Return summary, boolean mask of rows to drop (safe dupes), and unsafe flag."""
+) -> tuple[DuplicateSummary, pd.Series, pd.Series]:
+    """Return summary, safe-duplicate drop mask, and unsafe-group mask."""
     keys = duplicate_key_columns(frame, config)
     empty_mask = pd.Series(False, index=frame.index)
     if len(keys) < 2:
-        return (
-            DuplicateSummary(key_fields=keys),
-            empty_mask,
-            False,
-        )
+        return DuplicateSummary(key_fields=keys), empty_mask, empty_mask.copy()
 
     key_frame = frame[keys]
     duplicated = key_frame.duplicated(keep=False)
     if not duplicated.any():
-        return DuplicateSummary(key_fields=keys), empty_mask, False
+        return DuplicateSummary(key_fields=keys), empty_mask, empty_mask.copy()
 
     metric_cols = [
         col
@@ -83,7 +79,8 @@ def detect_duplicates(
         if col in frame.columns
     ]
     unsafe_groups = 0
-    drop_mask = pd.Series(False, index=frame.index)
+    safe_drop = pd.Series(False, index=frame.index)
+    unsafe_mask = pd.Series(False, index=frame.index)
     grouped = frame.loc[duplicated].groupby(keys, dropna=False, sort=False)
     for _, group in grouped:
         if len(group) < 2:
@@ -100,16 +97,17 @@ def detect_duplicates(
                     break
             if conflict:
                 unsafe_groups += 1
+                unsafe_mask.loc[group.index] = True
                 continue
-        drop_mask.loc[group.index[1:]] = True
+        safe_drop.loc[group.index[1:]] = True
 
     summary = DuplicateSummary(
         key_fields=keys,
         duplicate_row_count=int(duplicated.sum()),
         unsafe_group_count=unsafe_groups,
-        safely_dropped=int(drop_mask.sum()),
+        safely_dropped=int(safe_drop.sum()),
     )
-    return summary, drop_mask, unsafe_groups > 0
+    return summary, safe_drop, unsafe_mask
 
 
 def invalid_row_mask(frame: pd.DataFrame) -> pd.Series:
@@ -142,6 +140,48 @@ def invalid_row_mask(frame: pd.DataFrame) -> pd.Series:
     return mask
 
 
+def row_exclusion_reasons(
+    frame: pd.DataFrame,
+    *,
+    safe_drop: pd.Series,
+    unsafe_mask: pd.Series,
+) -> pd.Series:
+    """Return a reason code per row; empty string means the row is kept."""
+    buckets: dict[object, list[str]] = {idx: [] for idx in frame.index}
+
+    def add(mask: pd.Series, code: str) -> None:
+        if mask is None or not bool(mask.any()):
+            return
+        for idx in frame.index[mask.fillna(False)]:
+            buckets[idx].append(code)
+
+    if "date" in frame.columns:
+        add(frame["date"].isna(), "INVALID_DATE")
+    product_ok = pd.Series(False, index=frame.index)
+    if "product" in frame.columns:
+        product_ok = product_ok | frame["product"].notna()
+    if "sku" in frame.columns:
+        product_ok = product_ok | frame["sku"].notna()
+    if "product" in frame.columns or "sku" in frame.columns:
+        add(~product_ok, "MISSING_PRODUCT_OR_SKU")
+    if "retailer" in frame.columns:
+        add(frame["retailer"].isna(), "MISSING_RETAILER")
+    for col in ("sales_value", "sales_volume"):
+        if col in frame.columns:
+            add(frame[col].isna() | (frame[col] < 0), f"INVALID_{col.upper()}")
+    if "store_count" in frame.columns:
+        add(frame["store_count"] < 0, "INVALID_STORE_COUNT")
+    for col in PRICE_FIELDS:
+        if col in frame.columns:
+            add(frame[col].notna() & (frame[col] <= 0), "INVALID_PRICE")
+    for col in PERCENT_FIELDS:
+        if col in frame.columns:
+            add(frame[col].notna() & ((frame[col] < 0) | (frame[col] > 100)), "INVALID_PERCENT")
+    add(safe_drop.reindex(frame.index).fillna(False).astype(bool), "SAFE_DUPLICATE")
+    add(unsafe_mask.reindex(frame.index).fillna(False).astype(bool), "UNSAFE_DUPLICATE")
+    return pd.Series({idx: ";".join(codes) for idx, codes in buckets.items()}, index=frame.index)
+
+
 def validate(
     frame: pd.DataFrame,
     schema: CanonicalSchema,
@@ -150,7 +190,7 @@ def validate(
     mapping_missing: list[str],
     invalid_parses: dict[str, int],
     constants_applied: list[str],
-) -> tuple[list[QAIssue], DuplicateSummary, pd.Series]:
+) -> tuple[list[QAIssue], DuplicateSummary, pd.Series, pd.Series]:
     issues: list[QAIssue] = []
     n_rows = len(frame)
     applied = set(constants_applied)
@@ -484,7 +524,8 @@ def validate(
                 )
             )
 
-    dup_summary, safe_drop, unsafe = detect_duplicates(frame, config)
+    dup_summary, safe_drop, unsafe_mask = detect_duplicates(frame, config)
+    unsafe = bool(unsafe_mask.any())
     if unsafe:
         issues.append(
             _issue(
@@ -494,7 +535,7 @@ def validate(
                     "Duplicate records share the same grain but have conflicting metrics "
                     "and cannot be safely deduplicated"
                 ),
-                row_count=dup_summary.duplicate_row_count,
+                row_count=int(unsafe_mask.sum()),
             )
         )
     elif dup_summary.safely_dropped:
@@ -508,6 +549,7 @@ def validate(
         )
 
     drop_invalid = invalid_row_mask(frame)
-    drop_mask = drop_invalid | safe_drop
+    drop_mask = drop_invalid | safe_drop | unsafe_mask
+    reasons = row_exclusion_reasons(frame, safe_drop=safe_drop, unsafe_mask=unsafe_mask)
     logger.info("validate_ok issues=%s drop_rows=%s", len(issues), int(drop_mask.sum()))
-    return issues, dup_summary, drop_mask
+    return issues, dup_summary, drop_mask, reasons

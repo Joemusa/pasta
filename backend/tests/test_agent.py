@@ -74,7 +74,7 @@ def test_agent_fails_when_retailer_missing(tmp_path: Path) -> None:
     assert report.analysis_ready is False
     assert report.capabilities.commercial_brain is False
     assert any(issue.code == "MISSING_RETAILER" for issue in report.critical_issues)
-    assert report.clean_output_path is None
+    assert report.clean_output_path is not None
 
 
 def test_agent_fails_on_unreadable_file(tmp_path: Path) -> None:
