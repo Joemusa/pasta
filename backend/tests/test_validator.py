@@ -38,3 +38,18 @@ def test_missing_retailer_is_critical() -> None:
         constants_applied=[],
     )
     assert any(issue.code == "MISSING_RETAILER" and issue.severity == Severity.CRITICAL for issue in issues)
+
+
+def test_constants_applied_avoids_missing_retailer_critical() -> None:
+    schema = load_canonical_schema()
+    config = load_qa_config()
+    frame = canonical_rows(n_months=2).drop(columns=["retailer"])
+    issues, _dup, _drop = validate(
+        frame,
+        schema,
+        config,
+        mapping_missing=["retailer"],
+        invalid_parses={},
+        constants_applied=["retailer"],
+    )
+    assert not any(issue.code == "MISSING_RETAILER" for issue in issues)

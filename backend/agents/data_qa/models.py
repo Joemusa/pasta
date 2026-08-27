@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
-from enum import Enum
+from datetime import UTC, datetime
+from enum import StrEnum
 from pathlib import Path
 from typing import Any
 
@@ -15,27 +15,27 @@ DEFAULT_SCHEMA_PATH = SCHEMA_DIR / "canonical_schema.yaml"
 DEFAULT_CONFIG_PATH = SCHEMA_DIR / "qa_config.yaml"
 
 
-class Status(str, Enum):
+class Status(StrEnum):
     PASS = "PASS"
     PASS_WITH_WARNINGS = "PASS_WITH_WARNINGS"
     PARTIAL_PASS = "PARTIAL_PASS"
     FAIL = "FAIL"
 
 
-class Severity(str, Enum):
+class Severity(StrEnum):
     CRITICAL = "CRITICAL"
     WARNING = "WARNING"
     INFO = "INFO"
 
 
-class FieldRole(str, Enum):
+class FieldRole(StrEnum):
     DIMENSION = "dimension"
     METRIC = "metric"
     PRICE = "price"
     PROMOTION = "promotion"
 
 
-class FieldDtype(str, Enum):
+class FieldDtype(StrEnum):
     DATE = "date"
     TEXT = "text"
     NUMBER = "number"
@@ -189,7 +189,7 @@ class QAReport(BaseModel):
     raw_preserved_at: str
     clean_output_path: str | None = None
     report_output_path: str | None = None
-    generated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    generated_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
 
     def to_json_dict(self) -> dict[str, Any]:
         return self.model_dump(mode="json")
@@ -199,7 +199,7 @@ def _read_yaml(path: Path) -> dict[str, Any]:
     with path.open("r", encoding="utf-8") as handle:
         payload = yaml.safe_load(handle) or {}
     if not isinstance(payload, dict):
-        raise ValueError(f"YAML at {path} must be a mapping")
+        raise TypeError(f"YAML at {path} must be a mapping")
     return payload
 
 
@@ -213,7 +213,7 @@ def load_canonical_schema(path: Path | None = None) -> CanonicalSchema:
     elif isinstance(raw_fields, list):
         fields = [CanonicalField(**item) for item in raw_fields]
     else:
-        raise ValueError("canonical schema 'fields' must be a mapping or list")
+        raise TypeError("canonical schema 'fields' must be a mapping or list")
     return CanonicalSchema(fields=fields)
 
 

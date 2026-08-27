@@ -34,7 +34,7 @@ def _read_csv(path: Path, header: int | None) -> pd.DataFrame:
     return pd.read_csv(path, header=header, dtype=object, keep_default_na=False)
 
 
-def _excel_engine(path: Path) -> str:
+def _excel_engine(_path: Path) -> str:
     return "openpyxl"
 
 
@@ -158,7 +158,7 @@ def load_table(
             frame = _read_excel(path, header=header_row, sheet_name=sheet_name)
     except LoadError:
         raise
-    except Exception as exc:  # noqa: BLE001 - surface any parse failure as LoadError
+    except Exception as exc:
         raise LoadError(f"File cannot be read: {path} ({exc})") from exc
 
     frame = frame.copy()

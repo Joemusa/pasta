@@ -12,10 +12,10 @@ import pandas as pd
 from backend.agents.data_qa.capability_checker import analysis_ready, check_capabilities, distinct_dates
 from backend.agents.data_qa.loader import LoadError, load_table
 from backend.agents.data_qa.models import (
-    CanonicalSchema,
-    Capabilities,
     DEFAULT_CONFIG_PATH,
     DEFAULT_SCHEMA_PATH,
+    CanonicalSchema,
+    Capabilities,
     OutlierSummary,
     QAConfig,
     QAIssue,
@@ -119,8 +119,8 @@ def _fail_report(
             social_evidence=False,
             commercial_brain=False,
         ),
-            input_file=_display_path(Path(input_file)) if input_file else "",
-            raw_preserved_at=_display_path(Path(raw_preserved_at)) if raw_preserved_at else "",
+        input_file=_display_path(Path(input_file)) if input_file else "",
+        raw_preserved_at=_display_path(Path(raw_preserved_at)) if raw_preserved_at else "",
     )
 
 
@@ -193,13 +193,20 @@ def run_data_qa(
     """Run the deterministic Data QA Agent on a CSV or Excel upload."""
     _configure_logging()
     source = Path(input_path).expanduser().resolve()
-    root = Path(data_root).expanduser().resolve() if data_root else source.parents[1] if source.parent.name == "raw" else Path("backend/data").resolve()
+    if data_root:
+        root = Path(data_root).expanduser().resolve()
+    elif source.parent.name == "raw":
+        root = source.parents[1]
+    else:
+        root = Path("backend/data").resolve()
     raw_dir = root / "raw"
     clean_dir = root / "clean"
     reports_dir = root / "qa_reports"
 
-    schema = load_canonical_schema(Path(schema_path) if schema_path else DEFAULT_SCHEMA_PATH)
-    config = load_qa_config(Path(config_path) if config_path else DEFAULT_CONFIG_PATH)
+    schema: CanonicalSchema = load_canonical_schema(
+        Path(schema_path) if schema_path else DEFAULT_SCHEMA_PATH
+    )
+    config: QAConfig = load_qa_config(Path(config_path) if config_path else DEFAULT_CONFIG_PATH)
 
     logger.info("qa_start input=%s data_root=%s", source, root)
     try:

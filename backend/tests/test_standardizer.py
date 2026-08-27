@@ -5,7 +5,7 @@ import math
 import pandas as pd
 
 from backend.agents.data_qa.models import load_canonical_schema, load_qa_config
-from backend.agents.data_qa.standardizer import parse_number, standardise_frame
+from backend.agents.data_qa.standardizer import parse_dates, parse_number, standardise_frame
 
 
 def test_parse_number_strips_currency_and_commas() -> None:
@@ -42,3 +42,17 @@ def test_empty_strings_become_null_and_percents_scale_to_0_100() -> None:
     assert bool(out.loc[1, "promotion_flag"]) is False
     assert any(item.code == "percent_scaled_0_1_to_0_100" for item in transformations)
     assert pd.api.types.is_datetime64_any_dtype(out["date"])
+
+
+def test_parse_dates_handles_mixed_formats() -> None:
+    config = load_qa_config()
+    series = pd.Series(["2025-01-15", "Jan 25", "2025/03/01", "15/04/2025", "not-a-date", ""])
+    parsed, parsed_count, invalid_count = parse_dates(series, config.date_formats)
+    assert parsed_count == 4
+    assert invalid_count == 1
+    assert parsed.iloc[0] == pd.Timestamp("2025-01-15")
+    assert parsed.iloc[1] == pd.Timestamp("2025-01-01")
+    assert parsed.iloc[2] == pd.Timestamp("2025-03-01")
+    assert parsed.iloc[3] == pd.Timestamp("2025-04-15")
+    assert pd.isna(parsed.iloc[4])
+    assert pd.isna(parsed.iloc[5])

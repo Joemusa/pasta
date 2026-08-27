@@ -20,7 +20,6 @@ logger = logging.getLogger("backend.agents.data_qa.validator")
 METRIC_NON_NEGATIVE = ("sales_value", "sales_volume", "store_count")
 PRICE_FIELDS = ("current_price", "normal_price")
 PERCENT_FIELDS = ("percent_time_on_promo", "percent_sales_on_promo")
-BASIC_IDENTITY = ("product", "sku")
 
 
 def _issue(
@@ -152,31 +151,41 @@ def validate(
     invalid_parses: dict[str, int],
     constants_applied: list[str],
 ) -> tuple[list[QAIssue], DuplicateSummary, pd.Series]:
-    _ = mapping_missing, constants_applied
     issues: list[QAIssue] = []
     n_rows = len(frame)
+    applied = set(constants_applied)
+    unmapped = [name for name in mapping_missing if name not in applied]
     present = set(frame.columns)
 
-    has_product = "product" in present
-    has_sku = "sku" in present
+    def available(column: str) -> bool:
+        return column in present or column in applied
+
+    has_product = available("product")
+    has_sku = available("sku")
     if not has_product and not has_sku:
         issues.append(
             _issue(
                 "MISSING_PRODUCT_OR_SKU",
                 Severity.CRITICAL,
-                "Neither product nor sku could be mapped from the source file",
+                "Neither product nor sku could be mapped from the source file"
+                if "product" in unmapped and "sku" in unmapped
+                else "Neither product nor sku is available after mapping",
             )
         )
-    if "retailer" not in present:
+    if not available("retailer"):
         issues.append(
             _issue(
                 "MISSING_RETAILER",
                 Severity.CRITICAL,
-                "Retailer column is missing and is required for basic commercial analysis",
+                (
+                    "Retailer column could not be mapped from the source file"
+                    if "retailer" in unmapped
+                    else "Retailer column is missing and is required for basic commercial analysis"
+                ),
                 column="retailer",
             )
         )
-    if "date" not in present:
+    if not available("date"):
         issues.append(
             _issue(
                 "NO_VALID_DATES",
@@ -185,7 +194,7 @@ def validate(
                 column="date",
             )
         )
-    if "sales_value" not in present:
+    if not available("sales_value"):
         issues.append(
             _issue(
                 "MISSING_SALES_VALUE",
@@ -194,7 +203,7 @@ def validate(
                 column="sales_value",
             )
         )
-    if "sales_volume" not in present:
+    if not available("sales_volume"):
         issues.append(
             _issue(
                 "MISSING_SALES_VOLUME",
@@ -272,11 +281,11 @@ def validate(
                 )
             )
 
-    if has_product or has_sku:
+    if "product" in frame.columns or "sku" in frame.columns:
         identity_null = pd.Series(True, index=frame.index)
-        if has_product:
+        if "product" in frame.columns:
             identity_null = identity_null & frame["product"].isna()
-        if has_sku:
+        if "sku" in frame.columns:
             identity_null = identity_null & frame["sku"].isna()
         identity_rate = float(identity_null.mean()) if n_rows else 1.0
         if identity_rate >= config.required_null_rate_threshold and identity_rate > 0:
@@ -459,17 +468,21 @@ def validate(
         if col == "date" or failed == 0:
             continue
         spec = schema.by_name().get(col)
-        if spec and spec.dtype in {FieldDtype.NUMBER, FieldDtype.PERCENT, FieldDtype.FLAG}:
-            if n_rows and (failed / n_rows) <= config.invalid_numeric_rate_threshold:
-                issues.append(
-                    _issue(
-                        "INVALID_NUMERIC",
-                        Severity.WARNING,
-                        f"{failed} values in {col} could not be parsed as numeric",
-                        column=col,
-                        row_count=failed,
-                    )
+        if (
+            spec
+            and spec.dtype in {FieldDtype.NUMBER, FieldDtype.PERCENT, FieldDtype.FLAG}
+            and n_rows
+            and (failed / n_rows) <= config.invalid_numeric_rate_threshold
+        ):
+            issues.append(
+                _issue(
+                    "INVALID_NUMERIC",
+                    Severity.WARNING,
+                    f"{failed} values in {col} could not be parsed as numeric",
+                    column=col,
+                    row_count=failed,
                 )
+            )
 
     dup_summary, safe_drop, unsafe = detect_duplicates(frame, config)
     if unsafe:

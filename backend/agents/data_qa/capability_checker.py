@@ -42,9 +42,7 @@ def analysis_ready(frame: pd.DataFrame, has_critical_blocker: bool) -> bool:
         return False
     if not _non_null(frame, "sales_value"):
         return False
-    if not _non_null(frame, "sales_volume"):
-        return False
-    return True
+    return _non_null(frame, "sales_volume")
 
 
 def check_capabilities(
