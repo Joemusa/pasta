@@ -56,3 +56,33 @@ def test_parse_dates_handles_mixed_formats() -> None:
     assert parsed.iloc[3] == pd.Timestamp("2025-04-15")
     assert pd.isna(parsed.iloc[4])
     assert pd.isna(parsed.iloc[5])
+
+
+def test_percent_scale_uses_bulk_unit_interval_despite_rare_outliers() -> None:
+    schema = load_canonical_schema()
+    config = load_qa_config()
+    n = 101
+    frame = pd.DataFrame(
+        {
+            "date": ["2025-01-01"] * n,
+            "manufacturer": ["Nestle"] * n,
+            "brand": ["Maggi"] * n,
+            "product": ["Maggi Noodles"] * n,
+            "sku": ["A1"] * n,
+            "retailer": ["Pick n Pay"] * n,
+            "region": ["Gauteng"] * n,
+            "sales_value": [100.0] * n,
+            "sales_volume": [10.0] * n,
+            "percent_time_on_promo": [0.25] * n,
+            "percent_sales_on_promo": [0.1] * 97 + [0.99, 1.0, 1.06, -0.02],
+        }
+    )
+    out, transformations, _invalid = standardise_frame(frame, schema, config)
+    assert any(
+        item.code == "percent_scaled_0_1_to_0_100" and item.column == "percent_sales_on_promo"
+        for item in transformations
+    )
+    assert float(out.loc[0, "percent_sales_on_promo"]) == 10.0
+    assert float(out.loc[n - 3, "percent_sales_on_promo"]) == 100.0
+    assert float(out.loc[n - 2, "percent_sales_on_promo"]) == 106.0
+    assert float(out.loc[n - 1, "percent_sales_on_promo"]) == -2.0

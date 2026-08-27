@@ -160,11 +160,13 @@ def _standardise_percent(series: pd.Series) -> tuple[pd.Series, str | None, int]
     present = numeric.dropna()
     if present.empty:
         return numeric, None, 0
-    vmin = float(present.min())
-    vmax = float(present.max())
-    if vmin < 0:
+    non_negative = present[present >= 0]
+    if non_negative.empty:
         return numeric, None, int((numeric < 0).sum())
-    if vmax <= 1.0:
+    # Use the bulk of the distribution so a few >1 or negative outliers do not
+    # block 0-1 detection. Invalid values are excluded later by validation.
+    share_unit = float((non_negative <= 1.0).mean())
+    if share_unit >= 0.99:
         scaled = (numeric * 100.0).round(4)
         return scaled, "percent_scaled_0_1_to_0_100", int(present.shape[0])
     return numeric, None, 0

@@ -106,6 +106,23 @@ def test_committed_sample_is_analysis_ready(tmp_path: Path) -> None:
     assert report.clean_output_path is not None
 
 
+def test_unpopulated_metric_slots_keep_file_analysis_ready(tmp_path: Path) -> None:
+    frame = canonical_rows(n_months=12)
+    blank = pd.to_datetime(frame["date"]).dt.month <= 6
+    frame.loc[blank, "sales_value"] = pd.NA
+    frame.loc[blank, "sales_volume"] = pd.NA
+    source = _write_csv(tmp_path / "discovery_grid.csv", frame)
+    report = run_data_qa(source, data_root=tmp_path / "data")
+    assert report.status in {Status.PASS_WITH_WARNINGS, Status.PARTIAL_PASS}
+    assert report.analysis_ready is True
+    assert report.capabilities.commercial_brain is True
+    assert not any(issue.code in {"MISSING_SALES_VALUE", "MISSING_SALES_VOLUME"} for issue in report.critical_issues)
+    assert any(issue.code == "EMPTY_METRIC_ROWS" for issue in report.warnings)
+    clean = pd.read_csv(report.clean_output_path)
+    assert clean["sales_value"].notna().all()
+    assert clean["sales_volume"].notna().all()
+
+
 def test_titled_excel_with_blank_prices_fails_closed_on_missing_retailer(tmp_path: Path) -> None:
     path = tmp_path / "panel.xlsx"
     rows = [

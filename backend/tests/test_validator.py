@@ -66,3 +66,25 @@ def test_constants_applied_avoids_missing_retailer_critical() -> None:
         constants_applied=["retailer"],
     )
     assert not any(issue.code == "MISSING_RETAILER" for issue in issues)
+
+
+def test_empty_metric_slots_are_excluded_without_missing_sales_critical() -> None:
+    schema = load_canonical_schema()
+    config = load_qa_config()
+    frame = canonical_rows(n_months=12)
+    blank = pd.to_datetime(frame["date"]).dt.month <= 6
+    frame.loc[blank, "sales_value"] = pd.NA
+    frame.loc[blank, "sales_volume"] = pd.NA
+    issues, _dup, drop_mask, reasons = validate(
+        frame,
+        schema,
+        config,
+        mapping_missing=[],
+        invalid_parses={},
+        constants_applied=[],
+    )
+    assert int(drop_mask.sum()) == int(blank.sum())
+    assert (reasons.loc[blank] == "EMPTY_METRICS").all()
+    assert any(issue.code == "EMPTY_METRIC_ROWS" and issue.severity == Severity.WARNING for issue in issues)
+    assert not any(issue.code in {"MISSING_SALES_VALUE", "MISSING_SALES_VOLUME"} for issue in issues)
+    assert any(issue.code == "SPARSE_HISTORY" for issue in issues)

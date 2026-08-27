@@ -110,6 +110,17 @@ def detect_duplicates(
     return summary, safe_drop, unsafe_mask
 
 
+def empty_metric_mask(frame: pd.DataFrame) -> pd.Series:
+    """Rows with no sales value and no sales volume (unpopulated period slots)."""
+    has_value = "sales_value" in frame.columns
+    has_volume = "sales_volume" in frame.columns
+    if not has_value and not has_volume:
+        return pd.Series(False, index=frame.index)
+    value_empty = frame["sales_value"].isna() if has_value else pd.Series(True, index=frame.index)
+    volume_empty = frame["sales_volume"].isna() if has_volume else pd.Series(True, index=frame.index)
+    return value_empty & volume_empty
+
+
 def invalid_row_mask(frame: pd.DataFrame) -> pd.Series:
     """Rows that must not enter the clean dataset."""
     mask = pd.Series(False, index=frame.index)
@@ -166,9 +177,11 @@ def row_exclusion_reasons(
         add(~product_ok, "MISSING_PRODUCT_OR_SKU")
     if "retailer" in frame.columns:
         add(frame["retailer"].isna(), "MISSING_RETAILER")
+    empty_metrics = empty_metric_mask(frame)
+    add(empty_metrics, "EMPTY_METRICS")
     for col in ("sales_value", "sales_volume"):
         if col in frame.columns:
-            add(frame[col].isna() | (frame[col] < 0), f"INVALID_{col.upper()}")
+            add((frame[col].isna() | (frame[col] < 0)) & ~empty_metrics, f"INVALID_{col.upper()}")
     if "store_count" in frame.columns:
         add(frame["store_count"] < 0, "INVALID_STORE_COUNT")
     for col in PRICE_FIELDS:
@@ -309,15 +322,47 @@ def validate(
                     row_count=failed,
                 )
             )
-        null_rate = float(frame[col].isna().mean()) if n_rows else 1.0
+
+    empty_metrics = empty_metric_mask(frame)
+    empty_count = int(empty_metrics.sum())
+    if empty_count:
+        issues.append(
+            _issue(
+                "EMPTY_METRIC_ROWS",
+                Severity.WARNING,
+                (
+                    f"{empty_count} rows have no sales_value and no sales_volume "
+                    "and were excluded as unpopulated metric slots"
+                ),
+                row_count=empty_count,
+            )
+        )
+
+    for col in ("sales_value", "sales_volume"):
+        if col not in present:
+            continue
+        observed = frame.loc[~empty_metrics, col] if empty_count else frame[col]
+        n_observed = len(observed)
+        if n_observed == 0:
+            issues.append(
+                _issue(
+                    f"MISSING_{col.upper()}",
+                    Severity.CRITICAL,
+                    f"{col} is missing in every row",
+                    column=col,
+                    row_count=n_rows,
+                )
+            )
+            continue
+        null_rate = float(observed.isna().mean())
         if null_rate >= config.required_null_rate_threshold and null_rate > 0:
             issues.append(
                 _issue(
                     f"MISSING_{col.upper()}",
                     Severity.CRITICAL,
-                    f"{col} is missing in {null_rate:.1%} of rows",
+                    f"{col} is missing in {null_rate:.1%} of populated metric rows",
                     column=col,
-                    row_count=int(frame[col].isna().sum()),
+                    row_count=int(observed.isna().sum()),
                 )
             )
 
@@ -488,22 +533,6 @@ def validate(
                 )
             )
 
-    if "date" in present:
-        distinct = int(frame["date"].dropna().nunique())
-        if 0 < distinct < config.min_history_periods:
-            issues.append(
-                _issue(
-                    "SPARSE_HISTORY",
-                    Severity.WARNING,
-                    (
-                        f"Only {distinct} distinct dates found; "
-                        f"minimum for robust history is {config.min_history_periods}"
-                    ),
-                    column="date",
-                    row_count=distinct,
-                )
-            )
-
     for col, failed in invalid_parses.items():
         if col == "date" or failed == 0:
             continue
@@ -550,6 +579,22 @@ def validate(
 
     drop_invalid = invalid_row_mask(frame)
     drop_mask = drop_invalid | safe_drop | unsafe_mask
+    remaining = frame.loc[~drop_mask]
+    if "date" in remaining.columns:
+        distinct = int(remaining["date"].dropna().nunique())
+        if 0 < distinct < config.min_history_periods:
+            issues.append(
+                _issue(
+                    "SPARSE_HISTORY",
+                    Severity.WARNING,
+                    (
+                        f"Only {distinct} distinct dates remain after exclusions; "
+                        f"minimum for robust history is {config.min_history_periods}"
+                    ),
+                    column="date",
+                    row_count=distinct,
+                )
+            )
     reasons = row_exclusion_reasons(frame, safe_drop=safe_drop, unsafe_mask=unsafe_mask)
     logger.info("validate_ok issues=%s drop_rows=%s", len(issues), int(drop_mask.sum()))
     return issues, dup_summary, drop_mask, reasons

@@ -25,6 +25,9 @@ fields:
       - Time
       - year_month
       - YearMonth
+      - DDMMMYY
+      - week_date
+      - Week Ending
 
   manufacturer:
     role: dimension
@@ -149,6 +152,10 @@ fields:
       - sales_r
       - sales_$
       - value_sales
+      - 4 Weeks CY Value
+      - 4 Weeks Value
+      - CY Value
+      - CY Sales Value
 
   sales_volume:
     role: metric
@@ -167,6 +174,10 @@ fields:
       - Quantity
       - qty
       - packs
+      - 4 Weeks CY Volume
+      - 4 Weeks Volume
+      - CY Volume
+      - CY Sales Volume
 
   store_count:
     role: metric
@@ -189,6 +200,8 @@ fields:
       - Distribution
       - selling_stores
       - outlet_count
+      - 4 Weeks Store Count
+      - Store Count 4 Weeks
 
   current_price:
     role: price
@@ -209,6 +222,10 @@ fields:
       - Selling Price
       - unit_price
       - Unit Price
+      - 4 Weeks CY Ave Price Quantity
+      - CY Ave Price Quantity
+      - Ave Price Quantity
+      - CY Ave Price
 
   normal_price:
     role: price
@@ -241,6 +258,9 @@ fields:
       - time_on_promo
       - Time on Promo
       - pct_promo_time
+      - CY % Time On Promo
+      - "CY % Time On Promo"
+      - 4 Weeks CY % Time On Promo
 
   percent_sales_on_promo:
     role: promotion
@@ -256,6 +276,9 @@ fields:
       - sales_on_promo
       - Sales on Promo
       - pct_promo_sales
+      - 4 Weeks CY % Sales On Promo
+      - CY % Sales On Promo
+      - "4 Weeks CY % Sales On Promo"
 
   promotion_flag:
     role: promotion

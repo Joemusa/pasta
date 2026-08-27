@@ -10,6 +10,29 @@ def test_normalize_collapses_punctuation() -> None:
     assert normalize_name("% Time on Promo") == "percent time on promo"
 
 
+def test_discovery_style_headers_map_to_canonical() -> None:
+    schema = load_canonical_schema()
+    frame = canonical_rows().rename(
+        columns={
+            "date": "DDMMMYY",
+            "sales_value": "4 Weeks CY Value",
+            "sales_volume": "4 Weeks CY Volume",
+            "store_count": "4 Weeks Store Count",
+            "current_price": "4 Weeks CY Ave Price Quantity",
+            "percent_time_on_promo": "CY % Time On Promo",
+            "percent_sales_on_promo": "4 Weeks CY % Sales On Promo",
+        }
+    )
+    mapping = detect_columns(frame, schema)
+    assert mapping.source_to_canonical["DDMMMYY"] == "date"
+    assert mapping.source_to_canonical["4 Weeks CY Value"] == "sales_value"
+    assert mapping.source_to_canonical["4 Weeks CY Volume"] == "sales_volume"
+    assert mapping.source_to_canonical["4 Weeks Store Count"] == "store_count"
+    assert mapping.source_to_canonical["4 Weeks CY Ave Price Quantity"] == "current_price"
+    assert mapping.source_to_canonical["CY % Time On Promo"] == "percent_time_on_promo"
+    assert mapping.source_to_canonical["4 Weeks CY % Sales On Promo"] == "percent_sales_on_promo"
+
+
 def test_maps_nielsen_style_headers() -> None:
     schema = load_canonical_schema()
     frame = canonical_rows().rename(
