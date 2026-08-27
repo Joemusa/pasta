@@ -26,7 +26,10 @@ def _mad_mask(values: pd.Series, threshold: float) -> pd.Series:
     abs_dev = (values - median).abs()
     mad = float(abs_dev.median())
     if mad == 0:
-        return pd.Series(False, index=values.index)
+        std = float(values.std(ddof=0))
+        if std == 0:
+            return pd.Series(False, index=values.index)
+        return ((values - median) / std).abs() > threshold
     modified_z = 0.6745 * (values - median) / mad
     return modified_z.abs() > threshold
 
@@ -36,7 +39,10 @@ def _iqr_mask(values: pd.Series, multiplier: float) -> pd.Series:
     q3 = float(values.quantile(0.75))
     iqr = q3 - q1
     if iqr == 0:
-        return pd.Series(False, index=values.index)
+        std = float(values.std(ddof=0))
+        if std == 0:
+            return pd.Series(False, index=values.index)
+        return ((values - float(values.median())) / std).abs() > 3.5
     lower = q1 - multiplier * iqr
     upper = q3 + multiplier * iqr
     return (values < lower) | (values > upper)

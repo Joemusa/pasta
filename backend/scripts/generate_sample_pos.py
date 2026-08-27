@@ -72,10 +72,10 @@ def build_rows() -> list[list[object]]:
     rows[1][3] = ""  # missing manufacturer
     rows[2][7] = 0  # zero sales value
     rows[5][10] = 999.99  # price outlier
-    rows.append(list(rows[10]))  # safe duplicate
     rows[20][7] = "R 12,500.00"  # currency formatting
-    rows[21][0] = "Jan 25"  # alternative date format
+    rows[21][0] = "Feb 25"  # alternative date format for that row's month
     rows[22][13] = 0.9
+    rows.append(list(rows[10]))  # exact duplicate, safe to drop
     return rows
 
 

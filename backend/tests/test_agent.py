@@ -95,3 +95,37 @@ def test_cli_help_is_available() -> None:
     parser = build_parser()
     help_text = parser.format_help()
     assert "Deterministic Data QA Agent" in help_text
+
+
+def test_committed_sample_is_analysis_ready(tmp_path: Path) -> None:
+    source = Path("backend/data/raw/sample_pos.csv")
+    report = run_data_qa(source, data_root=tmp_path / "data")
+    assert report.status in {Status.PASS, Status.PASS_WITH_WARNINGS, Status.PARTIAL_PASS}
+    assert report.analysis_ready is True
+    assert report.capabilities.commercial_brain is True
+    assert report.clean_output_path is not None
+
+
+def test_titled_excel_with_blank_prices_fails_closed_on_missing_retailer(tmp_path: Path) -> None:
+    path = tmp_path / "panel.xlsx"
+    rows = [
+        ["Monthly Trended Export"],
+        ["Measure by MonthYear2"],
+        [""],
+        [
+            "MonthYear2",
+            "Manufacturer",
+            "Product",
+            "Trended Sales Value",
+            "Trended Sales Volume",
+            "Trended Ave Price (Value/Volume)",
+        ],
+        ["Jul 24", "Tiger Brands", "Spaghetti 500g", "1000", "80", ""],
+        ["Aug 24", "Tiger Brands", "Spaghetti 500g", "1100", "90", "12.2"],
+    ]
+    pd.DataFrame(rows).to_excel(path, index=False, header=False, engine="openpyxl")
+    report = run_data_qa(path, data_root=tmp_path / "data")
+    assert report.status == Status.FAIL
+    assert any(issue.code == "MISSING_RETAILER" for issue in report.critical_issues)
+    assert report.column_mapping["MonthYear2"] == "date"
+    assert report.column_mapping["Trended Sales Value"] == "sales_value"

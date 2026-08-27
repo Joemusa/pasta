@@ -233,7 +233,7 @@ fields:
     required_for: [promotion]
     aliases:
       - percent_time_on_promo
-      - % Time on Promo
+      - "% Time on Promo"
       - pct_time_on_promo
       - ptop
       - PTOP
@@ -248,7 +248,7 @@ fields:
     required_for: [promotion]
     aliases:
       - percent_sales_on_promo
-      - % Sales on Promo
+      - "% Sales on Promo"
       - pct_sales_on_promo
       - psop
       - PSOP

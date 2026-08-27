@@ -63,6 +63,15 @@ CANONICAL_OUTPUT_ORDER = [
 ]
 
 
+def _display_path(path: Path) -> str:
+    resolved = path.resolve()
+    cwd = Path.cwd().resolve()
+    try:
+        return str(resolved.relative_to(cwd))
+    except ValueError:
+        return str(resolved)
+
+
 def _configure_logging() -> None:
     if logger.handlers:
         return
@@ -110,8 +119,8 @@ def _fail_report(
             social_evidence=False,
             commercial_brain=False,
         ),
-        input_file=input_file,
-        raw_preserved_at=raw_preserved_at,
+            input_file=_display_path(Path(input_file)) if input_file else "",
+            raw_preserved_at=_display_path(Path(raw_preserved_at)) if raw_preserved_at else "",
     )
 
 
@@ -301,9 +310,9 @@ def run_data_qa(
         row_count_clean=len(clean),
         rows_dropped=len(standardised) - len(clean),
         distinct_dates=distinct_dates(clean if ready else standardised),
-        input_file=str(source),
-        raw_preserved_at=str(raw_copy),
-        clean_output_path=str(clean_path) if clean_path else None,
+        input_file=_display_path(source),
+        raw_preserved_at=_display_path(raw_copy),
+        clean_output_path=_display_path(clean_path) if clean_path else None,
     )
     return _persist_report(report, reports_dir, source.stem, write_outputs)
 
@@ -313,7 +322,7 @@ def _persist_report(report: QAReport, reports_dir: Path, stem: str, write_output
         return report
     reports_dir.mkdir(parents=True, exist_ok=True)
     path = reports_dir / f"{stem}.qa.json"
-    report.report_output_path = str(path)
+    report.report_output_path = _display_path(path)
     path.write_text(json.dumps(report.to_json_dict(), indent=2) + "\n", encoding="utf-8")
     logger.info("report_written path=%s status=%s", path, report.status.value)
     return report

@@ -14,7 +14,20 @@ from backend.agents.data_qa.models import CanonicalSchema, FieldDtype, QAConfig,
 logger = logging.getLogger("backend.agents.data_qa.standardizer")
 
 _CURRENCY = re.compile(r"[Rr$€£¥,\s]")
-_NULL_TOKENS = {"", "nan", "none", "null", "n/a", "na", "-", "--", "#n/a", "#na"}
+_NULL_TOKENS = {
+    "",
+    "nan",
+    "none",
+    "null",
+    "n/a",
+    "na",
+    "-",
+    "--",
+    "#n/a",
+    "#na",
+    "<na>",
+    "<nat>",
+}
 _TRUE_TOKENS = {"1", "true", "yes", "y", "t", "on", "promo", "promoted"}
 _FALSE_TOKENS = {"0", "false", "no", "n", "f", "off"}
 
@@ -22,6 +35,11 @@ _FALSE_TOKENS = {"0", "false", "no", "n", "f", "off"}
 def is_null_token(value: Any) -> bool:
     if value is None:
         return True
+    try:
+        if pd.isna(value):
+            return True
+    except (TypeError, ValueError):
+        pass
     if isinstance(value, float) and math.isnan(value):
         return True
     text = str(value).strip().lower()
@@ -49,7 +67,10 @@ def parse_number(value: Any) -> float:
     text = text.replace("%", "")
     if is_null_token(text):
         return math.nan
-    return float(text)
+    try:
+        return float(text)
+    except (TypeError, ValueError):
+        return math.nan
 
 
 def parse_flag(value: Any) -> Any:
@@ -144,7 +165,7 @@ def _standardise_percent(series: pd.Series) -> tuple[pd.Series, str | None, int]
     if vmin < 0:
         return numeric, None, int((numeric < 0).sum())
     if vmax <= 1.0:
-        scaled = numeric * 100.0
+        scaled = (numeric * 100.0).round(4)
         return scaled, "percent_scaled_0_1_to_0_100", int(present.shape[0])
     return numeric, None, 0
 

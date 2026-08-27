@@ -11,6 +11,8 @@ from backend.agents.data_qa.standardizer import parse_number, standardise_frame
 def test_parse_number_strips_currency_and_commas() -> None:
     assert parse_number("R 1,234.50") == 1234.5
     assert math.isnan(parse_number("n/a"))
+    assert math.isnan(parse_number(pd.NA))
+    assert math.isnan(parse_number("not-a-number"))
 
 
 def test_empty_strings_become_null_and_percents_scale_to_0_100() -> None:
