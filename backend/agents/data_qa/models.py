@@ -72,8 +72,8 @@ class OutlierConfig(BaseModel):
     mad_threshold: float = 3.5
     iqr_multiplier: float = 1.5
     min_observations: int = 8
-    # Prefer within-SKU/product series so mixed POS grains are not compared globally.
-    group_fields: list[str] = Field(default_factory=lambda: ["product"])
+    # Prefer within-series flags so mixed retailer/region grains are not compared.
+    group_fields: list[str] = Field(default_factory=lambda: ["product", "retailer", "region"])
 
 
 class QAConfig(BaseModel):

@@ -329,7 +329,7 @@ def validate(
         issues.append(
             _issue(
                 "EMPTY_METRIC_ROWS",
-                Severity.WARNING,
+                Severity.INFO,
                 (
                     f"{empty_count} rows have no sales_value and no sales_volume "
                     "and were excluded as unpopulated metric slots"

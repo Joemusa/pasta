@@ -76,13 +76,15 @@ constant_columns:
 
 **Critical (typically `FAIL`):** unreadable file, no valid dates, missing product/SKU, missing retailer, missing sales value/volume, unsafe conflicting duplicates, invalid date parsing above threshold.
 
-**Warnings:** missing region / manufacturer / promotion / price / normal price / store count, zero sales, sparse history, outliers, safe duplicate drops, negative sales or store counts (those rows are excluded), unpopulated metric slots.
+**Warnings:** missing region / manufacturer / promotion / price / normal price / store count, zero sales, sparse history, outliers, safe duplicate drops, negative sales or store counts (those rows are excluded).
+
+**Info:** unpopulated metric slots (empty Nielsen-style week cells). They are excluded from the clean table but do not count as quality failures.
 
 **Validity:** non-negative sales and store counts; prices `> 0` where present; percentages in `0–100` after auto-detecting a `0–1` vs `0–100` source scale; valid dates; empty strings become null.
 
 `PARTIAL_PASS` is based on the share of **populated** rows dropped as invalid. Empty Nielsen-style week slots are recorded and excluded, but they do not by themselves force `PARTIAL_PASS` or collapse the quality score.
 
-Outliers are flagged with MAD (IQR fallback) **within each product series** when a product column exists, so mixed SKU grains are not compared as one population. They are not deleted.
+Outliers are flagged with MAD (IQR fallback) **within each product × retailer × region series** when those columns exist, so mixed POS grains are not compared as one population. They are not deleted.
 
 Date fields `date_min` / `date_max` / `distinct_dates` describe the **clean** table. `source_date_*` fields describe the full mapped extract, including empty slots.
 

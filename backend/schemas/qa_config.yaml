@@ -19,6 +19,8 @@ outlier:
   min_observations: 8
   group_fields:
     - product
+    - retailer
+    - region
 
 # Grain used for duplicate detection. sku is preferred over product when both exist.
 duplicate_key_fields:

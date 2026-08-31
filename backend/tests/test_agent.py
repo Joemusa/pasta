@@ -119,7 +119,7 @@ def test_unpopulated_metric_slots_keep_file_analysis_ready(tmp_path: Path) -> No
     assert report.rows_empty_metrics > 0
     assert report.rows_empty_metrics == report.rows_dropped
     assert not any(issue.code in {"MISSING_SALES_VALUE", "MISSING_SALES_VOLUME"} for issue in report.critical_issues)
-    assert any(issue.code == "EMPTY_METRIC_ROWS" for issue in report.warnings)
+    assert any(issue.code == "EMPTY_METRIC_ROWS" for issue in report.info)
     clean = pd.read_csv(report.clean_output_path)
     assert clean["sales_value"].notna().all()
     assert clean["sales_volume"].notna().all()

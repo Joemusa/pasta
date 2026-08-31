@@ -85,7 +85,7 @@ def test_empty_metric_slots_are_excluded_without_missing_sales_critical() -> Non
     )
     assert int(drop_mask.sum()) == int(blank.sum())
     assert (reasons.loc[blank] == "EMPTY_METRICS").all()
-    assert any(issue.code == "EMPTY_METRIC_ROWS" and issue.severity == Severity.WARNING for issue in issues)
+    assert any(issue.code == "EMPTY_METRIC_ROWS" and issue.severity == Severity.INFO for issue in issues)
     assert not any(issue.code in {"MISSING_SALES_VALUE", "MISSING_SALES_VOLUME"} for issue in issues)
     assert any(issue.code == "SPARSE_HISTORY" for issue in issues)
 

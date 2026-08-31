@@ -33,3 +33,18 @@ def test_outliers_are_detected_within_product_not_across_skus() -> None:
     summary, issue = detect_outliers(frame, load_qa_config(), source_rows=frame["_source_row"])
     assert summary.total_flagged_rows == 1
     assert issue is not None
+
+
+def test_outliers_skip_short_product_retailer_region_series() -> None:
+    frame = pd.DataFrame(
+        {
+            "product": ["SKU"] * 4,
+            "retailer": ["Pick n Pay"] * 4,
+            "region": ["Gauteng"] * 4,
+            "sales_value": [10.0, 12.0, 11.0, 10_000.0],
+            "_source_row": range(1, 5),
+        }
+    )
+    summary, issue = detect_outliers(frame, load_qa_config(), source_rows=frame["_source_row"])
+    assert summary.total_flagged_rows == 0
+    assert issue is None
