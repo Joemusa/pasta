@@ -80,10 +80,6 @@ def _rand_compact(value: float) -> str:
     return f"R{value:,.0f}"
 
 
-def _short_product(name: str) -> str:
-    return name if len(name) <= 42 else name[:39] + "..."
-
-
 def dominant_lever(actions: list[dict[str, Any]]) -> str:
     if not actions:
         return "INSUFFICIENT EVIDENCE"
@@ -130,7 +126,7 @@ def action_headline(action: dict[str, Any]) -> str:
 
 def recommended_action(action: dict[str, Any]) -> str:
     lever = _text(action.get("lever")).upper()
-    product = _short_product(_text(action.get("product")))
+    product = _text(action.get("product"))
     retailer = _text(action.get("retailer"))
     region = _text(action.get("region"))
     gap = parse_store_gap(action)
