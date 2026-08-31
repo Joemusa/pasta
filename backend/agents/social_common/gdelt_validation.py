@@ -232,6 +232,7 @@ def _quality_issues(observations, raw: CollectionResult, stats: dict[str, int]) 
     missing_url = sum(1 for item in observations if not item.source_url)
     missing_date = sum(1 for item in observations if not item.published_at)
     missing_brand = sum(1 for item in observations if not item.brand)
+    future_leak = sum(1 for item in observations if item.alignment_status == "FUTURE_LEAKAGE")
     if missing_url:
         issues.append(f"{missing_url} observation(s) missing source_url")
     if missing_date:
@@ -240,6 +241,11 @@ def _quality_issues(observations, raw: CollectionResult, stats: dict[str, int]) 
         issues.append(
             f"{missing_brand} observation(s) left brand/product/category unmatched "
             "because taxonomy evidence was insufficient"
+        )
+    if future_leak:
+        issues.append(
+            f"{future_leak} observation(s) published after the POS period were retained as LIVE "
+            "but excluded from sentiment analysis (FUTURE_LEAKAGE)"
         )
     if stats.get("future"):
         issues.append(f"{stats['future']} future-dated record(s) dropped")

@@ -5,6 +5,7 @@ from __future__ import annotations
 import base64
 import json
 import os
+import time
 from dataclasses import dataclass, field
 from datetime import UTC, datetime
 from pathlib import Path
@@ -659,7 +660,22 @@ class PublicWebAdapter(SourceAdapter):
                 posts.extend(self._parse_gdelt(self.http.get(f"{endpoint}?{urlencode(params)}")))
             except HttpError as exc:
                 last_error = exc
-                if exc.status_code == 429 or exc.retryable:
+                if exc.status_code == 429:
+                    delay = float(self.spec.get("rate_limit_sleep_seconds") or 0)
+                    if delay > 0:
+                        time.sleep(delay)
+                        try:
+                            posts.extend(self._parse_gdelt(self.http.get(f"{endpoint}?{urlencode(params)}")))
+                            continue
+                        except HttpError as retry_exc:
+                            last_error = retry_exc
+                            if posts:
+                                break
+                            raise retry_exc
+                    if posts:
+                        break
+                    raise
+                if exc.retryable:
                     if posts:
                         break
                     raise
