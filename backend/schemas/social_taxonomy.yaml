@@ -1,0 +1,187 @@
+company:
+  Unilever:
+    aliases: [unilever]
+    country: ZA
+
+categories:
+  Home Care:
+    aliases: [home care, household, cleaning, detergent, dishwashing, bleach, floor cleaner]
+  Personal Care:
+    aliases: [personal care, deodorant, soap, body wash, shampoo]
+  Beauty & Wellbeing:
+    aliases: [beauty, skincare, wellbeing]
+  Foods:
+    aliases: [foods, food, cooking, sauce, soup]
+  Ice Cream:
+    aliases: [ice cream, icecream]
+
+brands:
+  Sunlight:
+    company: Unilever
+    category: Home Care
+    aliases: [sunlight]
+  Handy Andy:
+    company: Unilever
+    category: Home Care
+    aliases: [handy andy, handyandy]
+  Vim:
+    company: Unilever
+    category: Home Care
+    aliases: [vim]
+  Domestos:
+    company: Unilever
+    category: Home Care
+    aliases: [domestos]
+  Omo:
+    company: Unilever
+    category: Home Care
+    aliases: [omo]
+    require_any: [laundry, washing, detergent, powder, stain]
+  Skip:
+    company: Unilever
+    category: Home Care
+    aliases: [skip]
+    require_any: [laundry, washing, detergent, powder]
+  Surf:
+    company: Unilever
+    category: Home Care
+    aliases: [surf]
+    require_any: [laundry, washing, detergent, powder]
+  Comfort:
+    company: Unilever
+    category: Home Care
+    aliases: [comfort]
+    require_any: [fabric, softener, laundry, washing]
+  Dove:
+    company: Unilever
+    category: Personal Care
+    aliases: [dove]
+    require_any: [soap, deodorant, body, wash, unilever, skincare]
+  Magnum:
+    company: Unilever
+    category: Ice Cream
+    aliases: [magnum]
+    require_any: [ice cream, icecream, lolly, unilever]
+
+products:
+  Sunlight Pine Gel:
+    brand: Sunlight
+    category: Home Care
+    aliases: [sunlight pine gel, pine gel]
+  Handy Andy Eucalyptus:
+    brand: Handy Andy
+    category: Home Care
+    aliases: [handy andy eucalyptus]
+
+competitors:
+  Dettol:
+    company: Reckitt
+    category: Home Care
+    aliases: [dettol]
+  Jik:
+    company: Diversey
+    category: Home Care
+    aliases: [jik]
+  Ariel:
+    company: Procter & Gamble
+    category: Home Care
+    aliases: [ariel]
+  Fairy:
+    company: Procter & Gamble
+    category: Home Care
+    aliases: [fairy]
+    require_any: [dish, washing up, soap, liquid]
+  Ajax:
+    company: Colgate-Palmolive
+    category: Home Care
+    aliases: [ajax]
+
+topics:
+  price:
+    aliases: [price, priced, pricing, expensive, cheap, afford, cost, value for money, overpriced]
+    commercial_levers: [PRICE]
+    channels: [CONSUMER_AFFORDABILITY, VALUE_PERCEPTION]
+  availability:
+    aliases: [out of stock, can't find, cannot find, unavailable, not available, missing from shelves, hard to find, stock]
+    commercial_levers: [DISTRIBUTION]
+    channels: [AVAILABILITY]
+  promotion:
+    aliases: [promo, promotion, special, discount, on deal, two for, sale]
+    commercial_levers: [PROMOTION]
+    channels: [VALUE_PERCEPTION]
+  quality:
+    aliases: [quality, weak, strong, works, doesn't work, does not work, residue, stain]
+    commercial_levers: []
+    channels: [PRODUCT_EXPERIENCE]
+  fragrance:
+    aliases: [fragrance, scent, smell, pine, eucalyptus]
+    commercial_levers: []
+    channels: [PRODUCT_EXPERIENCE, CONSUMER_NEEDS]
+  pack_size:
+    aliases: [pack size, too small, bottle, refill, 500ml, 1l, 5l]
+    commercial_levers: [PRICE]
+    channels: [CONSUMER_NEEDS, VALUE_PERCEPTION]
+  retailer:
+    aliases: [shoprite, checkers, makro, pick n pay, pnp, spar]
+    commercial_levers: [DISTRIBUTION]
+    channels: [AVAILABILITY]
+  competitor_switch:
+    aliases: [switched to, switching to, rather buy, instead of]
+    commercial_levers: [PRICE, PROMOTION]
+    channels: [COMPETITOR_PRESSURE]
+
+needs:
+  affordability:
+    aliases: [expensive, can't afford, cannot afford, too pricey, afford]
+    commercial_levers: [PRICE]
+    channels: [CONSUMER_AFFORDABILITY]
+  value_for_money:
+    aliases: [value for money, worth it, not worth, overpriced]
+    commercial_levers: [PRICE]
+    channels: [VALUE_PERCEPTION]
+  pack_size:
+    aliases: [pack size, too small, bigger pack, refill]
+    commercial_levers: [PRICE]
+    channels: [CONSUMER_NEEDS, VALUE_PERCEPTION]
+  product_performance:
+    aliases: [doesn't clean, does not clean, weak, works well, cuts grease]
+    commercial_levers: []
+    channels: [PRODUCT_EXPERIENCE]
+  quality:
+    aliases: [poor quality, good quality, watery]
+    commercial_levers: []
+    channels: [PRODUCT_EXPERIENCE]
+  availability:
+    aliases: [out of stock, can't find, cannot find, never in stock]
+    commercial_levers: [DISTRIBUTION]
+    channels: [AVAILABILITY]
+  convenience:
+    aliases: [convenient, hassle, easy to use]
+    commercial_levers: []
+    channels: [CONSUMER_NEEDS]
+  fragrance:
+    aliases: [fragrance, smell, scent]
+    commercial_levers: []
+    channels: [PRODUCT_EXPERIENCE, CONSUMER_NEEDS]
+  promotions:
+    aliases: [promo, special, discount]
+    commercial_levers: [PROMOTION]
+    channels: [VALUE_PERCEPTION]
+  retailer_experience:
+    aliases: [shelf, aisle, shoprite, checkers]
+    commercial_levers: [DISTRIBUTION]
+    channels: [AVAILABILITY]
+  competitor_switching:
+    aliases: [switched to, switching to, rather buy]
+    commercial_levers: [PRICE, PROMOTION]
+    channels: [COMPETITOR_PRESSURE]
+  product_dissatisfaction:
+    aliases: [disappointed, refund, never buying, waste]
+    commercial_levers: []
+    channels: [PRODUCT_EXPERIENCE]
+
+sentiment:
+  positive: [love, great, good, works, amazing, recommend, excellent, happy]
+  negative: [hate, terrible, awful, expensive, disappointed, weak, waste, never, scam, can't find, cannot find, out of stock]
+  high_intensity: [hate, disgusting, amazing, never again, worst, love]
+  medium_intensity: [expensive, disappointed, can't find, cannot find, out of stock, recommend]

@@ -1,0 +1,348 @@
+{
+  "data_mode": "TEST_FIXTURES_ONLY",
+  "disclaimer": "TEST FIXTURES ONLY. These posts are labeled test data and are not live social observations. Do not treat as LIVE SOCIAL DATA.",
+  "posts": [
+    {
+      "source": "reddit",
+      "source_type": "social",
+      "source_url": "https://example.test/social/avail-01",
+      "author": "shelf_watcher",
+      "published_at": "2026-07-27T09:00:00Z",
+      "text": "Can't find Sunlight Pine Gel at Shoprite again. Out of stock every week.",
+      "language": "en",
+      "country": "ZA"
+    },
+    {
+      "source": "youtube",
+      "source_type": "social",
+      "source_url": "https://example.test/social/avail-02",
+      "author": "vid_user",
+      "published_at": "2026-07-29T12:00:00Z",
+      "text": "Sunlight dishwashing liquid is never in stock at my Checkers. Hard to find.",
+      "language": "en"
+    },
+    {
+      "source": "public_web",
+      "source_type": "web",
+      "source_url": "https://example.test/social/avail-03",
+      "author": "forum_mod",
+      "published_at": "2026-08-01T08:30:00Z",
+      "text": "Missing from shelves: Sunlight Pine Gel. Cannot find it anywhere in Gauteng.",
+      "language": "en",
+      "region": "Gauteng"
+    },
+    {
+      "source": "reddit",
+      "source_type": "social",
+      "source_url": "https://example.test/social/avail-04",
+      "author": "home_care_fan",
+      "published_at": "2026-08-03T11:00:00Z",
+      "text": "Handy Andy Eucalyptus is hard to find at Makro. Out of stock again.",
+      "language": "en"
+    },
+    {
+      "source": "reddit",
+      "source_type": "social",
+      "source_url": "https://example.test/social/avail-hist",
+      "author": "archive_user",
+      "published_at": "2026-07-20T10:00:00Z",
+      "text": "Can't find Sunlight at Shoprite this month. Unavailable again.",
+      "language": "en"
+    },
+    {
+      "source": "youtube",
+      "source_type": "social",
+      "source_url": "https://example.test/social/avail-06",
+      "author": "yt_commenter",
+      "published_at": "2026-08-06T09:00:00Z",
+      "text": "Sunlight Pine Gel out of stock at Shoprite Free State. Can't find it.",
+      "language": "en",
+      "region": "Free State"
+    },
+    {
+      "source": "reddit",
+      "source_type": "social",
+      "source_url": "https://example.test/social/avail-07",
+      "author": "buyer_a",
+      "published_at": "2026-08-07T09:15:00Z",
+      "text": "Cannot find Sunlight 1l at Shoprite. Missing from shelves.",
+      "language": "en"
+    },
+    {
+      "source": "public_web",
+      "source_type": "web",
+      "source_url": "https://example.test/social/avail-08",
+      "author": "web_user",
+      "published_at": "2026-08-08T10:00:00Z",
+      "text": "Handy Andy out of stock online. Hard to find the eucalyptus bottle.",
+      "language": "en"
+    },
+    {
+      "source": "reddit",
+      "source_type": "social",
+      "source_url": "https://example.test/social/avail-09",
+      "author": "buyer_b",
+      "published_at": "2026-08-10T07:00:00Z",
+      "text": "Sunlight never in stock at my Shoprite. Can't find pine gel.",
+      "language": "en"
+    },
+    {
+      "source": "youtube",
+      "source_type": "social",
+      "source_url": "https://example.test/social/avail-10",
+      "author": "yt_two",
+      "published_at": "2026-08-12T18:00:00Z",
+      "text": "Why is Sunlight unavailable again? Out of stock everywhere.",
+      "language": "en"
+    },
+    {
+      "source": "reddit",
+      "source_type": "social",
+      "source_url": "https://example.test/social/avail-11",
+      "author": "buyer_c",
+      "published_at": "2026-08-14T16:00:00Z",
+      "text": "Can't find Sunlight Pine Gel 500ml. Shoprite aisle is empty.",
+      "language": "en"
+    },
+    {
+      "source": "public_web",
+      "source_type": "web",
+      "source_url": "https://example.test/social/avail-12",
+      "author": "reviewer",
+      "published_at": "2026-08-15T12:00:00Z",
+      "text": "Sunlight dishwashing liquid cannot find in store. Out of stock complaint.",
+      "language": "en"
+    },
+    {
+      "source": "reddit",
+      "source_type": "social",
+      "source_url": "https://example.test/social/avail-13",
+      "author": "buyer_d",
+      "published_at": "2026-08-16T08:00:00Z",
+      "text": "Hard to find Handy Andy at Checkers. Never in stock this week.",
+      "language": "en"
+    },
+    {
+      "source": "reddit",
+      "source_type": "social",
+      "source_url": "https://example.test/social/price-01",
+      "author": "value_shopper",
+      "published_at": "2026-08-02T11:00:00Z",
+      "text": "Sunlight is so expensive now. Not worth it, poor value for money.",
+      "language": "en"
+    },
+    {
+      "source": "youtube",
+      "source_type": "social",
+      "source_url": "https://example.test/social/price-02",
+      "author": "budget_talk",
+      "published_at": "2026-08-04T13:00:00Z",
+      "text": "Handy Andy is overpriced. Can't afford the 5l every month.",
+      "language": "en"
+    },
+    {
+      "source": "public_web",
+      "source_type": "web",
+      "source_url": "https://example.test/social/price-03",
+      "author": "pricewatch",
+      "published_at": "2026-08-09T09:00:00Z",
+      "text": "Sunlight Pine Gel priced too high. Too pricey for a 500ml bottle.",
+      "language": "en"
+    },
+    {
+      "source": "reddit",
+      "source_type": "social",
+      "source_url": "https://example.test/social/promo-01",
+      "author": "deal_hunter",
+      "published_at": "2026-07-28T15:00:00Z",
+      "text": "Caught Sunlight on special at Shoprite. Discount was decent.",
+      "language": "en"
+    },
+    {
+      "source": "youtube",
+      "source_type": "social",
+      "source_url": "https://example.test/social/promo-02",
+      "author": "promo_fan",
+      "published_at": "2026-08-11T10:00:00Z",
+      "text": "Two for one promo on Handy Andy this week. Love a special.",
+      "language": "en"
+    },
+    {
+      "source": "reddit",
+      "source_type": "social",
+      "source_url": "https://example.test/social/pos-01",
+      "author": "happy_user",
+      "published_at": "2026-08-01T17:00:00Z",
+      "text": "I love Sunlight Pine Gel. It works great on grease. Highly recommend.",
+      "language": "en"
+    },
+    {
+      "source": "youtube",
+      "source_type": "social",
+      "source_url": "https://example.test/social/pos-02",
+      "author": "scent_fan",
+      "published_at": "2026-08-08T19:00:00Z",
+      "text": "Amazing pine fragrance on Sunlight. The smell is great.",
+      "language": "en"
+    },
+    {
+      "source": "reddit",
+      "source_type": "social",
+      "source_url": "https://example.test/social/pos-03",
+      "author": "ice_cream_fan",
+      "published_at": "2026-08-03T14:00:00Z",
+      "text": "Love Magnum ice cream from Unilever. Excellent treat.",
+      "language": "en"
+    },
+    {
+      "source": "public_web",
+      "source_type": "web",
+      "source_url": "https://example.test/social/pos-04",
+      "author": "laundry_user",
+      "published_at": "2026-07-30T08:00:00Z",
+      "text": "Omo laundry detergent works well on stains. Good powder.",
+      "language": "en"
+    },
+    {
+      "source": "reddit",
+      "source_type": "social",
+      "source_url": "https://example.test/social/mixed-01",
+      "author": "mixed_reviewer",
+      "published_at": "2026-08-05T12:00:00Z",
+      "text": "I love the Sunlight fragrance but it's expensive and I'm disappointed by the pack size.",
+      "language": "en"
+    },
+    {
+      "source": "public_web",
+      "source_type": "web",
+      "source_url": "https://example.test/social/neutral-01",
+      "author": "shopper_n",
+      "published_at": "2026-08-04T09:30:00Z",
+      "text": "Bought a bottle of the cleaner at Checkers yesterday and put it under the sink.",
+      "language": "en"
+    },
+    {
+      "source": "reddit",
+      "source_type": "social",
+      "source_url": "https://example.test/social/comp-01",
+      "author": "switcher",
+      "published_at": "2026-08-13T11:00:00Z",
+      "text": "Switched to Dettol from Sunlight because I rather buy what is on shelf.",
+      "language": "en"
+    },
+    {
+      "source": "youtube",
+      "source_type": "social",
+      "source_url": "https://example.test/social/comp-02",
+      "author": "laundry_switch",
+      "published_at": "2026-08-09T16:00:00Z",
+      "text": "Using Ariel laundry detergent instead of Omo this month.",
+      "language": "en"
+    },
+    {
+      "source": "public_web",
+      "source_type": "web",
+      "source_url": "https://example.test/social/comp-03",
+      "author": "dish_user",
+      "published_at": "2026-08-02T07:00:00Z",
+      "text": "Fairy dish liquid cuts grease. Might rather buy it than Sunlight.",
+      "language": "en"
+    },
+    {
+      "source": "reddit",
+      "source_type": "social",
+      "source_url": "https://example.test/social/pack-01",
+      "author": "size_talk",
+      "published_at": "2026-08-06T15:00:00Z",
+      "text": "Sunlight 500ml pack size is too small. Want a bigger pack.",
+      "language": "en"
+    },
+    {
+      "source": "youtube",
+      "source_type": "social",
+      "source_url": "https://example.test/social/pack-02",
+      "author": "refill_fan",
+      "published_at": "2026-08-07T15:00:00Z",
+      "text": "Need a Handy Andy refill. The 5l pack size runs out fast.",
+      "language": "en"
+    },
+    {
+      "source": "reddit",
+      "source_type": "social",
+      "source_url": "https://example.test/social/vim-01",
+      "author": "vim_user",
+      "published_at": "2026-08-01T06:00:00Z",
+      "text": "Vim smell is strong. Good quality cream cleaner.",
+      "language": "en"
+    },
+    {
+      "source": "public_web",
+      "source_type": "web",
+      "source_url": "https://example.test/social/dom-01",
+      "author": "bleach_user",
+      "published_at": "2026-08-02T06:00:00Z",
+      "text": "Domestos is good quality bleach. Recommend it.",
+      "language": "en"
+    },
+    {
+      "source": "reddit",
+      "source_type": "social",
+      "source_url": "https://example.test/social/conv-01",
+      "author": "one_off",
+      "published_at": "2026-08-04T18:00:00Z",
+      "text": "Handy Andy is convenient and easy to use on the floor.",
+      "language": "en"
+    },
+    {
+      "source": "reddit",
+      "source_type": "social",
+      "source_url": "https://example.test/social/avail-01",
+      "author": "duplicate_url",
+      "published_at": "2026-08-14T09:00:00Z",
+      "text": "Duplicate URL should be dropped even if the text differs.",
+      "language": "en"
+    },
+    {
+      "source": "reddit",
+      "source_type": "social",
+      "source_url": "https://example.test/social/avail-01",
+      "author": "duplicate_post",
+      "published_at": "2026-08-14T09:05:00Z",
+      "text": "Can't find Sunlight Pine Gel at Shoprite again. Out of stock every week.",
+      "language": "en"
+    },
+    {
+      "source": "youtube",
+      "source_type": "social",
+      "source_url": "https://example.test/social/future-01",
+      "author": "future_user",
+      "published_at": "2026-08-25T10:00:00Z",
+      "text": "Can't find Sunlight anywhere after the POS window. Do not use this to explain POS.",
+      "language": "en"
+    },
+    {
+      "source": "public_web",
+      "source_type": "web",
+      "source_url": "https://example.test/social/missing-01",
+      "text": "Sunlight cleaner review with no author, date, region or engagement."
+    },
+    {
+      "source": "reddit",
+      "source_type": "social",
+      "source_url": "https://example.test/social/anon-01",
+      "author": "anonymous",
+      "published_at": "2026-08-05T08:00:00Z",
+      "text": "Sunlight Pine Gel still works on dishes.",
+      "language": "en"
+    },
+    {
+      "source": "reddit",
+      "source_type": "social",
+      "source_url": "https://example.test/social/deleted-01",
+      "author": "[deleted]",
+      "published_at": "2026-08-05T08:10:00Z",
+      "text": "Bought Sunlight and Handy Andy together.",
+      "language": "en"
+    }
+  ]
+}

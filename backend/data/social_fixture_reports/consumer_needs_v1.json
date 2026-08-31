@@ -1,0 +1,472 @@
+{
+  "agent": "ConsumerNeedsAgent",
+  "status": "READY",
+  "version": "V1",
+  "data_mode": "TEST_FIXTURES_ONLY",
+  "causality_claim": "none",
+  "period": {
+    "start": "2026-07-20T10:00:00Z",
+    "end": "2026-08-16T08:00:00Z",
+    "pos_period_start": "2026-07-26",
+    "pos_period_end": "2026-08-16"
+  },
+  "observations": [],
+  "themes": [
+    {
+      "theme": "availability",
+      "frequency": 13,
+      "sentiment": "NEGATIVE",
+      "representative_evidence": [
+        "Can't find Sunlight Pine Gel at Shoprite again. Out of stock every week.",
+        "Sunlight dishwashing liquid is never in stock at my Checkers. Hard to find.",
+        "Missing from shelves: Sunlight Pine Gel. Cannot find it anywhere in Gauteng."
+      ],
+      "brands_affected": [
+        "Handy Andy",
+        "Sunlight"
+      ],
+      "categories_affected": [
+        "Home Care"
+      ],
+      "consumer_implication": "Consumer conversations contain recurring availability complaints (13 observations). This is qualitative context, not a commercial action.",
+      "confidence": "MEDIUM",
+      "sources": [
+        "public_web",
+        "reddit",
+        "youtube"
+      ],
+      "commercial_levers": [
+        "DISTRIBUTION"
+      ],
+      "channels": [
+        "AVAILABILITY"
+      ]
+    },
+    {
+      "theme": "retailer_experience",
+      "frequency": 11,
+      "sentiment": "NEGATIVE",
+      "representative_evidence": [
+        "Can't find Sunlight Pine Gel at Shoprite again. Out of stock every week.",
+        "Sunlight dishwashing liquid is never in stock at my Checkers. Hard to find.",
+        "Can't find Sunlight at Shoprite this month. Unavailable again."
+      ],
+      "brands_affected": [
+        "Handy Andy",
+        "Sunlight"
+      ],
+      "categories_affected": [
+        "Home Care"
+      ],
+      "consumer_implication": "Consumers repeatedly discuss retailer experience in public conversations (11 observations). This is qualitative context, not a commercial action.",
+      "confidence": "MEDIUM",
+      "sources": [
+        "public_web",
+        "reddit",
+        "youtube"
+      ],
+      "commercial_levers": [
+        "DISTRIBUTION"
+      ],
+      "channels": [
+        "AVAILABILITY"
+      ]
+    },
+    {
+      "theme": "affordability",
+      "frequency": 4,
+      "sentiment": "NEUTRAL",
+      "representative_evidence": [
+        "Sunlight is so expensive now. Not worth it, poor value for money.",
+        "Handy Andy is overpriced. Can't afford the 5l every month.",
+        "Sunlight Pine Gel priced too high. Too pricey for a 500ml bottle."
+      ],
+      "brands_affected": [
+        "Handy Andy",
+        "Sunlight"
+      ],
+      "categories_affected": [
+        "Home Care"
+      ],
+      "consumer_implication": "Consumers discuss affordability in public conversations (4 observations). This adds context to value perception and is not a price action.",
+      "confidence": "LOW",
+      "sources": [
+        "public_web",
+        "reddit",
+        "youtube"
+      ],
+      "commercial_levers": [
+        "PRICE"
+      ],
+      "channels": [
+        "CONSUMER_AFFORDABILITY"
+      ]
+    },
+    {
+      "theme": "fragrance",
+      "frequency": 3,
+      "sentiment": "POSITIVE",
+      "representative_evidence": [
+        "Amazing pine fragrance on Sunlight. The smell is great.",
+        "I love the Sunlight fragrance but it's expensive and I'm disappointed by the pack size.",
+        "Vim smell is strong. Good quality cream cleaner."
+      ],
+      "brands_affected": [
+        "Sunlight",
+        "Vim"
+      ],
+      "categories_affected": [
+        "Home Care"
+      ],
+      "consumer_implication": "Consumers repeatedly discuss fragrance in public conversations (3 observations). This is qualitative context, not a commercial action.",
+      "confidence": "LOW",
+      "sources": [
+        "reddit",
+        "youtube"
+      ],
+      "commercial_levers": [],
+      "channels": [
+        "PRODUCT_EXPERIENCE",
+        "CONSUMER_NEEDS"
+      ]
+    },
+    {
+      "theme": "pack_size",
+      "frequency": 3,
+      "sentiment": "NEUTRAL",
+      "representative_evidence": [
+        "I love the Sunlight fragrance but it's expensive and I'm disappointed by the pack size.",
+        "Sunlight 500ml pack size is too small. Want a bigger pack.",
+        "Need a Handy Andy refill. The 5l pack size runs out fast."
+      ],
+      "brands_affected": [
+        "Handy Andy",
+        "Sunlight"
+      ],
+      "categories_affected": [
+        "Home Care"
+      ],
+      "consumer_implication": "Consumers repeatedly discuss pack size in public conversations (3 observations). This is qualitative context, not a commercial action.",
+      "confidence": "LOW",
+      "sources": [
+        "reddit",
+        "youtube"
+      ],
+      "commercial_levers": [
+        "PRICE"
+      ],
+      "channels": [
+        "CONSUMER_NEEDS",
+        "VALUE_PERCEPTION"
+      ]
+    },
+    {
+      "theme": "value_for_money",
+      "frequency": 2,
+      "sentiment": "NEGATIVE",
+      "representative_evidence": [
+        "Sunlight is so expensive now. Not worth it, poor value for money.",
+        "Handy Andy is overpriced. Can't afford the 5l every month."
+      ],
+      "brands_affected": [
+        "Handy Andy",
+        "Sunlight"
+      ],
+      "categories_affected": [
+        "Home Care"
+      ],
+      "consumer_implication": "Consumers discuss value for money in public conversations (2 observations). This adds context to value perception and is not a price action.",
+      "confidence": "LOW",
+      "sources": [
+        "reddit",
+        "youtube"
+      ],
+      "commercial_levers": [
+        "PRICE"
+      ],
+      "channels": [
+        "VALUE_PERCEPTION"
+      ]
+    },
+    {
+      "theme": "promotions",
+      "frequency": 2,
+      "sentiment": "POSITIVE",
+      "representative_evidence": [
+        "Caught Sunlight on special at Shoprite. Discount was decent.",
+        "Two for one promo on Handy Andy this week. Love a special."
+      ],
+      "brands_affected": [
+        "Handy Andy",
+        "Sunlight"
+      ],
+      "categories_affected": [
+        "Home Care"
+      ],
+      "consumer_implication": "Consumers discuss promotions in public conversations (2 observations). This is not a promotion recommendation.",
+      "confidence": "LOW",
+      "sources": [
+        "reddit",
+        "youtube"
+      ],
+      "commercial_levers": [
+        "PROMOTION"
+      ],
+      "channels": [
+        "VALUE_PERCEPTION"
+      ]
+    },
+    {
+      "theme": "product_performance",
+      "frequency": 2,
+      "sentiment": "POSITIVE",
+      "representative_evidence": [
+        "Omo laundry detergent works well on stains. Good powder.",
+        "Fairy dish liquid cuts grease. Might rather buy it than Sunlight."
+      ],
+      "brands_affected": [
+        "Omo",
+        "Sunlight"
+      ],
+      "categories_affected": [
+        "Home Care"
+      ],
+      "consumer_implication": "Consumers repeatedly discuss product performance in public conversations (2 observations). This is qualitative context, not a commercial action.",
+      "confidence": "LOW",
+      "sources": [
+        "public_web"
+      ],
+      "commercial_levers": [],
+      "channels": [
+        "PRODUCT_EXPERIENCE"
+      ]
+    },
+    {
+      "theme": "competitor_switching",
+      "frequency": 2,
+      "sentiment": "NEUTRAL",
+      "representative_evidence": [
+        "Switched to Dettol from Sunlight because I rather buy what is on shelf.",
+        "Fairy dish liquid cuts grease. Might rather buy it than Sunlight."
+      ],
+      "brands_affected": [
+        "Sunlight"
+      ],
+      "categories_affected": [
+        "Home Care"
+      ],
+      "consumer_implication": "Consumers repeatedly discuss competitor switching in public conversations (2 observations). This is qualitative context, not a commercial action.",
+      "confidence": "LOW",
+      "sources": [
+        "public_web",
+        "reddit"
+      ],
+      "commercial_levers": [
+        "PRICE",
+        "PROMOTION"
+      ],
+      "channels": [
+        "COMPETITOR_PRESSURE"
+      ]
+    },
+    {
+      "theme": "quality",
+      "frequency": 2,
+      "sentiment": "POSITIVE",
+      "representative_evidence": [
+        "Vim smell is strong. Good quality cream cleaner.",
+        "Domestos is good quality bleach. Recommend it."
+      ],
+      "brands_affected": [
+        "Domestos",
+        "Vim"
+      ],
+      "categories_affected": [
+        "Home Care"
+      ],
+      "consumer_implication": "Consumers repeatedly discuss quality in public conversations (2 observations). This is qualitative context, not a commercial action.",
+      "confidence": "LOW",
+      "sources": [
+        "public_web",
+        "reddit"
+      ],
+      "commercial_levers": [],
+      "channels": [
+        "PRODUCT_EXPERIENCE"
+      ]
+    }
+  ],
+  "signals": [],
+  "commercial_context": [
+    {
+      "lever": "DISTRIBUTION",
+      "channel": "AVAILABILITY",
+      "statement": "Consumer conversations contain recurring availability complaints (13 observations). This is qualitative context, not a commercial action.",
+      "evidence_count": 13,
+      "relation_hint": "ADD_CONTEXT"
+    },
+    {
+      "lever": "DISTRIBUTION",
+      "channel": "AVAILABILITY",
+      "statement": "Consumers repeatedly discuss retailer experience in public conversations (11 observations). This is qualitative context, not a commercial action.",
+      "evidence_count": 11,
+      "relation_hint": "ADD_CONTEXT"
+    },
+    {
+      "lever": "PRICE",
+      "channel": "CONSUMER_AFFORDABILITY",
+      "statement": "Consumers discuss affordability in public conversations (4 observations). This adds context to value perception and is not a price action.",
+      "evidence_count": 4,
+      "relation_hint": "ADD_CONTEXT"
+    },
+    {
+      "lever": "NONE",
+      "channel": "PRODUCT_EXPERIENCE",
+      "statement": "Consumers repeatedly discuss fragrance in public conversations (3 observations). This is qualitative context, not a commercial action.",
+      "evidence_count": 3,
+      "relation_hint": "ADD_CONTEXT"
+    },
+    {
+      "lever": "PRICE",
+      "channel": "CONSUMER_NEEDS",
+      "statement": "Consumers repeatedly discuss pack size in public conversations (3 observations). This is qualitative context, not a commercial action.",
+      "evidence_count": 3,
+      "relation_hint": "ADD_CONTEXT"
+    },
+    {
+      "lever": "PRICE",
+      "channel": "VALUE_PERCEPTION",
+      "statement": "Consumers discuss value for money in public conversations (2 observations). This adds context to value perception and is not a price action.",
+      "evidence_count": 2,
+      "relation_hint": "ADD_CONTEXT"
+    },
+    {
+      "lever": "PROMOTION",
+      "channel": "VALUE_PERCEPTION",
+      "statement": "Consumers discuss promotions in public conversations (2 observations). This is not a promotion recommendation.",
+      "evidence_count": 2,
+      "relation_hint": "ADD_CONTEXT"
+    },
+    {
+      "lever": "NONE",
+      "channel": "PRODUCT_EXPERIENCE",
+      "statement": "Consumers repeatedly discuss product performance in public conversations (2 observations). This is qualitative context, not a commercial action.",
+      "evidence_count": 2,
+      "relation_hint": "ADD_CONTEXT"
+    },
+    {
+      "lever": "PRICE",
+      "channel": "COMPETITOR_PRESSURE",
+      "statement": "Consumers repeatedly discuss competitor switching in public conversations (2 observations). This is qualitative context, not a commercial action.",
+      "evidence_count": 2,
+      "relation_hint": "ADD_CONTEXT"
+    },
+    {
+      "lever": "NONE",
+      "channel": "PRODUCT_EXPERIENCE",
+      "statement": "Consumers repeatedly discuss quality in public conversations (2 observations). This is qualitative context, not a commercial action.",
+      "evidence_count": 2,
+      "relation_hint": "ADD_CONTEXT"
+    }
+  ],
+  "sentiment": null,
+  "sentiment_by_dimension": {},
+  "source_registry": [
+    {
+      "source": "reddit",
+      "source_type": "social",
+      "access_method": "official_oauth_api",
+      "status": "UNAVAILABLE",
+      "last_successful_collection": null,
+      "limitations": [
+        "OAuth credentials were not provided. Unauthenticated JSON is blocked (HTTP 403) and robots.txt disallows crawling (Disallow: /)."
+      ]
+    },
+    {
+      "source": "youtube",
+      "source_type": "social",
+      "access_method": "official_data_api",
+      "status": "UNAVAILABLE",
+      "last_successful_collection": null,
+      "limitations": [
+        "YouTube Data API key was not provided. Unauthenticated search returns HTTP 403."
+      ]
+    },
+    {
+      "source": "x",
+      "source_type": "social",
+      "access_method": "official_api",
+      "status": "UNAVAILABLE",
+      "last_successful_collection": null,
+      "limitations": [
+        "X bearer token was not provided. Search API returns HTTP 401 without authentication."
+      ]
+    },
+    {
+      "source": "public_web",
+      "source_type": "web",
+      "access_method": "official_api_or_licensed_feed",
+      "status": "UNAVAILABLE",
+      "last_successful_collection": null,
+      "limitations": [
+        "No officially accessible public-web discussion API is configured. The system does not crawl the public web or bypass robots.txt."
+      ]
+    },
+    {
+      "source": "test_fixtures",
+      "source_type": "test",
+      "access_method": "local_json_fixture",
+      "status": "AVAILABLE",
+      "last_successful_collection": "2026-08-31T12:21:52.729463+00:00",
+      "limitations": [
+        "TEST FIXTURES ONLY. These posts are labeled test data and are not live social observations.",
+        "Loaded 38 labeled fixture post(s) from backend/tests/fixtures/social/conversations.json."
+      ]
+    }
+  ],
+  "confidence": "HIGH",
+  "sources": [
+    "public_web",
+    "reddit",
+    "youtube"
+  ],
+  "limitations": [
+    "DATA MODE: TEST_FIXTURES_ONLY. Needs are not live social intelligence.",
+    "Social & Consumer Intelligence V1 is an external context layer. It does not modify frozen POS or macro agents.",
+    "Social observations are never invented. Unavailable sources stay unavailable.",
+    "Missing fields stay null. Missing is never converted to zero.",
+    "Author identifiers are hashed. Unnecessary personal information is not stored.",
+    "Sentiment is not treated as sales causality.",
+    "Social intelligence does not create a commercial action or recalculate addressable value or volume.",
+    "Future social observations are not used to explain historical POS periods.",
+    "HIGH confidence is never assigned from a single post.",
+    "Dashboard is not built in this sprint.",
+    "A need is listed only when supported by actual observations at the configured frequency threshold."
+  ],
+  "quality": {
+    "evidence_count": 35,
+    "source_count": 3,
+    "date_range": {
+      "start": "2026-07-20T10:00:00Z",
+      "end": "2026-08-16T08:00:00Z",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16"
+    },
+    "confidence": "HIGH",
+    "limitations": [
+      "DATA MODE: TEST_FIXTURES_ONLY. Needs are not live social intelligence.",
+      "Social & Consumer Intelligence V1 is an external context layer. It does not modify frozen POS or macro agents.",
+      "Social observations are never invented. Unavailable sources stay unavailable.",
+      "Missing fields stay null. Missing is never converted to zero.",
+      "Author identifiers are hashed. Unnecessary personal information is not stored.",
+      "Sentiment is not treated as sales causality.",
+      "Social intelligence does not create a commercial action or recalculate addressable value or volume.",
+      "Future social observations are not used to explain historical POS periods.",
+      "HIGH confidence is never assigned from a single post.",
+      "Dashboard is not built in this sprint.",
+      "A need is listed only when supported by actual observations at the configured frequency threshold."
+    ]
+  },
+  "report_output_path": "backend/data/social_fixture_reports/consumer_needs_v1.json",
+  "generated_at": "2026-08-31T12:21:52.771748Z"
+}

@@ -1,0 +1,271 @@
+{
+  "agent": "SocialContextBrain",
+  "status": "READY WITH WARNINGS",
+  "version": "V1",
+  "data_mode": "NO_SOCIAL_DATA",
+  "causality_claim": "none",
+  "verdict": "INSUFFICIENT_EVIDENCE",
+  "pos_story": {
+    "headline": "Distribution is currently the clearest growth lever in the priority opportunities",
+    "dominant_lever": "DISTRIBUTION",
+    "total_addressable_value_opportunity": 588562.67,
+    "total_addressable_volume_opportunity": 14521.165,
+    "n_actions": 3,
+    "action_brands": [
+      "Handy Andy",
+      "Sunlight"
+    ],
+    "action_products": [
+      "Handy Andy All Purpose Cleaner Eucalyptus 5l",
+      "Sunlight Pine Gel 1l",
+      "Sunlight Pine Gel 500ml"
+    ],
+    "source_brain_slide": "backend/data/brain_reports/New Discovery_2026-08-27 (3).brain.json"
+  },
+  "alignments": [
+    {
+      "finding": "conversation_volume",
+      "relation": "INSUFFICIENT_EVIDENCE",
+      "reason": "Insufficient history to call overall conversation volume a trend (recent=0, baseline=0).",
+      "evidence_count": 0,
+      "commercial_levers": []
+    },
+    {
+      "finding": "availability_complaints",
+      "relation": "INSUFFICIENT_EVIDENCE",
+      "reason": "Insufficient history to call availability complaints a trend (recent=0, baseline=0).",
+      "evidence_count": 0,
+      "commercial_levers": []
+    },
+    {
+      "finding": "price_value",
+      "relation": "INSUFFICIENT_EVIDENCE",
+      "reason": "Insufficient history to call price/value concerns a trend (recent=0, baseline=0).",
+      "evidence_count": 0,
+      "commercial_levers": []
+    },
+    {
+      "finding": "promotion_discussions",
+      "relation": "INSUFFICIENT_EVIDENCE",
+      "reason": "Insufficient history to call promotion discussions a trend (recent=0, baseline=0).",
+      "evidence_count": 0,
+      "commercial_levers": []
+    },
+    {
+      "finding": "competitor_mentions",
+      "relation": "INSUFFICIENT_EVIDENCE",
+      "reason": "Insufficient history to call competitor mentions a trend (recent=0, baseline=0).",
+      "evidence_count": 0,
+      "commercial_levers": []
+    },
+    {
+      "finding": "new_product_discussions",
+      "relation": "INSUFFICIENT_EVIDENCE",
+      "reason": "Insufficient history to call named product discussions a trend (recent=0, baseline=0).",
+      "evidence_count": 0,
+      "commercial_levers": []
+    },
+    {
+      "finding": "emerging_complaints",
+      "relation": "INSUFFICIENT_EVIDENCE",
+      "reason": "Insufficient history to call negative conversation a trend (recent=0, baseline=0).",
+      "evidence_count": 0,
+      "commercial_levers": []
+    },
+    {
+      "finding": "emerging_positive_themes",
+      "relation": "INSUFFICIENT_EVIDENCE",
+      "reason": "Insufficient history to call positive conversation a trend (recent=0, baseline=0).",
+      "evidence_count": 0,
+      "commercial_levers": []
+    }
+  ],
+  "themes": [],
+  "signals": [
+    {
+      "name": "conversation_volume",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "recent_count": 0,
+      "baseline_count": 0,
+      "evidence_count": 0,
+      "source_count": 0,
+      "note": "Insufficient history to call overall conversation volume a trend (recent=0, baseline=0).",
+      "confidence": "LOW"
+    },
+    {
+      "name": "availability_complaints",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "recent_count": 0,
+      "baseline_count": 0,
+      "evidence_count": 0,
+      "source_count": 0,
+      "note": "Insufficient history to call availability complaints a trend (recent=0, baseline=0).",
+      "confidence": "LOW"
+    },
+    {
+      "name": "price_value",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "recent_count": 0,
+      "baseline_count": 0,
+      "evidence_count": 0,
+      "source_count": 0,
+      "note": "Insufficient history to call price/value concerns a trend (recent=0, baseline=0).",
+      "confidence": "LOW"
+    },
+    {
+      "name": "promotion_discussions",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "recent_count": 0,
+      "baseline_count": 0,
+      "evidence_count": 0,
+      "source_count": 0,
+      "note": "Insufficient history to call promotion discussions a trend (recent=0, baseline=0).",
+      "confidence": "LOW"
+    },
+    {
+      "name": "competitor_mentions",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "recent_count": 0,
+      "baseline_count": 0,
+      "evidence_count": 0,
+      "source_count": 0,
+      "note": "Insufficient history to call competitor mentions a trend (recent=0, baseline=0).",
+      "confidence": "LOW"
+    },
+    {
+      "name": "new_product_discussions",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "recent_count": 0,
+      "baseline_count": 0,
+      "evidence_count": 0,
+      "source_count": 0,
+      "note": "Insufficient history to call named product discussions a trend (recent=0, baseline=0).",
+      "confidence": "LOW"
+    },
+    {
+      "name": "emerging_complaints",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "recent_count": 0,
+      "baseline_count": 0,
+      "evidence_count": 0,
+      "source_count": 0,
+      "note": "Insufficient history to call negative conversation a trend (recent=0, baseline=0).",
+      "confidence": "LOW"
+    },
+    {
+      "name": "emerging_positive_themes",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "recent_count": 0,
+      "baseline_count": 0,
+      "evidence_count": 0,
+      "source_count": 0,
+      "note": "Insufficient history to call positive conversation a trend (recent=0, baseline=0).",
+      "confidence": "LOW"
+    }
+  ],
+  "commercial_context": [
+    {
+      "lever": "NONE",
+      "channel": "CONSUMER_SENTIMENT",
+      "statement": "Consumer conversation sentiment is qualitative context for commercial findings. It is not proof of sales impact and does not create a commercial action.",
+      "evidence_count": 0,
+      "relation_hint": "INSUFFICIENT_EVIDENCE"
+    }
+  ],
+  "source_registry": [
+    {
+      "source": "reddit",
+      "source_type": "social",
+      "access_method": "official_oauth_api",
+      "status": "UNAVAILABLE",
+      "last_successful_collection": null,
+      "limitations": [
+        "OAuth credentials were not provided. Unauthenticated JSON is blocked (HTTP 403) and robots.txt disallows crawling (Disallow: /)."
+      ]
+    },
+    {
+      "source": "youtube",
+      "source_type": "social",
+      "access_method": "official_data_api",
+      "status": "UNAVAILABLE",
+      "last_successful_collection": null,
+      "limitations": [
+        "YouTube Data API key was not provided. Unauthenticated search returns HTTP 403."
+      ]
+    },
+    {
+      "source": "x",
+      "source_type": "social",
+      "access_method": "official_api",
+      "status": "UNAVAILABLE",
+      "last_successful_collection": null,
+      "limitations": [
+        "X bearer token was not provided. Search API returns HTTP 401 without authentication."
+      ]
+    },
+    {
+      "source": "public_web",
+      "source_type": "web",
+      "access_method": "official_api_or_licensed_feed",
+      "status": "UNAVAILABLE",
+      "last_successful_collection": null,
+      "limitations": [
+        "No officially accessible public-web discussion API is configured. The system does not crawl the public web or bypass robots.txt."
+      ]
+    }
+  ],
+  "consumer_context": [
+    "Overall consumer conversation sentiment: NEUTRAL (intensity LOW, n=0). This is not sales causality.",
+    "Sentiment shares remain missing because no observations were available."
+  ],
+  "emerging_risks": [],
+  "emerging_opportunities": [],
+  "quality": {
+    "evidence_count": 0,
+    "source_count": 0,
+    "date_range": {
+      "start": null,
+      "end": null,
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16"
+    },
+    "confidence": "LOW",
+    "limitations": [
+      "DATA MODE: NO_SOCIAL_DATA. SocialContextBrain is not using live social data.",
+      "SocialContextBrain is an external consumer-context layer. It does not modify frozen POS or macro agents.",
+      "It does not recalculate POS sales, distribution gaps, price opportunities, promotion opportunities, addressable value, addressable volume, or specialist confidence.",
+      "Social intelligence does not create a commercial action.",
+      "Sentiment is not treated as sales causality.",
+      "Future social observations are not used to explain historical POS periods.",
+      "Social & Consumer Intelligence V1 is an external context layer. It does not modify frozen POS or macro agents.",
+      "Social observations are never invented. Unavailable sources stay unavailable.",
+      "Missing fields stay null. Missing is never converted to zero.",
+      "Author identifiers are hashed. Unnecessary personal information is not stored.",
+      "Sentiment is not treated as sales causality.",
+      "Social intelligence does not create a commercial action or recalculate addressable value or volume.",
+      "Future social observations are not used to explain historical POS periods.",
+      "HIGH confidence is never assigned from a single post.",
+      "Dashboard is not built in this sprint."
+    ]
+  },
+  "sources": [],
+  "limitations": [
+    "DATA MODE: NO_SOCIAL_DATA. SocialContextBrain is not using live social data.",
+    "SocialContextBrain is an external consumer-context layer. It does not modify frozen POS or macro agents.",
+    "It does not recalculate POS sales, distribution gaps, price opportunities, promotion opportunities, addressable value, addressable volume, or specialist confidence.",
+    "Social intelligence does not create a commercial action.",
+    "Sentiment is not treated as sales causality.",
+    "Future social observations are not used to explain historical POS periods.",
+    "Social & Consumer Intelligence V1 is an external context layer. It does not modify frozen POS or macro agents.",
+    "Social observations are never invented. Unavailable sources stay unavailable.",
+    "Missing fields stay null. Missing is never converted to zero.",
+    "Author identifiers are hashed. Unnecessary personal information is not stored.",
+    "Sentiment is not treated as sales causality.",
+    "Social intelligence does not create a commercial action or recalculate addressable value or volume.",
+    "Future social observations are not used to explain historical POS periods.",
+    "HIGH confidence is never assigned from a single post.",
+    "Dashboard is not built in this sprint."
+  ],
+  "report_output_path": "backend/data/social_reports/social_context_brain_v1.json",
+  "generated_at": "2026-08-31T12:21:52.240949Z"
+}
