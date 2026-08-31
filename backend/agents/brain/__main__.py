@@ -54,6 +54,8 @@ def main(argv: list[str] | None = None) -> int:
         "opportunities_emitted": report.opportunities_emitted,
         "total_estimated_value_opportunity": report.total_estimated_value_opportunity,
         "total_estimated_volume_opportunity": report.total_estimated_volume_opportunity,
+        "total_addressable_value_opportunity": report.total_addressable_value_opportunity,
+        "total_addressable_volume_opportunity": report.total_addressable_volume_opportunity,
         "double_counting_conflicts_resolved": report.double_counting_conflicts_resolved,
         "lever_distribution": report.lever_distribution,
         "confidence_distribution": report.confidence_distribution,

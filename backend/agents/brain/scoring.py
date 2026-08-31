@@ -4,17 +4,18 @@ from __future__ import annotations
 
 import math
 
+from backend.agents.brain.addressable import ADDRESSABLE_METHODOLOGY
 from backend.agents.brain.levers import LeverDecision
 from backend.agents.brain.models import BrainConfig, DominantLever
 
 METHODOLOGY = (
-    "Commercial Priority Score = opportunity_score * evidence_factor * actionability_factor "
+    ADDRESSABLE_METHODOLOGY
+    + " Commercial Priority Score = opportunity_score * evidence_factor * actionability_factor "
     "* data_quality_factor. opportunity_score = log1p(primary_lever_value) / log1p(value_reference). "
     "evidence_factor maps specialist confidence of the primary lever (HIGH/MEDIUM/LOW) and is never "
     "upgraded. actionability_factor is lower for MULTI-LEVER than for a single clear lever. "
     "data_quality_factor starts at 1.0 and is reduced for outlier flags and mixed promotion windows. "
-    "The score uses primary-lever value only; gross specialist values are not summed. "
-    "Estimates remain directional and are not guaranteed incremental sales."
+    "The score uses primary-lever addressable value only; gross specialist values are not summed."
 )
 
 

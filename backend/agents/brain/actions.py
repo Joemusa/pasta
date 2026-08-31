@@ -33,31 +33,38 @@ def action_headline(opp: BrainOpportunity) -> str:
 
 def action_why(opp: BrainOpportunity) -> str:
     conf_note = (
-        "The signal is directional and is not guaranteed incremental sales."
+        "The signal is directional addressable opportunity, not guaranteed incremental sales."
         if opp.confidence != "HIGH"
-        else "Evidence is stronger than the rest of this short panel, but sales are still not guaranteed."
+        else (
+            "Evidence is stronger than the rest of this short panel, but this remains "
+            "addressable opportunity, not guaranteed incremental sales."
+        )
     )
     if opp.dominant_lever == DominantLever.DISTRIBUTION.value:
         gap = f"{opp.distribution_gap:.0f} stores" if opp.distribution_gap is not None else "a material store gap"
         return (
             f"Listed-store economics are attractive while coverage sits {gap} below the like-for-like benchmark "
-            f"at {opp.retailer} in {opp.region}. Price or promotion is not the first lever: low coverage is "
-            f"limiting reach. {conf_note}"
+            f"at {opp.retailer} in {opp.region}. Addressable value and addressable volume equal value/store and "
+            f"volume/store times that store gap; they are not guaranteed incremental sales. Current sales are "
+            f"separate. Price or promotion is not the first lever: low coverage is limiting reach. {conf_note}"
         )
     if opp.dominant_lever == DominantLever.PROMOTION.value:
         return (
             f"Distribution is adequate and directional promo response at {opp.retailer} in {opp.region} is stronger "
-            f"than a price intervention on this grain. {conf_note}"
+            f"than a price intervention on this grain. Addressable value/volume are specialist estimates, not "
+            f"guaranteed incremental sales. {conf_note}"
         )
     if opp.dominant_lever == DominantLever.PRICE.value:
         return (
             f"Coverage is adequate and promotion does not explain the gap, while realised price is materially "
-            f"different from the like-for-like benchmark at {opp.retailer} in {opp.region}. {conf_note}"
+            f"different from the like-for-like benchmark at {opp.retailer} in {opp.region}. Addressable value/volume "
+            f"are not guaranteed incremental sales. {conf_note}"
         )
     if opp.dominant_lever == DominantLever.MULTI_LEVER.value:
         return (
             f"Store coverage is the primary constraint, and listed-store promo response is complementary rather than "
-            f"a restatement of the same gap. The value kept is the distribution opportunity only. {conf_note}"
+            f"a restatement of the same gap. The addressable value kept is the distribution opportunity only "
+            f"(value/store x store gap), not a sum of levers. {conf_note}"
         )
     return f"Evidence is too weak for a commercial action. {conf_note}"
 
@@ -113,6 +120,9 @@ def select_top_actions(opportunities: list[BrainOpportunity], config: BrainConfi
                 region=opp.region,
                 estimated_value=opp.opportunity_value,
                 estimated_volume=opp.opportunity_volume,
+                addressable_value=opp.addressable_value_opportunity,
+                addressable_volume=opp.addressable_volume_opportunity,
+                current_sales=opp.current_sales,
                 confidence=opp.confidence,
                 recommended_action=opp.recommended_action,
                 evidence=opp.evidence,
@@ -131,7 +141,7 @@ def core_headline(opportunities: list[BrainOpportunity], actions: list[BrainActi
         return f"Unilever does not yet have a validated near-term growth lever in {region}"
     top_lever = max(value_by_lever.items(), key=lambda item: (item[1], item[0]))[0]
     if top_lever == DominantLever.DISTRIBUTION.value:
-        return f"Distribution is the largest near-term growth lever in {region}"
+        return "Distribution is currently the clearest growth lever in the priority opportunities"
     if top_lever == DominantLever.PROMOTION.value:
         retailer = actions[0].retailer if actions else "priority retailers"
         return f"Promotion is the near-term growth lever to test at {retailer}"
@@ -151,8 +161,9 @@ def build_story(
 ) -> Storytelling:
     supporting = [item.headline for item in actions]
     quantified = (
-        f"After removing double-counted specialist overlap, the primary commercial opportunity is "
-        f"R{total_value:,.0f} and {total_volume:,.0f} units. These figures are estimated, not guaranteed sales."
+        f"After removing double-counted specialist overlap, addressable value is "
+        f"R{total_value:,.0f} and addressable volume is {total_volume:,.0f} units. "
+        f"These figures are associated with closing identified gaps; they are not guaranteed incremental sales."
     )
     if actions:
         first = actions[0]
@@ -173,7 +184,8 @@ def headline_support(story: Storytelling, actions: list[BrainAction]) -> str:
     if len(actions) >= 3:
         scored = (
             "The three actions below are scored for size, evidence, actionability, "
-            "and data quality — not by adding distribution, price, and promotion together."
+            "and data quality — not by adding distribution, price, and promotion together. "
+            "Addressable value and addressable volume are not guaranteed incremental sales."
         )
         message = story.core_message.rstrip(".")
         return f"{message}. {scored} {story.quantified_opportunity}"
@@ -201,6 +213,8 @@ def build_one_slide(
         headline_support=support,
         total_estimated_value_opportunity=total_value,
         total_estimated_volume_opportunity=total_volume,
+        total_addressable_value_opportunity=total_value,
+        total_addressable_volume_opportunity=total_volume,
         top_actions=[
             {
                 "rank": item.rank,
@@ -212,6 +226,11 @@ def build_one_slide(
                 "region": item.region,
                 "estimated_value": item.estimated_value,
                 "estimated_volume": item.estimated_volume,
+                "addressable_value": item.addressable_value,
+                "addressable_volume": item.addressable_volume,
+                "addressable_value_opportunity": item.addressable_value,
+                "addressable_volume_opportunity": item.addressable_volume,
+                "current_sales": item.current_sales,
                 "confidence": item.confidence,
                 "why": item.why,
                 "recommended_action": item.recommended_action,

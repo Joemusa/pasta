@@ -14,6 +14,10 @@ from backend.agents.brain.actions import (
     headline_support,
     select_top_actions,
 )
+from backend.agents.brain.addressable import (
+    distribution_addressable_value,
+    distribution_addressable_volume,
+)
 from backend.agents.brain.aggregations import aggregate_movers, sku_priorities
 from backend.agents.brain.levers import LeverDecision, decide_all
 from backend.agents.brain.loader import BrainLoadError, SpecialistBundle, discover_bundle
@@ -87,31 +91,51 @@ def recommended_action_text(decision: LeverDecision) -> str:
 def evidence_lines(decision: LeverDecision) -> list[str]:
     lines: list[str] = []
     if decision.dist is not None:
+        vps = decision.dist.value_per_store
+        vol_ps = decision.dist.volume_per_store
+        gap = decision.dist.store_gap
+        addr_value = None
+        addr_volume = None
+        if vps is not None:
+            addr_value = distribution_addressable_value(vps, gap)
+        if vol_ps is not None:
+            addr_volume = distribution_addressable_volume(vol_ps, gap)
+        formula = (
+            f"Distribution addressable value = value/store {vps} x store gap {gap:.1f}"
+            + (f" = R{addr_value:,.0f}" if addr_value is not None else "")
+            + "; addressable volume = volume/store "
+            + f"{vol_ps} x store gap {gap:.1f}"
+            + (f" = {addr_volume:.1f} units" if addr_volume is not None else "")
+            + ". This is the gap-closing opportunity, not guaranteed incremental sales."
+        )
+        lines.append(formula)
         lines.append(
-            f"Distribution: store gap {decision.dist.store_gap:.1f}, "
-            f"value/store {decision.dist.value_per_store}, confidence {decision.dist.confidence}, "
-            f"estimated R{decision.dist.value:,.0f} / {decision.dist.volume:.1f} units."
+            f"Frozen Distribution Agent value R{decision.dist.value:,.0f} / {decision.dist.volume:.1f} units "
+            f"(confidence {decision.dist.confidence}); the Brain does not re-score it."
         )
     if decision.price is not None:
         lines.append(
             f"Price: {decision.price.recommendation} ({decision.price.price_signal}), "
-            f"confidence {decision.price.confidence}, estimated R{decision.price.value:,.0f} / "
-            f"{decision.price.volume:.1f} units."
+            f"confidence {decision.price.confidence}, addressable R{decision.price.value:,.0f} / "
+            f"{decision.price.volume:.1f} units (not guaranteed incremental sales)."
         )
     if decision.promo is not None:
         uplift = decision.promo.volume_uplift_pct
         uplift_txt = f", volume uplift {uplift:.0%}" if uplift is not None else ""
         lines.append(
             f"Promotion: {decision.promo.recommendation}{uplift_txt}, "
-            f"confidence {decision.promo.confidence}, estimated R{decision.promo.value:,.0f} / "
-            f"{decision.promo.volume:.1f} units."
+            f"confidence {decision.promo.confidence}, addressable R{decision.promo.value:,.0f} / "
+            f"{decision.promo.volume:.1f} units (not guaranteed incremental sales)."
         )
     lines.append(
-        f"Primary lever value R{decision.primary_value:,.0f} / {decision.primary_volume:.1f} units "
+        f"Primary-lever addressable value R{decision.primary_value:,.0f} / {decision.primary_volume:.1f} units "
         f"(gross specialist total R{decision.gross_value:,.0f} was not used)."
     )
     if decision.commercial is not None and decision.commercial.sales_value is not None:
-        lines.append(f"Current sales R{decision.commercial.sales_value:,.0f} (not the opportunity).")
+        lines.append(
+            f"Current sales R{decision.commercial.sales_value:,.0f} "
+            f"(distinct from addressable value; not the opportunity)."
+        )
     lines.append(f"Double-counting risk: {decision.double_counting_risk.value}.")
     return lines
 
@@ -140,6 +164,12 @@ def to_opportunity(decision: LeverDecision, config: BrainConfig) -> BrainOpportu
     promo_signal = decision.promo.recommendation if decision.promo is not None else None
     score = priority_score(decision, config)
     period_key = f"{decision.product}|{decision.retailer}|{decision.region}"
+    dist_addr_value = None
+    dist_addr_volume = None
+    if decision.dist is not None and decision.dist.value_per_store is not None:
+        dist_addr_value = distribution_addressable_value(decision.dist.value_per_store, decision.dist.store_gap)
+    if decision.dist is not None and decision.dist.volume_per_store is not None:
+        dist_addr_volume = distribution_addressable_volume(decision.dist.volume_per_store, decision.dist.store_gap)
     return BrainOpportunity(
         opportunity_id=period_key,
         product=decision.product,
@@ -158,6 +188,10 @@ def to_opportunity(decision: LeverDecision, config: BrainConfig) -> BrainOpportu
         double_counting_risk=decision.double_counting_risk.value,
         opportunity_value=decision.primary_value,
         opportunity_volume=decision.primary_volume,
+        addressable_value_opportunity=decision.primary_value,
+        addressable_volume_opportunity=decision.primary_volume,
+        distribution_addressable_value=dist_addr_value,
+        distribution_addressable_volume=dist_addr_volume,
         current_sales=None if sales is None else round(sales, 2),
         current_volume=None if volume is None else round(volume, 4),
         sales_per_store=None if valps is None else round(valps, 4),
@@ -182,7 +216,8 @@ def _status(actions: int, evaluated: int) -> BrainAgentStatus:
 
 def _risks(opportunities: list[BrainOpportunity], conflicts: int) -> list[str]:
     risks = [
-        "Opportunity estimates are directional and are not guaranteed incremental sales.",
+        "Addressable value and addressable volume are not guaranteed incremental sales.",
+        "Current sales are distinct from the addressable opportunity.",
         "Price and promotion findings are not causal elasticity or causal incrementality.",
         "LOW-confidence specialist outputs are preserved; the Brain does not upgrade them.",
     ]
@@ -298,6 +333,8 @@ def run_brain(
         confidence_distribution=conf_dist,
         total_estimated_value_opportunity=total_value,
         total_estimated_volume_opportunity=total_volume,
+        total_addressable_value_opportunity=total_value,
+        total_addressable_volume_opportunity=total_volume,
         headline=headline,
         storytelling=story,
         top_actions=actions,

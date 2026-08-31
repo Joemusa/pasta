@@ -8,8 +8,6 @@ from backend.agents.brain.models import BrainMover, BrainOpportunity, BrainSkuPr
 
 _SCORE = {"HIGH": 3, "MEDIUM": 2, "LOW": 1}
 
-_SCORE = {"HIGH": 3, "MEDIUM": 2, "LOW": 1}
-
 
 def _avg_confidence(scores: list[str]) -> str:
     if not scores:
@@ -51,6 +49,8 @@ def sku_priorities(opportunities: list[BrainOpportunity], top_n: int) -> list[Br
             dominant_lever=item.dominant_lever,
             opportunity_value=item.opportunity_value,
             opportunity_volume=item.opportunity_volume,
+            addressable_value_opportunity=item.addressable_value_opportunity,
+            addressable_volume_opportunity=item.addressable_volume_opportunity,
             current_sales=item.current_sales,
             sales_per_store=item.sales_per_store,
             distribution=item.distribution_stores,
@@ -142,6 +142,8 @@ def _rank(buckets: dict[str, dict[str, object]], *, kind: str) -> list[BrainMove
                 name=name,
                 estimated_value=round(float(bucket["value"]), 2),
                 estimated_volume=round(float(bucket["volume"]), 4),
+                addressable_value=round(float(bucket["value"]), 2),
+                addressable_volume=round(float(bucket["volume"]), 4),
                 dominant_lever=dominant,
                 opportunities=int(bucket["n"]),
                 skus=len(skus),

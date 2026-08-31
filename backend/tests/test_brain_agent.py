@@ -114,7 +114,7 @@ def test_storytelling_and_one_slide(tmp_path: Path) -> None:
     root = _panel(tmp_path)
     report = run_brain(root)
     assert report.headline
-    assert "analysis" not in report.headline.lower()
+    assert "clearest growth lever" in report.headline.lower() or "growth lever" in report.headline.lower()
     assert len(report.storytelling.supporting_actions) == 3
     assert "guaranteed" in report.storytelling.quantified_opportunity.lower()
     assert report.storytelling.next_step
@@ -234,5 +234,8 @@ def test_real_reports_if_present() -> None:
     assert report.confidence_distribution.get("HIGH", 0) >= 0
     assert all(item.estimated_value >= 0 and item.estimated_volume >= 0 for item in report.top_actions)
     assert "not guaranteed" in report.storytelling.quantified_opportunity.lower()
+    assert "addressable" in report.storytelling.quantified_opportunity.lower()
     assert report.one_slide.headline
     assert len(report.one_slide.top_actions) == 3
+    assert report.one_slide.total_addressable_value_opportunity == report.total_addressable_value_opportunity
+    assert all("addressable_value" in item for item in report.one_slide.top_actions)

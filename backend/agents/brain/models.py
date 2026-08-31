@@ -25,7 +25,9 @@ V1_LIMITATIONS = [
     "Promotion metrics can be missing; missing is not converted to zero.",
     "ProductsID is not the canonical join key; SKU identity is product name.",
     "Short price/promotion history; HIGH confidence is not manufactured.",
-    "Opportunity estimates are directional and are not guaranteed incremental sales.",
+    "Opportunity estimates are directional addressable values, not guaranteed incremental sales.",
+    "Distribution addressable value = value_per_store x distribution_store_gap; volume uses volume_per_store x gap.",
+    "Current sales are distinct from addressable opportunity and are never treated as incremental sales.",
     "No causal elasticity and no causal promotion incrementality.",
     "Specialist Distribution, Price, and Promotion agents are frozen; the Brain does not re-score them.",
     "Overlapping levers are not summed; the reported value is the primary commercial opportunity.",
@@ -100,6 +102,10 @@ class BrainOpportunity(BaseModel):
     double_counting_risk: str = DoubleCountingRisk.NONE.value
     opportunity_value: float = 0.0
     opportunity_volume: float = 0.0
+    addressable_value_opportunity: float = 0.0
+    addressable_volume_opportunity: float = 0.0
+    distribution_addressable_value: float | None = None
+    distribution_addressable_volume: float | None = None
     current_sales: float | None = None
     current_volume: float | None = None
     sales_per_store: float | None = None
@@ -129,6 +135,9 @@ class BrainAction(BaseModel):
     region: str
     estimated_value: float
     estimated_volume: float
+    addressable_value: float
+    addressable_volume: float
+    current_sales: float | None = None
     confidence: Confidence
     recommended_action: str
     evidence: list[str] = Field(default_factory=list)
@@ -141,6 +150,8 @@ class BrainMover(BaseModel):
     name: str
     estimated_value: float
     estimated_volume: float
+    addressable_value: float
+    addressable_volume: float
     dominant_lever: str
     opportunities: int
     skus: int = 0
@@ -165,6 +176,8 @@ class BrainSkuPriority(BaseModel):
     dominant_lever: str
     opportunity_value: float
     opportunity_volume: float
+    addressable_value_opportunity: float
+    addressable_volume_opportunity: float
     current_sales: float | None = None
     sales_per_store: float | None = None
     distribution: float | None = None
@@ -192,6 +205,8 @@ class OneSlide(BaseModel):
     headline_support: str
     total_estimated_value_opportunity: float
     total_estimated_volume_opportunity: float
+    total_addressable_value_opportunity: float
+    total_addressable_volume_opportunity: float
     top_actions: list[dict[str, Any]] = Field(default_factory=list)
     retailer_priorities: list[dict[str, Any]] = Field(default_factory=list)
     sku_priorities: list[dict[str, Any]] = Field(default_factory=list)
@@ -210,7 +225,7 @@ class BrainReport(BaseModel):
     manufacturer: str
     current_period: str
     causality_claim: str = "none"
-    opportunity_label: str = "Estimated commercial opportunity"
+    opportunity_label: str = "Addressable commercial opportunity"
     source_distribution_report: str | None = None
     source_price_report: str | None = None
     source_promotion_report: str | None = None
@@ -223,6 +238,8 @@ class BrainReport(BaseModel):
     confidence_distribution: dict[str, int] = Field(default_factory=dict)
     total_estimated_value_opportunity: float = 0.0
     total_estimated_volume_opportunity: float = 0.0
+    total_addressable_value_opportunity: float = 0.0
+    total_addressable_volume_opportunity: float = 0.0
     headline: str
     storytelling: Storytelling
     top_actions: list[BrainAction] = Field(default_factory=list)
