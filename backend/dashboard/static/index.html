@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Commercial Intelligence · Unilever</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="masthead">
+      <div>
+        <p class="eyebrow">Commercial Intelligence · Dashboard V1</p>
+        <h1 id="manufacturer">Unilever</h1>
+      </div>
+      <p class="masthead-note">
+        Presentation layer over frozen Commercial Brain output. Addressable opportunity is directional,
+        not guaranteed incremental sales.
+      </p>
+    </header>
+
+    <section class="filters" aria-label="Filters">
+      <div class="filter-grid" id="filter-grid"></div>
+      <div class="filter-actions">
+        <button type="button" id="reset-filters" class="btn ghost">Clear filters</button>
+        <div class="topn" role="group" aria-label="Top actions">
+          <button type="button" data-topn="3" class="btn topn-btn is-on">Top 3 actions</button>
+          <button type="button" data-topn="10" class="btn topn-btn">Top 10</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="quality" id="quality" aria-label="Data quality"></section>
+
+    <section class="story" id="story"></section>
+
+    <section class="context-row">
+      <article class="card context" id="macro"></article>
+      <article class="card context" id="social"></article>
+    </section>
+
+    <section class="kpis" id="kpis" aria-label="Executive KPIs"></section>
+
+    <nav class="views" id="views" aria-label="Analytical views">
+      <button type="button" class="view-btn is-on" data-view="overview">Overview</button>
+      <button type="button" class="view-btn" data-view="opportunities">Opportunities</button>
+      <button type="button" class="view-btn" data-view="regions">Regions</button>
+      <button type="button" class="view-btn" data-view="retailers">Retailers</button>
+      <button type="button" class="view-btn" data-view="products">Products</button>
+      <button type="button" class="view-btn" data-view="price">Price</button>
+      <button type="button" class="view-btn" data-view="promotion">Promotion</button>
+      <button type="button" class="view-btn" data-view="distribution">Distribution</button>
+    </nav>
+
+    <main>
+      <section class="panel is-on" data-panel="overview">
+        <div class="charts" id="charts"></div>
+        <h2 class="section-title">Top actions</h2>
+        <p class="hint" id="rank-hint"></p>
+        <div class="action-grid" id="top-actions"></div>
+      </section>
+
+      <section class="panel" data-panel="opportunities">
+        <h2 class="section-title">Ranked commercial opportunities</h2>
+        <p class="hint">Ranking is copied from the Commercial Brain. Values are not recalculated in this dashboard.</p>
+        <div class="table-wrap">
+          <table id="opp-table"></table>
+        </div>
+      </section>
+
+      <section class="panel" data-panel="regions">
+        <h2 class="section-title">Region comparison</h2>
+        <p class="hint">Actual regions in the current slice. Geographic data is not fabricated.</p>
+        <div class="table-wrap">
+          <table id="region-table"></table>
+        </div>
+      </section>
+
+      <section class="panel" data-panel="retailers">
+        <h2 class="section-title">Retailer comparison</h2>
+        <p class="hint">Distribution is the median listed-store count from POS for the slice, a FACT, not a coverage score.</p>
+        <div class="table-wrap">
+          <table id="retailer-table"></table>
+        </div>
+      </section>
+
+      <section class="panel" data-panel="products">
+        <h2 class="section-title">Category → brand → product</h2>
+        <p class="hint" id="sku-hint">Canonical SKU identity is product name. ProductsID is not the join key.</p>
+        <div class="crumbs" id="crumbs"></div>
+        <div class="table-wrap">
+          <table id="product-table"></table>
+        </div>
+      </section>
+
+      <section class="panel" data-panel="price">
+        <h2 class="section-title">Price architecture</h2>
+        <p class="hint">PRICE SIGNAL is an observation. PRICE RECOMMENDATION is a test brief. No normal/RSP is invented.</p>
+        <div class="table-wrap">
+          <table id="price-table"></table>
+        </div>
+      </section>
+
+      <section class="panel" data-panel="promotion">
+        <h2 class="section-title">Promotion</h2>
+        <p class="hint">Missing promotion metrics stay missing. Zero is shown only when the Promotion Agent emitted zero.</p>
+        <div class="table-wrap">
+          <table id="promo-table"></table>
+        </div>
+      </section>
+
+      <section class="panel" data-panel="distribution">
+        <h2 class="section-title">Distribution</h2>
+        <p class="hint">Store gaps, current stores, and value/store are copied from the frozen Distribution Agent via the Commercial Brain grain.</p>
+        <div class="table-wrap">
+          <table id="dist-table"></table>
+        </div>
+      </section>
+    </main>
+
+    <aside class="drawer" id="drawer" hidden>
+      <div class="drawer-inner">
+        <button type="button" class="btn ghost" id="close-drawer">Close</button>
+        <div id="drawer-body"></div>
+      </div>
+    </aside>
+
+    <div class="tooltip" id="tooltip" hidden></div>
+    <script src="/app.js"></script>
+  </body>
+</html>
