@@ -53,12 +53,15 @@ SA_COUNTRIES = {"ZA", "SOUTH AFRICA"}
 class ReplayAdapter(SourceAdapter):
     """Replays already-fetched LIVE posts. Does not invent records."""
 
-    name = "public_web"
-    source_type = "web"
-    access_method = "gdelt_doc_2_0_api"
+    name = "replay"
+    source_type = "social"
+    access_method = "replay"
 
     def __init__(self, result: CollectionResult) -> None:
         self._result = result
+        self.name = result.entry.source
+        self.source_type = result.entry.source_type
+        self.access_method = result.entry.access_method
 
     def collect(self) -> CollectionResult:
         posts = list(self._result.posts)

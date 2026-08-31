@@ -1,0 +1,60 @@
+{
+  "title": "REDDIT LIVE SOCIAL DATA VALIDATION",
+  "source": "Reddit",
+  "connection": "FAILED",
+  "reddit_live_status": "UNAVAILABLE",
+  "live_data_status": "UNAVAILABLE",
+  "observation_start": "2026-06-02T13:28:52Z",
+  "observation_end": "2026-08-31T13:28:52Z",
+  "collection_timestamp": "2026-08-31T13:28:52Z",
+  "records_retrieved": 0,
+  "records_after_deduplication": 0,
+  "south_africa_specific_records": 0,
+  "unknown_geography_records": 0,
+  "records_by_brand": {},
+  "records_by_category": {},
+  "top_consumer_themes": [],
+  "sentiment_distribution": {},
+  "positive_themes": [],
+  "negative_themes": [],
+  "emerging_consumer_concerns": [],
+  "emerging_consumer_opportunities": [],
+  "source_subreddit_distribution": {},
+  "date_range": {
+    "start": null,
+    "end": null
+  },
+  "data_quality_issues": [
+    "REDDIT LIVE STATUS = UNAVAILABLE. Credentials were missing, Reddit could not be reached, or no records were returned. Fixtures were not substituted.",
+    "OAuth credentials were not provided. Set REDDIT_CLIENT_ID and REDDIT_CLIENT_SECRET. Unauthenticated JSON is blocked (HTTP 403) and robots.txt disallows crawling (Disallow: /)."
+  ],
+  "example_source_urls": [],
+  "dedupe_stats": {
+    "raw": 0,
+    "future": 0,
+    "duplicate_url": 0,
+    "duplicate_content": 0,
+    "outside_window": 0,
+    "kept": 0
+  },
+  "registry": {
+    "source": "reddit",
+    "source_type": "social",
+    "access_method": "official_oauth_api",
+    "status": "UNAVAILABLE",
+    "last_successful_collection": null,
+    "record_count": 0,
+    "error": "OAuth credentials were not provided. Set REDDIT_CLIENT_ID and REDDIT_CLIENT_SECRET. Unauthenticated JSON is blocked (HTTP 403) and robots.txt disallows crawling (Disallow: /).",
+    "limitations": [
+      "OAuth credentials were not provided. Set REDDIT_CLIENT_ID and REDDIT_CLIENT_SECRET. Unauthenticated JSON is blocked (HTTP 403) and robots.txt disallows crawling (Disallow: /)."
+    ]
+  },
+  "observations": [],
+  "causality_claim": "none",
+  "limitations": [
+    "Social sentiment is directional context only. It does not cause sales.",
+    "Commercial Brain confidence is not upgraded because Reddit sentiment is present."
+  ],
+  "error": "OAuth credentials were not provided. Set REDDIT_CLIENT_ID and REDDIT_CLIENT_SECRET. Unauthenticated JSON is blocked (HTTP 403) and robots.txt disallows crawling (Disallow: /).",
+  "report_text": "REDDIT LIVE SOCIAL DATA VALIDATION\n\nREDDIT LIVE STATUS = UNAVAILABLE\n\n1. Records retrieved: 0\n2. Records after deduplication: 0\n3. South Africa-specific records: 0\n4. Records by brand: none\n5. Records by category: none\n6. Top consumer themes: none\n7. Sentiment distribution: none\n8. Positive themes: none\n9. Negative themes: none\n10. Emerging consumer concerns:\n- none\n11. Emerging consumer opportunities:\n- none\n12. Source/subreddit distribution: none\n13. Date range: None to None\n14. Data-quality issues:\n- REDDIT LIVE STATUS = UNAVAILABLE. Credentials were missing, Reddit could not be reached, or no records were returned. Fixtures were not substituted.\n- OAuth credentials were not provided. Set REDDIT_CLIENT_ID and REDDIT_CLIENT_SECRET. Unauthenticated JSON is blocked (HTTP 403) and robots.txt disallows crawling (Disallow: /).\n15. Example source URLs:\n- none\n\nSocial sentiment is directional only. It is not treated as a cause of sales.\nCommercial Brain confidence was not upgraded from Reddit sentiment.\nobservation_start: 2026-06-02T13:28:52Z\nobservation_end: 2026-08-31T13:28:52Z\ncollection_timestamp: 2026-08-31T13:28:52Z\nUnknown geography records: 0"
+}

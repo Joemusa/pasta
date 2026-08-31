@@ -57,6 +57,16 @@ brands:
     category: Personal Care
     aliases: [dove]
     require_any: [soap, deodorant, body, wash, unilever, skincare]
+  Knorr:
+    company: Unilever
+    category: Foods
+    aliases: [knorr]
+    require_any: [soup, sauce, stock, cube, cooking, food, unilever]
+  Vaseline:
+    company: Unilever
+    category: Personal Care
+    aliases: [vaseline]
+    require_any: [petroleum, jelly, lotion, lip, unilever, skincare, cream, body]
   Magnum:
     company: Unilever
     category: Ice Cream
@@ -68,6 +78,10 @@ products:
     brand: Sunlight
     category: Home Care
     aliases: [sunlight pine gel, pine gel]
+  Sunlight Dishwashing:
+    brand: Sunlight
+    category: Home Care
+    aliases: [sunlight dishwashing, sunlight liquid, sunlight washing powder]
   Handy Andy Eucalyptus:
     brand: Handy Andy
     category: Home Care

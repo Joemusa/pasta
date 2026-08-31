@@ -1,0 +1,139 @@
+user_agent: "UnileverPastaSocialIntelligence/1.0 (official-API adapter; +https://github.com/Joemusa/pasta)"
+request_timeout_seconds: 20
+rate_limit_sleep_seconds: 1.2
+max_results_per_query: 8
+max_queries_per_source: 24
+
+# Controlled LIVE Reddit smoke queries. Brand lists are YAML terms, not agent if-blocks.
+social_queries:
+  - id: unilever
+    type: company
+    terms: [Unilever]
+    template: "{name}"
+  - id: unilever_sr
+    type: company
+    terms: [Unilever]
+    template: "{name} subreddit:southafrica"
+  - id: sunlight
+    type: brand
+    terms: [Sunlight]
+    template: "{name} (dishwashing OR \"washing powder\" OR detergent)"
+  - id: sunlight_sr
+    type: brand
+    terms: [Sunlight]
+    template: "{name} subreddit:southafrica"
+  - id: omo
+    type: brand
+    terms: [Omo]
+    template: "{name} (laundry OR washing OR detergent)"
+  - id: domestos
+    type: brand
+    terms: [Domestos]
+    template: "{name}"
+  - id: handy_andy
+    type: brand
+    terms: ["Handy Andy"]
+    template: '"{name}"'
+  - id: knorr
+    type: brand
+    terms: [Knorr]
+    template: "{name} (soup OR sauce OR cooking)"
+  - id: dove
+    type: brand
+    terms: [Dove]
+    template: "{name} (soap OR deodorant OR \"body wash\")"
+  - id: vaseline
+    type: brand
+    terms: [Vaseline]
+    template: "{name} (lotion OR jelly OR lip)"
+  - id: fmcg_prices
+    type: price
+    terms: [FMCG]
+    template: "{name} prices grocery"
+  - id: affordability
+    type: consumer_need
+    terms: [household]
+    template: "{name} affordability grocery prices"
+  - id: promotions
+    type: promotion
+    terms: [Unilever]
+    template: "{name} (promo OR special OR discount)"
+  - id: availability
+    type: availability
+    terms: [Unilever]
+    template: "{name} (availability OR \"out of stock\")"
+  - id: quality
+    type: consumer_need
+    terms: [Unilever]
+    template: "{name} (quality OR \"value for money\")"
+  - id: cleaning
+    type: category
+    terms: ["household cleaning"]
+    template: "{name} Unilever"
+  - id: laundry
+    type: category
+    terms: [laundry]
+    template: "{name} detergent"
+  - id: personal_care
+    type: category
+    terms: ["personal care"]
+    template: "{name} Unilever"
+  - id: cooking
+    type: category
+    terms: [cooking]
+    template: "{name} Knorr OR Unilever food"
+
+south_africa:
+  boost_first_n: 0
+  do_not_infer_country_from_language: true
+  query_boosts: {}
+
+south_african_terms:
+  - shoprite
+  - checkers
+  - makro
+  - pick n pay
+  - spar
+  - rand
+  - south africa
+  - cape town
+  - johannesburg
+  - gauteng
+  - durban
+  - pretoria
+
+reddit:
+  token_url: "https://www.reddit.com/api/v1/access_token"
+  search_url: "https://oauth.reddit.com/search"
+  env_client_id: REDDIT_CLIENT_ID
+  env_client_secret: REDDIT_CLIENT_SECRET
+  subreddit_country:
+    southafrica: ZA
+    capetown: ZA
+    johannesburg: ZA
+    durban: ZA
+    pretoria: ZA
+    gauteng: ZA
+    soweto: ZA
+    asksouthafrica: ZA
+  subreddit_region:
+    capetown: Cape Town
+    johannesburg: Johannesburg
+    durban: Durban
+    pretoria: Pretoria
+    gauteng: Gauteng
+    soweto: Soweto
+
+country_iso:
+  south africa: ZA
+  united states: US
+  united kingdom: GB
+  singapore: SG
+  bangladesh: BD
+  australia: AU
+  india: IN
+  nigeria: NG
+  kenya: KE
+  germany: DE
+  france: FR
+  netherlands: NL
