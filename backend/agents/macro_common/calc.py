@@ -100,7 +100,7 @@ def signal_strength(change: float | None, series: SeriesDefinition, config: Macr
     magnitude = abs(change)
     thresholds = config.signal_strength or {}
     unit = series.unit.lower()
-    if unit in {"index_point", "index"} or series.frequency == "quarterly":
+    if unit in {"index_point", "index"}:
         high = float(thresholds.get("index_point_high", 5.0))
         medium = float(thresholds.get("index_point_medium", 2.0))
     elif unit in {"zar_per_usd"}:

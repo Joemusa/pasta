@@ -1,0 +1,228 @@
+{
+  "agent": "RatesFXAgent",
+  "status": "READY WITH WARNINGS",
+  "version": "V1",
+  "causality_claim": "none",
+  "pos_period_start": "2026-07-26",
+  "pos_period_end": "2026-08-16",
+  "catalog_path": "backend/data/macro_observations/rates_fx.json",
+  "observations": [
+    {
+      "metric": "SARB_POLICY_RATE",
+      "value": 7.0,
+      "previous_value": 7.0,
+      "year_ago_value": null,
+      "mom_change": 0.0,
+      "yoy_change": null,
+      "direction": "UNCHANGED",
+      "signal_strength": "LOW",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "RETAILER_PRESSURE"
+      ],
+      "commercial_pressure": "NEUTRAL",
+      "source": "South African Reserve Bank",
+      "source_url": "https://www.resbank.co.za/en/home/publications/publication-detail-pages/statements/monetary-policy-statements/2026/july",
+      "publication_date": "2026-07-23",
+      "observation_date": "2026-07-23",
+      "confidence": "HIGH",
+      "unit": "percent",
+      "frequency": "meeting",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "effective_date; observation_and_publication_on_or_before_pos_period_end",
+      "alignment_status": "ALIGNED"
+    },
+    {
+      "metric": "BER_INFLATION_EXPECTATIONS_PROFESSIONAL_CY",
+      "value": 4.4,
+      "previous_value": 3.6,
+      "year_ago_value": null,
+      "mom_change": 0.8000000000000003,
+      "yoy_change": null,
+      "direction": "UP",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "MANUFACTURER_COST"
+      ],
+      "commercial_pressure": "TIGHTENING",
+      "source": "Bureau for Economic Research",
+      "source_url": "https://www.ber.ac.za/Documents/Index/Inflation-Expectations",
+      "publication_date": "2026-06-30",
+      "observation_date": "2026-06-30",
+      "confidence": "HIGH",
+      "unit": "percent",
+      "frequency": "quarterly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "quarter_end; observation_and_publication_on_or_before_pos_period_end",
+      "alignment_status": "ALIGNED"
+    },
+    {
+      "metric": "BER_INFLATION_EXPECTATIONS_HOUSEHOLD_1Y",
+      "value": 6.0,
+      "previous_value": 5.4,
+      "year_ago_value": null,
+      "mom_change": 0.5999999999999996,
+      "yoy_change": null,
+      "direction": "UP",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY"
+      ],
+      "commercial_pressure": "TIGHTENING",
+      "source": "Bureau for Economic Research",
+      "source_url": "https://www.ber.ac.za/Documents/Index/Inflation-Expectations",
+      "publication_date": "2026-06-30",
+      "observation_date": "2026-06-30",
+      "confidence": "HIGH",
+      "unit": "percent",
+      "frequency": "quarterly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "quarter_end; observation_and_publication_on_or_before_pos_period_end",
+      "alignment_status": "ALIGNED"
+    },
+    {
+      "metric": "ZAR_USD_REVIEW_AVERAGE",
+      "value": 16.46,
+      "previous_value": 16.34,
+      "year_ago_value": null,
+      "mom_change": 0.120000000000001,
+      "yoy_change": null,
+      "direction": "UP",
+      "signal_strength": "MEDIUM",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "IMPORT_COST",
+        "MANUFACTURER_COST"
+      ],
+      "commercial_pressure": "TIGHTENING",
+      "source": "Department of Mineral and Petroleum Resources",
+      "source_url": "https://www.gov.za/news/media-statements/minister-gwede-mantashe-announces-adjustment-fuel-prices-effective-5-august-0",
+      "publication_date": "2026-08-03",
+      "observation_date": "2026-08-03",
+      "confidence": "HIGH",
+      "unit": "zar_per_usd",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "review_window_end; observation_and_publication_on_or_before_pos_period_end",
+      "alignment_status": "ALIGNED"
+    }
+  ],
+  "signals": [
+    {
+      "name": "SARB",
+      "summary": "SARB_POLICY_RATE is 7.0 percent (unchanged vs previous; neutral commercial pressure).",
+      "direction": "UNCHANGED",
+      "signal_strength": "LOW",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "RETAILER_PRESSURE"
+      ],
+      "commercial_pressure": "NEUTRAL",
+      "metrics": [
+        "SARB_POLICY_RATE"
+      ],
+      "alignment_status": "ALIGNED",
+      "confidence": "HIGH"
+    },
+    {
+      "name": "BER",
+      "summary": "BER_INFLATION_EXPECTATIONS_PROFESSIONAL_CY is 4.4 percent (up vs previous; tightening commercial pressure).",
+      "direction": "UP",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "MANUFACTURER_COST"
+      ],
+      "commercial_pressure": "TIGHTENING",
+      "metrics": [
+        "BER_INFLATION_EXPECTATIONS_PROFESSIONAL_CY",
+        "BER_INFLATION_EXPECTATIONS_HOUSEHOLD_1Y"
+      ],
+      "alignment_status": "ALIGNED",
+      "confidence": "HIGH"
+    },
+    {
+      "name": "ZAR",
+      "summary": "ZAR_USD_REVIEW_AVERAGE is 16.46 zar_per_usd (up vs previous; tightening commercial pressure).",
+      "direction": "UP",
+      "signal_strength": "MEDIUM",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "IMPORT_COST",
+        "MANUFACTURER_COST"
+      ],
+      "commercial_pressure": "TIGHTENING",
+      "metrics": [
+        "ZAR_USD_REVIEW_AVERAGE"
+      ],
+      "alignment_status": "ALIGNED",
+      "confidence": "HIGH"
+    }
+  ],
+  "commercial_implications": [
+    "A restrictive SARB policy rate is relevant to CONSUMER_AFFORDABILITY and RETAILER_PRESSURE.",
+    "A slightly weaker rand in the official fuel-review window is relevant to IMPORT_COST and PRICE.",
+    "Rate and FX context does not change POS opportunity values or create a new commercial action."
+  ],
+  "limitations": [
+    "Macro specialist agents consume sourced observation catalogs. They do not scrape on each run.",
+    "Missing values stay null. Missing is never converted to zero.",
+    "Observation dates are not inferred when the source does not provide them.",
+    "Future macro observations are not used to explain historical POS periods.",
+    "Macro context does not recalculate POS opportunities or change specialist POS confidence.",
+    "Macro context does not create a new commercial action or claim causality.",
+    "Addressable POS opportunity remains not guaranteed incremental sales.",
+    "Dashboard and social-media layers are not built in this sprint.",
+    "The frozen Storytelling Engine V1 macro pack is not modified by these agents.",
+    "Repo rate and inflation-expectation prints are copied from SARB and BER.",
+    "ZAR/USD averages are the official DMPR fuel-review window, not a live tick."
+  ],
+  "data_gaps": [
+    "SARB_POLICY_RATE: year-ago value was not sourced; yoy_change is null.",
+    "BER_INFLATION_EXPECTATIONS_PROFESSIONAL_CY: year-ago value was not sourced; yoy_change is null.",
+    "BER_INFLATION_EXPECTATIONS_HOUSEHOLD_1Y: year-ago value was not sourced; yoy_change is null.",
+    "ZAR_USD_REVIEW_AVERAGE: year-ago value was not sourced; yoy_change is null."
+  ],
+  "sources": [
+    "Bureau for Economic Research",
+    "Department of Mineral and Petroleum Resources",
+    "South African Reserve Bank"
+  ],
+  "report_output_path": null,
+  "generated_at": "2026-08-31T12:03:35.177674Z"
+}

@@ -15,6 +15,13 @@ AGENT_CATALOG_FILES = {
     "EnergyCommodityAgent": "energy_commodity.json",
 }
 
+AGENT_REPORT_FILES = {
+    "InflationCostAgent": "inflation_cost_v1.json",
+    "ConsumerRetailAgent": "consumer_retail_v1.json",
+    "RatesFXAgent": "rates_fx_v1.json",
+    "EnergyCommodityAgent": "energy_commodity_v1.json",
+}
+
 AGENT_REPORT_DIRS = {
     "InflationCostAgent": "macro_inflation_reports",
     "ConsumerRetailAgent": "macro_consumer_reports",

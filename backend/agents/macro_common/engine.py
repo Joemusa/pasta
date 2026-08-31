@@ -17,6 +17,7 @@ from backend.agents.macro_common.calc import (
     subtract,
 )
 from backend.agents.macro_common.catalog import (
+    AGENT_REPORT_FILES,
     MacroLoadError,
     data_root_for,
     discover_catalog,
@@ -185,7 +186,9 @@ def data_gaps(observations: list[MacroObservation]) -> list[str]:
         if item.value is None:
             gaps.append(f"{item.metric}: sourced value is missing and was not converted to zero.")
         if item.previous_value is None:
-            gaps.append(f"{item.metric}: previous_value is missing; mom_change is null.")
+            gaps.append(f"{item.metric}: previous_value is missing.")
+        if item.mom_change is None:
+            gaps.append(f"{item.metric}: mom_change is null because a previous sourced print is missing.")
         if item.yoy_change is None:
             gaps.append(f"{item.metric}: year-ago value was not sourced; yoy_change is null.")
         if item.observation_date is None:
@@ -263,7 +266,7 @@ def run_macro_agent(
         root = data_root_for(source)
         out_dir = report_dir_for(root, agent)
         out_dir.mkdir(parents=True, exist_ok=True)
-        out_path = out_dir / f"{agent.lower()}_v1.json"
+        out_path = out_dir / AGENT_REPORT_FILES[agent]
         out_path.write_text(json.dumps(report.to_json_dict(), indent=2) + "\n", encoding="utf-8")
         report.report_output_path = display_path(out_path)
         logger.info("macro_written agent=%s path=%s", agent, out_path)

@@ -1,0 +1,1648 @@
+{
+  "agent": "MacroContextBrain",
+  "status": "READY WITH WARNINGS",
+  "version": "V1",
+  "causality_claim": "none",
+  "verdict": "SUPPORTS",
+  "overall_environment": "Households remain under pressure even where some inflation prints have eased. FNB/BER CCI is -19. Headline CPI is 4.3% year-on-year. Fuel CPI is still 20.6% year-on-year. MacroContextBrain verdict versus the POS ranking: SUPPORTS. This is supporting context, not a causal explanation of POS gaps.",
+  "pos_story": {
+    "headline": "Distribution is currently the clearest growth lever in the priority opportunities",
+    "dominant_lever": "DISTRIBUTION",
+    "total_addressable_value_opportunity": 588562.67,
+    "total_addressable_volume_opportunity": 14521.165,
+    "n_actions": 3,
+    "source_brain_slide": "backend/data/brain_reports/New Discovery_2026-08-27 (3).brain.json"
+  },
+  "pos_period_start": "2026-07-26",
+  "pos_period_end": "2026-08-16",
+  "alignments": [
+    {
+      "agent": "InflationCostAgent",
+      "metric": "HEADLINE_CPI_YOY",
+      "relation": "ADD_CONTEXT",
+      "reason": "Softer cost inflation is relevant to PRICE later, not a reason to drop the named distribution actions.",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG",
+      "commercial_levers": [
+        "PRICE",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "RETAILER_PRESSURE"
+      ]
+    },
+    {
+      "agent": "InflationCostAgent",
+      "metric": "HEADLINE_CPI_MOM",
+      "relation": "ADD_CONTEXT",
+      "reason": "Softer cost inflation is relevant to PRICE later, not a reason to drop the named distribution actions.",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG",
+      "commercial_levers": [
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY"
+      ]
+    },
+    {
+      "agent": "InflationCostAgent",
+      "metric": "FOOD_NAB_CPI_YOY",
+      "relation": "ADD_CONTEXT",
+      "reason": "Softer cost inflation is relevant to PRICE later, not a reason to drop the named distribution actions.",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG",
+      "commercial_levers": [
+        "PRICE",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "MANUFACTURER_COST"
+      ]
+    },
+    {
+      "agent": "InflationCostAgent",
+      "metric": "FOOD_CPI_YOY",
+      "relation": "ADD_CONTEXT",
+      "reason": "Softer cost inflation is relevant to PRICE later, not a reason to drop the named distribution actions.",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG",
+      "commercial_levers": [
+        "PRICE",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "MANUFACTURER_COST"
+      ]
+    },
+    {
+      "agent": "InflationCostAgent",
+      "metric": "TRANSPORT_CPI_YOY",
+      "relation": "ADD_CONTEXT",
+      "reason": "Softer cost inflation is relevant to PRICE later, not a reason to drop the named distribution actions.",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "RETAILER_PRESSURE"
+      ]
+    },
+    {
+      "agent": "InflationCostAgent",
+      "metric": "FUEL_CPI_YOY",
+      "relation": "SUPPORTS",
+      "reason": "The year-on-year print remains elevated for household budgets. That supports availability and targeted execution, without changing POS values.",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "MANUFACTURER_COST",
+        "RETAILER_PRESSURE"
+      ]
+    },
+    {
+      "agent": "InflationCostAgent",
+      "metric": "FUEL_CPI_MOM",
+      "relation": "ADD_CONTEXT",
+      "reason": "Softer cost inflation is relevant to PRICE later, not a reason to drop the named distribution actions.",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "MANUFACTURER_COST"
+      ]
+    },
+    {
+      "agent": "InflationCostAgent",
+      "metric": "PETROL_CPI_YOY",
+      "relation": "SUPPORTS",
+      "reason": "The year-on-year print remains elevated for household budgets. That supports availability and targeted execution, without changing POS values.",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG",
+      "commercial_levers": [
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY"
+      ]
+    },
+    {
+      "agent": "InflationCostAgent",
+      "metric": "DIESEL_CPI_YOY",
+      "relation": "INSUFFICIENT_EVIDENCE",
+      "reason": "The sourced move is too incomplete or unchanged to support or contradict the POS ranking.",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "MANUFACTURER_COST",
+        "RETAILER_PRESSURE"
+      ]
+    },
+    {
+      "agent": "InflationCostAgent",
+      "metric": "PPI_FINAL_MANUFACTURING_YOY",
+      "relation": "ADD_CONTEXT",
+      "reason": "Softer cost inflation is relevant to PRICE later, not a reason to drop the named distribution actions.",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG",
+      "commercial_levers": [
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "MANUFACTURER_COST",
+        "RETAILER_PRESSURE"
+      ]
+    },
+    {
+      "agent": "InflationCostAgent",
+      "metric": "PPI_FINAL_MANUFACTURING_MOM",
+      "relation": "ADD_CONTEXT",
+      "reason": "Softer cost inflation is relevant to PRICE later, not a reason to drop the named distribution actions.",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG",
+      "commercial_levers": [
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "MANUFACTURER_COST"
+      ]
+    },
+    {
+      "agent": "InflationCostAgent",
+      "metric": "PPI_AGRICULTURE_YOY",
+      "relation": "ADD_CONTEXT",
+      "reason": "Macro print is commercially relevant context and is not used to rescore POS opportunities.",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG",
+      "commercial_levers": [
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "MANUFACTURER_COST"
+      ]
+    },
+    {
+      "agent": "InflationCostAgent",
+      "metric": "PPI_ELECTRICITY_WATER_YOY",
+      "relation": "ADD_CONTEXT",
+      "reason": "Macro print is commercially relevant context and is not used to rescore POS opportunities.",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG",
+      "commercial_levers": [
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "MANUFACTURER_COST"
+      ]
+    },
+    {
+      "agent": "ConsumerRetailAgent",
+      "metric": "FNB_BER_CCI",
+      "relation": "SUPPORTS",
+      "reason": "A negative CCI is consistent with value-conscious demand and with availability remaining important. It does not cause the POS gaps.",
+      "alignment_status": "ALIGNED",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PRICE",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "RETAILER_PRESSURE"
+      ]
+    },
+    {
+      "agent": "ConsumerRetailAgent",
+      "metric": "RETAIL_SALES_YOY",
+      "relation": "INSUFFICIENT_EVIDENCE",
+      "reason": "The sourced move is too incomplete or unchanged to support or contradict the POS ranking.",
+      "alignment_status": "ALIGNED",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "RETAILER_PRESSURE"
+      ]
+    },
+    {
+      "agent": "ConsumerRetailAgent",
+      "metric": "RETAIL_SALES_MOM_SA",
+      "relation": "ADD_CONTEXT",
+      "reason": "Macro print is commercially relevant context and is not used to rescore POS opportunities.",
+      "alignment_status": "ALIGNED",
+      "commercial_levers": [
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "RETAILER_PRESSURE"
+      ]
+    },
+    {
+      "agent": "ConsumerRetailAgent",
+      "metric": "HFCE_QOQ",
+      "relation": "INSUFFICIENT_EVIDENCE",
+      "reason": "The sourced move is too incomplete or unchanged to support or contradict the POS ranking.",
+      "alignment_status": "ALIGNED",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY"
+      ]
+    },
+    {
+      "agent": "ConsumerRetailAgent",
+      "metric": "BER_RETAIL_BUSINESS_CONFIDENCE",
+      "relation": "SUPPORTS",
+      "reason": "Cost or confidence pressure raises the importance of being in-stock, without changing store-gap values.",
+      "alignment_status": "ALIGNED",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "RETAILER_PRESSURE"
+      ]
+    },
+    {
+      "agent": "RatesFXAgent",
+      "metric": "SARB_POLICY_RATE",
+      "relation": "NEUTRAL",
+      "reason": "The sourced move is too incomplete or unchanged to support or contradict the POS ranking.",
+      "alignment_status": "ALIGNED",
+      "commercial_levers": [
+        "PRICE",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "RETAILER_PRESSURE"
+      ]
+    },
+    {
+      "agent": "RatesFXAgent",
+      "metric": "BER_INFLATION_EXPECTATIONS_PROFESSIONAL_CY",
+      "relation": "SUPPORTS",
+      "reason": "Tighter household affordability is consistent with a value-conscious shopper and with availability remaining important. It does not cause the POS gaps.",
+      "alignment_status": "ALIGNED",
+      "commercial_levers": [
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "MANUFACTURER_COST"
+      ]
+    },
+    {
+      "agent": "RatesFXAgent",
+      "metric": "BER_INFLATION_EXPECTATIONS_HOUSEHOLD_1Y",
+      "relation": "SUPPORTS",
+      "reason": "Tighter household affordability is consistent with a value-conscious shopper and with availability remaining important. It does not cause the POS gaps.",
+      "alignment_status": "ALIGNED",
+      "commercial_levers": [
+        "PRICE",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY"
+      ]
+    },
+    {
+      "agent": "RatesFXAgent",
+      "metric": "ZAR_USD_REVIEW_AVERAGE",
+      "relation": "ADD_CONTEXT",
+      "reason": "Macro print is commercially relevant context and is not used to rescore POS opportunities.",
+      "alignment_status": "ALIGNED",
+      "commercial_levers": [
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "IMPORT_COST",
+        "MANUFACTURER_COST"
+      ]
+    },
+    {
+      "agent": "EnergyCommodityAgent",
+      "metric": "BRENT_REVIEW_AVERAGE_USD",
+      "relation": "ADD_CONTEXT",
+      "reason": "Softer cost inflation is relevant to PRICE later, not a reason to drop the named distribution actions.",
+      "alignment_status": "ALIGNED",
+      "commercial_levers": [
+        "PRICE",
+        "DISTRIBUTION"
+      ],
+      "fmcg_channels": [
+        "IMPORT_COST",
+        "MANUFACTURER_COST"
+      ]
+    },
+    {
+      "agent": "EnergyCommodityAgent",
+      "metric": "PETROL_95_CHANGE_CPL",
+      "relation": "ADD_CONTEXT",
+      "reason": "Softer cost inflation is relevant to PRICE later, not a reason to drop the named distribution actions.",
+      "alignment_status": "ALIGNED",
+      "commercial_levers": [
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "IMPORT_COST"
+      ]
+    },
+    {
+      "agent": "EnergyCommodityAgent",
+      "metric": "DIESEL_0_05_CHANGE_CPL",
+      "relation": "SUPPORTS",
+      "reason": "Cost or confidence pressure raises the importance of being in-stock, without changing store-gap values.",
+      "alignment_status": "ALIGNED",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "MANUFACTURER_COST",
+        "RETAILER_PRESSURE",
+        "IMPORT_COST"
+      ]
+    },
+    {
+      "agent": "EnergyCommodityAgent",
+      "metric": "DIESEL_0_005_CHANGE_CPL",
+      "relation": "SUPPORTS",
+      "reason": "Cost or confidence pressure raises the importance of being in-stock, without changing store-gap values.",
+      "alignment_status": "ALIGNED",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "MANUFACTURER_COST",
+        "RETAILER_PRESSURE",
+        "IMPORT_COST"
+      ]
+    }
+  ],
+  "specialist_reports": [
+    "backend/data/macro_inflation_reports/inflation_cost_v1.json",
+    "backend/data/macro_consumer_reports/consumer_retail_v1.json",
+    "backend/data/macro_rates_reports/rates_fx_v1.json",
+    "backend/data/energy_commodity_reports/energy_commodity_v1.json"
+  ],
+  "observations": [
+    {
+      "metric": "HEADLINE_CPI_YOY",
+      "value": 4.3,
+      "previous_value": 5.0,
+      "year_ago_value": null,
+      "mom_change": -0.7000000000000002,
+      "yoy_change": 4.3,
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "RETAILER_PRESSURE"
+      ],
+      "commercial_pressure": "EASING",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/publications/P0141/P0141July2026.pdf",
+      "publication_date": "2026-08-19",
+      "observation_date": "2026-07-31",
+      "confidence": "HIGH",
+      "unit": "percent_yoy",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "month_end; observation_on_or_before_pos_period_end; publication_after_pos_period_end",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG"
+    },
+    {
+      "metric": "HEADLINE_CPI_MOM",
+      "value": 0.2,
+      "previous_value": 0.7,
+      "year_ago_value": null,
+      "mom_change": -0.49999999999999994,
+      "yoy_change": null,
+      "direction": "DOWN",
+      "signal_strength": "MEDIUM",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY"
+      ],
+      "commercial_pressure": "EASING",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/publications/P0141/P0141July2026.pdf",
+      "publication_date": "2026-08-19",
+      "observation_date": "2026-07-31",
+      "confidence": "HIGH",
+      "unit": "percent_mom",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "month_end; observation_on_or_before_pos_period_end; publication_after_pos_period_end",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG"
+    },
+    {
+      "metric": "FOOD_NAB_CPI_YOY",
+      "value": 0.9,
+      "previous_value": 1.6,
+      "year_ago_value": null,
+      "mom_change": -0.7000000000000001,
+      "yoy_change": 0.9,
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "MANUFACTURER_COST"
+      ],
+      "commercial_pressure": "EASING",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/publications/P0141/P0141July2026.pdf",
+      "publication_date": "2026-08-19",
+      "observation_date": "2026-07-31",
+      "confidence": "HIGH",
+      "unit": "percent_yoy",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "month_end; observation_on_or_before_pos_period_end; publication_after_pos_period_end",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG"
+    },
+    {
+      "metric": "FOOD_CPI_YOY",
+      "value": 0.6,
+      "previous_value": 1.4,
+      "year_ago_value": null,
+      "mom_change": -0.7999999999999999,
+      "yoy_change": 0.6,
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "MANUFACTURER_COST"
+      ],
+      "commercial_pressure": "EASING",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/publications/P0141/P0141July2026.pdf",
+      "publication_date": "2026-08-19",
+      "observation_date": "2026-07-31",
+      "confidence": "HIGH",
+      "unit": "percent_yoy",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "month_end; observation_on_or_before_pos_period_end; publication_after_pos_period_end",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG"
+    },
+    {
+      "metric": "TRANSPORT_CPI_YOY",
+      "value": 8.9,
+      "previous_value": 12.7,
+      "year_ago_value": null,
+      "mom_change": -3.799999999999999,
+      "yoy_change": 8.9,
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "RETAILER_PRESSURE"
+      ],
+      "commercial_pressure": "EASING",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/?p=19815",
+      "publication_date": "2026-08-19",
+      "observation_date": "2026-07-31",
+      "confidence": "HIGH",
+      "unit": "percent_yoy",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "month_end; observation_on_or_before_pos_period_end; publication_after_pos_period_end",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG"
+    },
+    {
+      "metric": "FUEL_CPI_YOY",
+      "value": 20.6,
+      "previous_value": 34.3,
+      "year_ago_value": null,
+      "mom_change": -13.699999999999996,
+      "yoy_change": 20.6,
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "MANUFACTURER_COST",
+        "RETAILER_PRESSURE"
+      ],
+      "commercial_pressure": "EASING",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/?p=19815",
+      "publication_date": "2026-08-19",
+      "observation_date": "2026-07-31",
+      "confidence": "HIGH",
+      "unit": "percent_yoy",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "month_end; observation_on_or_before_pos_period_end; publication_after_pos_period_end",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG"
+    },
+    {
+      "metric": "FUEL_CPI_MOM",
+      "value": -7.8,
+      "previous_value": 4.0,
+      "year_ago_value": null,
+      "mom_change": -11.8,
+      "yoy_change": null,
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "MANUFACTURER_COST"
+      ],
+      "commercial_pressure": "EASING",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/publications/P0141/P0141July2026.pdf",
+      "publication_date": "2026-08-19",
+      "observation_date": "2026-07-31",
+      "confidence": "HIGH",
+      "unit": "percent_mom",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "month_end; observation_on_or_before_pos_period_end; publication_after_pos_period_end",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG"
+    },
+    {
+      "metric": "PETROL_CPI_YOY",
+      "value": 19.3,
+      "previous_value": null,
+      "year_ago_value": null,
+      "mom_change": null,
+      "yoy_change": 19.3,
+      "direction": "INSUFFICIENT",
+      "signal_strength": "LOW",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY"
+      ],
+      "commercial_pressure": "INSUFFICIENT",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/?p=19815",
+      "publication_date": "2026-08-19",
+      "observation_date": "2026-07-31",
+      "confidence": "MEDIUM",
+      "unit": "percent_yoy",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "month_end; observation_on_or_before_pos_period_end; publication_after_pos_period_end",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG"
+    },
+    {
+      "metric": "DIESEL_CPI_YOY",
+      "value": 28.8,
+      "previous_value": null,
+      "year_ago_value": null,
+      "mom_change": null,
+      "yoy_change": 28.8,
+      "direction": "INSUFFICIENT",
+      "signal_strength": "LOW",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "MANUFACTURER_COST",
+        "RETAILER_PRESSURE"
+      ],
+      "commercial_pressure": "INSUFFICIENT",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/?p=19815",
+      "publication_date": "2026-08-19",
+      "observation_date": "2026-07-31",
+      "confidence": "MEDIUM",
+      "unit": "percent_yoy",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "month_end; observation_on_or_before_pos_period_end; publication_after_pos_period_end",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG"
+    },
+    {
+      "metric": "PPI_FINAL_MANUFACTURING_YOY",
+      "value": 5.7,
+      "previous_value": 7.5,
+      "year_ago_value": null,
+      "mom_change": -1.7999999999999998,
+      "yoy_change": 5.7,
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "MANUFACTURER_COST",
+        "RETAILER_PRESSURE"
+      ],
+      "commercial_pressure": "EASING",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/publications/P01421/P01421July2026.pdf",
+      "publication_date": "2026-08-27",
+      "observation_date": "2026-07-31",
+      "confidence": "HIGH",
+      "unit": "percent_yoy",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "month_end; observation_on_or_before_pos_period_end; publication_after_pos_period_end",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG"
+    },
+    {
+      "metric": "PPI_FINAL_MANUFACTURING_MOM",
+      "value": -1.0,
+      "previous_value": null,
+      "year_ago_value": null,
+      "mom_change": -1.0,
+      "yoy_change": null,
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "MEDIUM",
+      "commercial_levers": [
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "MANUFACTURER_COST"
+      ],
+      "commercial_pressure": "EASING",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/publications/P01421/P01421July2026.pdf",
+      "publication_date": "2026-08-27",
+      "observation_date": "2026-07-31",
+      "confidence": "MEDIUM",
+      "unit": "percent_mom",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "month_end; observation_on_or_before_pos_period_end; publication_after_pos_period_end",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG"
+    },
+    {
+      "metric": "PPI_AGRICULTURE_YOY",
+      "value": -4.5,
+      "previous_value": -7.9,
+      "year_ago_value": null,
+      "mom_change": 3.4000000000000004,
+      "yoy_change": -4.5,
+      "direction": "UP",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "MANUFACTURER_COST"
+      ],
+      "commercial_pressure": "TIGHTENING",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/publications/P01421/P01421July2026.pdf",
+      "publication_date": "2026-08-27",
+      "observation_date": "2026-07-31",
+      "confidence": "HIGH",
+      "unit": "percent_yoy",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "month_end; observation_on_or_before_pos_period_end; publication_after_pos_period_end",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG"
+    },
+    {
+      "metric": "PPI_ELECTRICITY_WATER_YOY",
+      "value": 7.5,
+      "previous_value": 5.5,
+      "year_ago_value": null,
+      "mom_change": 2.0,
+      "yoy_change": 7.5,
+      "direction": "UP",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "MEDIUM",
+      "commercial_levers": [
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "MANUFACTURER_COST"
+      ],
+      "commercial_pressure": "TIGHTENING",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/publications/P01421/P01421July2026.pdf",
+      "publication_date": "2026-08-27",
+      "observation_date": "2026-07-31",
+      "confidence": "HIGH",
+      "unit": "percent_yoy",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "month_end; observation_on_or_before_pos_period_end; publication_after_pos_period_end",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG"
+    },
+    {
+      "metric": "FNB_BER_CCI",
+      "value": -19.0,
+      "previous_value": -7.0,
+      "year_ago_value": -10.0,
+      "mom_change": -12.0,
+      "yoy_change": -9.0,
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PRICE",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "RETAILER_PRESSURE"
+      ],
+      "commercial_pressure": "TIGHTENING",
+      "source": "Bureau for Economic Research",
+      "source_url": "https://www.ber.ac.za/Documents/Index/FNBBER-Consumer-Confidence-Index",
+      "publication_date": "2026-06-23",
+      "observation_date": "2026-06-30",
+      "confidence": "HIGH",
+      "unit": "index_point",
+      "frequency": "quarterly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "quarter_end; observation_and_publication_on_or_before_pos_period_end",
+      "alignment_status": "ALIGNED"
+    },
+    {
+      "metric": "RETAIL_SALES_YOY",
+      "value": 2.3,
+      "previous_value": null,
+      "year_ago_value": null,
+      "mom_change": null,
+      "yoy_change": 2.3,
+      "direction": "INSUFFICIENT",
+      "signal_strength": "LOW",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "RETAILER_PRESSURE"
+      ],
+      "commercial_pressure": "INSUFFICIENT",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/publications/P62421/P62421May2026.pdf",
+      "publication_date": "2026-07-22",
+      "observation_date": "2026-05-31",
+      "confidence": "MEDIUM",
+      "unit": "percent_yoy",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "month_end; observation_and_publication_on_or_before_pos_period_end",
+      "alignment_status": "ALIGNED"
+    },
+    {
+      "metric": "RETAIL_SALES_MOM_SA",
+      "value": 0.1,
+      "previous_value": 0.8,
+      "year_ago_value": null,
+      "mom_change": -0.7000000000000001,
+      "yoy_change": null,
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "MEDIUM",
+      "commercial_levers": [
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "RETAILER_PRESSURE"
+      ],
+      "commercial_pressure": "TIGHTENING",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/publications/P62421/P62421May2026.pdf",
+      "publication_date": "2026-07-22",
+      "observation_date": "2026-05-31",
+      "confidence": "HIGH",
+      "unit": "percent_mom",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "month_end; observation_and_publication_on_or_before_pos_period_end",
+      "alignment_status": "ALIGNED"
+    },
+    {
+      "metric": "HFCE_QOQ",
+      "value": 0.1,
+      "previous_value": null,
+      "year_ago_value": null,
+      "mom_change": null,
+      "yoy_change": null,
+      "direction": "INSUFFICIENT",
+      "signal_strength": "LOW",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY"
+      ],
+      "commercial_pressure": "INSUFFICIENT",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/publications/P0441/Press%20release%20-%20Q1%202026.pdf",
+      "publication_date": "2026-06-09",
+      "observation_date": "2026-03-31",
+      "confidence": "MEDIUM",
+      "unit": "percent",
+      "frequency": "quarterly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "quarter_end; observation_and_publication_on_or_before_pos_period_end",
+      "alignment_status": "ALIGNED"
+    },
+    {
+      "metric": "BER_RETAIL_BUSINESS_CONFIDENCE",
+      "value": 31.0,
+      "previous_value": 36.0,
+      "year_ago_value": null,
+      "mom_change": -5.0,
+      "yoy_change": null,
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "RETAILER_PRESSURE"
+      ],
+      "commercial_pressure": "TIGHTENING",
+      "source": "Bureau for Economic Research",
+      "source_url": "https://www.ber.ac.za/Documents/Index/BER-Retail-Survey",
+      "publication_date": "2026-06-22",
+      "observation_date": "2026-06-30",
+      "confidence": "HIGH",
+      "unit": "index_point",
+      "frequency": "quarterly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "quarter_end; observation_and_publication_on_or_before_pos_period_end",
+      "alignment_status": "ALIGNED"
+    },
+    {
+      "metric": "SARB_POLICY_RATE",
+      "value": 7.0,
+      "previous_value": 7.0,
+      "year_ago_value": null,
+      "mom_change": 0.0,
+      "yoy_change": null,
+      "direction": "UNCHANGED",
+      "signal_strength": "LOW",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "RETAILER_PRESSURE"
+      ],
+      "commercial_pressure": "NEUTRAL",
+      "source": "South African Reserve Bank",
+      "source_url": "https://www.resbank.co.za/en/home/publications/publication-detail-pages/statements/monetary-policy-statements/2026/july",
+      "publication_date": "2026-07-23",
+      "observation_date": "2026-07-23",
+      "confidence": "HIGH",
+      "unit": "percent",
+      "frequency": "meeting",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "effective_date; observation_and_publication_on_or_before_pos_period_end",
+      "alignment_status": "ALIGNED"
+    },
+    {
+      "metric": "BER_INFLATION_EXPECTATIONS_PROFESSIONAL_CY",
+      "value": 4.4,
+      "previous_value": 3.6,
+      "year_ago_value": null,
+      "mom_change": 0.8000000000000003,
+      "yoy_change": null,
+      "direction": "UP",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "MANUFACTURER_COST"
+      ],
+      "commercial_pressure": "TIGHTENING",
+      "source": "Bureau for Economic Research",
+      "source_url": "https://www.ber.ac.za/Documents/Index/Inflation-Expectations",
+      "publication_date": "2026-06-30",
+      "observation_date": "2026-06-30",
+      "confidence": "HIGH",
+      "unit": "percent",
+      "frequency": "quarterly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "quarter_end; observation_and_publication_on_or_before_pos_period_end",
+      "alignment_status": "ALIGNED"
+    },
+    {
+      "metric": "BER_INFLATION_EXPECTATIONS_HOUSEHOLD_1Y",
+      "value": 6.0,
+      "previous_value": 5.4,
+      "year_ago_value": null,
+      "mom_change": 0.5999999999999996,
+      "yoy_change": null,
+      "direction": "UP",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY"
+      ],
+      "commercial_pressure": "TIGHTENING",
+      "source": "Bureau for Economic Research",
+      "source_url": "https://www.ber.ac.za/Documents/Index/Inflation-Expectations",
+      "publication_date": "2026-06-30",
+      "observation_date": "2026-06-30",
+      "confidence": "HIGH",
+      "unit": "percent",
+      "frequency": "quarterly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "quarter_end; observation_and_publication_on_or_before_pos_period_end",
+      "alignment_status": "ALIGNED"
+    },
+    {
+      "metric": "ZAR_USD_REVIEW_AVERAGE",
+      "value": 16.46,
+      "previous_value": 16.34,
+      "year_ago_value": null,
+      "mom_change": 0.120000000000001,
+      "yoy_change": null,
+      "direction": "UP",
+      "signal_strength": "MEDIUM",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "IMPORT_COST",
+        "MANUFACTURER_COST"
+      ],
+      "commercial_pressure": "TIGHTENING",
+      "source": "Department of Mineral and Petroleum Resources",
+      "source_url": "https://www.gov.za/news/media-statements/minister-gwede-mantashe-announces-adjustment-fuel-prices-effective-5-august-0",
+      "publication_date": "2026-08-03",
+      "observation_date": "2026-08-03",
+      "confidence": "HIGH",
+      "unit": "zar_per_usd",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "review_window_end; observation_and_publication_on_or_before_pos_period_end",
+      "alignment_status": "ALIGNED"
+    },
+    {
+      "metric": "BRENT_REVIEW_AVERAGE_USD",
+      "value": 82.37,
+      "previous_value": 86.53,
+      "year_ago_value": null,
+      "mom_change": -4.159999999999997,
+      "yoy_change": null,
+      "direction": "DOWN",
+      "signal_strength": "MEDIUM",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE",
+        "DISTRIBUTION"
+      ],
+      "fmcg_channels": [
+        "IMPORT_COST",
+        "MANUFACTURER_COST"
+      ],
+      "commercial_pressure": "EASING",
+      "source": "Department of Mineral and Petroleum Resources",
+      "source_url": "https://www.gov.za/news/media-statements/minister-gwede-mantashe-announces-adjustment-fuel-prices-effective-5-august-0",
+      "publication_date": "2026-08-03",
+      "observation_date": "2026-08-03",
+      "confidence": "HIGH",
+      "unit": "usd_per_barrel",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "review_window_end; observation_and_publication_on_or_before_pos_period_end",
+      "alignment_status": "ALIGNED"
+    },
+    {
+      "metric": "PETROL_95_CHANGE_CPL",
+      "value": -52.0,
+      "previous_value": null,
+      "year_ago_value": null,
+      "mom_change": -52.0,
+      "yoy_change": null,
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "IMPORT_COST"
+      ],
+      "commercial_pressure": "EASING",
+      "source": "Department of Mineral and Petroleum Resources",
+      "source_url": "https://www.gov.za/news/media-statements/minister-gwede-mantashe-announces-adjustment-fuel-prices-effective-5-august-0",
+      "publication_date": "2026-08-03",
+      "observation_date": "2026-08-05",
+      "confidence": "MEDIUM",
+      "unit": "cents_per_litre",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "effective_date; observation_and_publication_on_or_before_pos_period_end",
+      "alignment_status": "ALIGNED"
+    },
+    {
+      "metric": "DIESEL_0_05_CHANGE_CPL",
+      "value": 138.44,
+      "previous_value": null,
+      "year_ago_value": null,
+      "mom_change": 138.44,
+      "yoy_change": null,
+      "direction": "UP",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "MANUFACTURER_COST",
+        "RETAILER_PRESSURE",
+        "IMPORT_COST"
+      ],
+      "commercial_pressure": "TIGHTENING",
+      "source": "Department of Mineral and Petroleum Resources",
+      "source_url": "https://www.gov.za/news/media-statements/minister-gwede-mantashe-announces-adjustment-fuel-prices-effective-5-august-0",
+      "publication_date": "2026-08-03",
+      "observation_date": "2026-08-05",
+      "confidence": "MEDIUM",
+      "unit": "cents_per_litre",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "effective_date; observation_and_publication_on_or_before_pos_period_end",
+      "alignment_status": "ALIGNED"
+    },
+    {
+      "metric": "DIESEL_0_005_CHANGE_CPL",
+      "value": 123.44,
+      "previous_value": null,
+      "year_ago_value": null,
+      "mom_change": 123.44,
+      "yoy_change": null,
+      "direction": "UP",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "MANUFACTURER_COST",
+        "RETAILER_PRESSURE",
+        "IMPORT_COST"
+      ],
+      "commercial_pressure": "TIGHTENING",
+      "source": "Department of Mineral and Petroleum Resources",
+      "source_url": "https://www.gov.za/news/media-statements/minister-gwede-mantashe-announces-adjustment-fuel-prices-effective-5-august-0",
+      "publication_date": "2026-08-03",
+      "observation_date": "2026-08-05",
+      "confidence": "MEDIUM",
+      "unit": "cents_per_litre",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "effective_date; observation_and_publication_on_or_before_pos_period_end",
+      "alignment_status": "ALIGNED"
+    }
+  ],
+  "signals": [
+    {
+      "name": "HEADLINE",
+      "summary": "HEADLINE_CPI_YOY is 4.3 percent_yoy (down vs previous; easing commercial pressure).",
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "RETAILER_PRESSURE"
+      ],
+      "commercial_pressure": "EASING",
+      "metrics": [
+        "HEADLINE_CPI_YOY",
+        "HEADLINE_CPI_MOM"
+      ],
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG",
+      "confidence": "HIGH"
+    },
+    {
+      "name": "FOOD",
+      "summary": "FOOD_NAB_CPI_YOY is 0.9 percent_yoy (down vs previous; easing commercial pressure).",
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "MANUFACTURER_COST"
+      ],
+      "commercial_pressure": "EASING",
+      "metrics": [
+        "FOOD_NAB_CPI_YOY",
+        "FOOD_CPI_YOY"
+      ],
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG",
+      "confidence": "HIGH"
+    },
+    {
+      "name": "TRANSPORT",
+      "summary": "TRANSPORT_CPI_YOY is 8.9 percent_yoy (down vs previous; easing commercial pressure).",
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "RETAILER_PRESSURE"
+      ],
+      "commercial_pressure": "EASING",
+      "metrics": [
+        "TRANSPORT_CPI_YOY"
+      ],
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG",
+      "confidence": "HIGH"
+    },
+    {
+      "name": "FUEL",
+      "summary": "FUEL_CPI_YOY is 20.6 percent_yoy (down vs previous; easing commercial pressure).",
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "MANUFACTURER_COST",
+        "RETAILER_PRESSURE"
+      ],
+      "commercial_pressure": "EASING",
+      "metrics": [
+        "FUEL_CPI_YOY",
+        "FUEL_CPI_MOM"
+      ],
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG",
+      "confidence": "HIGH"
+    },
+    {
+      "name": "PETROL",
+      "summary": "PETROL_CPI_YOY is 19.3 percent_yoy (insufficient vs previous; insufficient commercial pressure).",
+      "direction": "INSUFFICIENT",
+      "signal_strength": "LOW",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY"
+      ],
+      "commercial_pressure": "INSUFFICIENT",
+      "metrics": [
+        "PETROL_CPI_YOY"
+      ],
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG",
+      "confidence": "MEDIUM"
+    },
+    {
+      "name": "DIESEL",
+      "summary": "DIESEL_CPI_YOY is 28.8 percent_yoy (insufficient vs previous; insufficient commercial pressure).",
+      "direction": "INSUFFICIENT",
+      "signal_strength": "LOW",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "MANUFACTURER_COST",
+        "RETAILER_PRESSURE"
+      ],
+      "commercial_pressure": "INSUFFICIENT",
+      "metrics": [
+        "DIESEL_CPI_YOY"
+      ],
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG",
+      "confidence": "MEDIUM"
+    },
+    {
+      "name": "PPI",
+      "summary": "PPI_FINAL_MANUFACTURING_YOY is 5.7 percent_yoy (down vs previous; easing commercial pressure).",
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "MANUFACTURER_COST",
+        "RETAILER_PRESSURE"
+      ],
+      "commercial_pressure": "EASING",
+      "metrics": [
+        "PPI_FINAL_MANUFACTURING_YOY",
+        "PPI_FINAL_MANUFACTURING_MOM",
+        "PPI_AGRICULTURE_YOY",
+        "PPI_ELECTRICITY_WATER_YOY"
+      ],
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG",
+      "confidence": "HIGH"
+    },
+    {
+      "name": "FNB",
+      "summary": "FNB_BER_CCI is -19.0 index_point (down vs previous; tightening commercial pressure).",
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PRICE",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "RETAILER_PRESSURE"
+      ],
+      "commercial_pressure": "TIGHTENING",
+      "metrics": [
+        "FNB_BER_CCI"
+      ],
+      "alignment_status": "ALIGNED",
+      "confidence": "HIGH"
+    },
+    {
+      "name": "RETAIL",
+      "summary": "RETAIL_SALES_YOY is 2.3 percent_yoy (insufficient vs previous; insufficient commercial pressure).",
+      "direction": "INSUFFICIENT",
+      "signal_strength": "LOW",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "RETAILER_PRESSURE"
+      ],
+      "commercial_pressure": "INSUFFICIENT",
+      "metrics": [
+        "RETAIL_SALES_YOY",
+        "RETAIL_SALES_MOM_SA"
+      ],
+      "alignment_status": "ALIGNED",
+      "confidence": "MEDIUM"
+    },
+    {
+      "name": "HFCE",
+      "summary": "HFCE_QOQ is 0.1 percent (insufficient vs previous; insufficient commercial pressure).",
+      "direction": "INSUFFICIENT",
+      "signal_strength": "LOW",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY"
+      ],
+      "commercial_pressure": "INSUFFICIENT",
+      "metrics": [
+        "HFCE_QOQ"
+      ],
+      "alignment_status": "ALIGNED",
+      "confidence": "MEDIUM"
+    },
+    {
+      "name": "BER",
+      "summary": "BER_RETAIL_BUSINESS_CONFIDENCE is 31.0 index_point (down vs previous; tightening commercial pressure).",
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "RETAILER_PRESSURE"
+      ],
+      "commercial_pressure": "TIGHTENING",
+      "metrics": [
+        "BER_RETAIL_BUSINESS_CONFIDENCE"
+      ],
+      "alignment_status": "ALIGNED",
+      "confidence": "HIGH"
+    },
+    {
+      "name": "SARB",
+      "summary": "SARB_POLICY_RATE is 7.0 percent (unchanged vs previous; neutral commercial pressure).",
+      "direction": "UNCHANGED",
+      "signal_strength": "LOW",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "RETAILER_PRESSURE"
+      ],
+      "commercial_pressure": "NEUTRAL",
+      "metrics": [
+        "SARB_POLICY_RATE"
+      ],
+      "alignment_status": "ALIGNED",
+      "confidence": "HIGH"
+    },
+    {
+      "name": "BER",
+      "summary": "BER_INFLATION_EXPECTATIONS_PROFESSIONAL_CY is 4.4 percent (up vs previous; tightening commercial pressure).",
+      "direction": "UP",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "MANUFACTURER_COST"
+      ],
+      "commercial_pressure": "TIGHTENING",
+      "metrics": [
+        "BER_INFLATION_EXPECTATIONS_PROFESSIONAL_CY",
+        "BER_INFLATION_EXPECTATIONS_HOUSEHOLD_1Y"
+      ],
+      "alignment_status": "ALIGNED",
+      "confidence": "HIGH"
+    },
+    {
+      "name": "ZAR",
+      "summary": "ZAR_USD_REVIEW_AVERAGE is 16.46 zar_per_usd (up vs previous; tightening commercial pressure).",
+      "direction": "UP",
+      "signal_strength": "MEDIUM",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "IMPORT_COST",
+        "MANUFACTURER_COST"
+      ],
+      "commercial_pressure": "TIGHTENING",
+      "metrics": [
+        "ZAR_USD_REVIEW_AVERAGE"
+      ],
+      "alignment_status": "ALIGNED",
+      "confidence": "HIGH"
+    },
+    {
+      "name": "BRENT",
+      "summary": "BRENT_REVIEW_AVERAGE_USD is 82.37 usd_per_barrel (down vs previous; easing commercial pressure).",
+      "direction": "DOWN",
+      "signal_strength": "MEDIUM",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE",
+        "DISTRIBUTION"
+      ],
+      "fmcg_channels": [
+        "IMPORT_COST",
+        "MANUFACTURER_COST"
+      ],
+      "commercial_pressure": "EASING",
+      "metrics": [
+        "BRENT_REVIEW_AVERAGE_USD"
+      ],
+      "alignment_status": "ALIGNED",
+      "confidence": "HIGH"
+    },
+    {
+      "name": "PETROL",
+      "summary": "PETROL_95_CHANGE_CPL is -52.0 cents_per_litre (down vs previous; easing commercial pressure).",
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "IMPORT_COST"
+      ],
+      "commercial_pressure": "EASING",
+      "metrics": [
+        "PETROL_95_CHANGE_CPL"
+      ],
+      "alignment_status": "ALIGNED",
+      "confidence": "MEDIUM"
+    },
+    {
+      "name": "DIESEL",
+      "summary": "DIESEL_0_05_CHANGE_CPL is 138.44 cents_per_litre (up vs previous; tightening commercial pressure).",
+      "direction": "UP",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "MANUFACTURER_COST",
+        "RETAILER_PRESSURE",
+        "IMPORT_COST"
+      ],
+      "commercial_pressure": "TIGHTENING",
+      "metrics": [
+        "DIESEL_0_05_CHANGE_CPL",
+        "DIESEL_0_005_CHANGE_CPL"
+      ],
+      "alignment_status": "ALIGNED",
+      "confidence": "MEDIUM"
+    }
+  ],
+  "commercial_implications": [
+    "Headline consumer inflation eased in the latest sourced print, but that does not recalculate POS gaps.",
+    "Food CPI is 0.6% year-on-year, which is relevant to FMCG price architecture without claiming a causal POS effect.",
+    "Fuel CPI remains elevated at 20.6% year-on-year, keeping household budgets value-conscious and raising the importance of availability.",
+    "Softer headline inflation is supporting context for PRICE tests, not a substitute for distribution actions where store gaps already exist.",
+    "Consumers are likely to remain value-conscious, increasing the importance of availability and targeted price/promotion execution.",
+    "The FNB/BER CCI reading is retained as sourced evidence. It does not cause the POS distribution gaps.",
+    "Weak household consumption and softer retailer confidence add context for retailer pressure, not a new action.",
+    "A restrictive SARB policy rate is relevant to CONSUMER_AFFORDABILITY and RETAILER_PRESSURE.",
+    "A slightly weaker rand in the official fuel-review window is relevant to IMPORT_COST and PRICE.",
+    "Rate and FX context does not change POS opportunity values or create a new commercial action.",
+    "Brent eased in the official review window while diesel pump adjustments rose, so energy context is mixed.",
+    "Fuel costs are relevant to MANUFACTURER_COST, IMPORT_COST and retailer logistics, not a POS rescore.",
+    "Only commodities with a documented FMCG link and a source URL are included."
+  ],
+  "fmcg_implications": [
+    "DISTRIBUTION: value-conscious demand raises the cost of being out of stock on the named grains.",
+    "PRICE: like-for-like tests remain relevant where coverage is already adequate; macro does not invent a price cut.",
+    "PROMOTION: targeted tests remain secondary to availability where store gaps are the constraint.",
+    "CONSUMER_AFFORDABILITY, MANUFACTURER_COST, RETAILER_PRESSURE and IMPORT_COST are context channels only.",
+    "Commercial Brain alignment: SUPPORTS. Macro does not create a new commercial action."
+  ],
+  "sources": [
+    "Bureau for Economic Research",
+    "Department of Mineral and Petroleum Resources",
+    "South African Reserve Bank",
+    "Statistics South Africa"
+  ],
+  "data_gaps": [
+    "HEADLINE_CPI_YOY: publication date is after the POS period (observation still precedes POS).",
+    "HEADLINE_CPI_MOM: year-ago value was not sourced; yoy_change is null.",
+    "HEADLINE_CPI_MOM: publication date is after the POS period (observation still precedes POS).",
+    "FOOD_NAB_CPI_YOY: publication date is after the POS period (observation still precedes POS).",
+    "FOOD_CPI_YOY: publication date is after the POS period (observation still precedes POS).",
+    "TRANSPORT_CPI_YOY: publication date is after the POS period (observation still precedes POS).",
+    "FUEL_CPI_YOY: publication date is after the POS period (observation still precedes POS).",
+    "FUEL_CPI_MOM: year-ago value was not sourced; yoy_change is null.",
+    "FUEL_CPI_MOM: publication date is after the POS period (observation still precedes POS).",
+    "PETROL_CPI_YOY: previous_value is missing.",
+    "PETROL_CPI_YOY: mom_change is null because a previous sourced print is missing.",
+    "PETROL_CPI_YOY: publication date is after the POS period (observation still precedes POS).",
+    "DIESEL_CPI_YOY: previous_value is missing.",
+    "DIESEL_CPI_YOY: mom_change is null because a previous sourced print is missing.",
+    "DIESEL_CPI_YOY: publication date is after the POS period (observation still precedes POS).",
+    "PPI_FINAL_MANUFACTURING_YOY: publication date is after the POS period (observation still precedes POS).",
+    "PPI_FINAL_MANUFACTURING_MOM: previous_value is missing.",
+    "PPI_FINAL_MANUFACTURING_MOM: year-ago value was not sourced; yoy_change is null.",
+    "PPI_FINAL_MANUFACTURING_MOM: publication date is after the POS period (observation still precedes POS).",
+    "PPI_AGRICULTURE_YOY: publication date is after the POS period (observation still precedes POS).",
+    "PPI_ELECTRICITY_WATER_YOY: publication date is after the POS period (observation still precedes POS).",
+    "RETAIL_SALES_YOY: previous_value is missing.",
+    "RETAIL_SALES_YOY: mom_change is null because a previous sourced print is missing.",
+    "RETAIL_SALES_MOM_SA: year-ago value was not sourced; yoy_change is null.",
+    "HFCE_QOQ: previous_value is missing.",
+    "HFCE_QOQ: mom_change is null because a previous sourced print is missing.",
+    "HFCE_QOQ: year-ago value was not sourced; yoy_change is null.",
+    "BER_RETAIL_BUSINESS_CONFIDENCE: year-ago value was not sourced; yoy_change is null.",
+    "SARB_POLICY_RATE: year-ago value was not sourced; yoy_change is null.",
+    "BER_INFLATION_EXPECTATIONS_PROFESSIONAL_CY: year-ago value was not sourced; yoy_change is null.",
+    "BER_INFLATION_EXPECTATIONS_HOUSEHOLD_1Y: year-ago value was not sourced; yoy_change is null.",
+    "ZAR_USD_REVIEW_AVERAGE: year-ago value was not sourced; yoy_change is null.",
+    "BRENT_REVIEW_AVERAGE_USD: year-ago value was not sourced; yoy_change is null.",
+    "PETROL_95_CHANGE_CPL: previous_value is missing.",
+    "PETROL_95_CHANGE_CPL: year-ago value was not sourced; yoy_change is null.",
+    "DIESEL_0_05_CHANGE_CPL: previous_value is missing.",
+    "DIESEL_0_05_CHANGE_CPL: year-ago value was not sourced; yoy_change is null.",
+    "DIESEL_0_005_CHANGE_CPL: previous_value is missing.",
+    "DIESEL_0_005_CHANGE_CPL: year-ago value was not sourced; yoy_change is null."
+  ],
+  "limitations": [
+    "MacroContextBrain consumes the four specialist macro agents only as supporting context.",
+    "It does not recalculate POS opportunities or change opportunity values.",
+    "It does not change Distribution, Price, Promotion, or Commercial Brain confidence.",
+    "It does not create a new commercial action.",
+    "It does not claim that macro conditions cause POS gaps.",
+    "Future macro observations are not used to explain historical POS periods.",
+    "Addressable POS opportunity remains not guaranteed incremental sales.",
+    "Storytelling Engine V1 and its frozen macro pack are not modified.",
+    "Macro specialist agents consume sourced observation catalogs. They do not scrape on each run.",
+    "Missing values stay null. Missing is never converted to zero.",
+    "Observation dates are not inferred when the source does not provide them.",
+    "Future macro observations are not used to explain historical POS periods.",
+    "Macro context does not recalculate POS opportunities or change specialist POS confidence.",
+    "Macro context does not create a new commercial action or claim causality.",
+    "Addressable POS opportunity remains not guaranteed incremental sales.",
+    "Dashboard and social-media layers are not built in this sprint.",
+    "The frozen Storytelling Engine V1 macro pack is not modified by these agents."
+  ],
+  "report_output_path": null,
+  "generated_at": "2026-08-31T12:03:35.179901Z"
+}
