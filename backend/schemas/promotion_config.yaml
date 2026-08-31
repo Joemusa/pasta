@@ -1,0 +1,55 @@
+# Promotion Agent V1.
+# Directional promotional insights only — not causal incrementality.
+# Do not raise confidence, lower min_history_for_high_confidence below 8,
+# or convert promo vs non-promo comparisons into causal lift.
+# Manufacturer is a filter, not a list of SKUs, retailers, or regions.
+
+manufacturer: Unilever
+
+opportunity_label: Estimated promotional opportunity
+
+# Minimum observations in the promo group and in the baseline group.
+min_promo_observations: 2
+min_non_promo_observations: 2
+
+# Current-period weeks (including current) required before a recommendation.
+min_weeks_for_recommendation: 3
+
+# HIGH is reserved for longer panels than this extract provides. Do not lower in V1.
+min_history_for_high_confidence: 8
+min_history_for_medium_confidence: 3
+
+# Any strictly positive promo percent counts as PROMOTION. Missing is not zero.
+promo_percent_threshold: 0.0
+
+# Intensity bands used only when a true non-promo baseline is unavailable.
+# POS percent fields are 0-100; extract time-on-promo is 0-1 and is scaled to 0-100.
+low_promo_intensity_max: 25.0
+high_promo_intensity_min: 50.0
+
+# Relative volume/store or value/store gap treated as strong / weak directional uplift.
+strong_volume_uplift_pct: 0.15
+weak_volume_uplift_pct: 0.05
+strong_value_uplift_pct: 0.10
+weak_value_uplift_pct: 0.00
+
+# Store count below this fraction of like-for-like distribution peers is "low distribution".
+low_distribution_ratio: 0.5
+high_distribution_ratio: 0.80
+low_sales_ratio: 0.5
+min_store_gap: 1.0
+
+# Median store counts of promo vs baseline groups cannot differ by more than this ratio.
+distribution_change_ratio: 0.50
+
+# Documented conservative V1 capture rate (same methodology as Price Agent V1).
+# Not an elasticity. Do not invent a different undocumented rate.
+capture_rate: 0.25
+
+# Drop quantified tests smaller than this (rand).
+min_value_opportunity: 1.0
+
+mad_threshold: 3.5
+peer_statistic: median
+output_top_n: 10
+output_top_opportunities: 20
