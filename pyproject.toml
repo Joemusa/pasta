@@ -9,6 +9,8 @@ dependencies = [
     "pydantic>=2.6",
     "openpyxl>=3.1",
     "pyyaml>=6.0",
+    "reportlab>=4.0",
+    "pypdf>=5.0",
 ]
 
 [project.optional-dependencies]
@@ -36,6 +38,7 @@ consumer-needs = "backend.agents.consumer_needs.__main__:main"
 social-trend = "backend.agents.social_trend.__main__:main"
 social-brain = "backend.agents.social_brain.__main__:main"
 dashboard = "backend.dashboard.server:main"
+opportunity-pdf = "backend.reports.__main__:main"
 
 [tool.pytest.ini_options]
 pythonpath = ["."]
