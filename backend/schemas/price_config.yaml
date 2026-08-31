@@ -1,0 +1,49 @@
+# Deterministic Price Agent V1 thresholds.
+# Directional insights only — not a causal elasticity model.
+# Manufacturer is a filter, not a list of SKUs, retailers, or regions.
+
+manufacturer: Unilever
+
+opportunity_label: Estimated price opportunity
+
+# Minimum other observations for a peer price / volume/store benchmark.
+min_peer_observations: 3
+
+# Own-grain prior weeks required before a historical price can be used.
+min_historical_observations: 2
+
+# Current-period weeks (including current) required before a price-change test.
+min_weeks_for_recommendation: 3
+
+# HIGH is reserved for longer panels than this extract provides.
+min_history_for_high_confidence: 8
+min_history_for_medium_confidence: 3
+
+# Relative gap vs benchmark before price is treated as high or low.
+price_gap_pct: 0.05
+
+# Relative gap vs like-for-like volume/store or value/store peers.
+volume_gap_pct: 0.10
+value_gap_pct: 0.10
+
+# Any strictly positive promo percent counts as PROMOTION. Missing is not zero.
+promo_percent_threshold: 0.0
+
+# Store count below this fraction of like-for-like distribution peers is "low distribution".
+low_distribution_ratio: 0.5
+low_sales_ratio: 0.5
+min_store_gap: 1.0
+
+# Conservative share of a volume/store or price gap treated as a test opportunity.
+capture_rate: 0.25
+
+# SKU price max/min across locations for PRICE ARCHITECTURE REVIEW.
+architecture_spread_ratio: 1.25
+min_architecture_locations: 3
+
+# Drop quantified tests smaller than this (rand).
+min_value_opportunity: 1.0
+
+mad_threshold: 3.5
+peer_statistic: median
+output_top_n: 10
