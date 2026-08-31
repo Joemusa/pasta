@@ -22,6 +22,7 @@ data-qa = "backend.agents.data_qa.__main__:main"
 distribution = "backend.agents.distribution.__main__:main"
 integration = "backend.agents.integration.__main__:main"
 price = "backend.agents.price.__main__:main"
+promotion = "backend.agents.promotion.__main__:main"
 
 [tool.pytest.ini_options]
 pythonpath = ["."]
