@@ -23,8 +23,10 @@
       "access_method": "official_oauth_api",
       "status": "UNAVAILABLE",
       "last_successful_collection": null,
+      "record_count": 0,
+      "error": "OAuth credentials were not provided. Set REDDIT_CLIENT_ID and REDDIT_CLIENT_SECRET. Unauthenticated JSON is blocked (HTTP 403) and robots.txt disallows crawling (Disallow: /).",
       "limitations": [
-        "OAuth credentials were not provided. Unauthenticated JSON is blocked (HTTP 403) and robots.txt disallows crawling (Disallow: /)."
+        "OAuth credentials were not provided. Set REDDIT_CLIENT_ID and REDDIT_CLIENT_SECRET. Unauthenticated JSON is blocked (HTTP 403) and robots.txt disallows crawling (Disallow: /)."
       ]
     },
     {
@@ -33,8 +35,10 @@
       "access_method": "official_data_api",
       "status": "UNAVAILABLE",
       "last_successful_collection": null,
+      "record_count": 0,
+      "error": "YouTube Data API key was not provided. Set YOUTUBE_API_KEY. Unauthenticated search returns HTTP 403. youtube.com HTML is not crawled.",
       "limitations": [
-        "YouTube Data API key was not provided. Unauthenticated search returns HTTP 403."
+        "YouTube Data API key was not provided. Set YOUTUBE_API_KEY. Unauthenticated search returns HTTP 403. youtube.com HTML is not crawled."
       ]
     },
     {
@@ -43,18 +47,26 @@
       "access_method": "official_api",
       "status": "UNAVAILABLE",
       "last_successful_collection": null,
+      "record_count": 0,
+      "error": "X bearer token was not provided. Set X_BEARER_TOKEN. Search API returns HTTP 401 without authentication. X live collection is out of scope for this sprint.",
       "limitations": [
-        "X bearer token was not provided. Search API returns HTTP 401 without authentication."
+        "X bearer token was not provided. Set X_BEARER_TOKEN. Search API returns HTTP 401 without authentication. X live collection is out of scope for this sprint."
       ]
     },
     {
       "source": "public_web",
       "source_type": "web",
-      "access_method": "official_api_or_licensed_feed",
+      "access_method": "gdelt_doc_2_0_api",
       "status": "UNAVAILABLE",
       "last_successful_collection": null,
+      "record_count": 0,
+      "error": "gdelt:network_error:_ssl.c:983: The handshake operation timed out",
       "limitations": [
-        "No officially accessible public-web discussion API is configured. The system does not crawl the public web or bypass robots.txt."
+        "Public web/news uses GDELT DOC 2.0 (public query API) and optional official NewsAPI. Google News HTML/RSS is not fetched because robots.txt disallows /rss.",
+        "Article bodies are not scraped. Title/description plus source URL and publication date are retained.",
+        "Country is set only when the source supplies geography. English language is not treated as South Africa.",
+        "NewsAPI UNAVAILABLE until NEWS_API_KEY is configured.",
+        "Public web errors: gdelt:network_error:_ssl.c:983: The handshake operation timed out"
       ]
     }
   ],
@@ -98,5 +110,5 @@
     ]
   },
   "report_output_path": "backend/data/social_reports/social_listening_v1.json",
-  "generated_at": "2026-08-31T12:31:10.053847Z"
+  "generated_at": "2026-08-31T12:59:43.426836Z"
 }

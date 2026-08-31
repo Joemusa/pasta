@@ -1,0 +1,100 @@
+user_agent: "UnileverPastaSocialIntelligence/1.0 (official-API adapter; +https://github.com/Joemusa/pasta)"
+request_timeout_seconds: 20
+rate_limit_sleep_seconds: 1.0
+max_results_per_query: 8
+max_queries_per_source: 6
+max_youtube_comment_threads: 5
+
+# Search definitions are YAML-driven. Taxonomy expands brand/category/competitor names.
+social_queries:
+  - id: company
+    type: company
+    from_taxonomy: company
+    template: "{name}"
+    max_expand: 3
+  - id: brand
+    type: brand
+    from_taxonomy: brands
+    template: "{name}"
+    max_expand: 8
+  - id: category
+    type: category
+    from_taxonomy: categories
+    template: "{name} Unilever"
+    max_expand: 5
+  - id: competitor
+    type: competitor
+    from_taxonomy: competitors
+    template: "{name}"
+    max_expand: 5
+  - id: consumer_need
+    type: consumer_need
+    terms: [Unilever]
+    template: "{name} review OR complaint OR quality"
+  - id: price
+    type: price
+    terms: [Unilever]
+    template: "{name} price OR expensive OR value"
+  - id: promotion
+    type: promotion
+    terms: [Unilever]
+    template: "{name} promo OR special OR discount"
+  - id: availability
+    type: availability
+    terms: [Unilever]
+    template: "{name} \"out of stock\" OR unavailable"
+
+south_africa:
+  boost_first_n: 2
+  do_not_infer_country_from_language: true
+  query_boosts:
+    reddit:
+      - "south africa"
+    public_web:
+      - "sourcecountry:SouthAfrica"
+  youtube_region_code: ZA
+
+south_african_terms:
+  - shoprite
+  - checkers
+  - makro
+  - pick n pay
+  - spar
+  - rand
+
+reddit:
+  token_url: "https://www.reddit.com/api/v1/access_token"
+  search_url: "https://oauth.reddit.com/search"
+  env_client_id: REDDIT_CLIENT_ID
+  env_client_secret: REDDIT_CLIENT_SECRET
+
+youtube:
+  search_url: "https://www.googleapis.com/youtube/v3/search"
+  comments_url: "https://www.googleapis.com/youtube/v3/commentThreads"
+  env_key: YOUTUBE_API_KEY
+
+public_web:
+  gdelt:
+    enabled: true
+    endpoint: "https://api.gdeltproject.org/api/v2/doc/doc"
+    timespan: 3m
+    format: json
+  newsapi:
+    enabled: true
+    endpoint: "https://newsapi.org/v2/everything"
+    env_key: NEWS_API_KEY
+    # Official NewsAPI client access. Site scraping of newsapi.org is not used.
+
+country_iso:
+  south africa: ZA
+  united states: US
+  united kingdom: GB
+  singapore: SG
+  bangladesh: BD
+  australia: AU
+  india: IN
+  nigeria: NG
+  kenya: KE
+  germany: DE
+  france: FR
+  netherlands: NL

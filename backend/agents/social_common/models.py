@@ -79,6 +79,8 @@ class SourceRegistryEntry(BaseModel):
     access_method: str
     status: SourceStatus
     last_successful_collection: str | None = None
+    record_count: int = 0
+    error: str | None = None
     limitations: list[str] = Field(default_factory=list)
 
 
