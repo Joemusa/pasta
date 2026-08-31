@@ -1,5 +1,7 @@
 {
   "status": "READY WITH WARNINGS",
+  "version": "V1",
+  "frozen": true,
   "opportunity_label": "Estimated price opportunity",
   "causality_claim": "none",
   "manufacturer": "Unilever",
@@ -40353,15 +40355,22 @@
     }
   ],
   "limitations": [
-    "Price Agent V1 produces directional price insights and estimated price-test opportunities, not causal elasticity or guaranteed incremental sales.",
-    "off_promo_rsp / on_promo_rsp is not treated as normal shelf price.",
+    "Price Agent V1 is frozen. Do not raise confidence, lower the 8-week HIGH threshold, or convert directional signals into causal elasticity.",
+    "4 POS weeks currently available.",
+    "3 overlapping price/promotion weeks.",
+    "No proven normal/RSP field; off_promo_rsp / on_promo_rsp is not treated as normal shelf price.",
+    "Rolling 4 Weeks CY metrics may not be independent observations.",
+    "Promotion metrics can be missing; missing is not converted to zero.",
+    "ProductsID is not the canonical join key; SKU identity is product name.",
+    "Current opportunity estimates use the documented 0.25 capture-rate methodology.",
+    "Estimates are not guaranteed incremental sales.",
+    "Findings are directional price insights, not causal elasticity.",
+    "HIGH confidence requires 8 or more weeks; that threshold is frozen in V1.",
     "Promotion Indicator 0/1 in the source extract is a stacked state, not a grain-level promo flag.",
-    "Missing promotion metrics are not converted to zero; uncontrolled promo blocks price-change tests.",
     "A lower price with higher volume/store is never sufficient on its own to recommend a price cut.",
     "Low distribution plus low sales is flagged as 'Distribution likely primary lever' instead of a price cut.",
-    "Only 4 Unilever POS week(s) are in the canonical table; overlapping price/promo coverage is shorter still, and 4 Weeks CY fields may be rolling.",
     "26 July is kept as history where POS price exists; that week has no dedicated price/promo extract.",
-    "Product names can map to multiple ProductsID values; SKU identity is the product name.",
+    "Period list in this run: 2026-07-26, 2026-08-02, 2026-08-09, 2026-08-16.",
     "Current-period grains evaluated: 2949.",
     "404 grain(s) were INSUFFICIENT EVIDENCE.",
     "95 emitted row(s) carry the distribution-primary flag.",
@@ -40369,5 +40378,5 @@
     "Promotion Agent and Commercial Brain are not built in this sprint."
   ],
   "report_output_path": "backend/data/price_reports/New Discovery_2026-08-27 (3).price.json",
-  "generated_at": "2026-08-31T09:50:18.315740Z"
+  "generated_at": "2026-08-31T10:04:13.679176Z"
 }
