@@ -134,12 +134,15 @@ async function onFilter(key, value) {
     state.filters.product = "all";
   }
   await load();
+  let changed = false;
   const options = state.data.options;
   for (const child of ["brand", "product", "retailer", "region"]) {
     if (state.filters[child] !== "all" && !(options[child] || []).includes(state.filters[child])) {
       state.filters[child] = "all";
+      changed = true;
     }
   }
+  if (changed) await load();
 }
 
 function renderQuality() {

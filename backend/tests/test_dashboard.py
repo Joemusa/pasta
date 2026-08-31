@@ -198,6 +198,7 @@ def test_http_dashboard_and_detail_endpoints(store) -> None:
     thread.start()
     host, port = httpd.server_address
     try:
+        import urllib.parse
         import urllib.request
 
         with urllib.request.urlopen(f"http://{host}:{port}/api/health") as response:
@@ -207,7 +208,8 @@ def test_http_dashboard_and_detail_endpoints(store) -> None:
             payload = json.loads(response.read().decode())
         assert payload["kpis"]["addressable_value"]["value"] == pytest.approx(EXPECTED_VALUE)
         opp_id = payload["top_actions"][0]["opportunity_id"]
-        with urllib.request.urlopen(f"http://{host}:{port}/api/opportunity?id={opp_id}") as response:
+        encoded = urllib.parse.quote(opp_id)
+        with urllib.request.urlopen(f"http://{host}:{port}/api/opportunity?id={encoded}") as response:
             detail = json.loads(response.read().decode())
         assert detail["opportunity_id"] == opp_id
         with urllib.request.urlopen(f"http://{host}:{port}/") as response:
