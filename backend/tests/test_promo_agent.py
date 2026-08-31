@@ -7,6 +7,7 @@ from pathlib import Path
 import pytest
 
 from backend.agents.promotion import (
+    FROZEN_V1_LIMITATIONS,
     PROMOTION_AGENT_VERSION,
     V1_LIMITATIONS,
     PromotionAgentStatus,
@@ -44,6 +45,7 @@ def test_agent_writes_report_and_excludes_competitors(tmp_path: Path) -> None:
     report = run_promotion(path, data_root=tmp_path / "data")
     assert report.status == PromotionAgentStatus.READY_WITH_WARNINGS
     assert report.version == PROMOTION_AGENT_VERSION
+    assert report.frozen is True
     assert report.opportunity_label == "Estimated promotional opportunity"
     assert report.causality_claim == "none"
     assert report.manufacturer == "Unilever"
@@ -52,7 +54,7 @@ def test_agent_writes_report_and_excludes_competitors(tmp_path: Path) -> None:
     assert (tmp_path / "data" / "promotion_reports" / "panel.promotion.json").exists()
     assert report.top_retailers
     assert report.promotion_uplift_summary
-    assert all(note in report.limitations for note in V1_LIMITATIONS)
+    assert all(note in report.limitations for note in FROZEN_V1_LIMITATIONS)
 
 
 def test_cli_help_mentions_estimated_not_causal() -> None:
@@ -61,15 +63,18 @@ def test_cli_help_mentions_estimated_not_causal() -> None:
     assert "causal" in help_text.lower() or "incrementality" in help_text.lower()
 
 
-def test_v1_does_not_relax_confidence_or_invent_capture_rate() -> None:
+def test_v1_freeze_does_not_relax_confidence_or_capture_rate() -> None:
     config = load_promotion_config()
     assert PROMOTION_AGENT_VERSION == "V1"
     assert config.min_history_for_high_confidence == 8
     assert config.capture_rate == 0.25
     assert config.opportunity_label == "Estimated promotional opportunity"
-    assert any("0.25 capture-rate" in note for note in V1_LIMITATIONS)
-    assert any("not guaranteed incremental sales" in note.lower() for note in V1_LIMITATIONS)
-    assert any("not causal incrementality" in note.lower() for note in V1_LIMITATIONS)
+    assert V1_LIMITATIONS == FROZEN_V1_LIMITATIONS
+    assert any("0.25 capture-rate" in note for note in FROZEN_V1_LIMITATIONS)
+    assert any("not guaranteed incremental sales" in note.lower() for note in FROZEN_V1_LIMITATIONS)
+    assert any("not causal incrementality" in note.lower() for note in FROZEN_V1_LIMITATIONS)
+    assert any("stacked rather than a true exclusive weekly flag" in note.lower() for note in FROZEN_V1_LIMITATIONS)
+    assert any("8 or more weeks" in note for note in FROZEN_V1_LIMITATIONS)
 
 
 def test_real_integrated_file_if_present() -> None:
@@ -82,9 +87,11 @@ def test_real_integrated_file_if_present() -> None:
     assert report.current_period == "2026-08-16"
     assert report.status in {PromotionAgentStatus.READY_WITH_WARNINGS, PromotionAgentStatus.READY}
     assert report.version == "V1"
+    assert report.frozen is True
     assert report.causality_claim == "none"
     assert report.confidence_distribution.get("HIGH", 0) == 0
-    assert all(note in report.limitations for note in V1_LIMITATIONS)
+    assert all(note in report.limitations for note in FROZEN_V1_LIMITATIONS)
+    assert "frozen" in " ".join(report.limitations).lower()
     assert all(
         item.opportunity_label == "Estimated promotional opportunity" for item in report.top_promotional_opportunities
     )

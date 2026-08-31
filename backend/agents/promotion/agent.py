@@ -14,8 +14,8 @@ from backend.agents.promotion.evaluate import QUANTIFIED, attach_derived, evalua
 from backend.agents.promotion.loader import PromotionLoadError, load_integrated_unilever
 from backend.agents.promotion.models import (
     DEFAULT_CONFIG_PATH,
+    FROZEN_V1_LIMITATIONS,
     PROMOTION_AGENT_VERSION,
-    V1_LIMITATIONS,
     PrimaryLever,
     PromotionAgentStatus,
     PromotionConfig,
@@ -59,8 +59,9 @@ def _limitations(
     intensity_baseline: int,
 ) -> list[str]:
     notes = [
-        "Promotion Agent V1 produces estimated promotional opportunity, not causal incrementality.",
-        *V1_LIMITATIONS,
+        "Promotion Agent V1 is frozen. Do not raise confidence, lower the 8-week HIGH threshold, "
+        "or convert promotional uplift into causal incrementality.",
+        *FROZEN_V1_LIMITATIONS,
         "A promoted SKU with higher volume is never sufficient on its own to claim incremental sales.",
         "Low distribution plus low sales is flagged as DISTRIBUTION FIRST instead of a promotion.",
         "26 July is kept as history where POS exists; that week has no dedicated price/promo extract.",
@@ -232,6 +233,7 @@ def run_promotion(
     report = PromotionReport(
         status=status,
         version=PROMOTION_AGENT_VERSION,
+        frozen=True,
         opportunity_label=config.opportunity_label,
         manufacturer=config.manufacturer,
         current_period=current_period.strftime("%Y-%m-%d"),

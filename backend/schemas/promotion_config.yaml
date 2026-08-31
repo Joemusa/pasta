@@ -1,7 +1,6 @@
-# Promotion Agent V1.
-# Directional promotional insights only — not causal incrementality.
+# Promotion Agent V1 — FROZEN.
 # Do not raise confidence, lower min_history_for_high_confidence below 8,
-# or convert promo vs non-promo comparisons into causal lift.
+# or convert promotional uplift into causal incrementality.
 # Manufacturer is a filter, not a list of SKUs, retailers, or regions.
 
 manufacturer: Unilever
@@ -15,7 +14,7 @@ min_non_promo_observations: 2
 # Current-period weeks (including current) required before a recommendation.
 min_weeks_for_recommendation: 3
 
-# HIGH is reserved for longer panels than this extract provides. Do not lower in V1.
+# HIGH is frozen at 8+ weeks. Do not lower this threshold in V1.
 min_history_for_high_confidence: 8
 min_history_for_medium_confidence: 3
 
@@ -42,8 +41,7 @@ min_store_gap: 1.0
 # Median store counts of promo vs baseline groups cannot differ by more than this ratio.
 distribution_change_ratio: 0.50
 
-# Documented conservative V1 capture rate (same methodology as Price Agent V1).
-# Not an elasticity. Do not invent a different undocumented rate.
+# Frozen V1 capture rate for estimated promotional opportunity. Not causal incrementality.
 capture_rate: 0.25
 
 # Drop quantified tests smaller than this (rand).

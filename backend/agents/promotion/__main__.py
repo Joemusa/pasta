@@ -59,6 +59,7 @@ def main(argv: list[str] | None = None) -> int:
     summary = {
         "status": report.status,
         "version": report.version,
+        "frozen": report.frozen,
         "opportunity_label": report.opportunity_label,
         "causality_claim": report.causality_claim,
         "manufacturer": report.manufacturer,

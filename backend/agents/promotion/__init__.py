@@ -1,11 +1,12 @@
 """Deterministic Promotion Agent V1 for the canonical integrated commercial dataset.
 
-Directional promotional insights only. Not causal incrementality.
+V1 is frozen: estimated promotional opportunity only. HIGH confidence still requires 8+ weeks.
 """
 
 from backend.agents.promotion.agent import run_promotion
 from backend.agents.promotion.loader import PromotionLoadError
 from backend.agents.promotion.models import (
+    FROZEN_V1_LIMITATIONS,
     PROMOTION_AGENT_VERSION,
     V1_LIMITATIONS,
     PromotionAgentStatus,
@@ -13,6 +14,7 @@ from backend.agents.promotion.models import (
 )
 
 __all__ = [
+    "FROZEN_V1_LIMITATIONS",
     "PROMOTION_AGENT_VERSION",
     "V1_LIMITATIONS",
     "PromotionAgentStatus",

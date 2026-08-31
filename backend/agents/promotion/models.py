@@ -15,21 +15,23 @@ DEFAULT_CONFIG_PATH = SCHEMA_DIR / "promotion_config.yaml"
 
 PROMOTION_AGENT_VERSION = "V1"
 
-V1_LIMITATIONS = [
+# Frozen V1 data and methodology limitations. Do not weaken these to inflate confidence.
+FROZEN_V1_LIMITATIONS = [
     "4 POS weeks currently available.",
     "3 overlapping price/promotion weeks.",
-    "Promotion Indicator 0/1 in the source extract is a stacked state, not a grain-level promo flag.",
+    "Promotion Indicator 0/1 is stacked rather than a true exclusive weekly flag.",
     "No proven normal/RSP field; off_promo_rsp / on_promo_rsp is not treated as normal shelf price.",
     "NORMAL_PRICE_UNAVAILABLE unless a proven normal-price field exists.",
     "PROMOTION_TYPE_UNAVAILABLE; the extract has no price-discount / multibuy / loyalty type.",
     "Rolling 4 Weeks CY metrics may not be independent observations.",
-    "Promotion metrics can be missing; missing is not converted to zero.",
+    "Missing promotion metrics are not treated as zero.",
     "ProductsID is not the canonical join key; SKU identity is product name.",
-    "Current opportunity estimates use the documented 0.25 capture-rate methodology.",
+    "Opportunity estimates use the documented conservative 0.25 capture-rate methodology.",
     "Estimates are not guaranteed incremental sales.",
     "Findings are estimated promotional opportunity, not causal incrementality.",
-    "HIGH confidence requires 8 or more weeks; that threshold is not relaxed in V1.",
+    "HIGH confidence requires 8 or more weeks; that threshold is frozen in V1.",
 ]
+V1_LIMITATIONS = FROZEN_V1_LIMITATIONS
 
 Confidence = Literal["HIGH", "MEDIUM", "LOW"]
 JOIN_KEY = ("product", "retailer", "region", "date")
@@ -184,6 +186,7 @@ class PromotionReport(BaseModel):
 
     status: PromotionAgentStatus
     version: str = PROMOTION_AGENT_VERSION
+    frozen: bool = True
     opportunity_label: str = "Estimated promotional opportunity"
     causality_claim: str = "none"
     manufacturer: str
