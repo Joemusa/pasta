@@ -76,7 +76,7 @@ youtube:
 public_web:
   gdelt:
     enabled: true
-    endpoint: "https://api.gdeltproject.org/api/v2/doc/doc"
+    endpoint: "http://api.gdeltproject.org/api/v2/doc/doc"
     timespan: 3m
     format: json
   newsapi:

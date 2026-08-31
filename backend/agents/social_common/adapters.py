@@ -660,6 +660,8 @@ class PublicWebAdapter(SourceAdapter):
             except HttpError as exc:
                 last_error = exc
                 if exc.status_code == 429 or exc.retryable:
+                    if posts:
+                        break
                     raise
                 continue
         if not posts and last_error is not None:
