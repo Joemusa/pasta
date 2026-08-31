@@ -273,7 +273,7 @@ def run_brain(
         total_volume=total_volume,
         actions=actions,
         retailers=[item.model_dump(mode="json") for item in retailers[:top_n]],
-        sku_priorities=[item.model_dump(mode="json") for item in skus[:top_n]],
+        skus=[item.model_dump(mode="json") for item in skus[:top_n]],
         regions=[item.model_dump(mode="json") for item in regions[:top_n]],
         risks=risks,
         limitations=limitations,
