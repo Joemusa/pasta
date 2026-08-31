@@ -1,0 +1,61 @@
+# Deterministic Data QA thresholds. Override with --config.
+# constant_columns injects a fixed value when a required dimension is known
+# for the file but is not present as a column (e.g. a single-banner extract).
+
+invalid_date_rate_threshold: 0.05
+invalid_numeric_rate_threshold: 0.05
+required_null_rate_threshold: 0.50
+row_drop_partial_threshold: 0.05
+min_history_periods: 8
+min_history_for_price_agent: 8
+min_history_for_promo_agent: 8
+header_scan_rows: 30
+min_header_alias_matches: 2
+
+outlier:
+  method: mad
+  mad_threshold: 3.5
+  iqr_multiplier: 1.5
+  min_observations: 8
+  group_fields:
+    - product
+    - retailer
+    - region
+
+# Grain used for duplicate detection. sku is preferred over product when both exist.
+duplicate_key_fields:
+  - date
+  - retailer
+  - manufacturer
+  - sku
+  - product
+  - region
+
+# Optional constants applied after column mapping, e.g.:
+# constant_columns:
+#   retailer: National multi-retailer panel
+constant_columns: {}
+
+text_case:
+  manufacturer: title
+  brand: title
+  product: title
+  retailer: title
+  region: title
+  sku: preserve
+
+date_formats:
+  - "%Y-%m-%d"
+  - "%Y/%m/%d"
+  - "%d/%m/%Y"
+  - "%d-%m-%Y"
+  - "%m/%d/%Y"
+  - "%d %b %y"
+  - "%d %b %Y"
+  - "%d-%b-%y"
+  - "%d-%b-%Y"
+  - "%b %y"
+  - "%b-%y"
+  - "%b %Y"
+  - "%Y-%m"
+  - "%Y%m"

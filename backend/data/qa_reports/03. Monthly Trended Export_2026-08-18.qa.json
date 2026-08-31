@@ -1,0 +1,256 @@
+{
+  "status": "FAIL",
+  "analysis_ready": false,
+  "quality_score": 0,
+  "critical_issues": [
+    {
+      "code": "MISSING_RETAILER",
+      "severity": "CRITICAL",
+      "message": "Retailer column could not be mapped from the source file",
+      "column": "retailer",
+      "row_count": 0,
+      "sample_values": []
+    },
+    {
+      "code": "IMPOSSIBLE_NEGATIVE",
+      "severity": "CRITICAL",
+      "message": "sales_value contains negative values",
+      "column": "sales_value",
+      "row_count": 1,
+      "sample_values": [
+        "-19.99"
+      ]
+    },
+    {
+      "code": "IMPOSSIBLE_NEGATIVE",
+      "severity": "CRITICAL",
+      "message": "sales_volume contains negative values",
+      "column": "sales_volume",
+      "row_count": 1,
+      "sample_values": [
+        "-0.07"
+      ]
+    }
+  ],
+  "warnings": [
+    {
+      "code": "MISSING_REGION",
+      "severity": "WARNING",
+      "message": "Region is not present in the source file",
+      "column": "region",
+      "row_count": 0,
+      "sample_values": []
+    },
+    {
+      "code": "MISSING_PROMOTION_FIELDS",
+      "severity": "WARNING",
+      "message": "No promotion fields were mapped (percent_time_on_promo, percent_sales_on_promo, or promotion_flag)",
+      "column": null,
+      "row_count": 0,
+      "sample_values": []
+    },
+    {
+      "code": "MISSING_NORMAL_PRICE",
+      "severity": "WARNING",
+      "message": "Normal price is not present; price analysis will rely on current_price only",
+      "column": "normal_price",
+      "row_count": 0,
+      "sample_values": []
+    },
+    {
+      "code": "MISSING_STORE_COUNT",
+      "severity": "WARNING",
+      "message": "Store count is not present; the Distribution agent cannot run",
+      "column": "store_count",
+      "row_count": 0,
+      "sample_values": []
+    },
+    {
+      "code": "ZERO_SALES",
+      "severity": "WARNING",
+      "message": "sales_value contains zeros",
+      "column": "sales_value",
+      "row_count": 356,
+      "sample_values": []
+    },
+    {
+      "code": "ZERO_SALES",
+      "severity": "WARNING",
+      "message": "sales_volume contains zeros",
+      "column": "sales_volume",
+      "row_count": 389,
+      "sample_values": []
+    },
+    {
+      "code": "OUTLIERS_FLAGGED",
+      "severity": "WARNING",
+      "message": "Flagged 3278 rows as potential outliers without deleting them: sales_value (2090), sales_volume (2374), current_price (938)",
+      "column": null,
+      "row_count": 3278,
+      "sample_values": []
+    }
+  ],
+  "info": [],
+  "capabilities": {
+    "distribution": false,
+    "price": true,
+    "promotion": false,
+    "macro_overlay": true,
+    "social_evidence": true,
+    "commercial_brain": false
+  },
+  "column_mapping": {
+    "MonthYear2": "date",
+    "Manufacturer": "manufacturer",
+    "Product": "product",
+    "Trended Ave Price (Value/Volume)": "current_price",
+    "Trended Sales Value": "sales_value",
+    "Trended Sales Volume": "sales_volume"
+  },
+  "unmapped_columns": [
+    "Category",
+    "Subcategory"
+  ],
+  "missing_canonical_fields": [
+    "brand",
+    "sku",
+    "retailer",
+    "region",
+    "store_count",
+    "normal_price",
+    "percent_time_on_promo",
+    "percent_sales_on_promo",
+    "promotion_flag"
+  ],
+  "missing_value_counts": {
+    "current_price": 389
+  },
+  "outliers": {
+    "total_flagged_rows": 3278,
+    "columns": [
+      {
+        "column": "sales_value",
+        "method": "mad",
+        "count": 2090,
+        "sample_source_rows": [
+          2,
+          3,
+          10,
+          57,
+          58,
+          60,
+          61,
+          62,
+          63,
+          71
+        ]
+      },
+      {
+        "column": "sales_volume",
+        "method": "mad",
+        "count": 2374,
+        "sample_source_rows": [
+          1,
+          2,
+          3,
+          10,
+          57,
+          58,
+          60,
+          61,
+          62,
+          63
+        ]
+      },
+      {
+        "column": "current_price",
+        "method": "mad",
+        "count": 938,
+        "sample_source_rows": [
+          64,
+          126,
+          137,
+          148,
+          149,
+          172,
+          173,
+          175,
+          176,
+          177
+        ]
+      }
+    ]
+  },
+  "duplicates": {
+    "key_fields": [
+      "date",
+      "manufacturer",
+      "product"
+    ],
+    "duplicate_row_count": 0,
+    "unsafe_group_count": 0,
+    "safely_dropped": 0
+  },
+  "transformations": [
+    {
+      "code": "empty_to_null",
+      "message": "Converted 389 empty/placeholder values to null",
+      "column": "current_price",
+      "row_count": 389
+    },
+    {
+      "code": "dates_parsed",
+      "message": "Parsed 9158 dates (0 invalid)",
+      "column": "date",
+      "row_count": 9158
+    },
+    {
+      "code": "numeric_coerced",
+      "message": "Coerced numeric values (0 invalid)",
+      "column": "sales_value",
+      "row_count": 9158
+    },
+    {
+      "code": "numeric_coerced",
+      "message": "Coerced numeric values (0 invalid)",
+      "column": "sales_volume",
+      "row_count": 9158
+    },
+    {
+      "code": "numeric_coerced",
+      "message": "Coerced numeric values (0 invalid)",
+      "column": "current_price",
+      "row_count": 8769
+    }
+  ],
+  "row_count_raw": 9158,
+  "row_count_clean": 9157,
+  "rows_dropped": 1,
+  "distinct_dates": 24,
+  "date_min": "2024-07-01",
+  "date_max": "2026-06-01",
+  "invalid_date_count": 0,
+  "numeric_parse_failures": {},
+  "source_columns": [
+    "MonthYear2",
+    "Category",
+    "Subcategory",
+    "Manufacturer",
+    "Product",
+    "Trended Ave Price (Value/Volume)",
+    "Trended Sales Value",
+    "Trended Sales Volume"
+  ],
+  "header_row_index": 3,
+  "sheet_name": "03. Monthly Trended Export",
+  "input_file": "03. Monthly Trended Export_2026-08-18.xlsx",
+  "raw_preserved_at": "backend/data/raw/03. Monthly Trended Export_2026-08-18.xlsx",
+  "clean_output_path": "backend/data/clean/03. Monthly Trended Export_2026-08-18.clean.csv",
+  "report_output_path": "backend/data/qa_reports/03. Monthly Trended Export_2026-08-18.qa.json",
+  "exclusions_output_path": "backend/data/qa_reports/03. Monthly Trended Export_2026-08-18.exclusions.csv",
+  "exclusion_reason_counts": {
+    "INVALID_SALES_VALUE": 1,
+    "INVALID_SALES_VOLUME": 1
+  },
+  "generated_at": "2026-08-27T13:06:21.020198Z"
+}

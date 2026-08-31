@@ -1,0 +1,243 @@
+{
+  "status": "PASS_WITH_WARNINGS",
+  "analysis_ready": true,
+  "quality_score": 72,
+  "critical_issues": [],
+  "warnings": [
+    {
+      "code": "MISSING_REGION",
+      "severity": "WARNING",
+      "message": "Region has missing values",
+      "column": "region",
+      "row_count": 1,
+      "sample_values": []
+    },
+    {
+      "code": "MISSING_MANUFACTURER",
+      "severity": "WARNING",
+      "message": "Manufacturer has missing values",
+      "column": "manufacturer",
+      "row_count": 1,
+      "sample_values": []
+    },
+    {
+      "code": "ZERO_SALES",
+      "severity": "WARNING",
+      "message": "sales_value contains zeros",
+      "column": "sales_value",
+      "row_count": 1,
+      "sample_values": []
+    },
+    {
+      "code": "DUPLICATES_DROPPED",
+      "severity": "WARNING",
+      "message": "Dropped 1 exact duplicate rows at grain ['date', 'retailer', 'manufacturer', 'sku', 'region']",
+      "column": null,
+      "row_count": 1,
+      "sample_values": []
+    },
+    {
+      "code": "OUTLIERS_FLAGGED",
+      "severity": "WARNING",
+      "message": "Flagged 10 rows as potential outliers without deleting them: sales_value (2), current_price (7), normal_price (6), percent_sales_on_promo (1)",
+      "column": null,
+      "row_count": 10,
+      "sample_values": []
+    }
+  ],
+  "info": [],
+  "capabilities": {
+    "distribution": true,
+    "price": true,
+    "promotion": true,
+    "macro_overlay": true,
+    "social_evidence": true,
+    "commercial_brain": true
+  },
+  "column_mapping": {
+    "Month": "date",
+    "Retailer": "retailer",
+    "Region": "region",
+    "Manufacturer": "manufacturer",
+    "Brand": "brand",
+    "Product Name": "product",
+    "SKU": "sku",
+    "Sales Value": "sales_value",
+    "Units": "sales_volume",
+    "Stores": "store_count",
+    "Price": "current_price",
+    "Regular Price": "normal_price",
+    "% Time on Promo": "percent_time_on_promo",
+    "% Sales on Promo": "percent_sales_on_promo",
+    "On Promo": "promotion_flag"
+  },
+  "unmapped_columns": [],
+  "missing_canonical_fields": [],
+  "missing_value_counts": {
+    "manufacturer": 1,
+    "region": 1
+  },
+  "outliers": {
+    "total_flagged_rows": 10,
+    "columns": [
+      {
+        "column": "sales_value",
+        "method": "mad_grouped",
+        "count": 2,
+        "sample_source_rows": [
+          3,
+          21
+        ]
+      },
+      {
+        "column": "current_price",
+        "method": "iqr_grouped",
+        "count": 7,
+        "sample_source_rows": [
+          6,
+          7,
+          19,
+          115,
+          127,
+          136,
+          139
+        ]
+      },
+      {
+        "column": "normal_price",
+        "method": "iqr_grouped",
+        "count": 6,
+        "sample_source_rows": [
+          7,
+          19,
+          115,
+          127,
+          136,
+          139
+        ]
+      },
+      {
+        "column": "percent_sales_on_promo",
+        "method": "mad_grouped",
+        "count": 1,
+        "sample_source_rows": [
+          23
+        ]
+      }
+    ]
+  },
+  "duplicates": {
+    "key_fields": [
+      "date",
+      "retailer",
+      "manufacturer",
+      "sku",
+      "region"
+    ],
+    "duplicate_row_count": 2,
+    "unsafe_group_count": 0,
+    "safely_dropped": 1
+  },
+  "transformations": [
+    {
+      "code": "empty_to_null",
+      "message": "Converted 1 empty/placeholder values to null",
+      "column": "region",
+      "row_count": 1
+    },
+    {
+      "code": "empty_to_null",
+      "message": "Converted 1 empty/placeholder values to null",
+      "column": "manufacturer",
+      "row_count": 1
+    },
+    {
+      "code": "dates_parsed",
+      "message": "Parsed 145 dates (0 invalid)",
+      "column": "date",
+      "row_count": 145
+    },
+    {
+      "code": "numeric_coerced",
+      "message": "Coerced numeric values (0 invalid)",
+      "column": "sales_value",
+      "row_count": 145
+    },
+    {
+      "code": "numeric_coerced",
+      "message": "Coerced numeric values (0 invalid)",
+      "column": "sales_volume",
+      "row_count": 145
+    },
+    {
+      "code": "numeric_coerced",
+      "message": "Coerced numeric values (0 invalid)",
+      "column": "store_count",
+      "row_count": 145
+    },
+    {
+      "code": "numeric_coerced",
+      "message": "Coerced numeric values (0 invalid)",
+      "column": "current_price",
+      "row_count": 145
+    },
+    {
+      "code": "numeric_coerced",
+      "message": "Coerced numeric values (0 invalid)",
+      "column": "normal_price",
+      "row_count": 145
+    },
+    {
+      "code": "percent_scaled_0_1_to_0_100",
+      "message": "Detected 0-1 percentage scale and standardised to 0-100",
+      "column": "percent_time_on_promo",
+      "row_count": 145
+    },
+    {
+      "code": "percent_scaled_0_1_to_0_100",
+      "message": "Detected 0-1 percentage scale and standardised to 0-100",
+      "column": "percent_sales_on_promo",
+      "row_count": 145
+    }
+  ],
+  "row_count_raw": 145,
+  "row_count_clean": 144,
+  "rows_dropped": 1,
+  "rows_empty_metrics": 0,
+  "distinct_dates": 12,
+  "date_min": "2025-01-01",
+  "date_max": "2025-12-01",
+  "source_distinct_dates": 12,
+  "source_date_min": "2025-01-01",
+  "source_date_max": "2025-12-01",
+  "invalid_date_count": 0,
+  "numeric_parse_failures": {},
+  "source_columns": [
+    "Month",
+    "Retailer",
+    "Region",
+    "Manufacturer",
+    "Brand",
+    "Product Name",
+    "SKU",
+    "Sales Value",
+    "Units",
+    "Stores",
+    "Price",
+    "Regular Price",
+    "% Time on Promo",
+    "% Sales on Promo",
+    "On Promo"
+  ],
+  "header_row_index": 0,
+  "sheet_name": null,
+  "input_file": "backend/data/raw/sample_pos.csv",
+  "raw_preserved_at": "/tmp/qa-sample/raw/sample_pos.csv",
+  "clean_output_path": "/tmp/qa-sample/clean/sample_pos.clean.csv",
+  "report_output_path": "/tmp/qa-sample/qa_reports/sample_pos.qa.json",
+  "exclusions_output_path": "/tmp/qa-sample/qa_reports/sample_pos.exclusions.csv",
+  "exclusion_reason_counts": {
+    "SAFE_DUPLICATE": 1
+  },
+  "generated_at": "2026-08-31T06:46:39.495440Z"
+}
