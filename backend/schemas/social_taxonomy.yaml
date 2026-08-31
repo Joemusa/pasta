@@ -114,7 +114,7 @@ topics:
     commercial_levers: []
     channels: [PRODUCT_EXPERIENCE]
   fragrance:
-    aliases: [fragrance, scent, smell, pine, eucalyptus]
+    aliases: [fragrance, scent, smell]
     commercial_levers: []
     channels: [PRODUCT_EXPERIENCE, CONSUMER_NEEDS]
   pack_size:

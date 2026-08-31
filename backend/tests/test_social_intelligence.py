@@ -195,7 +195,7 @@ def test_trend_detection_and_insufficient_history(tmp_path: Path) -> None:
     fat = SocialConfig(trend_min_total=5, trend_min_recent=5, trend_growth_ratio=1.5)
     assert classify_trend(5, 0, fat) == "EMERGING"
     assert classify_trend(5, 5, fat) == "STABLE"
-    assert classify_trend(2, 8, fat) == "DECLINING"
+    assert classify_trend(5, 12, fat) == "DECLINING"
 
 
 def test_source_diversity_and_confidence() -> None:

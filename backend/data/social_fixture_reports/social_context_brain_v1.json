@@ -658,7 +658,7 @@
       "source_type": "test",
       "access_method": "local_json_fixture",
       "status": "AVAILABLE",
-      "last_successful_collection": "2026-08-31T12:21:52.729463+00:00",
+      "last_successful_collection": "2026-08-31T12:31:08.970354+00:00",
       "limitations": [
         "TEST FIXTURES ONLY. These posts are labeled test data and are not live social observations.",
         "Loaded 38 labeled fixture post(s) from backend/tests/fixtures/social/conversations.json."
@@ -730,5 +730,5 @@
     "Dashboard is not built in this sprint."
   ],
   "report_output_path": "backend/data/social_fixture_reports/social_context_brain_v1.json",
-  "generated_at": "2026-08-31T12:21:52.787343Z"
+  "generated_at": "2026-08-31T12:31:09.029554Z"
 }
