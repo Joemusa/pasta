@@ -1,0 +1,431 @@
+{
+  "version": "V1",
+  "title": "UNILEVER SOUTH AFRICA",
+  "document": "COMMERCIAL OPPORTUNITY PULSE",
+  "tagline": "Top 3 opportunities identified from current POS evidence",
+  "manufacturer": "Unilever",
+  "current_period": "2026-08-16",
+  "generated_at": "2026-08-31T15:01:27.003116+00:00",
+  "causality_claim": "none",
+  "opportunity_label": "Addressable opportunity estimate",
+  "story": {
+    "headline": "Distribution gaps — led by Shoprite — are the clearest near-term growth opportunity",
+    "supporting_line": "Three high-confidence distribution gaps represent R9.9k of addressable value and 211 units across priority SKU-retailer-region combinations.",
+    "commercial_implication": "Prioritize distribution expansion before increasing promotional spend where availability is the primary constraint.",
+    "dominant_lever": "DISTRIBUTION",
+    "key_insight": "Shoprite accounts for 2 of the 3 priority actions, so listing expansion is the first commercial move rather than a price cut or extra promotional spend.",
+    "source": "Storytelling Engine V1",
+    "source_path": "backend/data/storytelling_reports/storytelling_v1_one_slide.json"
+  },
+  "top3_sum": {
+    "addressable_value": 9897.48,
+    "addressable_volume": 211.3487,
+    "label": "Addressable opportunity estimate",
+    "disclaimer": "Sum of the three Commercial Brain opportunities. This is an addressable opportunity estimate, not guaranteed incremental sales."
+  },
+  "opportunities": [
+    {
+      "rank": 1,
+      "headline": "Expand distribution of Sunlight Pine Gel 500ml in Free State",
+      "story_headline": "Close the 24-store distribution gap",
+      "lever": "DISTRIBUTION",
+      "product": "Sunlight Pine Gel 500ml",
+      "brand": "Sunlight",
+      "retailer": "Shoprite",
+      "region": "Free State",
+      "current_sales": {
+        "value": 188.93,
+        "available": true,
+        "display": 188.93,
+        "unit": "R"
+      },
+      "addressable_value": 4534.32,
+      "addressable_volume": 84.0,
+      "confidence": "HIGH",
+      "store_gap": {
+        "value": 24.0,
+        "available": true,
+        "display": 24.0,
+        "unit": "stores"
+      },
+      "value_per_store": {
+        "value": 188.93,
+        "available": true,
+        "display": 188.93,
+        "unit": "R"
+      },
+      "volume_per_store": {
+        "value": 3.5,
+        "available": true,
+        "display": 3.5,
+        "unit": "units"
+      },
+      "current_stores": {
+        "value": 1.0,
+        "available": true,
+        "display": 1.0,
+        "unit": "stores"
+      },
+      "benchmark_stores": {
+        "value": 25.0,
+        "available": true,
+        "display": 25.0,
+        "unit": "stores"
+      },
+      "why": "Listed-store economics are attractive while coverage sits 24 stores below the like-for-like benchmark at Shoprite in Free State. Addressable value and addressable volume equal value/store and volume/store times that store gap; they are not guaranteed incremental sales. Current sales are separate. Price or promotion is not the first lever: low coverage is limiting reach. Evidence is stronger than the rest of this short panel, but this remains addressable opportunity, not guaranteed incremental sales.",
+      "recommended_action": "Brief a distribution expansion for Sunlight Pine Gel 500ml at Shoprite in Free State: close a 24-store gap toward 25 stores. Do not lead with a price cut because sales are low.",
+      "evidence": [
+        "Distribution addressable value = value/store 188.93 x store gap 24.0 = R4,534; addressable volume = volume/store 3.5 x store gap 24.0 = 84.0 units. This is the gap-closing opportunity, not guaranteed incremental sales.",
+        "Frozen Distribution Agent value R4,534 / 84.0 units (confidence HIGH); the Brain does not re-score it.",
+        "Primary-lever addressable value R4,534 / 84.0 units (gross specialist total R4,534 was not used).",
+        "Current sales R189 (distinct from addressable value; not the opportunity).",
+        "Double-counting risk: NONE."
+      ],
+      "double_counting_risk": "NONE",
+      "limitations": [
+        "Reported value is the primary lever only; specialist estimates are not summed.",
+        "Estimates are directional and are not guaranteed incremental sales."
+      ],
+      "priority_score": 0.914142,
+      "kind": "OPPORTUNITY",
+      "provenance": {
+        "agent": "Commercial Brain V1",
+        "source": "backend/data/brain_reports/New Discovery_2026-08-27 (3).brain.json",
+        "specialist_agent": "Distribution Agent V1",
+        "specialist_source": "backend/data/distribution_reports/New Discovery_2026-08-27 (3).distribution.json",
+        "period": "2026-08-16",
+        "observation_date": "2026-08-16",
+        "opportunity_id": "Sunlight Pine Gel 500ml|Shoprite|Free State"
+      }
+    },
+    {
+      "rank": 2,
+      "headline": "Expand distribution of Sunlight Pine Gel 1l in Gauteng",
+      "story_headline": "Close the 13-store distribution gap",
+      "lever": "DISTRIBUTION",
+      "product": "Sunlight Pine Gel 1l",
+      "brand": "Sunlight",
+      "retailer": "Shoprite",
+      "region": "Gauteng",
+      "current_sales": {
+        "value": 31684.3,
+        "available": true,
+        "display": 31684.3,
+        "unit": "R"
+      },
+      "addressable_value": 2709.84,
+      "addressable_volume": 54.2237,
+      "confidence": "HIGH",
+      "store_gap": {
+        "value": 13.0,
+        "available": true,
+        "display": 13.0,
+        "unit": "stores"
+      },
+      "value_per_store": {
+        "value": 208.4493,
+        "available": true,
+        "display": 208.4493,
+        "unit": "R"
+      },
+      "volume_per_store": {
+        "value": 4.1711,
+        "available": true,
+        "display": 4.1711,
+        "unit": "units"
+      },
+      "current_stores": {
+        "value": 152.0,
+        "available": true,
+        "display": 152.0,
+        "unit": "stores"
+      },
+      "benchmark_stores": {
+        "value": 165.0,
+        "available": true,
+        "display": 165.0,
+        "unit": "stores"
+      },
+      "why": "Listed-store economics are attractive while coverage sits 13 stores below the like-for-like benchmark at Shoprite in Gauteng. Addressable value and addressable volume equal value/store and volume/store times that store gap; they are not guaranteed incremental sales. Current sales are separate. Price or promotion is not the first lever: low coverage is limiting reach. Evidence is stronger than the rest of this short panel, but this remains addressable opportunity, not guaranteed incremental sales.",
+      "recommended_action": "Brief a distribution expansion for Sunlight Pine Gel 1l at Shoprite in Gauteng: close a 13-store gap toward 165 stores. Do not lead with a price cut because sales are low.",
+      "evidence": [
+        "Distribution addressable value = value/store 208.4493 x store gap 13.0 = R2,710; addressable volume = volume/store 4.1711 x store gap 13.0 = 54.2 units. This is the gap-closing opportunity, not guaranteed incremental sales.",
+        "Frozen Distribution Agent value R2,710 / 54.2 units (confidence HIGH); the Brain does not re-score it.",
+        "Primary-lever addressable value R2,710 / 54.2 units (gross specialist total R2,710 was not used).",
+        "Current sales R31,684 (distinct from addressable value; not the opportunity).",
+        "Double-counting risk: NONE."
+      ],
+      "double_counting_risk": "NONE",
+      "limitations": [
+        "Reported value is the primary lever only; specialist estimates are not summed.",
+        "Estimates are directional and are not guaranteed incremental sales."
+      ],
+      "priority_score": 0.858267,
+      "kind": "OPPORTUNITY",
+      "provenance": {
+        "agent": "Commercial Brain V1",
+        "source": "backend/data/brain_reports/New Discovery_2026-08-27 (3).brain.json",
+        "specialist_agent": "Distribution Agent V1",
+        "specialist_source": "backend/data/distribution_reports/New Discovery_2026-08-27 (3).distribution.json",
+        "period": "2026-08-16",
+        "observation_date": "2026-08-16",
+        "opportunity_id": "Sunlight Pine Gel 1l|Shoprite|Gauteng"
+      }
+    },
+    {
+      "rank": 3,
+      "headline": "Expand distribution of Handy Andy All Purpose Cleaner Eucalyptus 5l in Gauteng",
+      "story_headline": "Close the 3-store distribution gap",
+      "lever": "DISTRIBUTION",
+      "product": "Handy Andy All Purpose Cleaner Eucalyptus 5l",
+      "brand": "Handy Andy",
+      "retailer": "Makro Online",
+      "region": "Gauteng",
+      "current_sales": {
+        "value": 7075.53,
+        "available": true,
+        "display": 7075.53,
+        "unit": "R"
+      },
+      "addressable_value": 2653.32,
+      "addressable_volume": 73.125,
+      "confidence": "HIGH",
+      "store_gap": {
+        "value": 3.0,
+        "available": true,
+        "display": 3.0,
+        "unit": "stores"
+      },
+      "value_per_store": {
+        "value": 884.4412,
+        "available": true,
+        "display": 884.4412,
+        "unit": "R"
+      },
+      "volume_per_store": {
+        "value": 24.375,
+        "available": true,
+        "display": 24.375,
+        "unit": "units"
+      },
+      "current_stores": {
+        "value": 8.0,
+        "available": true,
+        "display": 8.0,
+        "unit": "stores"
+      },
+      "benchmark_stores": {
+        "value": 11.0,
+        "available": true,
+        "display": 11.0,
+        "unit": "stores"
+      },
+      "why": "Listed-store economics are attractive while coverage sits 3 stores below the like-for-like benchmark at Makro Online in Gauteng. Addressable value and addressable volume equal value/store and volume/store times that store gap; they are not guaranteed incremental sales. Current sales are separate. Price or promotion is not the first lever: low coverage is limiting reach. Evidence is stronger than the rest of this short panel, but this remains addressable opportunity, not guaranteed incremental sales.",
+      "recommended_action": "Brief a distribution expansion for Handy Andy All Purpose Cleaner Eucalyptus 5l at Makro Online in Gauteng: close a 3-store gap toward 11 stores. Do not lead with a price cut because sales are low.",
+      "evidence": [
+        "Distribution addressable value = value/store 884.4412 x store gap 3.0 = R2,653; addressable volume = volume/store 24.375 x store gap 3.0 = 73.1 units. This is the gap-closing opportunity, not guaranteed incremental sales.",
+        "Frozen Distribution Agent value R2,653 / 73.1 units (confidence HIGH); the Brain does not re-score it.",
+        "Primary-lever addressable value R2,653 / 73.1 units (gross specialist total R2,653 was not used).",
+        "Current sales R7,076 (distinct from addressable value; not the opportunity).",
+        "Double-counting risk: NONE."
+      ],
+      "double_counting_risk": "NONE",
+      "limitations": [
+        "Reported value is the primary lever only; specialist estimates are not summed.",
+        "Estimates are directional and are not guaranteed incremental sales."
+      ],
+      "priority_score": 0.855979,
+      "kind": "OPPORTUNITY",
+      "provenance": {
+        "agent": "Commercial Brain V1",
+        "source": "backend/data/brain_reports/New Discovery_2026-08-27 (3).brain.json",
+        "specialist_agent": "Distribution Agent V1",
+        "specialist_source": "backend/data/distribution_reports/New Discovery_2026-08-27 (3).distribution.json",
+        "period": "2026-08-16",
+        "observation_date": "2026-08-16",
+        "opportunity_id": "Handy Andy All Purpose Cleaner Eucalyptus 5l|Makro Online|Gauteng"
+      }
+    }
+  ],
+  "charts": {
+    "ranking": [
+      {
+        "rank": 1,
+        "label": "Sunlight Pine Gel 500ml",
+        "addressable_value": 4534.32,
+        "confidence": "HIGH"
+      },
+      {
+        "rank": 2,
+        "label": "Sunlight Pine Gel 1l",
+        "addressable_value": 2709.84,
+        "confidence": "HIGH"
+      },
+      {
+        "rank": 3,
+        "label": "Handy Andy All Purpose Cleaner Eucalyptus 5l",
+        "addressable_value": 2653.32,
+        "confidence": "HIGH"
+      }
+    ],
+    "coverage": [
+      {
+        "rank": 1,
+        "label": "Sunlight Pine Gel 500ml",
+        "current_stores": 1.0,
+        "benchmark_stores": 25.0
+      },
+      {
+        "rank": 2,
+        "label": "Sunlight Pine Gel 1l",
+        "current_stores": 152.0,
+        "benchmark_stores": 165.0
+      },
+      {
+        "rank": 3,
+        "label": "Handy Andy All Purpose Cleaner Eucalyptus 5l",
+        "current_stores": 8.0,
+        "benchmark_stores": 11.0
+      }
+    ],
+    "sales_versus_opportunity": [
+      {
+        "rank": 1,
+        "label": "Sunlight Pine Gel 500ml",
+        "current_sales": 188.93,
+        "addressable_value": 4534.32
+      },
+      {
+        "rank": 2,
+        "label": "Sunlight Pine Gel 1l",
+        "current_sales": 31684.3,
+        "addressable_value": 2709.84
+      },
+      {
+        "rank": 3,
+        "label": "Handy Andy All Purpose Cleaner Eucalyptus 5l",
+        "current_sales": 7075.53,
+        "addressable_value": 2653.32
+      }
+    ],
+    "coverage_caption": "Listed stores versus like-for-like benchmark. Gap-closing value is addressable, not booked sales.",
+    "sales_caption": "Current sales are distinct from addressable opportunity and are not incremental sales.",
+    "ranking_caption": "Commercial Brain rank order. Values are addressable opportunity estimates."
+  },
+  "macro": {
+    "included": true,
+    "role": "supporting_context",
+    "label": "Supporting macro context",
+    "signal": "Consumer pressure increasing",
+    "evidence": "FNB/BER CCI = -19",
+    "direction": "NEGATIVE",
+    "confidence": "HIGH",
+    "commercial_implication": "Consumers are likely to remain value-conscious, increasing the importance of availability and targeted price/promotion execution.",
+    "sources": [
+      "SARB",
+      "BER",
+      "Stats SA"
+    ],
+    "evidence_as_of": null,
+    "source_path": "backend/data/macro_context/macro_context_v1.json",
+    "disclaimer": "Macro context is supporting background only. It does not cause or recalculate POS opportunities.",
+    "kind": "OBSERVATION"
+  },
+  "social": {
+    "connected": true,
+    "status": "LIVE — GDELT",
+    "display": "Social intelligence: LIVE — GDELT",
+    "kind": "OBSERVATION",
+    "source": "GDELT",
+    "source_url": "http://api.gdeltproject.org/api/v2/doc/doc",
+    "observation_start": "2026-06-02T13:17:18Z",
+    "observation_end": "2026-08-31T13:17:18Z",
+    "validated_observations": [
+      {
+        "text": "67 normalised public-web observations (54 analysed).",
+        "kind": "OBSERVATION"
+      },
+      {
+        "text": "Brands detected: Sunlight.",
+        "kind": "OBSERVATION"
+      },
+      {
+        "text": "Sentiment label NEUTRAL (observation, not a sales driver).",
+        "kind": "OBSERVATION"
+      }
+    ],
+    "disclaimer": "Supporting context only. Social observations do not cause POS gaps and are not commercial actions."
+  },
+  "quality": {
+    "current_period": "2026-08-16",
+    "pos_weeks": 4,
+    "period_list": [
+      "2026-07-26",
+      "2026-08-02",
+      "2026-08-09",
+      "2026-08-16"
+    ],
+    "price_promotion_weeks": 3,
+    "brain_status": "READY WITH WARNINGS",
+    "sku_identity": "product name (ProductsID is not the canonical join key)",
+    "data_coverage": "4 POS weeks. Price/promotion: 3 overlapping weeks."
+  },
+  "limitations": [
+    "Opportunity PDF V1 is a presentation layer. It copies Commercial Brain ranking and does not rescore specialists.",
+    "POS data period: 2026-08-16.",
+    "POS weeks available: 4.",
+    "Price/promotion weeks: 3.",
+    "Addressable opportunity estimates are directional and are not guaranteed incremental sales.",
+    "No causal incrementality claim is made.",
+    "Social intelligence: LIVE — GDELT",
+    "Macro context is supporting background only and does not change Commercial Brain ranking.",
+    "Storytelling Engine V1 consumes Commercial Brain one-slide output only.",
+    "Specialist and Commercial Brain opportunity values are not recalculated.",
+    "Confidence is copied from the Commercial Brain and is never upgraded.",
+    "Addressable value and addressable volume are not guaranteed incremental sales.",
+    "No capture rate is introduced by the Storytelling Engine.",
+    "Dashboard and PDF layers are not built in this sprint.",
+    "Frozen macro context is supporting background only and is attached only when it supports the POS story.",
+    "Macro HIGH confidence is the label on the frozen signal; it does not upgrade POS or Commercial Brain confidence.",
+    "Macro context is not a causal explanation of POS gaps.",
+    "Addressable opportunity remains not guaranteed incremental sales.",
+    "Macro context does not add Price or Promotion actions or force lever variety.",
+    "Commercial Brain V1 converts frozen specialist outputs into a small set of actions. It does not re-run Data QA, Distribution, Price, or Promotion agents.",
+    "4 POS weeks currently available.",
+    "3 overlapping price/promotion weeks.",
+    "No proven normal/RSP field; off_promo_rsp / on_promo_rsp is not treated as normal shelf price.",
+    "PROMOTION_TYPE_UNAVAILABLE; the extract has no price-discount / multibuy / loyalty type.",
+    "Rolling 4 Weeks CY metrics may not be independent observations.",
+    "Promotion metrics can be missing; missing is not converted to zero.",
+    "ProductsID is not the canonical join key; SKU identity is product name.",
+    "Short price/promotion history; HIGH confidence is not manufactured.",
+    "Opportunity estimates are directional addressable values, not guaranteed incremental sales.",
+    "Distribution addressable value = value_per_store x distribution_store_gap; volume uses volume_per_store x gap.",
+    "Current sales are distinct from addressable opportunity and are never treated as incremental sales.",
+    "No causal elasticity and no causal promotion incrementality.",
+    "Specialist Distribution, Price, and Promotion agents are frozen; the Brain does not re-score them.",
+    "Overlapping levers are not summed; the reported value is the primary commercial opportunity.",
+    "Period: 2026-08-16.",
+    "Grains with at least one specialist flag: 2048.",
+    "Double-counting conflicts resolved: 279.",
+    "Dashboard, PDF, macroeconomic, and social-media layers are not built in this sprint."
+  ],
+  "methodology": "Based on current POS data and identified commercial gaps. Addressable opportunity is directional and not guaranteed incremental sales.",
+  "sources": {
+    "brain": "backend/data/brain_reports/New Discovery_2026-08-27 (3).brain.json",
+    "storytelling": "backend/data/storytelling_reports/storytelling_v1_one_slide.json",
+    "distribution": "backend/data/distribution_reports/New Discovery_2026-08-27 (3).distribution.json",
+    "price": "backend/data/price_reports/New Discovery_2026-08-27 (3).price.json",
+    "promotion": "backend/data/promotion_reports/New Discovery_2026-08-27 (3).promotion.json",
+    "integrated": "backend/data/integrated/New Discovery_2026-08-27 (3).commercial.csv",
+    "macro": "backend/data/macro_context/macro_context_v1.json",
+    "ranking": "Commercial Brain V1 top_actions (copied, not re-ranked)"
+  },
+  "provenance": {
+    "ranking_agent": "Commercial Brain V1",
+    "narrative_agent": "Storytelling Engine V1",
+    "presentation_layer": "Opportunity PDF V1",
+    "brain_path": "backend/data/brain_reports/New Discovery_2026-08-27 (3).brain.json",
+    "period": "2026-08-16"
+  }
+}
