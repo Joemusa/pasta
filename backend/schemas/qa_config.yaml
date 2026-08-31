@@ -17,6 +17,8 @@ outlier:
   mad_threshold: 3.5
   iqr_multiplier: 1.5
   min_observations: 8
+  group_fields:
+    - product
 
 # Grain used for duplicate detection. sku is preferred over product when both exist.
 duplicate_key_fields:

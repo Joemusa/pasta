@@ -9,7 +9,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from backend.agents.data_qa.capability_checker import analysis_ready, check_capabilities, distinct_dates
+from backend.agents.data_qa.capability_checker import analysis_ready, check_capabilities
 from backend.agents.data_qa.loader import LoadError, load_table
 from backend.agents.data_qa.models import (
     DEFAULT_CONFIG_PATH,
@@ -147,6 +147,28 @@ def _quality_score(
     return int(max(0, min(100, round(score))))
 
 
+def _invalid_drop_rate(*, rows_raw: int, rows_dropped: int, rows_empty_metrics: int) -> float:
+    """Empty Nielsen-style week slots are not a quality failure of populated commercial rows."""
+    populated = rows_raw - rows_empty_metrics
+    invalid_dropped = max(rows_dropped - rows_empty_metrics, 0)
+    if populated <= 0:
+        return 1.0 if rows_raw else 0.0
+    return invalid_dropped / populated
+
+
+def _date_bounds(frame: pd.DataFrame) -> tuple[int, str | None, str | None]:
+    if "date" not in frame.columns or frame.empty:
+        return 0, None, None
+    dates = pd.to_datetime(frame["date"], errors="coerce").dropna()
+    if dates.empty:
+        return 0, None, None
+    return (
+        int(dates.nunique()),
+        dates.min().strftime("%Y-%m-%d"),
+        dates.max().strftime("%Y-%m-%d"),
+    )
+
+
 def _status(
     *,
     ready: bool,
@@ -260,7 +282,19 @@ def run_data_qa(
     ready = analysis_ready(clean, blocking)
     capabilities = check_capabilities(clean if not clean.empty else kept, config, ready=ready)
 
-    drop_rate = (len(standardised) - len(clean)) / len(standardised) if len(standardised) else 1.0
+    reason_counts: dict[str, int] = {}
+    if not excluded.empty:
+        for reason in excluded["exclusion_reason"].astype(str):
+            for code in reason.split(";"):
+                if code:
+                    reason_counts[code] = reason_counts.get(code, 0) + 1
+    rows_empty_metrics = int(reason_counts.get("EMPTY_METRICS", 0))
+    rows_dropped = len(standardised) - len(clean)
+    drop_rate = _invalid_drop_rate(
+        rows_raw=len(standardised),
+        rows_dropped=rows_dropped,
+        rows_empty_metrics=rows_empty_metrics,
+    )
     critical = [issue for issue in issues if issue.severity == Severity.CRITICAL]
     warnings = [issue for issue in issues if issue.severity == Severity.WARNING]
     info = [issue for issue in issues if issue.severity == Severity.INFO]
@@ -279,7 +313,7 @@ def run_data_qa(
         warning_count=len(warnings),
         drop_rate=drop_rate,
         outlier_rows=outlier_summary.total_flagged_rows,
-        row_count=len(standardised),
+        row_count=len(clean),
         sparse=sparse,
     )
 
@@ -288,20 +322,8 @@ def run_data_qa(
         for col in CANONICAL_OUTPUT_ORDER
         if col in standardised.columns and int(standardised[col].isna().sum()) > 0
     }
-    reason_counts: dict[str, int] = {}
-    if not excluded.empty:
-        for reason in excluded["exclusion_reason"].astype(str):
-            for code in reason.split(";"):
-                if code:
-                    reason_counts[code] = reason_counts.get(code, 0) + 1
-
-    if "date" in standardised.columns:
-        dates = pd.to_datetime(standardised["date"], errors="coerce")
-    else:
-        dates = pd.Series(dtype="datetime64[ns]")
-    valid_dates = dates.dropna()
-    date_min = valid_dates.min().strftime("%Y-%m-%d") if not valid_dates.empty else None
-    date_max = valid_dates.max().strftime("%Y-%m-%d") if not valid_dates.empty else None
+    source_distinct, source_date_min, source_date_max = _date_bounds(standardised)
+    distinct, date_min, date_max = _date_bounds(clean)
 
     clean_path: Path | None = None
     exclusions_path: Path | None = None
@@ -336,10 +358,14 @@ def run_data_qa(
         transformations=transformations,
         row_count_raw=len(standardised),
         row_count_clean=len(clean),
-        rows_dropped=len(standardised) - len(clean),
-        distinct_dates=distinct_dates(standardised),
+        rows_dropped=rows_dropped,
+        rows_empty_metrics=rows_empty_metrics,
+        distinct_dates=distinct,
         date_min=date_min,
         date_max=date_max,
+        source_distinct_dates=source_distinct,
+        source_date_min=source_date_min,
+        source_date_max=source_date_max,
         invalid_date_count=int(invalid_parses.get("date", 0)),
         numeric_parse_failures={k: v for k, v in invalid_parses.items() if v},
         source_columns=list(frame.columns),

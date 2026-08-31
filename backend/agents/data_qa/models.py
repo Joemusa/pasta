@@ -72,6 +72,8 @@ class OutlierConfig(BaseModel):
     mad_threshold: float = 3.5
     iqr_multiplier: float = 1.5
     min_observations: int = 8
+    # Prefer within-SKU/product series so mixed POS grains are not compared globally.
+    group_fields: list[str] = Field(default_factory=lambda: ["product"])
 
 
 class QAConfig(BaseModel):
@@ -184,9 +186,13 @@ class QAReport(BaseModel):
     row_count_raw: int = 0
     row_count_clean: int = 0
     rows_dropped: int = 0
+    rows_empty_metrics: int = 0
     distinct_dates: int = 0
     date_min: str | None = None
     date_max: str | None = None
+    source_distinct_dates: int = 0
+    source_date_min: str | None = None
+    source_date_max: str | None = None
     invalid_date_count: int = 0
     numeric_parse_failures: dict[str, int] = Field(default_factory=dict)
     source_columns: list[str] = Field(default_factory=list)

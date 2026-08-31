@@ -48,12 +48,55 @@ def _iqr_mask(values: pd.Series, multiplier: float) -> pd.Series:
     return (values < lower) | (values > upper)
 
 
+def mad_is_degenerate(values: pd.Series) -> bool:
+    median = float(values.median())
+    mad = float((values - median).abs().median())
+    return mad == 0
+
+
+def _series_outlier_mask(values: pd.Series, config: QAConfig, method: str) -> tuple[pd.Series, str]:
+    if method == "iqr":
+        return _iqr_mask(values, config.outlier.iqr_multiplier), "iqr"
+    mask = _mad_mask(values, config.outlier.mad_threshold)
+    used = "mad"
+    if not mask.any() and mad_is_degenerate(values):
+        iqr_mask = _iqr_mask(values, config.outlier.iqr_multiplier)
+        if iqr_mask.any():
+            return iqr_mask, "iqr"
+    return mask, used
+
+
+def _column_outlier_mask(frame: pd.DataFrame, column: str, config: QAConfig) -> tuple[pd.Series, str]:
+    numeric = pd.to_numeric(frame[column], errors="coerce")
+    method = (config.outlier.method or "mad").lower()
+    group_fields = [field for field in config.outlier.group_fields if field in frame.columns]
+    empty = pd.Series(False, index=frame.index)
+
+    if group_fields:
+        mask = empty.copy()
+        used = f"{method}_grouped"
+        grouped = frame.groupby(group_fields, dropna=False, sort=False)
+        for _, group in grouped:
+            values = numeric.loc[group.index].dropna()
+            if len(values) < config.outlier.min_observations:
+                continue
+            group_mask, group_method = _series_outlier_mask(values, config, method)
+            if group_mask.any():
+                mask.loc[group_mask[group_mask].index] = True
+                used = f"{group_method}_grouped"
+        return mask, used
+
+    valid = numeric.dropna()
+    if len(valid) < config.outlier.min_observations:
+        return empty, method
+    return _series_outlier_mask(valid, config, method)
+
+
 def detect_outliers(
     frame: pd.DataFrame,
     config: QAConfig,
     source_rows: pd.Series | None = None,
 ) -> tuple[OutlierSummary, QAIssue | None]:
-    method = (config.outlier.method or "mad").lower()
     flagged_index: set[int] = set()
     columns: list[OutlierColumnSummary] = []
     row_ids = source_rows if source_rows is not None else pd.Series(frame.index, index=frame.index)
@@ -61,23 +104,7 @@ def detect_outliers(
     for column in OUTLIER_COLUMNS:
         if column not in frame.columns:
             continue
-        numeric = pd.to_numeric(frame[column], errors="coerce")
-        valid = numeric.dropna()
-        if len(valid) < config.outlier.min_observations:
-            continue
-        if method == "iqr":
-            mask = _iqr_mask(valid, config.outlier.iqr_multiplier)
-            used = "iqr"
-        else:
-            mask = _mad_mask(valid, config.outlier.mad_threshold)
-            used = "mad"
-            if not mask.any():
-                # Fall back to IQR when MAD is degenerate or overly quiet on tiny samples.
-                iqr_mask = _iqr_mask(valid, config.outlier.iqr_multiplier)
-                if iqr_mask.any() and mad_is_degenerate(valid):
-                    mask = iqr_mask
-                    used = "iqr"
-
+        mask, used = _column_outlier_mask(frame, column, config)
         count = int(mask.sum())
         if count == 0:
             continue
@@ -111,9 +138,3 @@ def detect_outliers(
         [item.column for item in columns],
     )
     return summary, issue
-
-
-def mad_is_degenerate(values: pd.Series) -> bool:
-    median = float(values.median())
-    mad = float((values - median).abs().median())
-    return mad == 0

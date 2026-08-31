@@ -401,11 +401,12 @@ def validate(
             continue
         bad = frame[col].notna() & (frame[col] < 0)
         if bad.any():
+            # Spec lists negatives under validity (exclude the row), not file-level FAIL codes.
             issues.append(
                 _issue(
                     "IMPOSSIBLE_NEGATIVE",
-                    Severity.CRITICAL if col in ("sales_value", "sales_volume") else Severity.WARNING,
-                    f"{col} contains negative values",
+                    Severity.WARNING,
+                    f"{col} contains negative values; those rows are excluded from the clean table",
                     column=col,
                     row_count=int(bad.sum()),
                     sample_values=_samples(frame.loc[bad, col]),

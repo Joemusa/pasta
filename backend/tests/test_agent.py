@@ -113,14 +113,44 @@ def test_unpopulated_metric_slots_keep_file_analysis_ready(tmp_path: Path) -> No
     frame.loc[blank, "sales_volume"] = pd.NA
     source = _write_csv(tmp_path / "discovery_grid.csv", frame)
     report = run_data_qa(source, data_root=tmp_path / "data")
-    assert report.status in {Status.PASS_WITH_WARNINGS, Status.PARTIAL_PASS}
+    assert report.status == Status.PASS_WITH_WARNINGS
     assert report.analysis_ready is True
     assert report.capabilities.commercial_brain is True
+    assert report.rows_empty_metrics > 0
+    assert report.rows_empty_metrics == report.rows_dropped
     assert not any(issue.code in {"MISSING_SALES_VALUE", "MISSING_SALES_VOLUME"} for issue in report.critical_issues)
     assert any(issue.code == "EMPTY_METRIC_ROWS" for issue in report.warnings)
     clean = pd.read_csv(report.clean_output_path)
     assert clean["sales_value"].notna().all()
     assert clean["sales_volume"].notna().all()
+    assert report.source_distinct_dates >= report.distinct_dates
+
+
+def test_negative_sales_are_warnings_and_excluded(tmp_path: Path) -> None:
+    frame = canonical_rows(n_months=12)
+    frame.loc[0, "sales_value"] = -12.5
+    frame.loc[1, "sales_volume"] = -3.0
+    source = _write_csv(tmp_path / "negatives.csv", frame)
+    report = run_data_qa(source, data_root=tmp_path / "data")
+    assert report.status == Status.PASS_WITH_WARNINGS
+    assert report.analysis_ready is True
+    assert not any(issue.code == "IMPOSSIBLE_NEGATIVE" for issue in report.critical_issues)
+    negatives = [issue for issue in report.warnings if issue.code == "IMPOSSIBLE_NEGATIVE"]
+    assert len(negatives) == 2
+    assert report.rows_dropped == 2
+    clean = pd.read_csv(report.clean_output_path)
+    assert (clean["sales_value"] >= 0).all()
+    assert (clean["sales_volume"] >= 0).all()
+
+
+def test_mixed_sku_scale_is_not_a_global_outlier(tmp_path: Path) -> None:
+    frame = canonical_rows(n_months=12)
+    large = frame["product"] == "Fatti's & Moni's Spaghetti 500g"
+    frame.loc[large, "sales_value"] = 1_200_000.0
+    source = _write_csv(tmp_path / "mixed_scale.csv", frame)
+    report = run_data_qa(source, data_root=tmp_path / "data")
+    assert report.analysis_ready is True
+    assert report.outliers.total_flagged_rows == 0
 
 
 def test_titled_excel_with_blank_prices_fails_closed_on_missing_retailer(tmp_path: Path) -> None:

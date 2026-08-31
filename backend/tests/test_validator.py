@@ -88,3 +88,23 @@ def test_empty_metric_slots_are_excluded_without_missing_sales_critical() -> Non
     assert any(issue.code == "EMPTY_METRIC_ROWS" and issue.severity == Severity.WARNING for issue in issues)
     assert not any(issue.code in {"MISSING_SALES_VALUE", "MISSING_SALES_VOLUME"} for issue in issues)
     assert any(issue.code == "SPARSE_HISTORY" for issue in issues)
+
+
+def test_negative_sales_are_warnings_not_critical() -> None:
+    schema = load_canonical_schema()
+    config = load_qa_config()
+    frame = canonical_rows(n_months=12)
+    frame.loc[0, "sales_value"] = -5.0
+    issues, _dup, drop_mask, reasons = validate(
+        frame,
+        schema,
+        config,
+        mapping_missing=[],
+        invalid_parses={},
+        constants_applied=[],
+    )
+    negatives = [issue for issue in issues if issue.code == "IMPOSSIBLE_NEGATIVE"]
+    assert negatives
+    assert all(issue.severity == Severity.WARNING for issue in negatives)
+    assert int(drop_mask.sum()) == 1
+    assert "INVALID_SALES_VALUE" in reasons.loc[0]
