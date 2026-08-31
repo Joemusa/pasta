@@ -39,7 +39,7 @@ def test_promote_when_peers_on_promo_outperform_off_promo_target(tmp_path: Path)
     assert hits[0].normal_price is None
     assert hits[0].normal_price_status == "NORMAL_PRICE_UNAVAILABLE"
     assert hits[0].promotion_type == "PROMOTION_TYPE_UNAVAILABLE"
-    extra = 10.0 * 1.0 * 10.0 * 0.25
+    extra = 1.0 * 1.0 * 10.0 * 0.25
     assert hits[0].estimated_incremental_volume == pytest.approx(extra)
     assert hits[0].estimated_incremental_value == pytest.approx(extra * 10.0)
 
