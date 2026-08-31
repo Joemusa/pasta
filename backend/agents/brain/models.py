@@ -74,8 +74,9 @@ class BrainConfig(BaseModel):
     outlier_penalty: float = 0.15
     mixed_promo_penalty: float = 0.10
     max_actions_per_product: int = 2
-    max_actions_per_lever: int = 2
+    max_actions_per_lever: int = 3
     min_action_volume: float = 0.01
+    excluded_action_regions: list[str] = Field(default_factory=lambda: ["Non-sa"])
     output_top_n: int = 10
 
 

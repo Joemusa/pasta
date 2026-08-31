@@ -84,6 +84,8 @@ def select_top_actions(opportunities: list[BrainOpportunity], config: BrainConfi
                 return
             if item.opportunity_id in seen:
                 continue
+            if item.region in config.excluded_action_regions:
+                continue
             if not relax:
                 if product_counts[item.product] >= config.max_actions_per_product:
                     continue

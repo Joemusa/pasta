@@ -224,3 +224,4 @@ def test_config_weights_are_loaded() -> None:
     assert config.n_actions == 3
     assert config.evidence_low < config.evidence_high
     assert config.value_reference == 10000.0
+    assert "Non-sa" in config.excluded_action_regions
