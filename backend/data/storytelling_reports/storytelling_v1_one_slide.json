@@ -1,0 +1,92 @@
+{
+  "title": "Unilever commercial story",
+  "headline": "Distribution gaps \u2014 led by Shoprite \u2014 are the clearest near-term growth opportunity",
+  "subheadline": "Three high-confidence distribution gaps represent R9.9k of addressable value and 211 units across priority SKU-retailer-region combinations.",
+  "hero_metric": {
+    "label": "Addressable value",
+    "value": 588562.67,
+    "unit": "R"
+  },
+  "hero_volume": {
+    "label": "Addressable volume",
+    "value": 14521.165,
+    "unit": "units"
+  },
+  "dominant_lever": "DISTRIBUTION",
+  "key_insight": "Shoprite accounts for 2 of the 3 priority actions, so listing expansion is the first commercial move rather than a price cut or extra promotional spend.",
+  "retailer_insight": "SHOPRITE appears in 2 of the 3 priority actions",
+  "actions": [
+    {
+      "rank": 1,
+      "lever": "DISTRIBUTION",
+      "headline": "Close the 24-store distribution gap",
+      "product": "Sunlight Pine Gel 500ml",
+      "brand": "Sunlight",
+      "retailer": "Shoprite",
+      "region": "Free State",
+      "addressable_value": 4534.32,
+      "addressable_volume": 84.0,
+      "confidence": "HIGH",
+      "store_gap": 24.0,
+      "recommended_action": "Close the 24-store gap toward the like-for-like benchmark at Shoprite. Expand listing of Sunlight Pine Gel 500ml across the identified Shoprite stores in Free State."
+    },
+    {
+      "rank": 2,
+      "lever": "DISTRIBUTION",
+      "headline": "Close the 13-store distribution gap",
+      "product": "Sunlight Pine Gel 1l",
+      "brand": "Sunlight",
+      "retailer": "Shoprite",
+      "region": "Gauteng",
+      "addressable_value": 2709.84,
+      "addressable_volume": 54.2237,
+      "confidence": "HIGH",
+      "store_gap": 13.0,
+      "recommended_action": "Close the 13-store gap toward the like-for-like benchmark at Shoprite. Expand listing of Sunlight Pine Gel 1l across the identified Shoprite stores in Gauteng."
+    },
+    {
+      "rank": 3,
+      "lever": "DISTRIBUTION",
+      "headline": "Close the 3-store distribution gap",
+      "product": "Handy Andy All Purpose Cleaner Eucalyptus 5l",
+      "brand": "Handy Andy",
+      "retailer": "Makro Online",
+      "region": "Gauteng",
+      "addressable_value": 2653.32,
+      "addressable_volume": 73.125,
+      "confidence": "HIGH",
+      "store_gap": 3.0,
+      "recommended_action": "Close the 3-store gap toward the like-for-like benchmark at Makro Online. Expand listing of Handy Andy All Purpose Cleaner Eucalyptus 5l across the identified Makro Online stores in Gauteng."
+    }
+  ],
+  "commercial_implication": "Prioritize distribution expansion before increasing promotional spend where availability is the primary constraint.",
+  "methodology_note": "Based on current POS data and identified commercial gaps. Addressable opportunity is directional and not guaranteed incremental sales.",
+  "data_coverage": "4 POS weeks. Price/promotion: 3 overlapping weeks.",
+  "limitations": [
+    "Storytelling Engine V1 consumes Commercial Brain one-slide output only.",
+    "Specialist and Commercial Brain opportunity values are not recalculated.",
+    "Confidence is copied from the Commercial Brain and is never upgraded.",
+    "Addressable value and addressable volume are not guaranteed incremental sales.",
+    "No capture rate is introduced by the Storytelling Engine.",
+    "Dashboard and PDF layers are not built in this sprint.",
+    "Commercial Brain V1 converts frozen specialist outputs into a small set of actions. It does not re-run Data QA, Distribution, Price, or Promotion agents.",
+    "4 POS weeks currently available.",
+    "3 overlapping price/promotion weeks.",
+    "No proven normal/RSP field; off_promo_rsp / on_promo_rsp is not treated as normal shelf price.",
+    "PROMOTION_TYPE_UNAVAILABLE; the extract has no price-discount / multibuy / loyalty type.",
+    "Rolling 4 Weeks CY metrics may not be independent observations.",
+    "Promotion metrics can be missing; missing is not converted to zero.",
+    "ProductsID is not the canonical join key; SKU identity is product name.",
+    "Short price/promotion history; HIGH confidence is not manufactured.",
+    "Opportunity estimates are directional addressable values, not guaranteed incremental sales.",
+    "Distribution addressable value = value_per_store x distribution_store_gap; volume uses volume_per_store x gap.",
+    "Current sales are distinct from addressable opportunity and are never treated as incremental sales.",
+    "No causal elasticity and no causal promotion incrementality.",
+    "Specialist Distribution, Price, and Promotion agents are frozen; the Brain does not re-score them.",
+    "Overlapping levers are not summed; the reported value is the primary commercial opportunity.",
+    "Period: 2026-08-16.",
+    "Grains with at least one specialist flag: 2048.",
+    "Double-counting conflicts resolved: 279.",
+    "Dashboard, PDF, macroeconomic, and social-media layers are not built in this sprint."
+  ]
+}
