@@ -1,0 +1,145 @@
+date,manufacturer,brand,product,sku,retailer,region,sales_value,sales_volume,store_count,current_price,normal_price,percent_time_on_promo,percent_sales_on_promo,promotion_flag,_source_row
+2025-01-01,Tiger Brands,Fatti's & Moni's,Fatti's & Moni's Spaghetti 500g,6001110001,Pick n Pay,,81500.0,5080.0,180.0,16.04,17.96,15.0,25.0,False,1
+2025-01-01,,Maggi,Maggi 2-Minute Noodles Chicken 73g,6001110002,Pick n Pay,Gauteng,93500.0,5480.0,180.0,17.06,19.11,20.0,30.0,True,2
+2025-01-01,Indofood,Indomie,Indomie Mi Goreng 80g,6001110003,Pick n Pay,Gauteng,0.0,5880.0,180.0,17.94,20.09,25.0,35.0,True,3
+2025-01-01,Barilla Group,Barilla,Barilla Penne 500g,6001110004,Pick n Pay,Gauteng,117500.0,6280.0,180.0,18.71,20.96,30.0,40.0,True,4
+2025-01-01,Tiger Brands,Fatti's & Moni's,Fatti's & Moni's Spaghetti 500g,6001110001,Shoprite,Western Cape,85500.0,5080.0,220.0,16.83,18.85,15.0,25.0,False,5
+2025-01-01,Nestle,Maggi,Maggi 2-Minute Noodles Chicken 73g,6001110002,Shoprite,Western Cape,97500.0,5480.0,220.0,999.99,19.92,20.0,30.0,True,6
+2025-01-01,Indofood,Indomie,Indomie Mi Goreng 80g,6001110003,Shoprite,Western Cape,109500.0,5880.0,220.0,18.62,20.85,25.0,35.0,True,7
+2025-01-01,Barilla Group,Barilla,Barilla Penne 500g,6001110004,Shoprite,Western Cape,121500.0,6280.0,220.0,19.35,21.67,30.0,40.0,True,8
+2025-01-01,Tiger Brands,Fatti's & Moni's,Fatti's & Moni's Spaghetti 500g,6001110001,Spar,KwaZulu-Natal,89500.0,5080.0,260.0,17.62,19.73,15.0,25.0,False,9
+2025-01-01,Nestle,Maggi,Maggi 2-Minute Noodles Chicken 73g,6001110002,Spar,KwaZulu-Natal,101500.0,5480.0,260.0,18.52,20.74,20.0,30.0,True,10
+2025-01-01,Indofood,Indomie,Indomie Mi Goreng 80g,6001110003,Spar,KwaZulu-Natal,113500.0,5880.0,260.0,19.3,21.62,25.0,35.0,True,11
+2025-01-01,Barilla Group,Barilla,Barilla Penne 500g,6001110004,Spar,KwaZulu-Natal,125500.0,6280.0,260.0,19.98,22.38,30.0,40.0,True,12
+2025-02-01,Tiger Brands,Fatti's & Moni's,Fatti's & Moni's Spaghetti 500g,6001110001,Pick n Pay,Gauteng,83000.0,5160.0,180.0,16.09,18.02,15.0,25.0,False,13
+2025-02-01,Nestle,Maggi,Maggi 2-Minute Noodles Chicken 73g,6001110002,Pick n Pay,Gauteng,95000.0,5560.0,180.0,17.09,19.14,20.0,30.0,True,14
+2025-02-01,Indofood,Indomie,Indomie Mi Goreng 80g,6001110003,Pick n Pay,Gauteng,107000.0,5960.0,180.0,17.95,20.1,25.0,35.0,True,15
+2025-02-01,Barilla Group,Barilla,Barilla Penne 500g,6001110004,Pick n Pay,Gauteng,119000.0,6360.0,180.0,18.71,20.96,30.0,40.0,True,16
+2025-02-01,Tiger Brands,Fatti's & Moni's,Fatti's & Moni's Spaghetti 500g,6001110001,Shoprite,Western Cape,87000.0,5160.0,220.0,16.86,18.88,15.0,25.0,False,17
+2025-02-01,Nestle,Maggi,Maggi 2-Minute Noodles Chicken 73g,6001110002,Shoprite,Western Cape,99000.0,5560.0,220.0,17.81,19.95,20.0,30.0,True,18
+2025-02-01,Indofood,Indomie,Indomie Mi Goreng 80g,6001110003,Shoprite,Western Cape,111000.0,5960.0,220.0,18.62,20.85,25.0,35.0,True,19
+2025-02-01,Barilla Group,Barilla,Barilla Penne 500g,6001110004,Shoprite,Western Cape,123000.0,6360.0,220.0,19.34,21.66,30.0,40.0,True,20
+2025-02-01,Tiger Brands,Fatti's & Moni's,Fatti's & Moni's Spaghetti 500g,6001110001,Spar,KwaZulu-Natal,12500.0,5160.0,260.0,17.64,19.76,15.0,25.0,False,21
+2025-02-01,Nestle,Maggi,Maggi 2-Minute Noodles Chicken 73g,6001110002,Spar,KwaZulu-Natal,103000.0,5560.0,260.0,18.53,20.75,20.0,30.0,True,22
+2025-02-01,Indofood,Indomie,Indomie Mi Goreng 80g,6001110003,Spar,KwaZulu-Natal,115000.0,5960.0,260.0,19.3,21.62,25.0,90.0,True,23
+2025-02-01,Barilla Group,Barilla,Barilla Penne 500g,6001110004,Spar,KwaZulu-Natal,127000.0,6360.0,260.0,19.97,22.37,30.0,40.0,True,24
+2025-03-01,Tiger Brands,Fatti's & Moni's,Fatti's & Moni's Spaghetti 500g,6001110001,Pick n Pay,Gauteng,84500.0,5240.0,180.0,16.13,18.07,15.0,25.0,False,25
+2025-03-01,Nestle,Maggi,Maggi 2-Minute Noodles Chicken 73g,6001110002,Pick n Pay,Gauteng,96500.0,5640.0,180.0,17.11,19.16,20.0,30.0,True,26
+2025-03-01,Indofood,Indomie,Indomie Mi Goreng 80g,6001110003,Pick n Pay,Gauteng,108500.0,6040.0,180.0,17.96,20.12,25.0,35.0,True,27
+2025-03-01,Barilla Group,Barilla,Barilla Penne 500g,6001110004,Pick n Pay,Gauteng,120500.0,6440.0,180.0,18.71,20.96,30.0,40.0,True,28
+2025-03-01,Tiger Brands,Fatti's & Moni's,Fatti's & Moni's Spaghetti 500g,6001110001,Shoprite,Western Cape,88500.0,5240.0,220.0,16.89,18.92,15.0,25.0,False,29
+2025-03-01,Nestle,Maggi,Maggi 2-Minute Noodles Chicken 73g,6001110002,Shoprite,Western Cape,100500.0,5640.0,220.0,17.82,19.96,20.0,30.0,True,30
+2025-03-01,Indofood,Indomie,Indomie Mi Goreng 80g,6001110003,Shoprite,Western Cape,112500.0,6040.0,220.0,18.63,20.87,25.0,35.0,True,31
+2025-03-01,Barilla Group,Barilla,Barilla Penne 500g,6001110004,Shoprite,Western Cape,124500.0,6440.0,220.0,19.33,21.65,30.0,40.0,True,32
+2025-03-01,Tiger Brands,Fatti's & Moni's,Fatti's & Moni's Spaghetti 500g,6001110001,Spar,KwaZulu-Natal,92500.0,5240.0,260.0,17.65,19.77,15.0,25.0,False,33
+2025-03-01,Nestle,Maggi,Maggi 2-Minute Noodles Chicken 73g,6001110002,Spar,KwaZulu-Natal,104500.0,5640.0,260.0,18.53,20.75,20.0,30.0,True,34
+2025-03-01,Indofood,Indomie,Indomie Mi Goreng 80g,6001110003,Spar,KwaZulu-Natal,116500.0,6040.0,260.0,19.29,21.6,25.0,35.0,True,35
+2025-03-01,Barilla Group,Barilla,Barilla Penne 500g,6001110004,Spar,KwaZulu-Natal,128500.0,6440.0,260.0,19.95,22.34,30.0,40.0,True,36
+2025-04-01,Tiger Brands,Fatti's & Moni's,Fatti's & Moni's Spaghetti 500g,6001110001,Pick n Pay,Gauteng,86000.0,5320.0,180.0,16.17,18.11,15.0,25.0,False,37
+2025-04-01,Nestle,Maggi,Maggi 2-Minute Noodles Chicken 73g,6001110002,Pick n Pay,Gauteng,98000.0,5720.0,180.0,17.13,19.19,20.0,30.0,True,38
+2025-04-01,Indofood,Indomie,Indomie Mi Goreng 80g,6001110003,Pick n Pay,Gauteng,110000.0,6120.0,180.0,17.97,20.13,25.0,35.0,True,39
+2025-04-01,Barilla Group,Barilla,Barilla Penne 500g,6001110004,Pick n Pay,Gauteng,122000.0,6520.0,180.0,18.71,20.96,30.0,40.0,True,40
+2025-04-01,Tiger Brands,Fatti's & Moni's,Fatti's & Moni's Spaghetti 500g,6001110001,Shoprite,Western Cape,90000.0,5320.0,220.0,16.92,18.95,15.0,25.0,False,41
+2025-04-01,Nestle,Maggi,Maggi 2-Minute Noodles Chicken 73g,6001110002,Shoprite,Western Cape,102000.0,5720.0,220.0,17.83,19.97,20.0,30.0,True,42
+2025-04-01,Indofood,Indomie,Indomie Mi Goreng 80g,6001110003,Shoprite,Western Cape,114000.0,6120.0,220.0,18.63,20.87,25.0,35.0,True,43
+2025-04-01,Barilla Group,Barilla,Barilla Penne 500g,6001110004,Shoprite,Western Cape,126000.0,6520.0,220.0,19.33,21.65,30.0,40.0,True,44
+2025-04-01,Tiger Brands,Fatti's & Moni's,Fatti's & Moni's Spaghetti 500g,6001110001,Spar,KwaZulu-Natal,94000.0,5320.0,260.0,17.67,19.79,15.0,25.0,False,45
+2025-04-01,Nestle,Maggi,Maggi 2-Minute Noodles Chicken 73g,6001110002,Spar,KwaZulu-Natal,106000.0,5720.0,260.0,18.53,20.75,20.0,30.0,True,46
+2025-04-01,Indofood,Indomie,Indomie Mi Goreng 80g,6001110003,Spar,KwaZulu-Natal,118000.0,6120.0,260.0,19.28,21.59,25.0,35.0,True,47
+2025-04-01,Barilla Group,Barilla,Barilla Penne 500g,6001110004,Spar,KwaZulu-Natal,130000.0,6520.0,260.0,19.94,22.33,30.0,40.0,True,48
+2025-05-01,Tiger Brands,Fatti's & Moni's,Fatti's & Moni's Spaghetti 500g,6001110001,Pick n Pay,Gauteng,87500.0,5400.0,180.0,16.2,18.14,15.0,25.0,False,49
+2025-05-01,Nestle,Maggi,Maggi 2-Minute Noodles Chicken 73g,6001110002,Pick n Pay,Gauteng,99500.0,5800.0,180.0,17.16,19.22,20.0,30.0,True,50
+2025-05-01,Indofood,Indomie,Indomie Mi Goreng 80g,6001110003,Pick n Pay,Gauteng,111500.0,6200.0,180.0,17.98,20.14,25.0,35.0,True,51
+2025-05-01,Barilla Group,Barilla,Barilla Penne 500g,6001110004,Pick n Pay,Gauteng,123500.0,6600.0,180.0,18.71,20.96,30.0,40.0,True,52
+2025-05-01,Tiger Brands,Fatti's & Moni's,Fatti's & Moni's Spaghetti 500g,6001110001,Shoprite,Western Cape,91500.0,5400.0,220.0,16.94,18.97,15.0,25.0,False,53
+2025-05-01,Nestle,Maggi,Maggi 2-Minute Noodles Chicken 73g,6001110002,Shoprite,Western Cape,103500.0,5800.0,220.0,17.84,19.98,20.0,30.0,True,54
+2025-05-01,Indofood,Indomie,Indomie Mi Goreng 80g,6001110003,Shoprite,Western Cape,115500.0,6200.0,220.0,18.63,20.87,25.0,35.0,True,55
+2025-05-01,Barilla Group,Barilla,Barilla Penne 500g,6001110004,Shoprite,Western Cape,127500.0,6600.0,220.0,19.32,21.64,30.0,40.0,True,56
+2025-05-01,Tiger Brands,Fatti's & Moni's,Fatti's & Moni's Spaghetti 500g,6001110001,Spar,KwaZulu-Natal,95500.0,5400.0,260.0,17.69,19.81,15.0,25.0,False,57
+2025-05-01,Nestle,Maggi,Maggi 2-Minute Noodles Chicken 73g,6001110002,Spar,KwaZulu-Natal,107500.0,5800.0,260.0,18.53,20.75,20.0,30.0,True,58
+2025-05-01,Indofood,Indomie,Indomie Mi Goreng 80g,6001110003,Spar,KwaZulu-Natal,119500.0,6200.0,260.0,19.27,21.58,25.0,35.0,True,59
+2025-05-01,Barilla Group,Barilla,Barilla Penne 500g,6001110004,Spar,KwaZulu-Natal,131500.0,6600.0,260.0,19.92,22.31,30.0,40.0,True,60
+2025-06-01,Tiger Brands,Fatti's & Moni's,Fatti's & Moni's Spaghetti 500g,6001110001,Pick n Pay,Gauteng,89000.0,5480.0,180.0,16.24,18.19,15.0,25.0,False,61
+2025-06-01,Nestle,Maggi,Maggi 2-Minute Noodles Chicken 73g,6001110002,Pick n Pay,Gauteng,101000.0,5880.0,180.0,17.18,19.24,20.0,30.0,True,62
+2025-06-01,Indofood,Indomie,Indomie Mi Goreng 80g,6001110003,Pick n Pay,Gauteng,113000.0,6280.0,180.0,17.99,20.15,25.0,35.0,True,63
+2025-06-01,Barilla Group,Barilla,Barilla Penne 500g,6001110004,Pick n Pay,Gauteng,125000.0,6680.0,180.0,18.71,20.96,30.0,40.0,True,64
+2025-06-01,Tiger Brands,Fatti's & Moni's,Fatti's & Moni's Spaghetti 500g,6001110001,Shoprite,Western Cape,93000.0,5480.0,220.0,16.97,19.01,15.0,25.0,False,65
+2025-06-01,Nestle,Maggi,Maggi 2-Minute Noodles Chicken 73g,6001110002,Shoprite,Western Cape,105000.0,5880.0,220.0,17.86,20.0,20.0,30.0,True,66
+2025-06-01,Indofood,Indomie,Indomie Mi Goreng 80g,6001110003,Shoprite,Western Cape,117000.0,6280.0,220.0,18.63,20.87,25.0,35.0,True,67
+2025-06-01,Barilla Group,Barilla,Barilla Penne 500g,6001110004,Shoprite,Western Cape,129000.0,6680.0,220.0,19.31,21.63,30.0,40.0,True,68
+2025-06-01,Tiger Brands,Fatti's & Moni's,Fatti's & Moni's Spaghetti 500g,6001110001,Spar,KwaZulu-Natal,97000.0,5480.0,260.0,17.7,19.82,15.0,25.0,False,69
+2025-06-01,Nestle,Maggi,Maggi 2-Minute Noodles Chicken 73g,6001110002,Spar,KwaZulu-Natal,109000.0,5880.0,260.0,18.54,20.76,20.0,30.0,True,70
+2025-06-01,Indofood,Indomie,Indomie Mi Goreng 80g,6001110003,Spar,KwaZulu-Natal,121000.0,6280.0,260.0,19.27,21.58,25.0,35.0,True,71
+2025-06-01,Barilla Group,Barilla,Barilla Penne 500g,6001110004,Spar,KwaZulu-Natal,133000.0,6680.0,260.0,19.91,22.3,30.0,40.0,True,72
+2025-07-01,Tiger Brands,Fatti's & Moni's,Fatti's & Moni's Spaghetti 500g,6001110001,Pick n Pay,Gauteng,90500.0,5560.0,180.0,16.28,18.23,15.0,25.0,False,73
+2025-07-01,Nestle,Maggi,Maggi 2-Minute Noodles Chicken 73g,6001110002,Pick n Pay,Gauteng,102500.0,5960.0,180.0,17.2,19.26,20.0,30.0,True,74
+2025-07-01,Indofood,Indomie,Indomie Mi Goreng 80g,6001110003,Pick n Pay,Gauteng,114500.0,6360.0,180.0,18.0,20.16,25.0,35.0,True,75
+2025-07-01,Barilla Group,Barilla,Barilla Penne 500g,6001110004,Pick n Pay,Gauteng,126500.0,6760.0,180.0,18.71,20.96,30.0,40.0,True,76
+2025-07-01,Tiger Brands,Fatti's & Moni's,Fatti's & Moni's Spaghetti 500g,6001110001,Shoprite,Western Cape,94500.0,5560.0,220.0,17.0,19.04,15.0,25.0,False,77
+2025-07-01,Nestle,Maggi,Maggi 2-Minute Noodles Chicken 73g,6001110002,Shoprite,Western Cape,106500.0,5960.0,220.0,17.87,20.01,20.0,30.0,True,78
+2025-07-01,Indofood,Indomie,Indomie Mi Goreng 80g,6001110003,Shoprite,Western Cape,118500.0,6360.0,220.0,18.63,20.87,25.0,35.0,True,79
+2025-07-01,Barilla Group,Barilla,Barilla Penne 500g,6001110004,Shoprite,Western Cape,130500.0,6760.0,220.0,19.3,21.62,30.0,40.0,True,80
+2025-07-01,Tiger Brands,Fatti's & Moni's,Fatti's & Moni's Spaghetti 500g,6001110001,Spar,KwaZulu-Natal,98500.0,5560.0,260.0,17.72,19.85,15.0,25.0,False,81
+2025-07-01,Nestle,Maggi,Maggi 2-Minute Noodles Chicken 73g,6001110002,Spar,KwaZulu-Natal,110500.0,5960.0,260.0,18.54,20.76,20.0,30.0,True,82
+2025-07-01,Indofood,Indomie,Indomie Mi Goreng 80g,6001110003,Spar,KwaZulu-Natal,122500.0,6360.0,260.0,19.26,21.57,25.0,35.0,True,83
+2025-07-01,Barilla Group,Barilla,Barilla Penne 500g,6001110004,Spar,KwaZulu-Natal,134500.0,6760.0,260.0,19.9,22.29,30.0,40.0,True,84
+2025-08-01,Tiger Brands,Fatti's & Moni's,Fatti's & Moni's Spaghetti 500g,6001110001,Pick n Pay,Gauteng,92000.0,5640.0,180.0,16.31,18.27,15.0,25.0,False,85
+2025-08-01,Nestle,Maggi,Maggi 2-Minute Noodles Chicken 73g,6001110002,Pick n Pay,Gauteng,104000.0,6040.0,180.0,17.22,19.29,20.0,30.0,True,86
+2025-08-01,Indofood,Indomie,Indomie Mi Goreng 80g,6001110003,Pick n Pay,Gauteng,116000.0,6440.0,180.0,18.01,20.17,25.0,35.0,True,87
+2025-08-01,Barilla Group,Barilla,Barilla Penne 500g,6001110004,Pick n Pay,Gauteng,128000.0,6840.0,180.0,18.71,20.96,30.0,40.0,True,88
+2025-08-01,Tiger Brands,Fatti's & Moni's,Fatti's & Moni's Spaghetti 500g,6001110001,Shoprite,Western Cape,96000.0,5640.0,220.0,17.02,19.06,15.0,25.0,False,89
+2025-08-01,Nestle,Maggi,Maggi 2-Minute Noodles Chicken 73g,6001110002,Shoprite,Western Cape,108000.0,6040.0,220.0,17.88,20.03,20.0,30.0,True,90
+2025-08-01,Indofood,Indomie,Indomie Mi Goreng 80g,6001110003,Shoprite,Western Cape,120000.0,6440.0,220.0,18.63,20.87,25.0,35.0,True,91
+2025-08-01,Barilla Group,Barilla,Barilla Penne 500g,6001110004,Shoprite,Western Cape,132000.0,6840.0,220.0,19.3,21.62,30.0,40.0,True,92
+2025-08-01,Tiger Brands,Fatti's & Moni's,Fatti's & Moni's Spaghetti 500g,6001110001,Spar,KwaZulu-Natal,100000.0,5640.0,260.0,17.73,19.86,15.0,25.0,False,93
+2025-08-01,Nestle,Maggi,Maggi 2-Minute Noodles Chicken 73g,6001110002,Spar,KwaZulu-Natal,112000.0,6040.0,260.0,18.54,20.76,20.0,30.0,True,94
+2025-08-01,Indofood,Indomie,Indomie Mi Goreng 80g,6001110003,Spar,KwaZulu-Natal,124000.0,6440.0,260.0,19.25,21.56,25.0,35.0,True,95
+2025-08-01,Barilla Group,Barilla,Barilla Penne 500g,6001110004,Spar,KwaZulu-Natal,136000.0,6840.0,260.0,19.88,22.27,30.0,40.0,True,96
+2025-09-01,Tiger Brands,Fatti's & Moni's,Fatti's & Moni's Spaghetti 500g,6001110001,Pick n Pay,Gauteng,93500.0,5720.0,180.0,16.35,18.31,15.0,25.0,False,97
+2025-09-01,Nestle,Maggi,Maggi 2-Minute Noodles Chicken 73g,6001110002,Pick n Pay,Gauteng,105500.0,6120.0,180.0,17.24,19.31,20.0,30.0,True,98
+2025-09-01,Indofood,Indomie,Indomie Mi Goreng 80g,6001110003,Pick n Pay,Gauteng,117500.0,6520.0,180.0,18.02,20.18,25.0,35.0,True,99
+2025-09-01,Barilla Group,Barilla,Barilla Penne 500g,6001110004,Pick n Pay,Gauteng,129500.0,6920.0,180.0,18.71,20.96,30.0,40.0,True,100
+2025-09-01,Tiger Brands,Fatti's & Moni's,Fatti's & Moni's Spaghetti 500g,6001110001,Shoprite,Western Cape,97500.0,5720.0,220.0,17.05,19.1,15.0,25.0,False,101
+2025-09-01,Nestle,Maggi,Maggi 2-Minute Noodles Chicken 73g,6001110002,Shoprite,Western Cape,109500.0,6120.0,220.0,17.89,20.04,20.0,30.0,True,102
+2025-09-01,Indofood,Indomie,Indomie Mi Goreng 80g,6001110003,Shoprite,Western Cape,121500.0,6520.0,220.0,18.63,20.87,25.0,35.0,True,103
+2025-09-01,Barilla Group,Barilla,Barilla Penne 500g,6001110004,Shoprite,Western Cape,133500.0,6920.0,220.0,19.29,21.6,30.0,40.0,True,104
+2025-09-01,Tiger Brands,Fatti's & Moni's,Fatti's & Moni's Spaghetti 500g,6001110001,Spar,KwaZulu-Natal,101500.0,5720.0,260.0,17.74,19.87,15.0,25.0,False,105
+2025-09-01,Nestle,Maggi,Maggi 2-Minute Noodles Chicken 73g,6001110002,Spar,KwaZulu-Natal,113500.0,6120.0,260.0,18.55,20.78,20.0,30.0,True,106
+2025-09-01,Indofood,Indomie,Indomie Mi Goreng 80g,6001110003,Spar,KwaZulu-Natal,125500.0,6520.0,260.0,19.25,21.56,25.0,35.0,True,107
+2025-09-01,Barilla Group,Barilla,Barilla Penne 500g,6001110004,Spar,KwaZulu-Natal,137500.0,6920.0,260.0,19.87,22.25,30.0,40.0,True,108
+2025-10-01,Tiger Brands,Fatti's & Moni's,Fatti's & Moni's Spaghetti 500g,6001110001,Pick n Pay,Gauteng,95000.0,5800.0,180.0,16.38,18.35,15.0,25.0,False,109
+2025-10-01,Nestle,Maggi,Maggi 2-Minute Noodles Chicken 73g,6001110002,Pick n Pay,Gauteng,107000.0,6200.0,180.0,17.26,19.33,20.0,30.0,True,110
+2025-10-01,Indofood,Indomie,Indomie Mi Goreng 80g,6001110003,Pick n Pay,Gauteng,119000.0,6600.0,180.0,18.03,20.19,25.0,35.0,True,111
+2025-10-01,Barilla Group,Barilla,Barilla Penne 500g,6001110004,Pick n Pay,Gauteng,131000.0,7000.0,180.0,18.71,20.96,30.0,40.0,True,112
+2025-10-01,Tiger Brands,Fatti's & Moni's,Fatti's & Moni's Spaghetti 500g,6001110001,Shoprite,Western Cape,99000.0,5800.0,220.0,17.07,19.12,15.0,25.0,False,113
+2025-10-01,Nestle,Maggi,Maggi 2-Minute Noodles Chicken 73g,6001110002,Shoprite,Western Cape,111000.0,6200.0,220.0,17.9,20.05,20.0,30.0,True,114
+2025-10-01,Indofood,Indomie,Indomie Mi Goreng 80g,6001110003,Shoprite,Western Cape,123000.0,6600.0,220.0,18.64,20.88,25.0,35.0,True,115
+2025-10-01,Barilla Group,Barilla,Barilla Penne 500g,6001110004,Shoprite,Western Cape,135000.0,7000.0,220.0,19.29,21.6,30.0,40.0,True,116
+2025-10-01,Tiger Brands,Fatti's & Moni's,Fatti's & Moni's Spaghetti 500g,6001110001,Spar,KwaZulu-Natal,103000.0,5800.0,260.0,17.76,19.89,15.0,25.0,False,117
+2025-10-01,Nestle,Maggi,Maggi 2-Minute Noodles Chicken 73g,6001110002,Spar,KwaZulu-Natal,115000.0,6200.0,260.0,18.55,20.78,20.0,30.0,True,118
+2025-10-01,Indofood,Indomie,Indomie Mi Goreng 80g,6001110003,Spar,KwaZulu-Natal,127000.0,6600.0,260.0,19.24,21.55,25.0,35.0,True,119
+2025-10-01,Barilla Group,Barilla,Barilla Penne 500g,6001110004,Spar,KwaZulu-Natal,139000.0,7000.0,260.0,19.86,22.24,30.0,40.0,True,120
+2025-11-01,Tiger Brands,Fatti's & Moni's,Fatti's & Moni's Spaghetti 500g,6001110001,Pick n Pay,Gauteng,96500.0,5880.0,180.0,16.41,18.38,15.0,25.0,False,121
+2025-11-01,Nestle,Maggi,Maggi 2-Minute Noodles Chicken 73g,6001110002,Pick n Pay,Gauteng,108500.0,6280.0,180.0,17.28,19.35,20.0,30.0,True,122
+2025-11-01,Indofood,Indomie,Indomie Mi Goreng 80g,6001110003,Pick n Pay,Gauteng,120500.0,6680.0,180.0,18.04,20.2,25.0,35.0,True,123
+2025-11-01,Barilla Group,Barilla,Barilla Penne 500g,6001110004,Pick n Pay,Gauteng,132500.0,7080.0,180.0,18.71,20.96,30.0,40.0,True,124
+2025-11-01,Tiger Brands,Fatti's & Moni's,Fatti's & Moni's Spaghetti 500g,6001110001,Shoprite,Western Cape,100500.0,5880.0,220.0,17.09,19.14,15.0,25.0,False,125
+2025-11-01,Nestle,Maggi,Maggi 2-Minute Noodles Chicken 73g,6001110002,Shoprite,Western Cape,112500.0,6280.0,220.0,17.91,20.06,20.0,30.0,True,126
+2025-11-01,Indofood,Indomie,Indomie Mi Goreng 80g,6001110003,Shoprite,Western Cape,124500.0,6680.0,220.0,18.64,20.88,25.0,35.0,True,127
+2025-11-01,Barilla Group,Barilla,Barilla Penne 500g,6001110004,Shoprite,Western Cape,136500.0,7080.0,220.0,19.28,21.59,30.0,40.0,True,128
+2025-11-01,Tiger Brands,Fatti's & Moni's,Fatti's & Moni's Spaghetti 500g,6001110001,Spar,KwaZulu-Natal,104500.0,5880.0,260.0,17.77,19.9,15.0,25.0,False,129
+2025-11-01,Nestle,Maggi,Maggi 2-Minute Noodles Chicken 73g,6001110002,Spar,KwaZulu-Natal,116500.0,6280.0,260.0,18.55,20.78,20.0,30.0,True,130
+2025-11-01,Indofood,Indomie,Indomie Mi Goreng 80g,6001110003,Spar,KwaZulu-Natal,128500.0,6680.0,260.0,19.24,21.55,25.0,35.0,True,131
+2025-11-01,Barilla Group,Barilla,Barilla Penne 500g,6001110004,Spar,KwaZulu-Natal,140500.0,7080.0,260.0,19.84,22.22,30.0,40.0,True,132
+2025-12-01,Tiger Brands,Fatti's & Moni's,Fatti's & Moni's Spaghetti 500g,6001110001,Pick n Pay,Gauteng,98000.0,5960.0,180.0,16.44,18.41,15.0,25.0,False,133
+2025-12-01,Nestle,Maggi,Maggi 2-Minute Noodles Chicken 73g,6001110002,Pick n Pay,Gauteng,110000.0,6360.0,180.0,17.3,19.38,20.0,30.0,True,134
+2025-12-01,Indofood,Indomie,Indomie Mi Goreng 80g,6001110003,Pick n Pay,Gauteng,122000.0,6760.0,180.0,18.05,20.22,25.0,35.0,True,135
+2025-12-01,Barilla Group,Barilla,Barilla Penne 500g,6001110004,Pick n Pay,Gauteng,134000.0,7160.0,180.0,18.72,20.97,30.0,40.0,True,136
+2025-12-01,Tiger Brands,Fatti's & Moni's,Fatti's & Moni's Spaghetti 500g,6001110001,Shoprite,Western Cape,102000.0,5960.0,220.0,17.11,19.16,15.0,25.0,False,137
+2025-12-01,Nestle,Maggi,Maggi 2-Minute Noodles Chicken 73g,6001110002,Shoprite,Western Cape,114000.0,6360.0,220.0,17.92,20.07,20.0,30.0,True,138
+2025-12-01,Indofood,Indomie,Indomie Mi Goreng 80g,6001110003,Shoprite,Western Cape,126000.0,6760.0,220.0,18.64,20.88,25.0,35.0,True,139
+2025-12-01,Barilla Group,Barilla,Barilla Penne 500g,6001110004,Shoprite,Western Cape,138000.0,7160.0,220.0,19.27,21.58,30.0,40.0,True,140
+2025-12-01,Tiger Brands,Fatti's & Moni's,Fatti's & Moni's Spaghetti 500g,6001110001,Spar,KwaZulu-Natal,106000.0,5960.0,260.0,17.79,19.92,15.0,25.0,False,141
+2025-12-01,Nestle,Maggi,Maggi 2-Minute Noodles Chicken 73g,6001110002,Spar,KwaZulu-Natal,118000.0,6360.0,260.0,18.55,20.78,20.0,30.0,True,142
+2025-12-01,Indofood,Indomie,Indomie Mi Goreng 80g,6001110003,Spar,KwaZulu-Natal,130000.0,6760.0,260.0,19.23,21.54,25.0,35.0,True,143
+2025-12-01,Barilla Group,Barilla,Barilla Penne 500g,6001110004,Spar,KwaZulu-Natal,142000.0,7160.0,260.0,19.83,22.21,30.0,40.0,True,144
