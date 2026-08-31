@@ -1,0 +1,31 @@
+REDDIT LIVE SOCIAL DATA VALIDATION
+
+REDDIT LIVE STATUS = UNAVAILABLE
+
+1. Records retrieved: 0
+2. Records after deduplication: 0
+3. South Africa-specific records: 0
+4. Records by brand: none
+5. Records by category: none
+6. Top consumer themes: none
+7. Sentiment distribution: none
+8. Positive themes: none
+9. Negative themes: none
+10. Emerging consumer concerns:
+- none
+11. Emerging consumer opportunities:
+- none
+12. Source/subreddit distribution: none
+13. Date range: None to None
+14. Data-quality issues:
+- REDDIT LIVE STATUS = UNAVAILABLE. Credentials were missing, Reddit could not be reached, or no records were returned. Fixtures were not substituted.
+- OAuth credentials were not provided. Set REDDIT_CLIENT_ID and REDDIT_CLIENT_SECRET. Unauthenticated JSON is blocked (HTTP 403) and robots.txt disallows crawling (Disallow: /).
+15. Example source URLs:
+- none
+
+Social sentiment is directional only. It is not treated as a cause of sales.
+Commercial Brain confidence was not upgraded from Reddit sentiment.
+observation_start: 2026-06-02T13:28:52Z
+observation_end: 2026-08-31T13:28:52Z
+collection_timestamp: 2026-08-31T13:28:52Z
+Unknown geography records: 0
