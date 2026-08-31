@@ -6,8 +6,15 @@ from pathlib import Path
 
 import pytest
 
-from backend.agents.price import PriceAgentStatus, PriceLoadError, run_price
+from backend.agents.price import (
+    FROZEN_V1_LIMITATIONS,
+    PRICE_AGENT_VERSION,
+    PriceAgentStatus,
+    PriceLoadError,
+    run_price,
+)
 from backend.agents.price.__main__ import build_parser
+from backend.agents.price.models import load_price_config
 from backend.tests.price_helpers import commercial_row, panel_for_product, write_commercial
 
 
@@ -35,6 +42,8 @@ def test_agent_writes_report_and_excludes_competitors(tmp_path: Path) -> None:
     path = write_commercial(tmp_path / "data" / "integrated" / "panel.commercial.csv", rows)
     report = run_price(path, data_root=tmp_path / "data")
     assert report.status == PriceAgentStatus.READY_WITH_WARNINGS
+    assert report.version == PRICE_AGENT_VERSION
+    assert report.frozen is True
     assert report.opportunity_label == "Estimated price opportunity"
     assert report.causality_claim == "none"
     assert report.manufacturer == "Unilever"
@@ -43,12 +52,24 @@ def test_agent_writes_report_and_excludes_competitors(tmp_path: Path) -> None:
     assert (tmp_path / "data" / "price_reports" / "panel.price.json").exists()
     assert report.top_retailers
     assert report.price_signal_summary
+    assert all(note in report.limitations for note in FROZEN_V1_LIMITATIONS)
 
 
 def test_cli_help_mentions_directional_not_elasticity() -> None:
     help_text = build_parser().format_help()
     assert "canonical" in help_text.lower() or "integrated" in help_text.lower()
     assert "elasticity" in help_text.lower()
+
+
+def test_v1_freeze_does_not_relax_confidence_or_capture_rate() -> None:
+    config = load_price_config()
+    assert PRICE_AGENT_VERSION == "V1"
+    assert config.min_history_for_high_confidence == 8
+    assert config.capture_rate == 0.25
+    assert config.opportunity_label == "Estimated price opportunity"
+    assert any("0.25 capture-rate" in note for note in FROZEN_V1_LIMITATIONS)
+    assert any("not guaranteed incremental sales" in note.lower() for note in FROZEN_V1_LIMITATIONS)
+    assert any("causal elasticity" in note.lower() for note in FROZEN_V1_LIMITATIONS)
 
 
 def test_real_integrated_file_if_present() -> None:
@@ -60,7 +81,10 @@ def test_real_integrated_file_if_present() -> None:
     assert report.manufacturer == "Unilever"
     assert report.current_period == "2026-08-16"
     assert report.status == PriceAgentStatus.READY_WITH_WARNINGS
+    assert report.version == "V1"
+    assert report.frozen is True
     assert report.causality_claim == "none"
     assert report.confidence_distribution.get("HIGH", 0) == 0
+    assert all(note in report.limitations for note in FROZEN_V1_LIMITATIONS)
     assert "26 July" in " ".join(report.limitations) or "July" in " ".join(report.limitations)
     assert all(item.opportunity_label == "Estimated price opportunity" for item in report.top_price_opportunities)

@@ -14,6 +14,8 @@ from backend.agents.price.evaluate import attach_derived, evaluate_grain
 from backend.agents.price.loader import PriceLoadError, load_integrated_unilever
 from backend.agents.price.models import (
     DEFAULT_CONFIG_PATH,
+    FROZEN_V1_LIMITATIONS,
+    PRICE_AGENT_VERSION,
     PriceAgentStatus,
     PriceConfig,
     PriceReport,
@@ -53,21 +55,15 @@ def _limitations(
     mixed: int,
 ) -> list[str]:
     notes = [
-        "Price Agent V1 produces directional price insights and estimated price-test opportunities, "
-        "not causal elasticity or guaranteed incremental sales.",
-        "off_promo_rsp / on_promo_rsp is not treated as normal shelf price.",
+        "Price Agent V1 is frozen. Do not raise confidence, lower the 8-week HIGH threshold, "
+        "or convert directional signals into causal elasticity.",
+        *FROZEN_V1_LIMITATIONS,
         "Promotion Indicator 0/1 in the source extract is a stacked state, not a grain-level promo flag.",
-        "Missing promotion metrics are not converted to zero; uncontrolled promo blocks price-change tests.",
         "A lower price with higher volume/store is never sufficient on its own to recommend a price cut.",
         "Low distribution plus low sales is flagged as 'Distribution likely primary lever' instead of a price cut.",
+        "26 July is kept as history where POS price exists; that week has no dedicated price/promo extract.",
     ]
-    if len(periods) < 12:
-        notes.append(
-            f"Only {len(periods)} Unilever POS week(s) are in the canonical table; overlapping price/promo "
-            "coverage is shorter still, and 4 Weeks CY fields may be rolling."
-        )
-    notes.append("26 July is kept as history where POS price exists; that week has no dedicated price/promo extract.")
-    notes.append("Product names can map to multiple ProductsID values; SKU identity is the product name.")
+    notes.append(f"Period list in this run: {', '.join(periods) if periods else 'none'}.")
     notes.append(f"Current-period grains evaluated: {evaluated}.")
     if insufficient:
         notes.append(f"{insufficient} grain(s) were INSUFFICIENT EVIDENCE.")
@@ -172,6 +168,8 @@ def run_price(
     status = _status(evaluated)
     report = PriceReport(
         status=status,
+        version=PRICE_AGENT_VERSION,
+        frozen=True,
         opportunity_label=config.opportunity_label,
         manufacturer=config.manufacturer,
         current_period=current_period.strftime("%Y-%m-%d"),
