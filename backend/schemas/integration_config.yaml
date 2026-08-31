@@ -1,0 +1,49 @@
+# Commercial Data Integration Layer.
+# Join grain is Product × Retailer × Region × Date.
+# ProductsID is retained as lineage only — never used as the primary join key.
+# Do not edit Data QA or Distribution agents to change this layout.
+
+join_key:
+  - product
+  - retailer
+  - region
+  - date
+
+promo_date_format: "%d %b %y"
+promo_date_column: DDMMMYY
+promotion_indicator_column: Promotion Indicator
+off_promo_indicator: 0
+on_promo_indicator: 1
+
+# Source column names from the committed Unilever price/promotion extract.
+promo_columns:
+  product: Product
+  manufacturer: Manufacturer
+  brand: Brand
+  retailer: Retailer
+  region: Region
+  productsid: ProductsID
+  ave_price_quantity: 4 Weeks CY Ave Price Quantity
+  rsp_on_promo: 4 Weeks CY Ave RSP On Promo
+  sales_on_promo: 4 Weeks CY Sales On Promo
+  time_on_promo: CY % Time On Promo
+  sales_pct_on_promo: 4 Weeks CY % Sales On Promo
+
+# Cleaned POS columns produced by the Data QA Agent (already canonical names).
+pos_columns:
+  product: product
+  manufacturer: manufacturer
+  brand: brand
+  retailer: retailer
+  region: region
+  date: date
+  sales_value: sales_value
+  sales_volume: sales_volume
+  store_count: store_count
+  current_price: current_price
+  percent_time_on_promo: percent_time_on_promo
+  percent_sales_on_promo: percent_sales_on_promo
+  source_row: _source_row
+
+default_pos_path: backend/data/clean/New Discovery_2026-08-27 (3).clean.csv
+default_price_promo_path: Unilever_Price_Promo_4weeks.csv
