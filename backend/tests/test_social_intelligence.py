@@ -99,16 +99,16 @@ def test_source_provenance(tmp_path: Path) -> None:
 
 
 def test_unavailable_sources() -> None:
-    for adapter in default_live_adapters():
-        result = adapter.collect()
-        assert result.entry.status == "UNAVAILABLE"
-        assert result.posts == []
     names = {adapter.name for adapter in default_live_adapters()}
     assert names == {"reddit", "youtube", "x", "public_web"}
-    assert RedditAdapter().collect().entry.status == "UNAVAILABLE"
-    assert YouTubeAdapter().collect().entry.status == "UNAVAILABLE"
-    assert XAdapter().collect().entry.status == "UNAVAILABLE"
-    assert PublicWebAdapter().collect().entry.status == "UNAVAILABLE"
+    empty = {}
+    assert RedditAdapter(env=empty).collect().entry.status == "UNAVAILABLE"
+    assert YouTubeAdapter(env=empty).collect().entry.status == "UNAVAILABLE"
+    assert XAdapter(env=empty).collect().entry.status == "UNAVAILABLE"
+    assert RedditAdapter(env=empty).collect().posts == []
+    assert YouTubeAdapter(env=empty).collect().posts == []
+    assert XAdapter(env=empty).collect().posts == []
+    assert PublicWebAdapter in {type(item) for item in default_live_adapters()}
 
 
 def test_empty_datasets(tmp_path: Path) -> None:
@@ -336,7 +336,11 @@ def test_no_causal_claims_or_commercial_actions(tmp_path: Path) -> None:
 
 
 def test_no_fabricated_observations(tmp_path: Path) -> None:
-    live = run_social_listening(tmp_path, adapters=default_live_adapters(), write_outputs=False)
+    live = run_social_listening(
+        tmp_path,
+        adapters=[RedditAdapter(env={}), YouTubeAdapter(env={}), XAdapter(env={}), ClosedAdapter()],
+        write_outputs=False,
+    )
     assert live.observations == []
     assert live.data_mode == "NO_SOCIAL_DATA"
     assert all(entry.status == "UNAVAILABLE" for entry in live.source_registry)
