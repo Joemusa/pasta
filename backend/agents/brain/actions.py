@@ -64,7 +64,13 @@ def action_why(opp: BrainOpportunity) -> str:
 
 def select_top_actions(opportunities: list[BrainOpportunity], config: BrainConfig) -> list[BrainAction]:
     ranked = sorted(
-        [item for item in opportunities if item.dominant_lever != DominantLever.INSUFFICIENT_EVIDENCE.value],
+        [
+            item
+            for item in opportunities
+            if item.dominant_lever != DominantLever.INSUFFICIENT_EVIDENCE.value
+            and item.opportunity_value >= config.min_primary_value
+            and item.opportunity_volume >= config.min_action_volume
+        ],
         key=lambda item: (-item.priority_score, -item.opportunity_value, item.product),
     )
     picked: list[BrainOpportunity] = []
@@ -167,7 +173,8 @@ def headline_support(story: Storytelling, actions: list[BrainAction]) -> str:
             "The three actions below are scored for size, evidence, actionability, "
             "and data quality — not by adding distribution, price, and promotion together."
         )
-        return f"{story.core_message} {scored} {story.quantified_opportunity}"
+        message = story.core_message.rstrip(".")
+        return f"{message}. {scored} {story.quantified_opportunity}"
     return story.quantified_opportunity
 
 

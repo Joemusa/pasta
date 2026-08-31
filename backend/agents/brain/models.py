@@ -75,6 +75,7 @@ class BrainConfig(BaseModel):
     mixed_promo_penalty: float = 0.10
     max_actions_per_product: int = 2
     max_actions_per_lever: int = 2
+    min_action_volume: float = 0.01
     output_top_n: int = 10
 
 

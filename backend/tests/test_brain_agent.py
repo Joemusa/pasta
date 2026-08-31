@@ -90,6 +90,7 @@ def test_brain_emits_exactly_three_actions_and_does_not_sum(tmp_path: Path) -> N
     assert gauteng.opportunity_value != gauteng.gross_estimated_value
     assert report.double_counting_conflicts_resolved >= 1
     assert all(item.estimated_value >= 0 and item.estimated_volume >= 0 for item in report.top_actions)
+    assert all(item.estimated_volume > 0 for item in report.top_actions)
     assert all(note in report.limitations for note in V1_LIMITATIONS)
     assert (root / "brain_reports" / "panel.brain.json").exists()
 

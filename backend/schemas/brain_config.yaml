@@ -39,4 +39,8 @@ mixed_promo_penalty: 0.10
 max_actions_per_product: 2
 max_actions_per_lever: 2
 
+# Top actions must carry both value and volume. Zero-volume price-increase value is kept in the
+# opportunity list but is not one of the three management actions.
+min_action_volume: 0.01
+
 output_top_n: 10
