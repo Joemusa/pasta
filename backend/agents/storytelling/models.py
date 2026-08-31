@@ -33,7 +33,8 @@ V1_LIMITATIONS = [
     "Dashboard and PDF layers are not built in this sprint.",
     "Frozen macro context is supporting background only and is attached only when it supports the POS story.",
     "Macro HIGH confidence is the label on the frozen signal; it does not upgrade POS or Commercial Brain confidence.",
-    "Macro context is not a causal explanation of POS gaps. Addressable opportunity remains not guaranteed incremental sales.",
+    "Macro context is not a causal explanation of POS gaps.",
+    "Addressable opportunity remains not guaranteed incremental sales.",
     "Macro context does not add Price or Promotion actions or force lever variety.",
 ]
 

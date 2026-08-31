@@ -69,6 +69,11 @@
     "Addressable value and addressable volume are not guaranteed incremental sales.",
     "No capture rate is introduced by the Storytelling Engine.",
     "Dashboard and PDF layers are not built in this sprint.",
+    "Frozen macro context is supporting background only and is attached only when it supports the POS story.",
+    "Macro HIGH confidence is the label on the frozen signal; it does not upgrade POS or Commercial Brain confidence.",
+    "Macro context is not a causal explanation of POS gaps.",
+    "Addressable opportunity remains not guaranteed incremental sales.",
+    "Macro context does not add Price or Promotion actions or force lever variety.",
     "Commercial Brain V1 converts frozen specialist outputs into a small set of actions. It does not re-run Data QA, Distribution, Price, or Promotion agents.",
     "4 POS weeks currently available.",
     "3 overlapping price/promotion weeks.",
@@ -88,5 +93,27 @@
     "Grains with at least one specialist flag: 2048.",
     "Double-counting conflicts resolved: 279.",
     "Dashboard, PDF, macroeconomic, and social-media layers are not built in this sprint."
-  ]
+  ],
+  "macro_context": {
+    "included": true,
+    "role": "supporting_context",
+    "version": "V1",
+    "signal": "Consumer pressure increasing",
+    "evidence": "FNB/BER CCI = -19",
+    "direction": "NEGATIVE",
+    "relevance": "HIGH",
+    "supports_pos_story": true,
+    "commercial_implication": "Consumers are likely to remain value-conscious, increasing the importance of availability and targeted price/promotion execution.",
+    "confidence": "HIGH",
+    "sources": [
+      "SARB",
+      "BER",
+      "Stats SA"
+    ],
+    "supporting_line": "Supporting context: consumer pressure increasing (FNB/BER CCI = -19).",
+    "causality_disclaimer": "Macro context is supporting background only. It does not cause or recalculate POS opportunities.",
+    "evidence_as_of": null,
+    "source_path": "backend/data/macro_context/macro_context_v1.json",
+    "exclusion_reason": null
+  }
 }
