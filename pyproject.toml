@@ -14,10 +14,12 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
     "pytest>=8.0",
+    "ruff>=0.6",
 ]
 
 [project.scripts]
 data-qa = "backend.agents.data_qa.__main__:main"
+distribution = "backend.agents.distribution.__main__:main"
 
 [tool.pytest.ini_options]
 pythonpath = ["."]

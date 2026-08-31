@@ -2,19 +2,21 @@
 
 Sprint 1 delivers a **deterministic Data QA Agent**. It inspects uploaded POS CSV/Excel files, maps columns onto a canonical commercial schema, standardises types, validates quality, flags outliers without deleting them, and writes a structured QA report plus a cleaned dataset for downstream agents.
 
-The agent never uses an LLM to decide whether data is valid. Future agents (Distribution, Price, Promotion, and others) are not implemented in this sprint; the QA report exposes explicit capability flags they will consume.
+Sprint 2 delivers a **deterministic Distribution Agent**. It reads only the cleaned Unilever table from Data QA, measures under-distribution at SKU × retailer × region on the latest period, and reports an **estimated distribution opportunity** (not guaranteed incremental sales). Price, Promotion, and Commercial Brain agents are not implemented yet.
 
 ## Layout
 
 ```
 backend/
-  agents/data_qa/     # load, map, standardise, validate, outliers, capabilities
-  schemas/            # canonical fields, aliases, QA thresholds
+  agents/data_qa/        # load, map, standardise, validate, outliers, capabilities
+  agents/distribution/   # Unilever distribution gaps on cleaned data only
+  schemas/               # canonical fields, aliases, QA and distribution thresholds
   tests/
   data/
-    raw/              # preserved originals (never overwritten)
-    clean/            # standardised commercial tables
-    qa_reports/       # structured JSON reports
+    raw/                   # preserved originals (never overwritten)
+    clean/                 # standardised commercial tables
+    qa_reports/            # structured QA JSON reports
+    distribution_reports/  # estimated distribution opportunity JSON
 ```
 
 ## Install
@@ -46,6 +48,18 @@ python3 -m backend.agents.data_qa path/to/file.xlsx \
 - Clean output: `backend/data/clean/<stem>.clean.csv`
 - QA report: `backend/data/qa_reports/<stem>.qa.json`
 - Exit code `1` means `FAIL`; `0` means the file is usable (`PASS`, `PASS_WITH_WARNINGS`, or `PARTIAL_PASS`).
+
+## Distribution Agent
+
+From the repository root, point at the cleaned folder (or a single `*.clean.csv`). The agent will not read `data/raw/` when a clean extract is available; it refuses raw paths.
+
+```bash
+python3 -m backend.agents.distribution backend/data/clean/
+```
+
+- Manufacturer filter defaults to Unilever (`backend/schemas/distribution_config.yaml`); SKUs, retailers, and regions are not hard-coded.
+- Current metrics use the latest cleaned reporting period only.
+- Output: `backend/data/distribution_reports/<stem>.distribution.json`
 
 ## Tests
 
