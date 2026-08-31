@@ -1,0 +1,35 @@
+# Deterministic Distribution Agent thresholds. Override with --config.
+# Manufacturer is a filter, not a list of SKUs, retailers, or regions.
+
+manufacturer: Unilever
+
+# Number of trailing periods (including current) used for "recent high" stores.
+recent_periods: 2
+
+# Minimum other SKU×retailer regions (or SKU×region retailers) for a peer benchmark.
+min_peer_observations: 3
+
+# Statistic used for peer store counts.
+peer_statistic: median
+
+# Peak is a spike when it appears once and is at least this multiple of the median of the other observations.
+spike_ratio: 1.5
+
+# Need this many observations before a peak can be flagged as a temporary spike.
+min_periods_to_flag_spike: 3
+
+# Ignore sub-store noise; only emit opportunities with at least this many incremental stores.
+min_store_gap: 1.0
+
+min_history_for_high_confidence: 4
+min_history_for_medium_confidence: 2
+
+# Coefficient of variation of value-per-store above which confidence is reduced.
+value_per_store_cv_threshold: 0.35
+
+mad_threshold: 3.5
+
+# Regional peers whose store count is more than this multiple (or inverse) of the unit are excluded.
+peer_scale_ratio: 4.0
+
+output_top_n: 10

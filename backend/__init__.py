@@ -1,0 +1,1 @@
+"""FMCG Commercial Intelligence System."""

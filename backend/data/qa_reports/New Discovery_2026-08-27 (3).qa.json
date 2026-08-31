@@ -1,0 +1,356 @@
+{
+  "status": "PARTIAL_PASS",
+  "analysis_ready": true,
+  "quality_score": 12,
+  "critical_issues": [
+    {
+      "code": "IMPOSSIBLE_NEGATIVE",
+      "severity": "CRITICAL",
+      "message": "sales_value contains negative values",
+      "column": "sales_value",
+      "row_count": 23,
+      "sample_values": [
+        "-374.85",
+        "-73.98",
+        "-67.99",
+        "-34.95",
+        "-92.95"
+      ]
+    },
+    {
+      "code": "IMPOSSIBLE_NEGATIVE",
+      "severity": "CRITICAL",
+      "message": "sales_volume contains negative values",
+      "column": "sales_volume",
+      "row_count": 20,
+      "sample_values": [
+        "-11.25",
+        "-0.55",
+        "-0.75",
+        "-0.3",
+        "-1.5"
+      ]
+    }
+  ],
+  "warnings": [
+    {
+      "code": "EMPTY_METRIC_ROWS",
+      "severity": "WARNING",
+      "message": "67980 rows have no sales_value and no sales_volume and were excluded as unpopulated metric slots",
+      "column": null,
+      "row_count": 67980,
+      "sample_values": []
+    },
+    {
+      "code": "IMPOSSIBLE_PRICE",
+      "severity": "WARNING",
+      "message": "current_price must be > 0 where present",
+      "column": "current_price",
+      "row_count": 1,
+      "sample_values": [
+        "-39.215"
+      ]
+    },
+    {
+      "code": "IMPOSSIBLE_PERCENT",
+      "severity": "WARNING",
+      "message": "percent_sales_on_promo must be between 0 and 100 after standardisation",
+      "column": "percent_sales_on_promo",
+      "row_count": 5,
+      "sample_values": [
+        "-3.6001",
+        "-34.206",
+        "133.3333",
+        "106.9106",
+        "-0.199"
+      ]
+    },
+    {
+      "code": "MISSING_NORMAL_PRICE",
+      "severity": "WARNING",
+      "message": "Normal price is not present; price analysis will rely on current_price only",
+      "column": "normal_price",
+      "row_count": 0,
+      "sample_values": []
+    },
+    {
+      "code": "ZERO_SALES",
+      "severity": "WARNING",
+      "message": "sales_volume contains zeros",
+      "column": "sales_volume",
+      "row_count": 181,
+      "sample_values": []
+    },
+    {
+      "code": "SPARSE_HISTORY",
+      "severity": "WARNING",
+      "message": "Only 4 distinct dates remain after exclusions; minimum for robust history is 8",
+      "column": "date",
+      "row_count": 4,
+      "sample_values": []
+    },
+    {
+      "code": "OUTLIERS_FLAGGED",
+      "severity": "WARNING",
+      "message": "Flagged 20446 rows as potential outliers without deleting them: sales_value (12359), sales_volume (12948), store_count (14630), current_price (2984)",
+      "column": null,
+      "row_count": 20446,
+      "sample_values": []
+    }
+  ],
+  "info": [],
+  "capabilities": {
+    "distribution": true,
+    "price": false,
+    "promotion": false,
+    "macro_overlay": true,
+    "social_evidence": true,
+    "commercial_brain": true
+  },
+  "column_mapping": {
+    "4 Weeks CY Value": "sales_value",
+    "Manufacturer": "manufacturer",
+    "Product": "product",
+    "Region": "region",
+    "Retailer": "retailer",
+    "DDMMMYY": "date",
+    "CY % Time On Promo": "percent_time_on_promo",
+    "4 Weeks Store Count": "store_count",
+    "4 Weeks CY Ave Price Quantity": "current_price",
+    "4 Weeks CY Volume": "sales_volume",
+    "4 Weeks CY % Sales On Promo": "percent_sales_on_promo"
+  },
+  "unmapped_columns": [
+    "4 Weeks Volume Growth %",
+    "4 Weeks Value Growth %"
+  ],
+  "missing_canonical_fields": [
+    "brand",
+    "sku",
+    "normal_price",
+    "promotion_flag"
+  ],
+  "missing_value_counts": {
+    "sales_value": 67980,
+    "sales_volume": 67980,
+    "store_count": 67980,
+    "current_price": 67985,
+    "percent_time_on_promo": 117041,
+    "percent_sales_on_promo": 117041
+  },
+  "outliers": {
+    "total_flagged_rows": 20446,
+    "columns": [
+      {
+        "column": "sales_value",
+        "method": "mad",
+        "count": 12359,
+        "sample_source_rows": [
+          8,
+          9,
+          39,
+          40,
+          41,
+          42,
+          50,
+          51,
+          52,
+          53
+        ]
+      },
+      {
+        "column": "sales_volume",
+        "method": "mad",
+        "count": 12948,
+        "sample_source_rows": [
+          39,
+          40,
+          41,
+          42,
+          50,
+          51,
+          130,
+          131,
+          465,
+          466
+        ]
+      },
+      {
+        "column": "store_count",
+        "method": "mad",
+        "count": 14630,
+        "sample_source_rows": [
+          8,
+          9,
+          10,
+          39,
+          40,
+          41,
+          42,
+          50,
+          51,
+          52
+        ]
+      },
+      {
+        "column": "current_price",
+        "method": "mad",
+        "count": 2984,
+        "sample_source_rows": [
+          642,
+          646,
+          647,
+          648,
+          657,
+          658,
+          659,
+          660,
+          664,
+          665
+        ]
+      }
+    ]
+  },
+  "duplicates": {
+    "key_fields": [
+      "date",
+      "retailer",
+      "manufacturer",
+      "product",
+      "region"
+    ],
+    "duplicate_row_count": 0,
+    "unsafe_group_count": 0,
+    "safely_dropped": 0
+  },
+  "transformations": [
+    {
+      "code": "empty_to_null",
+      "message": "Converted 67980 empty/placeholder values to null",
+      "column": "sales_value",
+      "row_count": 67980
+    },
+    {
+      "code": "empty_to_null",
+      "message": "Converted 117041 empty/placeholder values to null",
+      "column": "percent_time_on_promo",
+      "row_count": 117041
+    },
+    {
+      "code": "empty_to_null",
+      "message": "Converted 67980 empty/placeholder values to null",
+      "column": "store_count",
+      "row_count": 67980
+    },
+    {
+      "code": "empty_to_null",
+      "message": "Converted 67985 empty/placeholder values to null",
+      "column": "current_price",
+      "row_count": 67985
+    },
+    {
+      "code": "empty_to_null",
+      "message": "Converted 66306 empty/placeholder values to null",
+      "column": "4_weeks_volume_growth_percent",
+      "row_count": 66306
+    },
+    {
+      "code": "empty_to_null",
+      "message": "Converted 67980 empty/placeholder values to null",
+      "column": "sales_volume",
+      "row_count": 67980
+    },
+    {
+      "code": "empty_to_null",
+      "message": "Converted 66057 empty/placeholder values to null",
+      "column": "4_weeks_value_growth_percent",
+      "row_count": 66057
+    },
+    {
+      "code": "empty_to_null",
+      "message": "Converted 117041 empty/placeholder values to null",
+      "column": "percent_sales_on_promo",
+      "row_count": 117041
+    },
+    {
+      "code": "dates_parsed",
+      "message": "Parsed 134032 dates (0 invalid)",
+      "column": "date",
+      "row_count": 134032
+    },
+    {
+      "code": "numeric_coerced",
+      "message": "Coerced numeric values (0 invalid)",
+      "column": "sales_value",
+      "row_count": 66052
+    },
+    {
+      "code": "numeric_coerced",
+      "message": "Coerced numeric values (0 invalid)",
+      "column": "sales_volume",
+      "row_count": 66052
+    },
+    {
+      "code": "numeric_coerced",
+      "message": "Coerced numeric values (0 invalid)",
+      "column": "store_count",
+      "row_count": 66052
+    },
+    {
+      "code": "numeric_coerced",
+      "message": "Coerced numeric values (0 invalid)",
+      "column": "current_price",
+      "row_count": 66047
+    },
+    {
+      "code": "percent_scaled_0_1_to_0_100",
+      "message": "Detected 0-1 percentage scale and standardised to 0-100",
+      "column": "percent_time_on_promo",
+      "row_count": 16991
+    },
+    {
+      "code": "percent_scaled_0_1_to_0_100",
+      "message": "Detected 0-1 percentage scale and standardised to 0-100",
+      "column": "percent_sales_on_promo",
+      "row_count": 16991
+    }
+  ],
+  "row_count_raw": 134032,
+  "row_count_clean": 66026,
+  "rows_dropped": 68006,
+  "distinct_dates": 8,
+  "date_min": "2025-07-27",
+  "date_max": "2026-08-16",
+  "invalid_date_count": 0,
+  "numeric_parse_failures": {},
+  "source_columns": [
+    "4 Weeks CY Value",
+    "Manufacturer",
+    "Product",
+    "Region",
+    "Retailer",
+    "DDMMMYY",
+    "CY % Time On Promo",
+    "4 Weeks Store Count",
+    "4 Weeks CY Ave Price Quantity",
+    "4 Weeks Volume Growth %",
+    "4 Weeks CY Volume",
+    "4 Weeks Value Growth %",
+    "4 Weeks CY % Sales On Promo"
+  ],
+  "header_row_index": 0,
+  "sheet_name": null,
+  "input_file": "backend/data/raw/New Discovery_2026-08-27 (3).csv",
+  "raw_preserved_at": "backend/data/raw/New Discovery_2026-08-27 (3).csv",
+  "clean_output_path": "backend/data/clean/New Discovery_2026-08-27 (3).clean.csv",
+  "report_output_path": "backend/data/qa_reports/New Discovery_2026-08-27 (3).qa.json",
+  "exclusions_output_path": "backend/data/qa_reports/New Discovery_2026-08-27 (3).exclusions.csv",
+  "exclusion_reason_counts": {
+    "EMPTY_METRICS": 67980,
+    "INVALID_SALES_VALUE": 23,
+    "INVALID_SALES_VOLUME": 20,
+    "INVALID_PERCENT": 5,
+    "INVALID_PRICE": 1
+  },
+  "generated_at": "2026-08-31T07:08:06.265372Z"
+}
