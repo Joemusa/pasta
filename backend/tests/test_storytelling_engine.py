@@ -124,6 +124,8 @@ def test_no_causal_or_guaranteed_incremental_claims() -> None:
     assert "3 overlapping weeks" in story.data_coverage
     assert story.commercial_implication
     assert "distribution expansion" in story.commercial_implication.lower()
+    assert story.macro_context.role == "absent"
+    assert story.macro_context.included is False
 
 
 def test_headline_builder_uses_repeating_retailer() -> None:

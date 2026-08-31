@@ -13,6 +13,7 @@ from backend.agents.storytelling.models import (
     HeroMetric,
     OneSlideStory,
     StoryAction,
+    absent_macro_context,
 )
 
 _GAP_EVIDENCE = re.compile(r"store gap\s+([0-9]+(?:\.[0-9]+)?)", re.IGNORECASE)
@@ -303,10 +304,12 @@ def build_story(slide: dict[str, Any]) -> OneSlideStory:
         methodology_note=METHODOLOGY_NOTE,
         data_coverage=data_coverage(slide),
         limitations=limitations(slide),
+        macro_context=absent_macro_context(),
     )
 
 
 def assert_no_unsupported_claims(story: OneSlideStory) -> None:
+    macro = story.macro_context
     blob = " ".join(
         [
             story.headline,
@@ -316,6 +319,11 @@ def assert_no_unsupported_claims(story: OneSlideStory) -> None:
             story.commercial_implication,
             story.methodology_note,
             " ".join(item.headline + " " + item.recommended_action for item in story.actions),
+            macro.supporting_line,
+            macro.signal or "",
+            macro.evidence or "",
+            macro.commercial_implication or "",
+            macro.causality_disclaimer,
         ]
     ).lower()
     if "guaranteed incremental sales" in blob and "not guaranteed incremental sales" not in blob:

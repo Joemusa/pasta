@@ -107,3 +107,39 @@ def write_one_slide(path: Path, payload: dict[str, object] | None = None) -> Pat
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload or brain_one_slide()), encoding="utf-8")
     return path
+
+
+def macro_pack(
+    *,
+    signal: str = "Consumer pressure increasing",
+    evidence: str = "FNB/BER CCI = -19",
+    direction: str = "NEGATIVE",
+    relevance: str = "HIGH",
+    supports_pos_story: bool = True,
+    commercial_implication: str = (
+        "Consumers are likely to remain value-conscious, increasing the importance of "
+        "availability and targeted price/promotion execution."
+    ),
+    confidence: str = "HIGH",
+    sources: list[str] | None = None,
+) -> dict[str, object]:
+    return {
+        "version": "V1",
+        "role": "supporting_context",
+        "signal": signal,
+        "evidence": evidence,
+        "direction": direction,
+        "relevance": relevance,
+        "supports_pos_story": supports_pos_story,
+        "commercial_implication": commercial_implication,
+        "confidence": confidence,
+        "sources": sources or ["SARB", "BER", "Stats SA"],
+        "evidence_as_of": None,
+    }
+
+
+def write_macro_pack(data_root: Path, payload: dict[str, object] | None = None) -> Path:
+    path = data_root / "macro_context" / "macro_context_v1.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload or macro_pack()), encoding="utf-8")
+    return path
