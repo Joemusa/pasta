@@ -186,6 +186,36 @@ def _iso_from_gdelt(value: str) -> str | None:
     return None
 
 
+def _subreddit_name(row: dict[str, Any]) -> str | None:
+    name = str(row.get("subreddit") or "").strip()
+    if name:
+        return name
+    permalink = str(row.get("permalink") or "")
+    if permalink.startswith("/r/"):
+        parts = permalink.split("/")
+        if len(parts) > 2 and parts[2]:
+            return parts[2]
+    return None
+
+
+def _reddit_geo(row: dict[str, Any], text: str, spec: dict[str, Any]) -> tuple[str | None, str | None]:
+    """Geography from subreddit metadata or post text. Search-query phrasing is not used."""
+    reddit = spec.get("reddit") or {}
+    subreddit = _subreddit_name(row)
+    country_map = {str(key).casefold(): str(value) for key, value in (reddit.get("subreddit_country") or {}).items()}
+    region_map = {str(key).casefold(): str(value) for key, value in (reddit.get("subreddit_region") or {}).items()}
+    country = country_map.get(subreddit.casefold()) if subreddit else None
+    region = region_map.get(subreddit.casefold()) if subreddit else None
+    if country is None:
+        blob = text.casefold()
+        for term in spec.get("south_african_terms") or []:
+            token = str(term).strip()
+            if token and token.casefold() in blob:
+                country = "ZA"
+                break
+    return country, region
+
+
 class RedditAdapter(SourceAdapter):
     name = "reddit"
     source_type = "social"
@@ -234,18 +264,28 @@ class RedditAdapter(SourceAdapter):
         search_url = str(cfg.get("search_url") or "https://oauth.reddit.com/search")
         headers = {"Authorization": f"Bearer {token}"}
         for query in queries:
+            params = {"q": query.text, "limit": str(limit), "sort": "new", "t": "month", "raw_json": "1"}
+            request_url = f"{search_url}?{urlencode(params)}"
             try:
-                params = {"q": query.text, "limit": str(limit), "sort": "new", "t": "month", "raw_json": "1"}
-                posts.extend(self._parse_listing(self.http.get(f"{search_url}?{urlencode(params)}", headers=headers)))
+                posts.extend(self._parse_listing(self.http.get(request_url, headers=headers)))
             except HttpError as exc:
                 errors.append(f"{query.query_id}:{exc}")
                 if exc.status_code == 429:
+                    delay = float(self.spec.get("rate_limit_sleep_seconds") or 0)
+                    if delay > 0:
+                        time.sleep(delay)
+                        try:
+                            posts.extend(self._parse_listing(self.http.get(request_url, headers=headers)))
+                            continue
+                        except HttpError as retry_exc:
+                            errors.append(f"{query.query_id}:retry:{retry_exc}")
                     break
         posts = _dedupe_posts(posts)
         notes = [
             "Reddit official OAuth application-only search. HTML crawling is not used.",
             "Author identifiers are passed through for hashing and are not stored as display names.",
-            "Country/region stay null unless Reddit supplies geography (language is not used as a proxy).",
+            "Country/region come from subreddit metadata or South African terms in the post text. "
+            "A search query containing 'South Africa' is not treated as geography evidence.",
         ]
         if errors:
             notes.append("Some Reddit queries failed: " + "; ".join(errors[:4]))
@@ -307,6 +347,7 @@ class RedditAdapter(SourceAdapter):
                     )
                 except (TypeError, ValueError, OSError, KeyError):
                     published = None
+            country, region = _reddit_geo(row, text, self.spec)
             posts.append(
                 RawPost(
                     source=self.name,
@@ -316,6 +357,8 @@ class RedditAdapter(SourceAdapter):
                     published_at=published,
                     text=text,
                     engagement=_num(row.get("score")),
+                    country=country,
+                    region=region,
                     data_quality=LIVE,
                 )
             )

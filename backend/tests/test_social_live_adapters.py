@@ -127,8 +127,10 @@ def test_reddit_adapter_parses_official_search() -> None:
     assert result.posts[0].data_quality == "LIVE"
     assert result.posts[0].source_url.startswith("https://www.reddit.com/")
     assert result.posts[0].published_at
-    assert result.posts[0].country is None
-    assert result.posts[0].engagement == 4
+    za = next(item for item in result.posts if item.source_url.endswith("sunlight/"))
+    assert za.country == "ZA"
+    assert za.region is None
+    assert za.engagement == 4
     missing = next(item for item in result.posts if item.source_url.endswith("nodate/"))
     assert missing.published_at is None
     assert all("[deleted]" not in item.text for item in result.posts)
@@ -448,3 +450,71 @@ def test_english_is_not_treated_as_south_africa() -> None:
     assert result.posts[0].country is None
     assert result.posts[0].region is None
     assert result.posts[0].language == "English"
+
+
+def test_reddit_geography_uses_subreddit_and_post_evidence_not_the_query() -> None:
+    http = FakeHttp(
+        {
+            ("POST", "access_token"): _json({"access_token": "tok"}),
+            ("GET", "oauth.reddit.com/search"): _json(
+                {
+                    "data": {
+                        "children": [
+                            {
+                                "data": {
+                                    "permalink": "/r/worldnews/comments/aa/unilever/",
+                                    "subreddit": "worldnews",
+                                    "title": "Unilever quarterly results",
+                                    "selftext": "Global earnings call.",
+                                    "author": "market_user",
+                                    "created_utc": 1754006400,
+                                }
+                            },
+                            {
+                                "data": {
+                                    "permalink": "/r/uk/comments/bb/tesco/",
+                                    "subreddit": "uk",
+                                    "title": "Unilever prices at Tesco",
+                                    "selftext": "",
+                                    "author": "shopper",
+                                    "created_utc": 1754006400,
+                                }
+                            },
+                            {
+                                "data": {
+                                    "permalink": "/r/gardening/comments/cc/shoprite/",
+                                    "subreddit": "gardening",
+                                    "title": "Sunlight dishwashing from Shoprite",
+                                    "selftext": "",
+                                    "author": "local",
+                                    "created_utc": 1754006400,
+                                }
+                            },
+                            {
+                                "data": {
+                                    "permalink": "/r/capetown/comments/dd/handy/",
+                                    "subreddit": "capetown",
+                                    "title": "Handy Andy restock",
+                                    "selftext": "",
+                                    "author": "ct_user",
+                                    "created_utc": 1754006400,
+                                }
+                            },
+                        ]
+                    }
+                }
+            ),
+        }
+    )
+    result = RedditAdapter(
+        http=http, env={"REDDIT_CLIENT_ID": "id", "REDDIT_CLIENT_SECRET": "secret"}, spec=_spec()
+    ).collect()
+    world = next(item for item in result.posts if "/r/worldnews/" in item.source_url)
+    uk = next(item for item in result.posts if "/r/uk/" in item.source_url)
+    shoprite = next(item for item in result.posts if "/r/gardening/" in item.source_url)
+    cape = next(item for item in result.posts if "/r/capetown/" in item.source_url)
+    assert world.country is None
+    assert uk.country is None
+    assert shoprite.country == "ZA"
+    assert cape.country == "ZA"
+    assert cape.region == "Cape Town"

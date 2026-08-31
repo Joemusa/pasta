@@ -61,12 +61,34 @@ south_african_terms:
   - pick n pay
   - spar
   - rand
+  - south africa
+  - cape town
+  - johannesburg
+  - gauteng
+  - durban
+  - pretoria
 
 reddit:
   token_url: "https://www.reddit.com/api/v1/access_token"
   search_url: "https://oauth.reddit.com/search"
   env_client_id: REDDIT_CLIENT_ID
   env_client_secret: REDDIT_CLIENT_SECRET
+  subreddit_country:
+    southafrica: ZA
+    capetown: ZA
+    johannesburg: ZA
+    durban: ZA
+    pretoria: ZA
+    gauteng: ZA
+    soweto: ZA
+    asksouthafrica: ZA
+  subreddit_region:
+    capetown: Cape Town
+    johannesburg: Johannesburg
+    durban: Durban
+    pretoria: Pretoria
+    gauteng: Gauteng
+    soweto: Soweto
 
 youtube:
   search_url: "https://www.googleapis.com/youtube/v3/search"
