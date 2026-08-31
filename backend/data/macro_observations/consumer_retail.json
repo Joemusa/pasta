@@ -1,0 +1,92 @@
+{
+  "agent": "ConsumerRetailAgent",
+  "version": "V1",
+  "retrieved_at": "2026-08-31",
+  "notes": [
+    "The existing FNB/BER CCI = -19 signal is retained.",
+    "BER supplies Q2 2026 and a 23 June 2026 upload date; those dates are copied from BER, not inferred from the frozen storytelling pack.",
+    "The frozen Storytelling Engine V1 pack keeps evidence_as_of null and is not modified.",
+    "June 2026 retail-sales YoY was not copied from a Stats SA PDF in this catalog and is therefore omitted."
+  ],
+  "series": [
+    {
+      "metric": "FNB_BER_CCI",
+      "unit": "index_point",
+      "frequency": "quarterly",
+      "date_convention": "quarter_end",
+      "source": "Bureau for Economic Research",
+      "source_url": "https://www.ber.ac.za/Documents/Index/FNBBER-Consumer-Confidence-Index",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": ["DISTRIBUTION", "PRICE", "PROMOTION"],
+      "fmcg_channels": ["CONSUMER_AFFORDABILITY", "RETAILER_PRESSURE"],
+      "higher_is": "stronger_confidence",
+      "observations": [
+        {"observation_date": "2025-06-30", "publication_date": "2025-06-26", "value": -10.0},
+        {"observation_date": "2026-03-31", "publication_date": "2026-03-24", "value": -7.0},
+        {"observation_date": "2026-06-30", "publication_date": "2026-06-23", "value": -19.0}
+      ]
+    },
+    {
+      "metric": "RETAIL_SALES_YOY",
+      "unit": "percent_yoy",
+      "frequency": "monthly",
+      "date_convention": "month_end",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/publications/P62421/P62421May2026.pdf",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": ["DISTRIBUTION", "PROMOTION"],
+      "fmcg_channels": ["CONSUMER_AFFORDABILITY", "RETAILER_PRESSURE"],
+      "higher_is": "stronger_demand",
+      "observations": [
+        {"observation_date": "2026-05-31", "publication_date": "2026-07-22", "value": 2.3, "note": "April YoY was not copied from the May release and is left null."}
+      ]
+    },
+    {
+      "metric": "RETAIL_SALES_MOM_SA",
+      "unit": "percent_mom",
+      "frequency": "monthly",
+      "date_convention": "month_end",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/publications/P62421/P62421May2026.pdf",
+      "fmcg_relevance": "MEDIUM",
+      "commercial_levers": ["PROMOTION"],
+      "fmcg_channels": ["RETAILER_PRESSURE"],
+      "higher_is": "stronger_demand",
+      "observations": [
+        {"observation_date": "2026-04-30", "publication_date": "2026-07-22", "value": 0.8},
+        {"observation_date": "2026-05-31", "publication_date": "2026-07-22", "value": 0.1}
+      ]
+    },
+    {
+      "metric": "HFCE_QOQ",
+      "unit": "percent",
+      "frequency": "quarterly",
+      "date_convention": "quarter_end",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/publications/P0441/Press%20release%20-%20Q1%202026.pdf",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": ["DISTRIBUTION", "PROMOTION"],
+      "fmcg_channels": ["CONSUMER_AFFORDABILITY"],
+      "higher_is": "stronger_demand",
+      "observations": [
+        {"observation_date": "2026-03-31", "publication_date": "2026-06-09", "value": 0.1, "note": "Previous-quarter HFCE was not copied from the Q1 2026 press release and is left null."}
+      ]
+    },
+    {
+      "metric": "BER_RETAIL_BUSINESS_CONFIDENCE",
+      "unit": "index_point",
+      "frequency": "quarterly",
+      "date_convention": "quarter_end",
+      "source": "Bureau for Economic Research",
+      "source_url": "https://www.ber.ac.za/Documents/Index/BER-Retail-Survey",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": ["DISTRIBUTION", "PROMOTION"],
+      "fmcg_channels": ["RETAILER_PRESSURE"],
+      "higher_is": "stronger_confidence",
+      "observations": [
+        {"observation_date": "2026-03-31", "publication_date": "2026-03-12", "value": 36.0},
+        {"observation_date": "2026-06-30", "publication_date": "2026-06-22", "value": 31.0}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+manufacturer: Unilever
+pos_period_start: "2026-07-26"
+pos_period_end: "2026-08-16"
+signal_strength:
+  percent_high: 0.5
+  percent_medium: 0.2
+  index_point_high: 5.0
+  index_point_medium: 2.0
+  fx_high: 0.5
+  fx_medium: 0.1
+  usd_high: 5.0
+  usd_medium: 2.0
+  cents_high: 50.0
+  cents_medium: 20.0
+causality_forbidden:
+  - will increase
+  - causes
+  - caused
+  - guaranteed incremental sales
+  - booked revenue
+limitations:
+  - Macro specialist agents consume sourced observation catalogs. They do not scrape on each run.
+  - Missing values stay null. Missing is never converted to zero.
+  - Observation dates are not inferred when the source does not provide them.
+  - Future macro observations are not used to explain historical POS periods.
+  - Macro context does not recalculate POS opportunities or change specialist POS confidence.
+  - Macro context does not create a new commercial action or claim causality.
+  - Addressable POS opportunity remains not guaranteed incremental sales.
+  - Dashboard and social-media layers are not built in this sprint.
+  - The frozen Storytelling Engine V1 macro pack is not modified by these agents.

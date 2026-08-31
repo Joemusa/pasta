@@ -1,0 +1,72 @@
+{
+  "agent": "RatesFXAgent",
+  "version": "V1",
+  "retrieved_at": "2026-08-31",
+  "notes": [
+    "Repo rate and inflation-expectation prints are copied from SARB and BER.",
+    "ZAR/USD averages are the official DMPR fuel-review window, not a live tick."
+  ],
+  "series": [
+    {
+      "metric": "SARB_POLICY_RATE",
+      "unit": "percent",
+      "frequency": "meeting",
+      "date_convention": "effective_date",
+      "source": "South African Reserve Bank",
+      "source_url": "https://www.resbank.co.za/en/home/publications/publication-detail-pages/statements/monetary-policy-statements/2026/july",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": ["PRICE", "PROMOTION"],
+      "fmcg_channels": ["CONSUMER_AFFORDABILITY", "RETAILER_PRESSURE"],
+      "higher_is": "tighter_consumer",
+      "observations": [
+        {"observation_date": "2026-05-28", "publication_date": "2026-05-28", "value": 7.0},
+        {"observation_date": "2026-07-23", "publication_date": "2026-07-23", "value": 7.0}
+      ]
+    },
+    {
+      "metric": "BER_INFLATION_EXPECTATIONS_PROFESSIONAL_CY",
+      "unit": "percent",
+      "frequency": "quarterly",
+      "date_convention": "quarter_end",
+      "source": "Bureau for Economic Research",
+      "source_url": "https://www.ber.ac.za/Documents/Index/Inflation-Expectations",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": ["PRICE"],
+      "fmcg_channels": ["CONSUMER_AFFORDABILITY", "MANUFACTURER_COST"],
+      "higher_is": "tighter_consumer",
+      "observations": [
+        {"observation_date": "2026-06-30", "publication_date": "2026-06-30", "value": 4.4, "previous_value": 3.6, "note": "Previous 3.6% is stated in the Q2 2026 BER release. A separate Q1 observation date for that print is not invented."}
+      ]
+    },
+    {
+      "metric": "BER_INFLATION_EXPECTATIONS_HOUSEHOLD_1Y",
+      "unit": "percent",
+      "frequency": "quarterly",
+      "date_convention": "quarter_end",
+      "source": "Bureau for Economic Research",
+      "source_url": "https://www.ber.ac.za/Documents/Index/Inflation-Expectations",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": ["PRICE", "PROMOTION"],
+      "fmcg_channels": ["CONSUMER_AFFORDABILITY"],
+      "higher_is": "tighter_consumer",
+      "observations": [
+        {"observation_date": "2026-06-30", "publication_date": "2026-06-30", "value": 6.0, "previous_value": 5.4, "note": "Previous 5.4% is stated in the Q2 2026 BER release. A separate Q1 observation date for that print is not invented."}
+      ]
+    },
+    {
+      "metric": "ZAR_USD_REVIEW_AVERAGE",
+      "unit": "zar_per_usd",
+      "frequency": "monthly",
+      "date_convention": "review_window_end",
+      "source": "Department of Mineral and Petroleum Resources",
+      "source_url": "https://www.gov.za/news/media-statements/minister-gwede-mantashe-announces-adjustment-fuel-prices-effective-5-august-0",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": ["PRICE"],
+      "fmcg_channels": ["IMPORT_COST", "MANUFACTURER_COST"],
+      "higher_is": "tighter_import",
+      "observations": [
+        {"observation_date": "2026-08-03", "publication_date": "2026-08-03", "value": 16.46, "previous_value": 16.34, "note": "Both averages are stated in the 3 August 2026 DMPR statement. The previous window's end date was not supplied and is not inferred."}
+      ]
+    }
+  ]
+}
