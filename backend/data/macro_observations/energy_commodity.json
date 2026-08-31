@@ -1,0 +1,81 @@
+{
+  "agent": "EnergyCommodityAgent",
+  "version": "V1",
+  "retrieved_at": "2026-08-31",
+  "notes": [
+    "Brent and fuel-price adjustments are copied from the Department of Mineral and Petroleum Resources statement.",
+    "Pump rand/litre levels are omitted where the official statement gives only cents changes.",
+    "Commodities without a sourced FMCG link are omitted."
+  ],
+  "series": [
+    {
+      "metric": "BRENT_REVIEW_AVERAGE_USD",
+      "unit": "usd_per_barrel",
+      "frequency": "monthly",
+      "date_convention": "review_window_end",
+      "source": "Department of Mineral and Petroleum Resources",
+      "source_url": "https://www.gov.za/news/media-statements/minister-gwede-mantashe-announces-adjustment-fuel-prices-effective-5-august-0",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": ["PRICE", "DISTRIBUTION"],
+      "fmcg_channels": ["IMPORT_COST", "MANUFACTURER_COST"],
+      "higher_is": "tighter_manufacturer",
+      "observations": [
+        {
+          "observation_date": "2026-08-03",
+          "publication_date": "2026-08-03",
+          "value": 82.37,
+          "previous_value": 86.53,
+          "note": "Both averages are stated in the 3 August 2026 DMPR statement. The previous window's end date was not supplied and is not inferred."
+        }
+      ]
+    },
+    {
+      "metric": "PETROL_95_CHANGE_CPL",
+      "unit": "cents_per_litre",
+      "frequency": "monthly",
+      "date_convention": "effective_date",
+      "source": "Department of Mineral and Petroleum Resources",
+      "source_url": "https://www.gov.za/news/media-statements/minister-gwede-mantashe-announces-adjustment-fuel-prices-effective-5-august-0",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": ["PRICE"],
+      "fmcg_channels": ["CONSUMER_AFFORDABILITY", "IMPORT_COST"],
+      "higher_is": "tighter_consumer",
+      "value_is_period_change": true,
+      "observations": [
+        {"observation_date": "2026-08-05", "publication_date": "2026-08-03", "value": -52.0}
+      ]
+    },
+    {
+      "metric": "DIESEL_0_05_CHANGE_CPL",
+      "unit": "cents_per_litre",
+      "frequency": "monthly",
+      "date_convention": "effective_date",
+      "source": "Department of Mineral and Petroleum Resources",
+      "source_url": "https://www.gov.za/news/media-statements/minister-gwede-mantashe-announces-adjustment-fuel-prices-effective-5-august-0",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": ["DISTRIBUTION", "PRICE"],
+      "fmcg_channels": ["MANUFACTURER_COST", "RETAILER_PRESSURE", "IMPORT_COST"],
+      "higher_is": "tighter_manufacturer",
+      "value_is_period_change": true,
+      "observations": [
+        {"observation_date": "2026-08-05", "publication_date": "2026-08-03", "value": 138.44}
+      ]
+    },
+    {
+      "metric": "DIESEL_0_005_CHANGE_CPL",
+      "unit": "cents_per_litre",
+      "frequency": "monthly",
+      "date_convention": "effective_date",
+      "source": "Department of Mineral and Petroleum Resources",
+      "source_url": "https://www.gov.za/news/media-statements/minister-gwede-mantashe-announces-adjustment-fuel-prices-effective-5-august-0",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": ["DISTRIBUTION", "PRICE"],
+      "fmcg_channels": ["MANUFACTURER_COST", "RETAILER_PRESSURE", "IMPORT_COST"],
+      "higher_is": "tighter_manufacturer",
+      "value_is_period_change": true,
+      "observations": [
+        {"observation_date": "2026-08-05", "publication_date": "2026-08-03", "value": 123.44}
+      ]
+    }
+  ]
+}

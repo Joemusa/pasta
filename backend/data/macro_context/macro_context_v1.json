@@ -1,0 +1,19 @@
+{
+  "version": "V1",
+  "role": "supporting_context",
+  "signal": "Consumer pressure increasing",
+  "evidence": "FNB/BER CCI = -19",
+  "direction": "NEGATIVE",
+  "relevance": "HIGH",
+  "supports_pos_story": true,
+  "commercial_implication": "Consumers are likely to remain value-conscious, increasing the importance of availability and targeted price/promotion execution.",
+  "confidence": "HIGH",
+  "sources": ["SARB", "BER", "Stats SA"],
+  "evidence_as_of": null,
+  "notes": [
+    "Macro context is frozen user-supplied input. Additional series are not invented.",
+    "The CCI observation date was not supplied in the input pack and is not inferred.",
+    "Macro HIGH confidence is the label on this signal; it does not upgrade POS or Commercial Brain confidence.",
+    "Supports POS story means the signal is consistent with a value-conscious, availability-sensitive shopper. It does not cause the POS gaps."
+  ]
+}

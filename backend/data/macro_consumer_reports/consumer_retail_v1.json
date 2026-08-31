@@ -1,0 +1,284 @@
+{
+  "agent": "ConsumerRetailAgent",
+  "status": "READY WITH WARNINGS",
+  "version": "V1",
+  "causality_claim": "none",
+  "pos_period_start": "2026-07-26",
+  "pos_period_end": "2026-08-16",
+  "catalog_path": "backend/data/macro_observations/consumer_retail.json",
+  "observations": [
+    {
+      "metric": "FNB_BER_CCI",
+      "value": -19.0,
+      "previous_value": -7.0,
+      "year_ago_value": -10.0,
+      "mom_change": -12.0,
+      "yoy_change": -9.0,
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PRICE",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "RETAILER_PRESSURE"
+      ],
+      "commercial_pressure": "TIGHTENING",
+      "source": "Bureau for Economic Research",
+      "source_url": "https://www.ber.ac.za/Documents/Index/FNBBER-Consumer-Confidence-Index",
+      "publication_date": "2026-06-23",
+      "observation_date": "2026-06-30",
+      "confidence": "HIGH",
+      "unit": "index_point",
+      "frequency": "quarterly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "quarter_end; observation_and_publication_on_or_before_pos_period_end",
+      "alignment_status": "ALIGNED"
+    },
+    {
+      "metric": "RETAIL_SALES_YOY",
+      "value": 2.3,
+      "previous_value": null,
+      "year_ago_value": null,
+      "mom_change": null,
+      "yoy_change": 2.3,
+      "direction": "INSUFFICIENT",
+      "signal_strength": "LOW",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "RETAILER_PRESSURE"
+      ],
+      "commercial_pressure": "INSUFFICIENT",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/publications/P62421/P62421May2026.pdf",
+      "publication_date": "2026-07-22",
+      "observation_date": "2026-05-31",
+      "confidence": "MEDIUM",
+      "unit": "percent_yoy",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "month_end; observation_and_publication_on_or_before_pos_period_end",
+      "alignment_status": "ALIGNED"
+    },
+    {
+      "metric": "RETAIL_SALES_MOM_SA",
+      "value": 0.1,
+      "previous_value": 0.8,
+      "year_ago_value": null,
+      "mom_change": -0.7000000000000001,
+      "yoy_change": null,
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "MEDIUM",
+      "commercial_levers": [
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "RETAILER_PRESSURE"
+      ],
+      "commercial_pressure": "TIGHTENING",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/publications/P62421/P62421May2026.pdf",
+      "publication_date": "2026-07-22",
+      "observation_date": "2026-05-31",
+      "confidence": "HIGH",
+      "unit": "percent_mom",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "month_end; observation_and_publication_on_or_before_pos_period_end",
+      "alignment_status": "ALIGNED"
+    },
+    {
+      "metric": "HFCE_QOQ",
+      "value": 0.1,
+      "previous_value": null,
+      "year_ago_value": null,
+      "mom_change": null,
+      "yoy_change": null,
+      "direction": "INSUFFICIENT",
+      "signal_strength": "LOW",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY"
+      ],
+      "commercial_pressure": "INSUFFICIENT",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/publications/P0441/Press%20release%20-%20Q1%202026.pdf",
+      "publication_date": "2026-06-09",
+      "observation_date": "2026-03-31",
+      "confidence": "MEDIUM",
+      "unit": "percent",
+      "frequency": "quarterly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "quarter_end; observation_and_publication_on_or_before_pos_period_end",
+      "alignment_status": "ALIGNED"
+    },
+    {
+      "metric": "BER_RETAIL_BUSINESS_CONFIDENCE",
+      "value": 31.0,
+      "previous_value": 36.0,
+      "year_ago_value": null,
+      "mom_change": -5.0,
+      "yoy_change": null,
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "RETAILER_PRESSURE"
+      ],
+      "commercial_pressure": "TIGHTENING",
+      "source": "Bureau for Economic Research",
+      "source_url": "https://www.ber.ac.za/Documents/Index/BER-Retail-Survey",
+      "publication_date": "2026-06-22",
+      "observation_date": "2026-06-30",
+      "confidence": "HIGH",
+      "unit": "index_point",
+      "frequency": "quarterly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "quarter_end; observation_and_publication_on_or_before_pos_period_end",
+      "alignment_status": "ALIGNED"
+    }
+  ],
+  "signals": [
+    {
+      "name": "FNB",
+      "summary": "FNB_BER_CCI is -19.0 index_point (down vs previous; tightening commercial pressure).",
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PRICE",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "RETAILER_PRESSURE"
+      ],
+      "commercial_pressure": "TIGHTENING",
+      "metrics": [
+        "FNB_BER_CCI"
+      ],
+      "alignment_status": "ALIGNED",
+      "confidence": "HIGH"
+    },
+    {
+      "name": "RETAIL",
+      "summary": "RETAIL_SALES_YOY is 2.3 percent_yoy (insufficient vs previous; insufficient commercial pressure).",
+      "direction": "INSUFFICIENT",
+      "signal_strength": "LOW",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "RETAILER_PRESSURE"
+      ],
+      "commercial_pressure": "INSUFFICIENT",
+      "metrics": [
+        "RETAIL_SALES_YOY",
+        "RETAIL_SALES_MOM_SA"
+      ],
+      "alignment_status": "ALIGNED",
+      "confidence": "MEDIUM"
+    },
+    {
+      "name": "HFCE",
+      "summary": "HFCE_QOQ is 0.1 percent (insufficient vs previous; insufficient commercial pressure).",
+      "direction": "INSUFFICIENT",
+      "signal_strength": "LOW",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY"
+      ],
+      "commercial_pressure": "INSUFFICIENT",
+      "metrics": [
+        "HFCE_QOQ"
+      ],
+      "alignment_status": "ALIGNED",
+      "confidence": "MEDIUM"
+    },
+    {
+      "name": "BER",
+      "summary": "BER_RETAIL_BUSINESS_CONFIDENCE is 31.0 index_point (down vs previous; tightening commercial pressure).",
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "RETAILER_PRESSURE"
+      ],
+      "commercial_pressure": "TIGHTENING",
+      "metrics": [
+        "BER_RETAIL_BUSINESS_CONFIDENCE"
+      ],
+      "alignment_status": "ALIGNED",
+      "confidence": "HIGH"
+    }
+  ],
+  "commercial_implications": [
+    "Consumers are likely to remain value-conscious, increasing the importance of availability and targeted price/promotion execution.",
+    "The FNB/BER CCI reading is retained as sourced evidence. It does not cause the POS distribution gaps.",
+    "Weak household consumption and softer retailer confidence add context for retailer pressure, not a new action."
+  ],
+  "limitations": [
+    "Macro specialist agents consume sourced observation catalogs. They do not scrape on each run.",
+    "Missing values stay null. Missing is never converted to zero.",
+    "Observation dates are not inferred when the source does not provide them.",
+    "Future macro observations are not used to explain historical POS periods.",
+    "Macro context does not recalculate POS opportunities or change specialist POS confidence.",
+    "Macro context does not create a new commercial action or claim causality.",
+    "Addressable POS opportunity remains not guaranteed incremental sales.",
+    "Dashboard and social-media layers are not built in this sprint.",
+    "The frozen Storytelling Engine V1 macro pack is not modified by these agents.",
+    "The existing FNB/BER CCI = -19 signal is retained.",
+    "BER supplies Q2 2026 and a 23 June 2026 upload date; those dates are copied from BER, not inferred from the frozen storytelling pack.",
+    "The frozen Storytelling Engine V1 pack keeps evidence_as_of null and is not modified.",
+    "June 2026 retail-sales YoY was not copied from a Stats SA PDF in this catalog and is therefore omitted."
+  ],
+  "data_gaps": [
+    "RETAIL_SALES_YOY: previous_value is missing.",
+    "RETAIL_SALES_YOY: mom_change is null because a previous sourced print is missing.",
+    "RETAIL_SALES_MOM_SA: year-ago value was not sourced; yoy_change is null.",
+    "HFCE_QOQ: previous_value is missing.",
+    "HFCE_QOQ: mom_change is null because a previous sourced print is missing.",
+    "HFCE_QOQ: year-ago value was not sourced; yoy_change is null.",
+    "BER_RETAIL_BUSINESS_CONFIDENCE: year-ago value was not sourced; yoy_change is null."
+  ],
+  "sources": [
+    "Bureau for Economic Research",
+    "Statistics South Africa"
+  ],
+  "report_output_path": null,
+  "generated_at": "2026-08-31T12:03:35.175883Z"
+}

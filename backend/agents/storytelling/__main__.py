@@ -16,7 +16,8 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description=(
             "Storytelling Engine V1: turn Commercial Brain one-slide JSON into a single executive "
-            "FMCG story. Does not recalculate opportunities or claim guaranteed incremental sales."
+            "FMCG story, with frozen macro context as supporting background only. Does not recalculate "
+            "opportunities or claim guaranteed incremental sales."
         ),
     )
     parser.add_argument(

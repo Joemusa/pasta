@@ -1,0 +1,235 @@
+{
+  "agent": "EnergyCommodityAgent",
+  "status": "READY WITH WARNINGS",
+  "version": "V1",
+  "causality_claim": "none",
+  "pos_period_start": "2026-07-26",
+  "pos_period_end": "2026-08-16",
+  "catalog_path": "backend/data/macro_observations/energy_commodity.json",
+  "observations": [
+    {
+      "metric": "BRENT_REVIEW_AVERAGE_USD",
+      "value": 82.37,
+      "previous_value": 86.53,
+      "year_ago_value": null,
+      "mom_change": -4.159999999999997,
+      "yoy_change": null,
+      "direction": "DOWN",
+      "signal_strength": "MEDIUM",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE",
+        "DISTRIBUTION"
+      ],
+      "fmcg_channels": [
+        "IMPORT_COST",
+        "MANUFACTURER_COST"
+      ],
+      "commercial_pressure": "EASING",
+      "source": "Department of Mineral and Petroleum Resources",
+      "source_url": "https://www.gov.za/news/media-statements/minister-gwede-mantashe-announces-adjustment-fuel-prices-effective-5-august-0",
+      "publication_date": "2026-08-03",
+      "observation_date": "2026-08-03",
+      "confidence": "HIGH",
+      "unit": "usd_per_barrel",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "review_window_end; observation_and_publication_on_or_before_pos_period_end",
+      "alignment_status": "ALIGNED"
+    },
+    {
+      "metric": "PETROL_95_CHANGE_CPL",
+      "value": -52.0,
+      "previous_value": null,
+      "year_ago_value": null,
+      "mom_change": -52.0,
+      "yoy_change": null,
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "IMPORT_COST"
+      ],
+      "commercial_pressure": "EASING",
+      "source": "Department of Mineral and Petroleum Resources",
+      "source_url": "https://www.gov.za/news/media-statements/minister-gwede-mantashe-announces-adjustment-fuel-prices-effective-5-august-0",
+      "publication_date": "2026-08-03",
+      "observation_date": "2026-08-05",
+      "confidence": "MEDIUM",
+      "unit": "cents_per_litre",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "effective_date; observation_and_publication_on_or_before_pos_period_end",
+      "alignment_status": "ALIGNED"
+    },
+    {
+      "metric": "DIESEL_0_05_CHANGE_CPL",
+      "value": 138.44,
+      "previous_value": null,
+      "year_ago_value": null,
+      "mom_change": 138.44,
+      "yoy_change": null,
+      "direction": "UP",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "MANUFACTURER_COST",
+        "RETAILER_PRESSURE",
+        "IMPORT_COST"
+      ],
+      "commercial_pressure": "TIGHTENING",
+      "source": "Department of Mineral and Petroleum Resources",
+      "source_url": "https://www.gov.za/news/media-statements/minister-gwede-mantashe-announces-adjustment-fuel-prices-effective-5-august-0",
+      "publication_date": "2026-08-03",
+      "observation_date": "2026-08-05",
+      "confidence": "MEDIUM",
+      "unit": "cents_per_litre",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "effective_date; observation_and_publication_on_or_before_pos_period_end",
+      "alignment_status": "ALIGNED"
+    },
+    {
+      "metric": "DIESEL_0_005_CHANGE_CPL",
+      "value": 123.44,
+      "previous_value": null,
+      "year_ago_value": null,
+      "mom_change": 123.44,
+      "yoy_change": null,
+      "direction": "UP",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "MANUFACTURER_COST",
+        "RETAILER_PRESSURE",
+        "IMPORT_COST"
+      ],
+      "commercial_pressure": "TIGHTENING",
+      "source": "Department of Mineral and Petroleum Resources",
+      "source_url": "https://www.gov.za/news/media-statements/minister-gwede-mantashe-announces-adjustment-fuel-prices-effective-5-august-0",
+      "publication_date": "2026-08-03",
+      "observation_date": "2026-08-05",
+      "confidence": "MEDIUM",
+      "unit": "cents_per_litre",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "effective_date; observation_and_publication_on_or_before_pos_period_end",
+      "alignment_status": "ALIGNED"
+    }
+  ],
+  "signals": [
+    {
+      "name": "BRENT",
+      "summary": "BRENT_REVIEW_AVERAGE_USD is 82.37 usd_per_barrel (down vs previous; easing commercial pressure).",
+      "direction": "DOWN",
+      "signal_strength": "MEDIUM",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE",
+        "DISTRIBUTION"
+      ],
+      "fmcg_channels": [
+        "IMPORT_COST",
+        "MANUFACTURER_COST"
+      ],
+      "commercial_pressure": "EASING",
+      "metrics": [
+        "BRENT_REVIEW_AVERAGE_USD"
+      ],
+      "alignment_status": "ALIGNED",
+      "confidence": "HIGH"
+    },
+    {
+      "name": "PETROL",
+      "summary": "PETROL_95_CHANGE_CPL is -52.0 cents_per_litre (down vs previous; easing commercial pressure).",
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "IMPORT_COST"
+      ],
+      "commercial_pressure": "EASING",
+      "metrics": [
+        "PETROL_95_CHANGE_CPL"
+      ],
+      "alignment_status": "ALIGNED",
+      "confidence": "MEDIUM"
+    },
+    {
+      "name": "DIESEL",
+      "summary": "DIESEL_0_05_CHANGE_CPL is 138.44 cents_per_litre (up vs previous; tightening commercial pressure).",
+      "direction": "UP",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "MANUFACTURER_COST",
+        "RETAILER_PRESSURE",
+        "IMPORT_COST"
+      ],
+      "commercial_pressure": "TIGHTENING",
+      "metrics": [
+        "DIESEL_0_05_CHANGE_CPL",
+        "DIESEL_0_005_CHANGE_CPL"
+      ],
+      "alignment_status": "ALIGNED",
+      "confidence": "MEDIUM"
+    }
+  ],
+  "commercial_implications": [
+    "Brent eased in the official review window while diesel pump adjustments rose, so energy context is mixed.",
+    "Fuel costs are relevant to MANUFACTURER_COST, IMPORT_COST and retailer logistics, not a POS rescore.",
+    "Only commodities with a documented FMCG link and a source URL are included."
+  ],
+  "limitations": [
+    "Macro specialist agents consume sourced observation catalogs. They do not scrape on each run.",
+    "Missing values stay null. Missing is never converted to zero.",
+    "Observation dates are not inferred when the source does not provide them.",
+    "Future macro observations are not used to explain historical POS periods.",
+    "Macro context does not recalculate POS opportunities or change specialist POS confidence.",
+    "Macro context does not create a new commercial action or claim causality.",
+    "Addressable POS opportunity remains not guaranteed incremental sales.",
+    "Dashboard and social-media layers are not built in this sprint.",
+    "The frozen Storytelling Engine V1 macro pack is not modified by these agents.",
+    "Brent and fuel-price adjustments are copied from the Department of Mineral and Petroleum Resources statement.",
+    "Pump rand/litre levels are omitted where the official statement gives only cents changes.",
+    "Commodities without a sourced FMCG link are omitted."
+  ],
+  "data_gaps": [
+    "BRENT_REVIEW_AVERAGE_USD: year-ago value was not sourced; yoy_change is null.",
+    "PETROL_95_CHANGE_CPL: previous_value is missing.",
+    "PETROL_95_CHANGE_CPL: year-ago value was not sourced; yoy_change is null.",
+    "DIESEL_0_05_CHANGE_CPL: previous_value is missing.",
+    "DIESEL_0_05_CHANGE_CPL: year-ago value was not sourced; yoy_change is null.",
+    "DIESEL_0_005_CHANGE_CPL: previous_value is missing.",
+    "DIESEL_0_005_CHANGE_CPL: year-ago value was not sourced; yoy_change is null."
+  ],
+  "sources": [
+    "Department of Mineral and Petroleum Resources"
+  ],
+  "report_output_path": null,
+  "generated_at": "2026-08-31T12:03:35.179397Z"
+}

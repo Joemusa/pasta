@@ -40,11 +40,11 @@ def _is_one_slide(payload: dict[str, Any]) -> bool:
     )
 
 
-def _read_json(path: Path) -> dict[str, Any]:
+def _read_json(path: Path, *, kind: str = "Commercial Brain slide") -> dict[str, Any]:
     try:
         payload = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
-        raise StorytellingLoadError(f"Cannot read Commercial Brain slide {path}: {exc}") from exc
+        raise StorytellingLoadError(f"Cannot read {kind} {path}: {exc}") from exc
     if not isinstance(payload, dict):
         raise StorytellingLoadError(f"{path} is not a JSON object")
     return payload

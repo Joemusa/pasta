@@ -1,0 +1,605 @@
+{
+  "agent": "InflationCostAgent",
+  "status": "READY WITH WARNINGS",
+  "version": "V1",
+  "causality_claim": "none",
+  "pos_period_start": "2026-07-26",
+  "pos_period_end": "2026-08-16",
+  "catalog_path": "backend/data/macro_observations/inflation_cost.json",
+  "observations": [
+    {
+      "metric": "HEADLINE_CPI_YOY",
+      "value": 4.3,
+      "previous_value": 5.0,
+      "year_ago_value": null,
+      "mom_change": -0.7000000000000002,
+      "yoy_change": 4.3,
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "RETAILER_PRESSURE"
+      ],
+      "commercial_pressure": "EASING",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/publications/P0141/P0141July2026.pdf",
+      "publication_date": "2026-08-19",
+      "observation_date": "2026-07-31",
+      "confidence": "HIGH",
+      "unit": "percent_yoy",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "month_end; observation_on_or_before_pos_period_end; publication_after_pos_period_end",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG"
+    },
+    {
+      "metric": "HEADLINE_CPI_MOM",
+      "value": 0.2,
+      "previous_value": 0.7,
+      "year_ago_value": null,
+      "mom_change": -0.49999999999999994,
+      "yoy_change": null,
+      "direction": "DOWN",
+      "signal_strength": "MEDIUM",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY"
+      ],
+      "commercial_pressure": "EASING",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/publications/P0141/P0141July2026.pdf",
+      "publication_date": "2026-08-19",
+      "observation_date": "2026-07-31",
+      "confidence": "HIGH",
+      "unit": "percent_mom",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "month_end; observation_on_or_before_pos_period_end; publication_after_pos_period_end",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG"
+    },
+    {
+      "metric": "FOOD_NAB_CPI_YOY",
+      "value": 0.9,
+      "previous_value": 1.6,
+      "year_ago_value": null,
+      "mom_change": -0.7000000000000001,
+      "yoy_change": 0.9,
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "MANUFACTURER_COST"
+      ],
+      "commercial_pressure": "EASING",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/publications/P0141/P0141July2026.pdf",
+      "publication_date": "2026-08-19",
+      "observation_date": "2026-07-31",
+      "confidence": "HIGH",
+      "unit": "percent_yoy",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "month_end; observation_on_or_before_pos_period_end; publication_after_pos_period_end",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG"
+    },
+    {
+      "metric": "FOOD_CPI_YOY",
+      "value": 0.6,
+      "previous_value": 1.4,
+      "year_ago_value": null,
+      "mom_change": -0.7999999999999999,
+      "yoy_change": 0.6,
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "MANUFACTURER_COST"
+      ],
+      "commercial_pressure": "EASING",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/publications/P0141/P0141July2026.pdf",
+      "publication_date": "2026-08-19",
+      "observation_date": "2026-07-31",
+      "confidence": "HIGH",
+      "unit": "percent_yoy",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "month_end; observation_on_or_before_pos_period_end; publication_after_pos_period_end",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG"
+    },
+    {
+      "metric": "TRANSPORT_CPI_YOY",
+      "value": 8.9,
+      "previous_value": 12.7,
+      "year_ago_value": null,
+      "mom_change": -3.799999999999999,
+      "yoy_change": 8.9,
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "RETAILER_PRESSURE"
+      ],
+      "commercial_pressure": "EASING",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/?p=19815",
+      "publication_date": "2026-08-19",
+      "observation_date": "2026-07-31",
+      "confidence": "HIGH",
+      "unit": "percent_yoy",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "month_end; observation_on_or_before_pos_period_end; publication_after_pos_period_end",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG"
+    },
+    {
+      "metric": "FUEL_CPI_YOY",
+      "value": 20.6,
+      "previous_value": 34.3,
+      "year_ago_value": null,
+      "mom_change": -13.699999999999996,
+      "yoy_change": 20.6,
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "MANUFACTURER_COST",
+        "RETAILER_PRESSURE"
+      ],
+      "commercial_pressure": "EASING",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/?p=19815",
+      "publication_date": "2026-08-19",
+      "observation_date": "2026-07-31",
+      "confidence": "HIGH",
+      "unit": "percent_yoy",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "month_end; observation_on_or_before_pos_period_end; publication_after_pos_period_end",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG"
+    },
+    {
+      "metric": "FUEL_CPI_MOM",
+      "value": -7.8,
+      "previous_value": 4.0,
+      "year_ago_value": null,
+      "mom_change": -11.8,
+      "yoy_change": null,
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "MANUFACTURER_COST"
+      ],
+      "commercial_pressure": "EASING",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/publications/P0141/P0141July2026.pdf",
+      "publication_date": "2026-08-19",
+      "observation_date": "2026-07-31",
+      "confidence": "HIGH",
+      "unit": "percent_mom",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "month_end; observation_on_or_before_pos_period_end; publication_after_pos_period_end",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG"
+    },
+    {
+      "metric": "PETROL_CPI_YOY",
+      "value": 19.3,
+      "previous_value": null,
+      "year_ago_value": null,
+      "mom_change": null,
+      "yoy_change": 19.3,
+      "direction": "INSUFFICIENT",
+      "signal_strength": "LOW",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY"
+      ],
+      "commercial_pressure": "INSUFFICIENT",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/?p=19815",
+      "publication_date": "2026-08-19",
+      "observation_date": "2026-07-31",
+      "confidence": "MEDIUM",
+      "unit": "percent_yoy",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "month_end; observation_on_or_before_pos_period_end; publication_after_pos_period_end",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG"
+    },
+    {
+      "metric": "DIESEL_CPI_YOY",
+      "value": 28.8,
+      "previous_value": null,
+      "year_ago_value": null,
+      "mom_change": null,
+      "yoy_change": 28.8,
+      "direction": "INSUFFICIENT",
+      "signal_strength": "LOW",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "MANUFACTURER_COST",
+        "RETAILER_PRESSURE"
+      ],
+      "commercial_pressure": "INSUFFICIENT",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/?p=19815",
+      "publication_date": "2026-08-19",
+      "observation_date": "2026-07-31",
+      "confidence": "MEDIUM",
+      "unit": "percent_yoy",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "month_end; observation_on_or_before_pos_period_end; publication_after_pos_period_end",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG"
+    },
+    {
+      "metric": "PPI_FINAL_MANUFACTURING_YOY",
+      "value": 5.7,
+      "previous_value": 7.5,
+      "year_ago_value": null,
+      "mom_change": -1.7999999999999998,
+      "yoy_change": 5.7,
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "MANUFACTURER_COST",
+        "RETAILER_PRESSURE"
+      ],
+      "commercial_pressure": "EASING",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/publications/P01421/P01421July2026.pdf",
+      "publication_date": "2026-08-27",
+      "observation_date": "2026-07-31",
+      "confidence": "HIGH",
+      "unit": "percent_yoy",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "month_end; observation_on_or_before_pos_period_end; publication_after_pos_period_end",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG"
+    },
+    {
+      "metric": "PPI_FINAL_MANUFACTURING_MOM",
+      "value": -1.0,
+      "previous_value": null,
+      "year_ago_value": null,
+      "mom_change": -1.0,
+      "yoy_change": null,
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "MEDIUM",
+      "commercial_levers": [
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "MANUFACTURER_COST"
+      ],
+      "commercial_pressure": "EASING",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/publications/P01421/P01421July2026.pdf",
+      "publication_date": "2026-08-27",
+      "observation_date": "2026-07-31",
+      "confidence": "MEDIUM",
+      "unit": "percent_mom",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "month_end; observation_on_or_before_pos_period_end; publication_after_pos_period_end",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG"
+    },
+    {
+      "metric": "PPI_AGRICULTURE_YOY",
+      "value": -4.5,
+      "previous_value": -7.9,
+      "year_ago_value": null,
+      "mom_change": 3.4000000000000004,
+      "yoy_change": -4.5,
+      "direction": "UP",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "MANUFACTURER_COST"
+      ],
+      "commercial_pressure": "TIGHTENING",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/publications/P01421/P01421July2026.pdf",
+      "publication_date": "2026-08-27",
+      "observation_date": "2026-07-31",
+      "confidence": "HIGH",
+      "unit": "percent_yoy",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "month_end; observation_on_or_before_pos_period_end; publication_after_pos_period_end",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG"
+    },
+    {
+      "metric": "PPI_ELECTRICITY_WATER_YOY",
+      "value": 7.5,
+      "previous_value": 5.5,
+      "year_ago_value": null,
+      "mom_change": 2.0,
+      "yoy_change": 7.5,
+      "direction": "UP",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "MEDIUM",
+      "commercial_levers": [
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "MANUFACTURER_COST"
+      ],
+      "commercial_pressure": "TIGHTENING",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/publications/P01421/P01421July2026.pdf",
+      "publication_date": "2026-08-27",
+      "observation_date": "2026-07-31",
+      "confidence": "HIGH",
+      "unit": "percent_yoy",
+      "frequency": "monthly",
+      "pos_period_start": "2026-07-26",
+      "pos_period_end": "2026-08-16",
+      "alignment_method": "month_end; observation_on_or_before_pos_period_end; publication_after_pos_period_end",
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG"
+    }
+  ],
+  "signals": [
+    {
+      "name": "HEADLINE",
+      "summary": "HEADLINE_CPI_YOY is 4.3 percent_yoy (down vs previous; easing commercial pressure).",
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "RETAILER_PRESSURE"
+      ],
+      "commercial_pressure": "EASING",
+      "metrics": [
+        "HEADLINE_CPI_YOY",
+        "HEADLINE_CPI_MOM"
+      ],
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG",
+      "confidence": "HIGH"
+    },
+    {
+      "name": "FOOD",
+      "summary": "FOOD_NAB_CPI_YOY is 0.9 percent_yoy (down vs previous; easing commercial pressure).",
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE",
+        "PROMOTION"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "MANUFACTURER_COST"
+      ],
+      "commercial_pressure": "EASING",
+      "metrics": [
+        "FOOD_NAB_CPI_YOY",
+        "FOOD_CPI_YOY"
+      ],
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG",
+      "confidence": "HIGH"
+    },
+    {
+      "name": "TRANSPORT",
+      "summary": "TRANSPORT_CPI_YOY is 8.9 percent_yoy (down vs previous; easing commercial pressure).",
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "RETAILER_PRESSURE"
+      ],
+      "commercial_pressure": "EASING",
+      "metrics": [
+        "TRANSPORT_CPI_YOY"
+      ],
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG",
+      "confidence": "HIGH"
+    },
+    {
+      "name": "FUEL",
+      "summary": "FUEL_CPI_YOY is 20.6 percent_yoy (down vs previous; easing commercial pressure).",
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY",
+        "MANUFACTURER_COST",
+        "RETAILER_PRESSURE"
+      ],
+      "commercial_pressure": "EASING",
+      "metrics": [
+        "FUEL_CPI_YOY",
+        "FUEL_CPI_MOM"
+      ],
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG",
+      "confidence": "HIGH"
+    },
+    {
+      "name": "PETROL",
+      "summary": "PETROL_CPI_YOY is 19.3 percent_yoy (insufficient vs previous; insufficient commercial pressure).",
+      "direction": "INSUFFICIENT",
+      "signal_strength": "LOW",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "CONSUMER_AFFORDABILITY"
+      ],
+      "commercial_pressure": "INSUFFICIENT",
+      "metrics": [
+        "PETROL_CPI_YOY"
+      ],
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG",
+      "confidence": "MEDIUM"
+    },
+    {
+      "name": "DIESEL",
+      "summary": "DIESEL_CPI_YOY is 28.8 percent_yoy (insufficient vs previous; insufficient commercial pressure).",
+      "direction": "INSUFFICIENT",
+      "signal_strength": "LOW",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "DISTRIBUTION",
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "MANUFACTURER_COST",
+        "RETAILER_PRESSURE"
+      ],
+      "commercial_pressure": "INSUFFICIENT",
+      "metrics": [
+        "DIESEL_CPI_YOY"
+      ],
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG",
+      "confidence": "MEDIUM"
+    },
+    {
+      "name": "PPI",
+      "summary": "PPI_FINAL_MANUFACTURING_YOY is 5.7 percent_yoy (down vs previous; easing commercial pressure).",
+      "direction": "DOWN",
+      "signal_strength": "HIGH",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": [
+        "PRICE"
+      ],
+      "fmcg_channels": [
+        "MANUFACTURER_COST",
+        "RETAILER_PRESSURE"
+      ],
+      "commercial_pressure": "EASING",
+      "metrics": [
+        "PPI_FINAL_MANUFACTURING_YOY",
+        "PPI_FINAL_MANUFACTURING_MOM",
+        "PPI_AGRICULTURE_YOY",
+        "PPI_ELECTRICITY_WATER_YOY"
+      ],
+      "alignment_status": "ALIGNED_WITH_PUBLICATION_LAG",
+      "confidence": "HIGH"
+    }
+  ],
+  "commercial_implications": [
+    "Headline consumer inflation eased in the latest sourced print, but that does not recalculate POS gaps.",
+    "Food CPI is 0.6% year-on-year, which is relevant to FMCG price architecture without claiming a causal POS effect.",
+    "Fuel CPI remains elevated at 20.6% year-on-year, keeping household budgets value-conscious and raising the importance of availability.",
+    "Softer headline inflation is supporting context for PRICE tests, not a substitute for distribution actions where store gaps already exist."
+  ],
+  "limitations": [
+    "Macro specialist agents consume sourced observation catalogs. They do not scrape on each run.",
+    "Missing values stay null. Missing is never converted to zero.",
+    "Observation dates are not inferred when the source does not provide them.",
+    "Future macro observations are not used to explain historical POS periods.",
+    "Macro context does not recalculate POS opportunities or change specialist POS confidence.",
+    "Macro context does not create a new commercial action or claim causality.",
+    "Addressable POS opportunity remains not guaranteed incremental sales.",
+    "Dashboard and social-media layers are not built in this sprint.",
+    "The frozen Storytelling Engine V1 macro pack is not modified by these agents.",
+    "Values are copied from Statistics South Africa CPI P0141 and PPI P0142.1 releases.",
+    "Missing previous or year-ago prints are left null. Missing is not converted to zero.",
+    "Some official releases were published after the POS week ended; they are labelled as such."
+  ],
+  "data_gaps": [
+    "HEADLINE_CPI_YOY: publication date is after the POS period (observation still precedes POS).",
+    "HEADLINE_CPI_MOM: year-ago value was not sourced; yoy_change is null.",
+    "HEADLINE_CPI_MOM: publication date is after the POS period (observation still precedes POS).",
+    "FOOD_NAB_CPI_YOY: publication date is after the POS period (observation still precedes POS).",
+    "FOOD_CPI_YOY: publication date is after the POS period (observation still precedes POS).",
+    "TRANSPORT_CPI_YOY: publication date is after the POS period (observation still precedes POS).",
+    "FUEL_CPI_YOY: publication date is after the POS period (observation still precedes POS).",
+    "FUEL_CPI_MOM: year-ago value was not sourced; yoy_change is null.",
+    "FUEL_CPI_MOM: publication date is after the POS period (observation still precedes POS).",
+    "PETROL_CPI_YOY: previous_value is missing.",
+    "PETROL_CPI_YOY: mom_change is null because a previous sourced print is missing.",
+    "PETROL_CPI_YOY: publication date is after the POS period (observation still precedes POS).",
+    "DIESEL_CPI_YOY: previous_value is missing.",
+    "DIESEL_CPI_YOY: mom_change is null because a previous sourced print is missing.",
+    "DIESEL_CPI_YOY: publication date is after the POS period (observation still precedes POS).",
+    "PPI_FINAL_MANUFACTURING_YOY: publication date is after the POS period (observation still precedes POS).",
+    "PPI_FINAL_MANUFACTURING_MOM: previous_value is missing.",
+    "PPI_FINAL_MANUFACTURING_MOM: year-ago value was not sourced; yoy_change is null.",
+    "PPI_FINAL_MANUFACTURING_MOM: publication date is after the POS period (observation still precedes POS).",
+    "PPI_AGRICULTURE_YOY: publication date is after the POS period (observation still precedes POS).",
+    "PPI_ELECTRICITY_WATER_YOY: publication date is after the POS period (observation still precedes POS)."
+  ],
+  "sources": [
+    "Statistics South Africa"
+  ],
+  "report_output_path": null,
+  "generated_at": "2026-08-31T12:03:35.173638Z"
+}

@@ -1,0 +1,217 @@
+{
+  "agent": "InflationCostAgent",
+  "version": "V1",
+  "retrieved_at": "2026-08-31",
+  "notes": [
+    "Values are copied from Statistics South Africa CPI P0141 and PPI P0142.1 releases.",
+    "Missing previous or year-ago prints are left null. Missing is not converted to zero."
+  ],
+  "series": [
+    {
+      "metric": "HEADLINE_CPI_YOY",
+      "unit": "percent_yoy",
+      "frequency": "monthly",
+      "date_convention": "month_end",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/publications/P0141/P0141July2026.pdf",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": ["PRICE", "PROMOTION"],
+      "fmcg_channels": ["CONSUMER_AFFORDABILITY", "RETAILER_PRESSURE"],
+      "higher_is": "tighter_consumer",
+      "observations": [
+        {"observation_date": "2026-06-30", "publication_date": "2026-07-22", "value": 5.0},
+        {"observation_date": "2026-07-31", "publication_date": "2026-08-19", "value": 4.3}
+      ]
+    },
+    {
+      "metric": "HEADLINE_CPI_MOM",
+      "unit": "percent_mom",
+      "frequency": "monthly",
+      "date_convention": "month_end",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/publications/P0141/P0141July2026.pdf",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": ["PRICE"],
+      "fmcg_channels": ["CONSUMER_AFFORDABILITY"],
+      "higher_is": "tighter_consumer",
+      "observations": [
+        {"observation_date": "2026-06-30", "publication_date": "2026-07-22", "value": 0.7},
+        {"observation_date": "2026-07-31", "publication_date": "2026-08-19", "value": 0.2}
+      ]
+    },
+    {
+      "metric": "FOOD_NAB_CPI_YOY",
+      "unit": "percent_yoy",
+      "frequency": "monthly",
+      "date_convention": "month_end",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/publications/P0141/P0141July2026.pdf",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": ["PRICE", "PROMOTION"],
+      "fmcg_channels": ["CONSUMER_AFFORDABILITY", "MANUFACTURER_COST"],
+      "higher_is": "tighter_consumer",
+      "observations": [
+        {"observation_date": "2026-06-30", "publication_date": "2026-07-22", "value": 1.6},
+        {"observation_date": "2026-07-31", "publication_date": "2026-08-19", "value": 0.9}
+      ]
+    },
+    {
+      "metric": "FOOD_CPI_YOY",
+      "unit": "percent_yoy",
+      "frequency": "monthly",
+      "date_convention": "month_end",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/publications/P0141/P0141July2026.pdf",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": ["PRICE", "PROMOTION"],
+      "fmcg_channels": ["CONSUMER_AFFORDABILITY", "MANUFACTURER_COST"],
+      "higher_is": "tighter_consumer",
+      "observations": [
+        {"observation_date": "2026-06-30", "publication_date": "2026-07-22", "value": 1.4},
+        {"observation_date": "2026-07-31", "publication_date": "2026-08-19", "value": 0.6}
+      ]
+    },
+    {
+      "metric": "TRANSPORT_CPI_YOY",
+      "unit": "percent_yoy",
+      "frequency": "monthly",
+      "date_convention": "month_end",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/?p=19815",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": ["DISTRIBUTION", "PRICE"],
+      "fmcg_channels": ["CONSUMER_AFFORDABILITY", "RETAILER_PRESSURE"],
+      "higher_is": "tighter_consumer",
+      "observations": [
+        {"observation_date": "2026-06-30", "publication_date": "2026-07-22", "value": 12.7},
+        {"observation_date": "2026-07-31", "publication_date": "2026-08-19", "value": 8.9}
+      ]
+    },
+    {
+      "metric": "FUEL_CPI_YOY",
+      "unit": "percent_yoy",
+      "frequency": "monthly",
+      "date_convention": "month_end",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/?p=19815",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": ["DISTRIBUTION", "PRICE"],
+      "fmcg_channels": ["CONSUMER_AFFORDABILITY", "MANUFACTURER_COST", "RETAILER_PRESSURE"],
+      "higher_is": "tighter_consumer",
+      "observations": [
+        {"observation_date": "2026-06-30", "publication_date": "2026-07-22", "value": 34.3},
+        {"observation_date": "2026-07-31", "publication_date": "2026-08-19", "value": 20.6}
+      ]
+    },
+    {
+      "metric": "FUEL_CPI_MOM",
+      "unit": "percent_mom",
+      "frequency": "monthly",
+      "date_convention": "month_end",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/publications/P0141/P0141July2026.pdf",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": ["DISTRIBUTION", "PRICE"],
+      "fmcg_channels": ["CONSUMER_AFFORDABILITY", "MANUFACTURER_COST"],
+      "higher_is": "tighter_consumer",
+      "observations": [
+        {"observation_date": "2026-06-30", "publication_date": "2026-07-22", "value": 4.0},
+        {"observation_date": "2026-07-31", "publication_date": "2026-08-19", "value": -7.8}
+      ]
+    },
+    {
+      "metric": "PETROL_CPI_YOY",
+      "unit": "percent_yoy",
+      "frequency": "monthly",
+      "date_convention": "month_end",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/?p=19815",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": ["PRICE"],
+      "fmcg_channels": ["CONSUMER_AFFORDABILITY"],
+      "higher_is": "tighter_consumer",
+      "observations": [
+        {"observation_date": "2026-07-31", "publication_date": "2026-08-19", "value": 19.3, "note": "Previous petrol YoY print was not copied from the release and is left null."}
+      ]
+    },
+    {
+      "metric": "DIESEL_CPI_YOY",
+      "unit": "percent_yoy",
+      "frequency": "monthly",
+      "date_convention": "month_end",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/?p=19815",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": ["DISTRIBUTION", "PRICE"],
+      "fmcg_channels": ["MANUFACTURER_COST", "RETAILER_PRESSURE"],
+      "higher_is": "tighter_manufacturer",
+      "observations": [
+        {"observation_date": "2026-07-31", "publication_date": "2026-08-19", "value": 28.8, "note": "Previous diesel YoY print was not copied from the release and is left null."}
+      ]
+    },
+    {
+      "metric": "PPI_FINAL_MANUFACTURING_YOY",
+      "unit": "percent_yoy",
+      "frequency": "monthly",
+      "date_convention": "month_end",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/publications/P01421/P01421July2026.pdf",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": ["PRICE"],
+      "fmcg_channels": ["MANUFACTURER_COST", "RETAILER_PRESSURE"],
+      "higher_is": "tighter_manufacturer",
+      "observations": [
+        {"observation_date": "2026-06-30", "publication_date": "2026-07-30", "value": 7.5},
+        {"observation_date": "2026-07-31", "publication_date": "2026-08-27", "value": 5.7}
+      ]
+    },
+    {
+      "metric": "PPI_FINAL_MANUFACTURING_MOM",
+      "unit": "percent_mom",
+      "frequency": "monthly",
+      "date_convention": "month_end",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/publications/P01421/P01421July2026.pdf",
+      "fmcg_relevance": "MEDIUM",
+      "commercial_levers": ["PRICE"],
+      "fmcg_channels": ["MANUFACTURER_COST"],
+      "higher_is": "tighter_manufacturer",
+      "value_is_period_change": true,
+      "observations": [
+        {"observation_date": "2026-07-31", "publication_date": "2026-08-27", "value": -1.0, "note": "June PPI month-on-month was not copied from this release and is left null."}
+      ]
+    },
+    {
+      "metric": "PPI_AGRICULTURE_YOY",
+      "unit": "percent_yoy",
+      "frequency": "monthly",
+      "date_convention": "month_end",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/publications/P01421/P01421July2026.pdf",
+      "fmcg_relevance": "HIGH",
+      "commercial_levers": ["PRICE"],
+      "fmcg_channels": ["MANUFACTURER_COST"],
+      "higher_is": "tighter_manufacturer",
+      "observations": [
+        {"observation_date": "2026-06-30", "publication_date": "2026-07-30", "value": -7.9},
+        {"observation_date": "2026-07-31", "publication_date": "2026-08-27", "value": -4.5}
+      ]
+    },
+    {
+      "metric": "PPI_ELECTRICITY_WATER_YOY",
+      "unit": "percent_yoy",
+      "frequency": "monthly",
+      "date_convention": "month_end",
+      "source": "Statistics South Africa",
+      "source_url": "https://www.statssa.gov.za/publications/P01421/P01421July2026.pdf",
+      "fmcg_relevance": "MEDIUM",
+      "commercial_levers": ["PRICE"],
+      "fmcg_channels": ["MANUFACTURER_COST"],
+      "higher_is": "tighter_manufacturer",
+      "observations": [
+        {"observation_date": "2026-06-30", "publication_date": "2026-07-30", "value": 5.5},
+        {"observation_date": "2026-07-31", "publication_date": "2026-08-27", "value": 7.5}
+      ]
+    }
+  ]
+}

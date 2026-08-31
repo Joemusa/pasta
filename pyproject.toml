@@ -25,6 +25,11 @@ price = "backend.agents.price.__main__:main"
 promotion = "backend.agents.promotion.__main__:main"
 brain = "backend.agents.brain.__main__:main"
 storytelling = "backend.agents.storytelling.__main__:main"
+inflation-cost = "backend.agents.inflation_cost.__main__:main"
+consumer-retail = "backend.agents.consumer_retail.__main__:main"
+rates-fx = "backend.agents.rates_fx.__main__:main"
+energy-commodity = "backend.agents.energy_commodity.__main__:main"
+macro-brain = "backend.agents.macro_brain.__main__:main"
 
 [tool.pytest.ini_options]
 pythonpath = ["."]
