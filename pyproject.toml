@@ -30,6 +30,11 @@ consumer-retail = "backend.agents.consumer_retail.__main__:main"
 rates-fx = "backend.agents.rates_fx.__main__:main"
 energy-commodity = "backend.agents.energy_commodity.__main__:main"
 macro-brain = "backend.agents.macro_brain.__main__:main"
+social-listening = "backend.agents.social_listening.__main__:main"
+consumer-sentiment = "backend.agents.consumer_sentiment.__main__:main"
+consumer-needs = "backend.agents.consumer_needs.__main__:main"
+social-trend = "backend.agents.social_trend.__main__:main"
+social-brain = "backend.agents.social_brain.__main__:main"
 
 [tool.pytest.ini_options]
 pythonpath = ["."]

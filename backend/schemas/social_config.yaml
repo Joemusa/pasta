@@ -1,0 +1,31 @@
+manufacturer: Unilever
+country: ZA
+pos_period_start: "2026-07-26"
+pos_period_end: "2026-08-16"
+excerpt_max_chars: 280
+high_min_observations: 20
+high_min_sources: 3
+medium_min_observations: 8
+medium_min_sources: 2
+never_high_below_observations: 8
+theme_min_observations: 2
+trend_min_total: 10
+trend_min_recent: 5
+trend_growth_ratio: 1.5
+causality_forbidden:
+  - will increase
+  - causes
+  - caused
+  - guaranteed incremental sales
+  - booked revenue
+  - proof that
+limitations:
+  - Social & Consumer Intelligence V1 is an external context layer. It does not modify frozen POS or macro agents.
+  - Social observations are never invented. Unavailable sources stay unavailable.
+  - Missing fields stay null. Missing is never converted to zero.
+  - Author identifiers are hashed. Unnecessary personal information is not stored.
+  - Sentiment is not treated as sales causality.
+  - Social intelligence does not create a commercial action or recalculate addressable value or volume.
+  - Future social observations are not used to explain historical POS periods.
+  - HIGH confidence is never assigned from a single post.
+  - Dashboard is not built in this sprint.
