@@ -63,7 +63,7 @@ def incremental_volume(
     store_count: float | None,
     capture_rate: float,
 ) -> float | None:
-    """Baseline volume × estimated uplift × capture rate. Not causal incrementality."""
+    """Baseline volume x estimated uplift x capture rate. Not causal incrementality."""
     if not _finite(baseline_volume_per_store) or not _finite(volume_uplift) or not _finite(store_count):
         return None
     if store_count <= 0 or capture_rate < 0:

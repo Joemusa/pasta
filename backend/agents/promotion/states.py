@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from backend.agents.promotion.models import PromoIntensity, PromotionConfig, PromoState, PromotionType
+from backend.agents.promotion.models import PromoIntensity, PromoState, PromotionConfig, PromotionType
 
 POS_PROMO_FIELDS = ("pos_percent_time_on_promo", "pos_percent_sales_on_promo")
 EXTRACT_INTENSITY_FIELDS = ("on_promo_time", "on_promo_sales_pct")

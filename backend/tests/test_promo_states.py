@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from backend.agents.promotion.models import PromoIntensity, PromotionConfig, PromoState, PromotionType
+from backend.agents.promotion.models import PromoIntensity, PromoState, PromotionConfig, PromotionType
 from backend.agents.promotion.states import (
     classify_intensity,
     classify_promotion_state,

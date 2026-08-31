@@ -23,10 +23,10 @@ from backend.agents.promotion.metrics import (
 from backend.agents.promotion.models import (
     BaselineKind,
     PrimaryLever,
-    PromotionConfig,
-    PromotionOpportunity,
     PromoIntensity,
     PromoState,
+    PromotionConfig,
+    PromotionOpportunity,
     Recommendation,
 )
 from backend.agents.promotion.outliers import mad_outlier_mask
@@ -374,7 +374,7 @@ def evaluate_grain(
     promo_group, base_group, baseline_kind, scope = _choose_groups(
         product_history, retailer=retailer, region=region, config=config
     )
-    promo_vol, promo_val, promo_stores_list, promo_prices = _group_rates(promo_group)
+    promo_vol, promo_val, promo_stores_list, _promo_prices = _group_rates(promo_group)
     base_vol, base_val, base_stores_list, base_prices = _group_rates(base_group)
     promo_n = len(promo_vol)
     base_n = len(base_vol)
