@@ -123,6 +123,8 @@ def _limitations(
         "Figures are an estimated distribution opportunity, not guaranteed incremental sales.",
         "Current metrics use a single reporting period and are not mixed with other dates.",
         "Historical peak store count is not used automatically; spiked peaks are flagged and skipped.",
+        "Peer store targets are capped at the deepest Unilever listing observed "
+        "in the same retailer x region so gaps cannot exceed the local listing universe.",
     ]
     if identity == "product":
         notes.append("SKU identity is the product name because the cleaned file has no sku column.")
@@ -167,6 +169,12 @@ def run_distribution(
     current_period = valid_dates.max()
     current = frame.loc[frame["date"] == current_period].copy()
     history_by_grain = _history_map(frame.dropna(subset=["sku", "retailer", "region"]))
+    local_universe = (
+        current.dropna(subset=["retailer", "region", "store_count"])
+        .groupby(["retailer", "region"], dropna=False)["store_count"]
+        .max()
+        .to_dict()
+    )
 
     opportunities: list[Opportunity] = []
     skipped_missing = 0
@@ -196,6 +204,8 @@ def run_distribution(
         regional_peer_values = peer_store_counts(
             current, sku, retailer, region, kind="region", config=config, current_stores=stores
         )
+        universe = local_universe.get((retailer, region))
+        peer_cap = float(universe) if universe is not None and pd.notna(universe) else None
         chosen, snapshots, spike = consider_benchmarks(
             current_stores=stores,
             history=history,
@@ -203,6 +213,7 @@ def run_distribution(
             retailer_peers=retailer_peer_values,
             regional_peers=regional_peer_values,
             config=config,
+            peer_store_cap=peer_cap,
         )
         if chosen is None:
             skipped_no_gap += 1

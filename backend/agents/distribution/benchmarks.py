@@ -124,6 +124,7 @@ def consider_benchmarks(
     retailer_peers: list[float],
     regional_peers: list[float],
     config: DistributionConfig,
+    peer_store_cap: float | None = None,
 ) -> tuple[BenchmarkCandidate | None, dict[str, BenchmarkSnapshot], bool]:
     hist = historical_metrics(history, current_date, config)
     n_hist = int(hist["n_periods"] or 0)
@@ -191,9 +192,12 @@ def consider_benchmarks(
         candidates.append(cand)
 
     if snapshots[BenchmarkType.RETAILER_PEER.value].available:
+        peer_raw = snapshots[BenchmarkType.RETAILER_PEER.value].stores
+        if peer_raw is not None and peer_store_cap is not None and peer_store_cap > 0:
+            peer_raw = min(peer_raw, peer_store_cap)
         cand = _candidate_from_level(
             benchmark_type=BenchmarkType.RETAILER_PEER.value,
-            raw_stores=snapshots[BenchmarkType.RETAILER_PEER.value].stores,
+            raw_stores=peer_raw,
             current_stores=current_stores,
             n=len(retailer_peers),
             config=config,
@@ -204,9 +208,12 @@ def consider_benchmarks(
             candidates.append(cand)
 
     if snapshots[BenchmarkType.REGIONAL_PEER.value].available:
+        peer_raw = snapshots[BenchmarkType.REGIONAL_PEER.value].stores
+        if peer_raw is not None and peer_store_cap is not None and peer_store_cap > 0:
+            peer_raw = min(peer_raw, peer_store_cap)
         cand = _candidate_from_level(
             benchmark_type=BenchmarkType.REGIONAL_PEER.value,
-            raw_stores=snapshots[BenchmarkType.REGIONAL_PEER.value].stores,
+            raw_stores=peer_raw,
             current_stores=current_stores,
             n=len(regional_peers),
             config=config,

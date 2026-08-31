@@ -106,6 +106,29 @@ def test_regional_peer_scale_filter() -> None:
     assert sorted(peers) == [3.0, 4.0]
 
 
+def test_retailer_peer_is_capped_at_local_listing_universe() -> None:
+    config = _config()
+    current_date = pd.Timestamp("2026-08-16")
+    history = UnitHistory(
+        dates=[current_date],
+        store_counts=[1.0],
+        sales_values=[200.0],
+        sales_volumes=[4.0],
+    )
+    chosen, _snapshots, _spike = consider_benchmarks(
+        current_stores=1.0,
+        history=history,
+        current_date=current_date,
+        retailer_peers=[52.0, 48.0, 60.0, 40.0, 55.0],
+        regional_peers=[],
+        config=config,
+        peer_store_cap=11.0,
+    )
+    assert chosen is not None
+    assert chosen.benchmark_type == "retailer_peer"
+    assert chosen.benchmark_stores == 11.0
+
+
 def test_no_opportunity_when_already_at_potential() -> None:
     config = _config()
     current_date = pd.Timestamp("2026-08-16")
