@@ -25,7 +25,6 @@ from backend.agents.promotion.models import (
     PrimaryLever,
     PromotionConfig,
     PromotionOpportunity,
-    PromotionType,
     PromoIntensity,
     PromoState,
     Recommendation,
