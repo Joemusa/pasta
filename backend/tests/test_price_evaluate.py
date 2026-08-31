@@ -159,6 +159,53 @@ def test_outlier_handling_keeps_row_and_is_flagged(tmp_path: Path) -> None:
     _ = flagged
 
 
+def test_category_peers_are_not_used_for_price_change_tests(tmp_path: Path) -> None:
+    """Different SKUs in the same brand/banner/region are architecture context, not a cut test."""
+    rows: list[dict[str, object]] = []
+    for date in ["2026-07-26", "2026-08-02", "2026-08-09", "2026-08-16"]:
+        rows.append(
+            commercial_row(
+                date=date,
+                product="Handy Andy Food Safe 5l",
+                region="Gauteng",
+                retailer="Makro Main",
+                pos_current_price=148.0,
+                sales_volume=14.0,
+                sales_value=148.0 * 14.0,
+                store_count=10.0,
+                pos_percent_time_on_promo=20.0,
+                pos_percent_sales_on_promo=20.0,
+            )
+        )
+        for product, price, volume in [
+            ("Handy Andy Lemon 750ml", 26.0, 40.0),
+            ("Handy Andy Lavender 750ml", 25.0, 38.0),
+            ("Handy Andy Potpourri 750ml", 24.0, 42.0),
+        ]:
+            rows.append(
+                commercial_row(
+                    date=date,
+                    product=product,
+                    region="Gauteng",
+                    retailer="Makro Main",
+                    pos_current_price=price,
+                    sales_volume=volume,
+                    sales_value=price * volume,
+                    store_count=10.0,
+                    pos_percent_time_on_promo=20.0,
+                    pos_percent_sales_on_promo=20.0,
+                )
+            )
+    report = _run(tmp_path, rows)
+    fives = [item for item in report.opportunities if "5l" in item.product]
+    assert all(item.recommendation != Recommendation.LOWER_PRICE_TEST.value for item in fives)
+    assert all(
+        item.benchmark_type != "category_peer"
+        or item.recommendation == Recommendation.PRICE_ARCHITECTURE_REVIEW.value
+        for item in fives
+    )
+
+
 def test_confidence_cannot_be_high_with_four_weeks(tmp_path: Path) -> None:
     rows = panel_for_product(
         target_price=20.0,

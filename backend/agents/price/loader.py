@@ -88,7 +88,7 @@ def _usable(frame: pd.DataFrame) -> bool:
 def select_integrated_file(files: list[Path], manufacturer: str) -> tuple[Path, pd.DataFrame]:
     ranked: list[tuple[int, Path, pd.DataFrame]] = []
     for file in files:
-        frame = pd.read_csv(file)
+        frame = pd.read_csv(file, low_memory=False)
         if not _usable(frame):
             logger.info("skip_integrated_missing_columns path=%s", file)
             continue

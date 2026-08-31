@@ -339,6 +339,12 @@ def evaluate_grain(
     est_vol = 0.0
     est_val = 0.0
 
+    same_sku_benchmark = benchmark.benchmark_type in {
+        BenchmarkType.RETAILER_PEER,
+        BenchmarkType.REGIONAL_PEER,
+        BenchmarkType.SKU_NETWORK,
+        BenchmarkType.HISTORICAL,
+    }
     can_test = (
         n_weeks >= config.min_weeks_for_recommendation
         and promotion_is_controlled(status)
@@ -347,6 +353,7 @@ def evaluate_grain(
         and not mixed
         and benchmark.price is not None
         and index is not None
+        and same_sku_benchmark
     )
 
     if can_test and dist_primary and signal == PriceSignal.HIGHER_PRICE_LOWER_VOLUME:
