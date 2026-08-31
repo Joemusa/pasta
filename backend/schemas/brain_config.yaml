@@ -1,0 +1,42 @@
+# Commercial Brain V1 — decision layer.
+# Combines frozen Distribution, Price, and Promotion outputs.
+# Do not sum overlapping levers. Do not upgrade specialist confidence.
+# Do not convert directional estimates into guaranteed incremental sales.
+# Manufacturer is a filter, not a list of SKUs, retailers, or regions.
+
+manufacturer: Unilever
+n_actions: 3
+
+# Distribution is material when the store gap is at least this large.
+min_store_gap: 1.0
+
+# Attractive listed-store economics for the distribution-first rule.
+min_value_per_store: 0.01
+
+# Ignore specialist values below this (rand / units).
+min_primary_value: 1.0
+
+# Promotion is "more attractive than price" when its primary value is at least this ratio of the price value.
+promo_vs_price_ratio: 1.0
+
+# Positive promo uplift floor (fraction, e.g. 0.05 = 5%).
+min_promo_uplift: 0.05
+
+# Priority score: opportunity_score * evidence_factor * actionability_factor * data_quality_factor.
+# opportunity_score = log1p(primary_value) / log1p(value_reference)
+value_reference: 10000.0
+evidence_high: 1.0
+evidence_medium: 0.70
+evidence_low: 0.45
+actionability_single: 1.0
+actionability_multi: 0.90
+actionability_insufficient: 0.0
+data_quality_base: 1.0
+outlier_penalty: 0.15
+mixed_promo_penalty: 0.10
+
+# Cap how many of the top actions can share the same SKU or lever so the slide is not a single-SKU dump.
+max_actions_per_product: 2
+max_actions_per_lever: 2
+
+output_top_n: 10
