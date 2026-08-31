@@ -26,6 +26,7 @@ def data_root_for(path: Path) -> Path:
         if path.name in {
             "social_reports",
             "social_fixture_reports",
+            "social_live_validation",
             "brain_reports",
             "macro_context",
         }:

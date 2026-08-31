@@ -1,0 +1,183 @@
+{
+  "title": "LIVE SOCIAL DATA VALIDATION",
+  "source": "GDELT",
+  "connection": "SUCCESS",
+  "live_data_status": "LIVE \u2014 GDELT",
+  "observation_start": "2026-06-02T13:17:18Z",
+  "observation_end": "2026-08-31T13:17:18Z",
+  "collection_timestamp": "2026-08-31T13:17:18Z",
+  "records_retrieved": 74,
+  "records_after_deduplication": 67,
+  "records_successfully_normalised": 67,
+  "records_successfully_analysed": 54,
+  "dedupe_stats": {
+    "raw": 74,
+    "future": 0,
+    "duplicate_url": 0,
+    "duplicate_content": 7,
+    "outside_window": 0,
+    "kept": 67
+  },
+  "registry": {
+    "source": "public_web",
+    "source_type": "web",
+    "access_method": "gdelt_doc_2_0_api",
+    "status": "AVAILABLE",
+    "last_successful_collection": "2026-08-31T13:18:25.991297+00:00",
+    "record_count": 74,
+    "error": null,
+    "limitations": [
+      "Public web/news uses GDELT DOC 2.0 (public query API) and optional official NewsAPI. Google News HTML/RSS is not fetched because robots.txt disallows /rss.",
+      "Article bodies are not scraped. Title/description plus source URL and publication date are retained.",
+      "Country is set only when the source supplies geography. English language is not treated as South Africa.",
+      "NewsAPI UNAVAILABLE until NEWS_API_KEY is configured."
+    ]
+  },
+  "top_brands_detected": [
+    "Sunlight"
+  ],
+  "top_categories_detected": [
+    "Home Care",
+    "Foods"
+  ],
+  "top_consumer_themes": [],
+  "sentiment": {
+    "label": "NEUTRAL",
+    "intensity": "HIGH",
+    "share_positive": 0.0,
+    "share_negative": 0.018518518518518517,
+    "share_neutral": 0.9814814814814815,
+    "share_mixed": 0.0,
+    "positive_negative_ratio": 0.0,
+    "evidence_count": 54,
+    "trend": "DECLINING"
+  },
+  "emerging_signals": [
+    {
+      "name": "conversation_volume",
+      "status": "DECLINING",
+      "note": "Conversation pattern for overall conversation volume is DECLINING (recent=8, baseline=46). This is not a commercial action."
+    },
+    {
+      "name": "availability_complaints",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "note": "Insufficient history to call availability complaints a trend (recent=0, baseline=0)."
+    },
+    {
+      "name": "price_value",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "note": "Insufficient history to call price/value concerns a trend (recent=1, baseline=2)."
+    },
+    {
+      "name": "promotion_discussions",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "note": "Insufficient history to call promotion discussions a trend (recent=0, baseline=1)."
+    },
+    {
+      "name": "competitor_mentions",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "note": "Insufficient history to call competitor mentions a trend (recent=0, baseline=0)."
+    },
+    {
+      "name": "new_product_discussions",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "note": "Insufficient history to call named product discussions a trend (recent=0, baseline=0)."
+    },
+    {
+      "name": "emerging_complaints",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "note": "Insufficient history to call negative conversation a trend (recent=0, baseline=1)."
+    },
+    {
+      "name": "emerging_positive_themes",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "note": "Insufficient history to call positive conversation a trend (recent=0, baseline=0)."
+    }
+  ],
+  "source_urls": [
+    "https://www.bizcommunity.com/article/unilever-granted-extension-to-change-sunlight-platinum-packaging-075035a",
+    "https://www.news24.com/business/companies/sunlight-liquid-gets-more-time-to-fix-misleading-labels-20260826-1015",
+    "https://www.bizcommunity.com/article/street-food-couture-is-rewriting-the-rules-of-indulgence-512650a",
+    "https://www.news24.com/business/companies/so-you-think-you-want-to-be-a-ceo-serame-taukobong-leading-a-resurrection-20260803-0663",
+    "http://www.africaleader.com/news/279101487/liquid-iv-expands-its-hydration-portfolio-in-india-with-the-launch-of-sugar-free-range",
+    "https://www.bizcommunity.com/article/ja-south-africa-expands-board-to-drive-youth-impact-390788a",
+    "https://www.bizcommunity.com/article/dentsu-school-of-influence-graduates-new-wave-of-business-ready-creators-064275a",
+    "https://www.ecr.co.za/shows/carolofori/kzn-shares-curry-stories-with-rajah-and-carol-ofori/",
+    "https://mg.co.za/2026-08-05-nonkululeko-malomane/",
+    "https://www.thesouthafrican.com/technology/the-huawei-pura-90s-series-puts-powerful-zoom-at-the-heart-of-mobile-photography/",
+    "https://www.jacarandafm.com/news/news/world-cup-fans-barred-from-bringing-water-bottles/",
+    "https://www.jacarandafm.com/news/news/fifa-to-allow-disposable-water-bottles-at-world-cup/",
+    "https://www.bizcommunity.com/article/from-ai-to-health-innovation-south-africa-top-science-awards-chooseup-researchers-078795a",
+    "https://www.dailymaverick.co.za/article/2026-08-20-china-puts-robocops-on-traffic-duty-minus-the-arrest-powers/",
+    "https://www.citizen.co.za/news/south-africa/politics/smaller-political-parties-do-have-an-impact-says-analyst/",
+    "https://www.cnbcafrica.com/media/b4uS9W1yyHc/omo-maturity-drives-bullish-t-bills",
+    "https://www.cnbcafrica.com/media/YjG6fzKW8SY/t-bills-investors-eye-profit-from-omo-auction",
+    "https://www.citizen.co.za/lifestyle/entertainment/celebrity-news/from-dr-musa-and-glorias-family-victories-to-gerda-steyns-record-run-moments-from-the-2026-comrades-marathon/",
+    "https://www.cnbcafrica.com/media/M1V9XFmjI4Q/access-investors-position-ahead-of-mondays-bond-auction",
+    "https://www.bizcommunity.com/article/how-the-springbok-women-became-a-force-to-be-reckoned-with-964924a",
+    "https://www.cnbcafrica.com/media/7784652261314/cbn-targets-data-driven-approach-to-policy-rate-decisions-",
+    "https://www.cnbcafrica.com/media/7782224177527/odiaka-116trn-fixed-income-turnover-reflects-strong-investor-confidence",
+    "https://www.ecr.co.za/shows/east-coast-breakfast/whats-become-too-expensive/",
+    "https://www.kickoff.com/news/worldnews/another-ex-kaizer-chiefs-star-edson-castillo-wins-trophy-abroad",
+    "https://mg.co.za/thought-leader/editorial/2026-07-30-editorial-johnson-falls-on-her-sword/",
+    "https://www.bizcommunity.com/article/ishowspeed-to-lead-youtube-fifa-creator-match-175206a",
+    "https://www.bizcommunity.com/article/uber-eats-and-citipods-pilot-courier-hub-to-improve-urban-space-in-cape-town-967724a",
+    "https://www.itweb.co.za/article/itwebtv-biz-how-aws-is-helping-to-build-sas-next-generation-of-cloud-entrepreneurs/Pero37Z3JneMQb6m",
+    "https://www.dailymaverick.co.za/article/2026-06-16-thabo-mbeki-tribute-concert-restores-tiyo-soga-to-the-african-renaissance/",
+    "http://www.africaleader.com/news/279137234/rbi-expected-to-hold-repo-at-525-per-cent-as-geopolitical-uncertainty-eases-will-watch-food-and-fuel-pass-through-bofa-securities",
+    "http://www.africaleader.com/news/279127866/lionel-messi-history-making-hat-trick-carries-argentina-past-algeria",
+    "https://www.bizcommunity.com/article/silver-for-mtana-ka-gogo-leads-sa-latest-cannes-wins-286927a",
+    "https://www.bizcommunity.com/article/why-african-brands-need-ecosystems-289327a",
+    "https://www.bizcommunity.com/article/warc-says-cultural-relevance-and-creators-drive-cannes-effectiveness-wins-634731a",
+    "https://themediaonline.co.za/2026/07/effie-awards-south-africa-names-45-finalists-for-2026/",
+    "https://themediaonline.co.za/2026/06/awards-wrap-sikuvile-journalisms-awards-finalists-announced-cape-town-tourism-strikes-gold-ias-champions-marketing-effectiveness-with-2026-effie-awards-sponsorship/",
+    "https://divyamarathi.bhaskar.com/business/news/india-fmcg-products-price-hike-inflation-news-138676629.html",
+    "http://www.taiwansun.com/news/279145066/oil-linked-raw-material-deflation-to-support-consumer-sector-margins-agri-inflation-to-keep-pricing-actions-active-through-fy27-report",
+    "https://retail.economictimes.indiatimes.com/news/food-entertainment/personal-care-pet-supplies-liquor/festive-demand-set-to-lift-fmcg-growth-but-margins-face-pressure/133141197",
+    "https://bestmediainfo.com/mediainfo/mediainfo-marketing/honasa-consumer-appoints-nilesh-kotalwar-as-chief-marketing-officer-12236572",
+    "https://www.fool.com/investing/2026/08/22/my-3-favorite-high-yield-dividend-stocks-to-buy-ri/?source=iedfolrf0000001",
+    "https://koran-jakarta.com/2026-07-31/gloutopia-hadir-perdana-unilever-indonesia-dan-shopee-satukan-brand-kreator-dan-konsumen",
+    "https://aninews.in/news/business/indias-consumer-sector-heads-into-festive-season-with-stronger-demand-but-faces-margin-and-competitive-pressures20260810175729/",
+    "https://www.siliconindia.com/news/general/global-fmcg-majors-expand-india-investments-strengthen-retail-reach-nid-241761-cid-1.html",
+    "https://www.newkerala.com/news/a/indias-consumer-sector-heads-into-festive-season-stronger-702.htm",
+    "https://www.finanznachrichten.de/nachrichten-2026-07/69158048-dz-bank-stuft-unilever-plc-auf-kaufen-322.htm",
+    "https://www.bellanaija.com/2026/06/winners-emerge-at-rexona-consumer-promotion/",
+    "https://dailyinqilab.com/entertainment/bollywood/932351",
+    "https://money.kompas.com/read/2026/07/07/101100726/unilever-global-bangun-proyek-baru-di-kek-sei-mangkei-bulan-depan",
+    "https://insight.kontan.co.id/news/esg-unilever-unvr-mengiring-transformasi-bisnis-dengan-keberlanjutan",
+    "https://nieuws.nl/economie/ben-jerrys-verliest-groot-deel-van-rechtszaak-tegen-unilever",
+    "https://www.posta.com.tr/ekonomi/aile-butcesine-destek-oluyor-zaman-kazandiriyor-hizli-temizlik-cagi-3006724",
+    "https://www.liputan6.com/saham/read/8256088/unilever-catat-penjualan-bersih-rp-169-triliun-di-semester-i-2026",
+    "https://lestari.kompas.com/read/2026/07/28/140605186/strategi-unilever-bangun-pertumbuhan-berkelanjutan-di-tengah-dinamika-pasar",
+    "https://www.straitstimes.com/singapore/no-more-marmite-chicken-iconic-umami-spread-vanishes-from-singapore-supermarket-shelves",
+    "https://www.thehindubusinessline.com/companies/leading-fmcg-firms-report-robust-growth-on-quick-commerce-channel-as-buying-behaviour-changes/article71297176.ece",
+    "https://bestmediainfo.com/mediainfo/mediainfo-marketing/indias-fmcg-ceo-churn-six-of-10-new-consumer-chiefs-have-held-marketing-leadership-roles-12253474",
+    "https://ekonomi.republika.co.id/berita/thr839490/tiga-kek-industri-bakal-diperluas-investor-asing-antre-masuk",
+    "https://www.zaobao.com.sg/news/singapore/story20260728-9434989",
+    "https://www.bizcommunity.com/article/cadbury-brings-social-rituals-to-life-with-new-limited-edition-packaging-308328a",
+    "https://www.timeslive.co.za/news/2026-06-05-spaza-shops-outpace-major-retailers-as-consumers-tighten-budgets/",
+    "https://www.bizcommunity.com/article/exclusive-90-of-fmcg-suppliers-operate-blind-during-promotions-forfeiting-sales-daily-064055a",
+    "https://www.riotimesonline.com/the-lagos-santos-corridor-how-west-africa-s-consumer-2026-07-24/",
+    "https://www.timeslive.co.za/news/2026-06-05-shoprite-rewards-customer-loyalty-with-free-accident-insurance-for-pets/",
+    "https://www.finanznachrichten.de/nachrichten-2026-06/68708645-market-decipher-2026-protein-market-report-whey-supply-crisis-fmcg-led-growth-surge-and-ingredient-import-disruptions-reshape-the-dollar-133-billion-ind-008.htm",
+    "https://moneylife.in/article/nifty-sensex-react-after-four-days-of-rally-smaller-stocks-correct-more-tuesday-market-report/80995.html",
+    "https://cbn.co.za/industry-news/business-advisory-financial-services-news/south-africas-rising-trade-risk-the-silent-shockwave/"
+  ],
+  "date_range": {
+    "start": "2026-06-02T13:45:00Z",
+    "end": "2026-08-27T11:15:00Z"
+  },
+  "south_africa_specific_records": 41,
+  "unknown_geography_records": 0,
+  "other_geography_records": 26,
+  "data_quality_issues": [
+    "65 observation(s) left brand/product/category unmatched because taxonomy evidence was insufficient",
+    "13 observation(s) published after the POS period were retained as LIVE but excluded from sentiment analysis (FUTURE_LEAKAGE)",
+    "Deduplicated 0 URL duplicate(s) and 7 content duplicate(s)"
+  ],
+  "data_mode": "LIVE",
+  "social_context_brain_verdict": "ADD_CONTEXT",
+  "listening_path": "backend/data/social_reports/social_listening_v1.json",
+  "brain_path": "backend/data/social_reports/social_context_brain_v1.json",
+  "report_text": "LIVE SOCIAL DATA VALIDATION\n\nSource: GDELT\n\nConnection: SUCCESS\n\nRecords retrieved: 74\nRecords after deduplication: 67\nRecords successfully normalised: 67\nRecords successfully analysed: 54\n\nTop brands detected: Sunlight\nTop categories detected: Home Care, Foods\nTop consumer themes: none\nSentiment: NEUTRAL (intensity HIGH, n=54)\nEmerging signals: conversation_volume=DECLINING; availability_complaints=INSUFFICIENT_EVIDENCE; price_value=INSUFFICIENT_EVIDENCE; promotion_discussions=INSUFFICIENT_EVIDENCE; competitor_mentions=INSUFFICIENT_EVIDENCE; new_product_discussions=INSUFFICIENT_EVIDENCE; emerging_complaints=INSUFFICIENT_EVIDENCE; emerging_positive_themes=INSUFFICIENT_EVIDENCE\n\nSource URLs:\n- https://www.bizcommunity.com/article/unilever-granted-extension-to-change-sunlight-platinum-packaging-075035a\n- https://www.news24.com/business/companies/sunlight-liquid-gets-more-time-to-fix-misleading-labels-20260826-1015\n- https://www.bizcommunity.com/article/street-food-couture-is-rewriting-the-rules-of-indulgence-512650a\n- https://www.news24.com/business/companies/so-you-think-you-want-to-be-a-ceo-serame-taukobong-leading-a-resurrection-20260803-0663\n- http://www.africaleader.com/news/279101487/liquid-iv-expands-its-hydration-portfolio-in-india-with-the-launch-of-sugar-free-range\n- https://www.bizcommunity.com/article/ja-south-africa-expands-board-to-drive-youth-impact-390788a\n- https://www.bizcommunity.com/article/dentsu-school-of-influence-graduates-new-wave-of-business-ready-creators-064275a\n- https://www.ecr.co.za/shows/carolofori/kzn-shares-curry-stories-with-rajah-and-carol-ofori/\n- https://mg.co.za/2026-08-05-nonkululeko-malomane/\n- https://www.thesouthafrican.com/technology/the-huawei-pura-90s-series-puts-powerful-zoom-at-the-heart-of-mobile-photography/\n- https://www.jacarandafm.com/news/news/world-cup-fans-barred-from-bringing-water-bottles/\n- https://www.jacarandafm.com/news/news/fifa-to-allow-disposable-water-bottles-at-world-cup/\n- https://www.bizcommunity.com/article/from-ai-to-health-innovation-south-africa-top-science-awards-chooseup-researchers-078795a\n- https://www.dailymaverick.co.za/article/2026-08-20-china-puts-robocops-on-traffic-duty-minus-the-arrest-powers/\n- https://www.citizen.co.za/news/south-africa/politics/smaller-political-parties-do-have-an-impact-says-analyst/\n- https://www.cnbcafrica.com/media/b4uS9W1yyHc/omo-maturity-drives-bullish-t-bills\n- https://www.cnbcafrica.com/media/YjG6fzKW8SY/t-bills-investors-eye-profit-from-omo-auction\n- https://www.citizen.co.za/lifestyle/entertainment/celebrity-news/from-dr-musa-and-glorias-family-victories-to-gerda-steyns-record-run-moments-from-the-2026-comrades-marathon/\n- https://www.cnbcafrica.com/media/M1V9XFmjI4Q/access-investors-position-ahead-of-mondays-bond-auction\n- https://www.bizcommunity.com/article/how-the-springbok-women-became-a-force-to-be-reckoned-with-964924a\n- https://www.cnbcafrica.com/media/7784652261314/cbn-targets-data-driven-approach-to-policy-rate-decisions-\n- https://www.cnbcafrica.com/media/7782224177527/odiaka-116trn-fixed-income-turnover-reflects-strong-investor-confidence\n- https://www.ecr.co.za/shows/east-coast-breakfast/whats-become-too-expensive/\n- https://www.kickoff.com/news/worldnews/another-ex-kaizer-chiefs-star-edson-castillo-wins-trophy-abroad\n- https://mg.co.za/thought-leader/editorial/2026-07-30-editorial-johnson-falls-on-her-sword/\n- https://www.bizcommunity.com/article/ishowspeed-to-lead-youtube-fifa-creator-match-175206a\n- https://www.bizcommunity.com/article/uber-eats-and-citipods-pilot-courier-hub-to-improve-urban-space-in-cape-town-967724a\n- https://www.itweb.co.za/article/itwebtv-biz-how-aws-is-helping-to-build-sas-next-generation-of-cloud-entrepreneurs/Pero37Z3JneMQb6m\n- https://www.dailymaverick.co.za/article/2026-06-16-thabo-mbeki-tribute-concert-restores-tiyo-soga-to-the-african-renaissance/\n- http://www.africaleader.com/news/279137234/rbi-expected-to-hold-repo-at-525-per-cent-as-geopolitical-uncertainty-eases-will-watch-food-and-fuel-pass-through-bofa-securities\n- http://www.africaleader.com/news/279127866/lionel-messi-history-making-hat-trick-carries-argentina-past-algeria\n- https://www.bizcommunity.com/article/silver-for-mtana-ka-gogo-leads-sa-latest-cannes-wins-286927a\n- https://www.bizcommunity.com/article/why-african-brands-need-ecosystems-289327a\n- https://www.bizcommunity.com/article/warc-says-cultural-relevance-and-creators-drive-cannes-effectiveness-wins-634731a\n- https://themediaonline.co.za/2026/07/effie-awards-south-africa-names-45-finalists-for-2026/\n- https://themediaonline.co.za/2026/06/awards-wrap-sikuvile-journalisms-awards-finalists-announced-cape-town-tourism-strikes-gold-ias-champions-marketing-effectiveness-with-2026-effie-awards-sponsorship/\n- https://divyamarathi.bhaskar.com/business/news/india-fmcg-products-price-hike-inflation-news-138676629.html\n- http://www.taiwansun.com/news/279145066/oil-linked-raw-material-deflation-to-support-consumer-sector-margins-agri-inflation-to-keep-pricing-actions-active-through-fy27-report\n- https://retail.economictimes.indiatimes.com/news/food-entertainment/personal-care-pet-supplies-liquor/festive-demand-set-to-lift-fmcg-growth-but-margins-face-pressure/133141197\n- https://bestmediainfo.com/mediainfo/mediainfo-marketing/honasa-consumer-appoints-nilesh-kotalwar-as-chief-marketing-officer-12236572\n- https://www.fool.com/investing/2026/08/22/my-3-favorite-high-yield-dividend-stocks-to-buy-ri/?source=iedfolrf0000001\n- https://koran-jakarta.com/2026-07-31/gloutopia-hadir-perdana-unilever-indonesia-dan-shopee-satukan-brand-kreator-dan-konsumen\n- https://aninews.in/news/business/indias-consumer-sector-heads-into-festive-season-with-stronger-demand-but-faces-margin-and-competitive-pressures20260810175729/\n- https://www.siliconindia.com/news/general/global-fmcg-majors-expand-india-investments-strengthen-retail-reach-nid-241761-cid-1.html\n- https://www.newkerala.com/news/a/indias-consumer-sector-heads-into-festive-season-stronger-702.htm\n- https://www.finanznachrichten.de/nachrichten-2026-07/69158048-dz-bank-stuft-unilever-plc-auf-kaufen-322.htm\n- https://www.bellanaija.com/2026/06/winners-emerge-at-rexona-consumer-promotion/\n- https://dailyinqilab.com/entertainment/bollywood/932351\n- https://money.kompas.com/read/2026/07/07/101100726/unilever-global-bangun-proyek-baru-di-kek-sei-mangkei-bulan-depan\n- https://insight.kontan.co.id/news/esg-unilever-unvr-mengiring-transformasi-bisnis-dengan-keberlanjutan\n- https://nieuws.nl/economie/ben-jerrys-verliest-groot-deel-van-rechtszaak-tegen-unilever\n- https://www.posta.com.tr/ekonomi/aile-butcesine-destek-oluyor-zaman-kazandiriyor-hizli-temizlik-cagi-3006724\n- https://www.liputan6.com/saham/read/8256088/unilever-catat-penjualan-bersih-rp-169-triliun-di-semester-i-2026\n- https://lestari.kompas.com/read/2026/07/28/140605186/strategi-unilever-bangun-pertumbuhan-berkelanjutan-di-tengah-dinamika-pasar\n- https://www.straitstimes.com/singapore/no-more-marmite-chicken-iconic-umami-spread-vanishes-from-singapore-supermarket-shelves\n- https://www.thehindubusinessline.com/companies/leading-fmcg-firms-report-robust-growth-on-quick-commerce-channel-as-buying-behaviour-changes/article71297176.ece\n- https://bestmediainfo.com/mediainfo/mediainfo-marketing/indias-fmcg-ceo-churn-six-of-10-new-consumer-chiefs-have-held-marketing-leadership-roles-12253474\n- https://ekonomi.republika.co.id/berita/thr839490/tiga-kek-industri-bakal-diperluas-investor-asing-antre-masuk\n- https://www.zaobao.com.sg/news/singapore/story20260728-9434989\n- https://www.bizcommunity.com/article/cadbury-brings-social-rituals-to-life-with-new-limited-edition-packaging-308328a\n- https://www.timeslive.co.za/news/2026-06-05-spaza-shops-outpace-major-retailers-as-consumers-tighten-budgets/\n- https://www.bizcommunity.com/article/exclusive-90-of-fmcg-suppliers-operate-blind-during-promotions-forfeiting-sales-daily-064055a\n- https://www.riotimesonline.com/the-lagos-santos-corridor-how-west-africa-s-consumer-2026-07-24/\n- https://www.timeslive.co.za/news/2026-06-05-shoprite-rewards-customer-loyalty-with-free-accident-insurance-for-pets/\n- https://www.finanznachrichten.de/nachrichten-2026-06/68708645-market-decipher-2026-protein-market-report-whey-supply-crisis-fmcg-led-growth-surge-and-ingredient-import-disruptions-reshape-the-dollar-133-billion-ind-008.htm\n- https://moneylife.in/article/nifty-sensex-react-after-four-days-of-rally-smaller-stocks-correct-more-tuesday-market-report/80995.html\n- https://cbn.co.za/industry-news/business-advisory-financial-services-news/south-africas-rising-trade-risk-the-silent-shockwave/\n\nDate range: 2026-06-02T13:45:00Z to 2026-08-27T11:15:00Z\nobservation_start: 2026-06-02T13:17:18Z\nobservation_end: 2026-08-31T13:17:18Z\ncollection_timestamp: 2026-08-31T13:17:18Z\n\nSouth Africa-specific records: 41\nUnknown geography records: 0\n\nData-quality issues:\n- 65 observation(s) left brand/product/category unmatched because taxonomy evidence was insufficient\n- 13 observation(s) published after the POS period were retained as LIVE but excluded from sentiment analysis (FUTURE_LEAKAGE)\n- Deduplicated 0 URL duplicate(s) and 7 content duplicate(s)\n\nLIVE DATA STATUS = LIVE \u2014 GDELT"
+}

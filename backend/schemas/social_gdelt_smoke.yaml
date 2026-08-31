@@ -1,0 +1,88 @@
+user_agent: "UnileverPastaSocialIntelligence/1.0 (official-API adapter; +https://github.com/Joemusa/pasta)"
+request_timeout_seconds: 20
+rate_limit_sleep_seconds: 4.0
+max_results_per_query: 8
+max_queries_per_source: 16
+
+# Controlled LIVE smoke queries. Brand lists are YAML terms, not agent if-blocks.
+social_queries:
+  - id: unilever_za
+    type: company
+    terms: [Unilever]
+    template: "{name} sourcecountry:SouthAfrica"
+  - id: sunlight_za
+    type: brand
+    terms: [Sunlight]
+    template: "{name} sourcecountry:SouthAfrica"
+  - id: omo_za
+    type: brand
+    terms: [Omo]
+    template: "{name} sourcecountry:SouthAfrica"
+  - id: domestos_za
+    type: brand
+    terms: [Domestos]
+    template: "{name} sourcecountry:SouthAfrica"
+  - id: handy_andy_za
+    type: brand
+    terms: ["Handy Andy"]
+    template: '"{name}" sourcecountry:SouthAfrica'
+  - id: knorr_za
+    type: brand
+    terms: [Knorr]
+    template: "{name} sourcecountry:SouthAfrica"
+  - id: dove_za
+    type: brand
+    terms: [Dove]
+    template: "{name} sourcecountry:SouthAfrica"
+  - id: vaseline_za
+    type: brand
+    terms: [Vaseline]
+    template: "{name} sourcecountry:SouthAfrica"
+  - id: price
+    type: price
+    terms: [Unilever]
+    template: "{name} (price OR expensive OR affordability)"
+  - id: household
+    type: consumer_need
+    terms: [Unilever]
+    template: "{name} (household spending OR consumer behaviour OR consumer behavior)"
+  - id: promotion
+    type: promotion
+    terms: [Unilever]
+    template: "{name} (promo OR promotion OR special)"
+  - id: availability
+    type: availability
+    terms: [Unilever]
+    template: "{name} (availability OR \"out of stock\")"
+  - id: fmcg_price
+    type: price
+    terms: [FMCG]
+    template: "{name} price South Africa"
+
+south_africa:
+  boost_first_n: 0
+  do_not_infer_country_from_language: true
+  query_boosts: {}
+
+public_web:
+  gdelt:
+    enabled: true
+    endpoint: "http://api.gdeltproject.org/api/v2/doc/doc"
+    timespan: 3m
+    format: json
+  newsapi:
+    enabled: false
+
+country_iso:
+  south africa: ZA
+  united states: US
+  united kingdom: GB
+  singapore: SG
+  bangladesh: BD
+  australia: AU
+  india: IN
+  nigeria: NG
+  kenya: KE
+  germany: DE
+  france: FR
+  netherlands: NL
