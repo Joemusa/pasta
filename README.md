@@ -1,20 +1,23 @@
 # FMCG Commercial Intelligence System
 
-Sprint 1 delivers a **deterministic Data QA Agent**. It inspects uploaded POS CSV/Excel files, maps columns onto a canonical commercial schema, standardises types, validates quality, flags outliers without deleting them, and writes a structured QA report plus a cleaned dataset for downstream agents.
+Upload a POS extract in the browser. The **Data QA Agent** validates and standardises it (deterministic Python — no LLM). The **Report Agent** then writes a PDF presentation from the QA output and the cleaned table.
 
-The agent never uses an LLM to decide whether data is valid. Future agents (Distribution, Price, Promotion, and others) are not implemented in this sprint; the QA report exposes explicit capability flags they will consume.
+Distribution, Price, and Promotion agents are not run yet; the QA report still exposes capability flags they will consume.
 
 ## Layout
 
 ```
 backend/
+  web/                # upload UI (FastAPI)
   agents/data_qa/     # load, map, standardise, validate, outliers, capabilities
+  agents/reporting/   # commercial snapshot + PDF presentation
   schemas/            # canonical fields, aliases, QA thresholds
   tests/
   data/
     raw/              # preserved originals (never overwritten)
     clean/            # standardised commercial tables
     qa_reports/       # structured JSON reports
+    jobs/             # per-upload workspace (gitignored)
 ```
 
 ## Install
@@ -25,9 +28,15 @@ python3 -m pip install -r requirements.txt
 
 Python 3.11+ is required.
 
-## Run
+## Run the web app
 
-From the repository root:
+```bash
+python3 -m backend.web
+```
+
+Open http://127.0.0.1:8000 — drop a `.csv` / `.xlsx` file, or use the sample POS extract. Download the PDF, clean CSV, and QA JSON when the agents finish. The original upload is copied and never overwritten.
+
+## Run Data QA from the CLI
 
 ```bash
 python3 -m backend.agents.data_qa backend/data/raw/sample_pos.csv
