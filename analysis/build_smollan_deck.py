@@ -3,8 +3,12 @@
 
 from __future__ import annotations
 
+import subprocess
 from pathlib import Path
 
+import matplotlib
+
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import pymupdf
@@ -23,6 +27,7 @@ TEMPLATE_PDF = ROOT / "templates" / "Smollan_Unilever_Template.pdf"
 ASSETS = ROOT / "output" / "template_assets"
 CHART_DIR = ROOT / "output" / "charts"
 DECK = ROOT / "output" / "Unilever_Pasta_Noodles_Jun2026.pptx"
+PDF = ROOT / "output" / "Unilever_Pasta_Noodles_Jun2026.pdf"
 
 NAVY = RGBColor(0x12, 0x2A, 0x4A)
 BLUE = RGBColor(0x1F, 0x5F, 0xA8)
@@ -454,6 +459,36 @@ def build():
 
     prs.save(DECK)
     print(f"Wrote {DECK}  slides={len(prs.slides)}")
+    export_pdf(DECK, PDF)
+    print(f"Wrote {PDF}")
+
+
+def export_pdf(pptx_path: Path, pdf_path: Path) -> Path:
+    """Convert the PowerPoint deck to PDF via LibreOffice Impress."""
+    pdf_path.parent.mkdir(parents=True, exist_ok=True)
+    soffice = next(
+        (Path(p) for p in ("/usr/bin/soffice", "/usr/bin/libreoffice") if Path(p).exists()),
+        Path("soffice"),
+    )
+    subprocess.run(
+        [
+            str(soffice),
+            "--headless",
+            "--norestore",
+            "--convert-to",
+            "pdf:impress_pdf_Export",
+            "--outdir",
+            str(pdf_path.parent),
+            str(pptx_path),
+        ],
+        check=True,
+    )
+    produced = pdf_path.parent / f"{pptx_path.stem}.pdf"
+    if produced.resolve() != pdf_path.resolve():
+        produced.replace(pdf_path)
+    if not pdf_path.exists():
+        raise FileNotFoundError(f"LibreOffice did not write {pdf_path}")
+    return pdf_path
 
 
 if __name__ == "__main__":
