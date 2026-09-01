@@ -120,8 +120,15 @@ def _kpi(
     page.draw_rect(pymupdf.Rect(x, y, x + w, y + h), color=LINE, fill=LIGHT, width=0.6)
     page.draw_rect(pymupdf.Rect(x, y, x + 7, y + h), color=accent, fill=accent)
     _text(page, pymupdf.Rect(x + 16, y + 8, x + w - 10, y + 26), label.upper(), size=9, color=MUTED, font="hebo")
-    _text(page, pymupdf.Rect(x + 16, y + 26, x + w - 10, y + 56), value, size=20, color=NAVY, font="hebo")
-    _text(page, pymupdf.Rect(x + 16, y + 56, x + w - 10, y + h - 8), note, size=10, color=INK)
+    value_size = 14 if len(value) > 16 else 20
+    page.insert_text(
+        pymupdf.Point(x + 16, y + 48),
+        value,
+        fontsize=value_size,
+        fontname="hebo",
+        color=NAVY,
+    )
+    _text(page, pymupdf.Rect(x + 16, y + 70, x + w - 10, y + h - 6), note, size=10, color=INK)
 
 
 def write_pdf(
@@ -146,13 +153,14 @@ def write_pdf(
         src.close()
     else:
         cover.draw_rect(cover.rect, color=NAVY, fill=NAVY)
-    _text(cover, pymupdf.Rect(48, 168, 620, 214), "Commercial Intelligence", size=28, color=WHITE, font="hebo")
-    _text(cover, pymupdf.Rect(48, 214, 700, 250), "Data QA + category report", size=20, color=WHITE, font="hebo")
-    _text(cover, pymupdf.Rect(48, 258, 700, 286), source_name[:80], size=13, color=CYAN)
+    cover.draw_rect(pymupdf.Rect(36, 248, 580, 410), color=NAVY, fill=NAVY)
+    _text(cover, pymupdf.Rect(48, 258, 560, 298), "Commercial Intelligence", size=24, color=WHITE, font="hebo")
+    _text(cover, pymupdf.Rect(48, 300, 560, 330), "Data QA + category report", size=16, color=WHITE, font="hebo")
+    _text(cover, pymupdf.Rect(48, 332, 560, 356), source_name[:80], size=12, color=CYAN)
     _text(
         cover,
-        pymupdf.Rect(48, 300, 420, 340),
-        f"{status.replace('_', ' ')}   ·   quality {report.quality_score}",
+        pymupdf.Rect(48, 364, 560, 396),
+        f"{status.replace('_', ' ')}  ·  quality {report.quality_score}",
         size=14,
         color=LIME,
         font="hebo",
@@ -162,14 +170,14 @@ def write_pdf(
     # 2. QA summary
     page = doc.new_page(width=W, height=H)
     _shell(page, "Data QA Agent", 2, total_pages)
-    _kpi(page, 28, 72, 220, 88, "Status", status.replace("_", " "), "Deterministic Python — no LLM", accent)
-    _kpi(page, 256, 72, 220, 88, "Quality score", str(report.quality_score), "0-100 after populated-row scoring", BLUE)
+    _kpi(page, 28, 72, 220, 100, "Status", status.replace("_", " "), "Deterministic Python - no LLM", accent)
+    _kpi(page, 256, 72, 220, 100, "Quality score", str(report.quality_score), "0-100 after populated-row scoring", BLUE)
     _kpi(
         page,
         484,
         72,
         220,
-        88,
+        100,
         "Rows",
         f"{report.row_count_clean:,}",
         f"{report.row_count_raw:,} in  ·  {report.rows_dropped:,} excluded",
@@ -180,17 +188,17 @@ def write_pdf(
         712,
         72,
         220,
-        88,
+        100,
         "History",
         f"{report.distinct_dates} dates",
-        f"{report.date_min or '—'} to {report.date_max or '—'}",
+        f"{report.date_min or '-'} to {report.date_max or '-'}",
         BLUE,
     )
-    _text(page, pymupdf.Rect(28, 176, 480, 200), "Column mapping", size=14, color=NAVY, font="hebo")
-    mapping_lines = [f"{src}  →  {dst}" for src, dst in list(report.column_mapping.items())[:12]]
-    _text(page, pymupdf.Rect(28, 202, 470, 430), "\n".join(mapping_lines) or "No columns mapped", size=11, color=INK)
-    _text(page, pymupdf.Rect(500, 176, 920, 200), "Downstream capabilities", size=14, color=NAVY, font="hebo")
-    y = 208
+    _text(page, pymupdf.Rect(28, 188, 480, 212), "Column mapping", size=14, color=NAVY, font="hebo")
+    mapping_lines = [f"{src}  ->  {dst}" for src, dst in list(report.column_mapping.items())[:12]]
+    _text(page, pymupdf.Rect(28, 214, 470, 430), "\n".join(mapping_lines) or "No columns mapped", size=11, color=INK)
+    _text(page, pymupdf.Rect(500, 188, 920, 212), "Downstream capabilities", size=14, color=NAVY, font="hebo")
+    y = 220
     for name, enabled in report.capabilities.model_dump().items():
         color = GREEN if enabled else MUTED
         mark = "READY" if enabled else "BLOCKED"
@@ -232,25 +240,25 @@ def write_pdf(
     page_no = 4
     if snapshot.has_data:
         page = doc.new_page(width=W, height=H)
-        _shell(page, "Clean table — commercial snapshot", 4, total_pages)
+        _shell(page, "Clean table - commercial snapshot", 4, total_pages)
         _kpi(
             page,
             28,
             72,
             226,
-            84,
+            100,
             "Sales value",
             _fmt_value(snapshot.total_value),
             f"{snapshot.row_count:,} clean rows",
             BLUE,
         )
-        _kpi(page, 262, 72, 226, 84, "Volume", f"{snapshot.total_volume:,.0f}", "sum of sales_volume", BLUE)
+        _kpi(page, 262, 72, 226, 100, "Volume", f"{snapshot.total_volume:,.0f}", "sum of sales_volume", BLUE)
         _kpi(
             page,
             496,
             72,
             226,
-            84,
+            100,
             "Products",
             f"{snapshot.n_products:,}",
             f"{snapshot.n_manufacturers} manufacturers",
@@ -261,7 +269,7 @@ def write_pdf(
             730,
             72,
             202,
-            84,
+            100,
             "Retailers",
             f"{snapshot.n_retailers:,}",
             f"{snapshot.n_regions} regions  ·  {snapshot.n_dates} dates",
@@ -272,11 +280,11 @@ def write_pdf(
             chart_dir / "top_share.png",
             "Share of clean sales value (%)",
         )
-        _text(page, pymupdf.Rect(28, 172, 520, 196), "Share of value", size=14, color=NAVY, font="hebo")
+        _text(page, pymupdf.Rect(28, 184, 520, 208), "Share of value", size=14, color=NAVY, font="hebo")
         if chart and chart.exists():
-            page.insert_image(pymupdf.Rect(20, 196, 520, 500), filename=str(chart), keep_proportion=True)
-        _text(page, pymupdf.Rect(540, 172, 932, 196), "Top products", size=14, color=NAVY, font="hebo")
-        y = 204
+            page.insert_image(pymupdf.Rect(20, 208, 520, 500), filename=str(chart), keep_proportion=True)
+        _text(page, pymupdf.Rect(540, 184, 932, 208), "Top products", size=14, color=NAVY, font="hebo")
+        y = 216
         ranking = snapshot.top_products or snapshot.top_manufacturers
         for item in ranking[:8]:
             page.draw_rect(pymupdf.Rect(540, y, 932, y + 32), color=LINE, fill=LIGHT, width=0.4)
