@@ -16,12 +16,25 @@ This frontend is new on `main`. Internal POS agents (Price, Promotion, Distribut
 
 ## Run locally
 
+This app only answers on **the computer where `npm run dev` is running**. Opening `http://localhost:3000` in Chrome on your laptop will show **ERR_CONNECTION_REFUSED** if the server is running in a Cloud Agent (or any other machine).
+
+From your own machine, in a terminal:
+
 ```bash
+git fetch origin
+git checkout cursor/sa-home-care-intelligence-4bca
 npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Wait until the terminal prints `Local: http://localhost:3000` (or `Ready`). **Leave that terminal open**, then open [http://localhost:3000](http://localhost:3000) in a browser on the same computer.
+
+If the tab still refuses to connect:
+
+1. Confirm you are in the repo root (the folder that contains `package.json`).
+2. Confirm the terminal still shows the Next.js process — closing it stops the server.
+3. Try [http://127.0.0.1:3000](http://127.0.0.1:3000).
+4. If port 3000 is already taken, Next will print another port (for example `3001`) — use that URL instead.
 
 ## Architecture
 
