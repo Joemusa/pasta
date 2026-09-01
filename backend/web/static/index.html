@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Commercial Intelligence - upload, QA, PDF</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect fill='%23122a4a' width='32' height='32'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <div class="brand">
+        <span class="brand-name">Smollan</span>
+        <span class="brand-sub">Commercial Intelligence</span>
+      </div>
+      <p class="tagline">Upload a POS extract. The Data QA Agent validates it. The Report Agent writes a PDF.</p>
+    </header>
+
+    <main>
+      <section class="panel" id="upload-panel">
+        <ol class="steps" aria-label="Pipeline">
+          <li data-step="upload" class="is-active">Upload</li>
+          <li data-step="qa">Data QA Agent</li>
+          <li data-step="report">Report Agent</li>
+          <li data-step="done">PDF</li>
+        </ol>
+
+        <form id="upload-form">
+          <label class="drop" id="drop" for="file">
+            <input id="file" name="file" type="file" accept=".csv,.xlsx,.xls" />
+            <strong>Drop a CSV or Excel file here</strong>
+            <span>or click to browse · Nielsen / Discovery / any POS extract</span>
+            <em id="file-name" hidden></em>
+          </label>
+          <div class="actions">
+            <button type="submit" id="run" disabled>Run agents</button>
+            <button type="button" id="sample" class="ghost">Use sample POS file</button>
+          </div>
+          <p class="hint">The original file is copied, never overwritten. Large Discovery extracts can take about a minute.</p>
+        </form>
+      </section>
+
+      <section class="panel hidden" id="progress-panel" aria-live="polite">
+        <h2 id="progress-title">Working</h2>
+        <p id="progress-copy">Starting…</p>
+        <div class="bar"><span id="bar-fill"></span></div>
+      </section>
+
+      <section class="panel hidden" id="error-panel">
+        <h2>Could not finish</h2>
+        <p id="error-copy"></p>
+        <button type="button" id="retry" class="ghost">Try another file</button>
+      </section>
+
+      <section class="panel hidden" id="result-panel">
+        <div class="result-head">
+          <div>
+            <p class="kicker" id="result-file"></p>
+            <h2 id="result-status"></h2>
+          </div>
+          <div class="score" id="score-box">
+            <span id="score-value"></span>
+            <small>quality</small>
+          </div>
+        </div>
+        <dl class="metrics" id="metrics"></dl>
+        <h3>Downstream agents</h3>
+        <ul class="caps" id="caps"></ul>
+        <h3>QA notes</h3>
+        <ul class="issues" id="issues"></ul>
+        <div class="downloads" id="downloads"></div>
+        <button type="button" id="again" class="ghost">Upload another file</button>
+      </section>
+    </main>
+    <script src="/static/app.js"></script>
+  </body>
+</html>

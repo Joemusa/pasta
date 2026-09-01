@@ -1,0 +1,2 @@
+exclusion_reason,_source_row,date,category,subcategory,manufacturer,product,current_price,sales_value,sales_volume
+INVALID_SALES_VALUE;INVALID_SALES_VOLUME,1750,2024-11-01,Pasta,Noodles,Nissin Foods,Oodles Of Noodles Saucy Seafood 65g,285.5714285714285,-19.99,-0.07

@@ -1,0 +1,297 @@
+# Canonical commercial schema and configurable source-column aliases.
+# Edit aliases here (or override via --aliases) without changing agent code.
+# Do not put manufacturer- or retailer-specific business rules in the QA agent.
+
+fields:
+  date:
+    role: dimension
+    dtype: date
+    required_for: [basic]
+    aliases:
+      - date
+      - Date
+      - DATE
+      - month
+      - Month
+      - MonthYear
+      - MonthYear2
+      - period
+      - Period
+      - week
+      - Week
+      - week_ending
+      - calendar_date
+      - time
+      - Time
+      - year_month
+      - YearMonth
+      - DDMMMYY
+      - week_date
+      - Week Ending
+
+  manufacturer:
+    role: dimension
+    dtype: text
+    required_for: []
+    aliases:
+      - manufacturer
+      - Manufacturer
+      - manufacturer_name
+      - vendor
+      - Vendor
+      - supplier
+      - Supplier
+      - producer
+      - company
+      - Company
+
+  brand:
+    role: dimension
+    dtype: text
+    required_for: []
+    aliases:
+      - brand
+      - Brand
+      - brand_name
+      - Brand Name
+      - brandname
+
+  product:
+    role: dimension
+    dtype: text
+    required_for: [basic]
+    aliases:
+      - product
+      - Product
+      - product_name
+      - Product Name
+      - item
+      - Item
+      - item_name
+      - Item Name
+      - item_description
+      - description
+
+  sku:
+    role: dimension
+    dtype: text
+    required_for: [basic]
+    aliases:
+      - sku
+      - SKU
+      - Sku
+      - item_code
+      - Item Code
+      - product_code
+      - Product Code
+      - barcode
+      - Barcode
+      - ean
+      - EAN
+      - upc
+      - UPC
+      - article
+      - article_id
+
+  retailer:
+    role: dimension
+    dtype: text
+    required_for: [basic]
+    aliases:
+      - retailer
+      - Retailer
+      - banner
+      - Banner
+      - account
+      - Account
+      - customer
+      - Customer
+      - channel
+      - Channel
+      - store_banner
+      - banner_name
+      - retailer_name
+      - Retailer Name
+
+  region:
+    role: dimension
+    dtype: text
+    required_for: []
+    aliases:
+      - region
+      - Region
+      - province
+      - Province
+      - state
+      - State
+      - area
+      - Area
+      - geography
+      - Geography
+      - geo
+      - market
+      - Market
+
+  sales_value:
+    role: metric
+    dtype: number
+    required_for: [basic]
+    aliases:
+      - sales_value
+      - Sales Value
+      - salesvalue
+      - Trended Sales Value
+      - value
+      - Value
+      - revenue
+      - Revenue
+      - turnover
+      - Turnover
+      - nsv
+      - NSV
+      - sales_r
+      - sales_$
+      - value_sales
+      - 4 Weeks CY Value
+      - 4 Weeks Value
+      - CY Value
+      - CY Sales Value
+
+  sales_volume:
+    role: metric
+    dtype: number
+    required_for: [basic]
+    aliases:
+      - sales_volume
+      - Sales Volume
+      - Trended Sales Volume
+      - volume
+      - Volume
+      - units
+      - Units
+      - unit_sales
+      - quantity
+      - Quantity
+      - qty
+      - packs
+      - 4 Weeks CY Volume
+      - 4 Weeks Volume
+      - CY Volume
+      - CY Sales Volume
+
+  store_count:
+    role: metric
+    dtype: number
+    required_for: [distribution]
+    aliases:
+      - store_count
+      - Store Count
+      - stores
+      - Stores
+      - numeric_distribution
+      - Numeric Distribution
+      - nd
+      - ND
+      - weighted_distribution
+      - Weighted Distribution
+      - wd
+      - WD
+      - distribution
+      - Distribution
+      - selling_stores
+      - outlet_count
+      - 4 Weeks Store Count
+      - Store Count 4 Weeks
+
+  current_price:
+    role: price
+    dtype: number
+    required_for: [price]
+    aliases:
+      - current_price
+      - Current Price
+      - Trended Ave Price (Value/Volume)
+      - asp
+      - ASP
+      - average_selling_price
+      - Average Selling Price
+      - avg_price
+      - price
+      - Price
+      - selling_price
+      - Selling Price
+      - unit_price
+      - Unit Price
+      - 4 Weeks CY Ave Price Quantity
+      - CY Ave Price Quantity
+      - Ave Price Quantity
+      - CY Ave Price
+
+  normal_price:
+    role: price
+    dtype: number
+    required_for: [price]
+    aliases:
+      - normal_price
+      - Normal Price
+      - base_price
+      - Base Price
+      - regular_price
+      - Regular Price
+      - list_price
+      - List Price
+      - rsp
+      - RSP
+      - recommended_price
+
+  percent_time_on_promo:
+    role: promotion
+    dtype: percent
+    required_for: [promotion]
+    aliases:
+      - percent_time_on_promo
+      - "% Time on Promo"
+      - pct_time_on_promo
+      - ptop
+      - PTOP
+      - promo_time
+      - time_on_promo
+      - Time on Promo
+      - pct_promo_time
+      - CY % Time On Promo
+      - "CY % Time On Promo"
+      - 4 Weeks CY % Time On Promo
+
+  percent_sales_on_promo:
+    role: promotion
+    dtype: percent
+    required_for: [promotion]
+    aliases:
+      - percent_sales_on_promo
+      - "% Sales on Promo"
+      - pct_sales_on_promo
+      - psop
+      - PSOP
+      - promo_sales
+      - sales_on_promo
+      - Sales on Promo
+      - pct_promo_sales
+      - 4 Weeks CY % Sales On Promo
+      - CY % Sales On Promo
+      - "4 Weeks CY % Sales On Promo"
+
+  promotion_flag:
+    role: promotion
+    dtype: flag
+    required_for: [promotion]
+    aliases:
+      - promotion_flag
+      - promo_flag
+      - Promo Flag
+      - on_promo
+      - On Promo
+      - is_promo
+      - promo
+      - Promo
+      - promoted
+      - Promoted
