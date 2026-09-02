@@ -21,9 +21,11 @@ export default function SettingsPage() {
           Active mode: <strong>Live RSS scanner</strong>
         </p>
         <p className="mt-2 text-sm text-muted">
-          The feed loads live South African RSS on startup (Google News ZA, Moneyweb, IOL, The
-          Citizen). Demo headlines are not shown. A product-impact note is added only when a
-          Unilever brand or a direct competitor is named.
+          The feed keeps only stories that can affect Unilever Home Care
+          categories (laundry detergent and bars, dishwashing, toilet care,
+          fabric conditioner, hard-surface cleaners). Fuel, SASSA, gold and
+          general retailer headlines are dropped unless they name a Home Care
+          brand or category.
         </p>
         <p className="mt-3 text-sm">
           Last scan: {formatScanTime(lastScanAt)} · Status: {scanStatus} · {liveCount} live articles

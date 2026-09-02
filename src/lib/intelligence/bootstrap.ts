@@ -1,6 +1,7 @@
 import { getScanMeta, hydrateLiveSignals, ingestLiveSignals } from "./service";
 import { readLiveCache, writeLiveCache } from "./live-store";
 import { runLiveScan } from "./scanner";
+import { signalIsHomeCareRelevant } from "../home-care-relevance";
 import type { IntelligenceSignal } from "../types";
 
 export type InitialNews = {
@@ -8,12 +9,17 @@ export type InitialNews = {
   lastScanAt: string;
 };
 
+function keepHomeCare(signals: IntelligenceSignal[]): IntelligenceSignal[] {
+  return signals.filter((s) => !s.demo && signalIsHomeCareRelevant(s));
+}
+
 export async function loadInitialNews(): Promise<InitialNews> {
   const cache = readLiveCache();
-  if (cache.signals.length > 0) {
-    hydrateLiveSignals(cache.signals, cache.lastScanAt);
+  const cached = keepHomeCare(cache.signals);
+  if (cached.length > 0) {
+    hydrateLiveSignals(cached, cache.lastScanAt);
     return {
-      signals: cache.signals,
+      signals: cached,
       lastScanAt: cache.lastScanAt || getScanMeta().lastScanAt,
     };
   }

@@ -64,7 +64,7 @@ export function AppProvider({
 }) {
   const seeded = initialSignals.filter((s) => !s.demo);
   const hasSeed = seeded.length > 0;
-  const [period, setPeriod] = useState<PeriodDays>(14);
+  const [period, setPeriod] = useState<PeriodDays>(30);
   const [collapsed, setCollapsed] = useState(false);
   const [mobileNav, setMobileNav] = useState(false);
   const [lastScanAt, setLastScanAt] = useState(initialLastScanAt);

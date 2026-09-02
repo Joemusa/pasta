@@ -49,7 +49,7 @@ export default function IntelligencePage() {
             ? `${stories.length} live stories from South African sources.`
             : loading
               ? "Loading live South African news…"
-              : "No live stories yet. Click Run New Scan."}
+            : "No Home Care stories yet. Click Run New Scan."}
         </p>
         {scanMessage ? <p className="mt-1 text-sm text-teal">{scanMessage}</p> : null}
       </div>
@@ -82,9 +82,11 @@ export default function IntelligencePage() {
 
       <NewsList
         items={stories}
-        emptyTitle={loading ? "Loading live news…" : "No live stories in this period."}
+        emptyTitle={loading ? "Loading live news…" : "No Home Care stories in this period."}
         emptyBody={
-          loading ? "Fetching South African RSS feeds." : "Adjust filters or run a new scan."
+          loading
+            ? "Fetching South African RSS feeds."
+            : "Adjust filters or run a new scan for Unilever Home Care categories."
         }
       />
     </div>

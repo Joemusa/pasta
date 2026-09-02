@@ -8,8 +8,9 @@ import type {
   ScanStatus,
   SignalType,
 } from "../types";
-import { deltaLabel } from "../utils";
+import { signalIsHomeCareRelevant } from "../home-care-relevance";
 import { rankOpportunities } from "../scoring";
+import { deltaLabel } from "../utils";
 import {
   COMPETITORS,
   HEATMAP,
@@ -61,6 +62,7 @@ export function ingestLiveSignals(live: IntelligenceSignal[]) {
   const unique = new Map<string, IntelligenceSignal>();
   for (const signal of live) {
     if (signal.demo) continue;
+    if (!signalIsHomeCareRelevant(signal)) continue;
     unique.set(signal.id, signal);
   }
   const liveList = [...unique.values()].sort(

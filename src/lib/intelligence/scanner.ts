@@ -1,4 +1,5 @@
 import { createHash } from "crypto";
+import { isHomeCareRelevant } from "../home-care-relevance";
 import type {
   CategoryName,
   IntelligenceSignal,
@@ -24,25 +25,22 @@ type RssItem = {
   summary: string;
 };
 
-const FEEDS: { name: string; url: string; requireKeywords: boolean }[] = [
+const FEEDS: { name: string; url: string }[] = [
   {
-    name: "Google News · Home Care & grocery",
-    url: "https://news.google.com/rss/search?q=Unilever%20OR%20OMO%20OR%20MAQ%20OR%20Surf%20OR%20Domestos%20OR%20detergent%20OR%20%22home%20care%22%20South%20Africa%20when%3A30d&hl=en-ZA&gl=ZA&ceid=ZA:en",
-    requireKeywords: true,
+    name: "Google News · Unilever Home Care",
+    url: "https://news.google.com/rss/search?q=Unilever+(laundry+OR+detergent+OR+%22home+care%22+OR+%22washing+powder%22)+when:90d&hl=en-ZA&gl=ZA&ceid=ZA:en",
   },
   {
-    name: "Google News · Retailers",
-    url: "https://news.google.com/rss/search?q=Shoprite%20OR%20Checkers%20OR%20Boxer%20OR%20%22Pick%20n%20Pay%22%20OR%20SPAR%20OR%20Usave%20South%20Africa%20when%3A30d&hl=en-ZA&gl=ZA&ceid=ZA:en",
-    requireKeywords: true,
+    name: "Google News · SA Home Care products",
+    url: "https://news.google.com/rss/search?q=%22dishwashing+liquid%22+OR+%22washing+powder%22+OR+%22laundry+detergent%22+OR+Domestos+OR+%22Handy+Andy%22+South+Africa+when:90d&hl=en-ZA&gl=ZA&ceid=ZA:en",
   },
   {
-    name: "Google News · Macro",
-    url: "https://news.google.com/rss/search?q=SASSA%20OR%20%22fuel%20price%22%20OR%20inflation%20OR%20%22load%20shedding%22%20OR%20%22water%20supply%22%20South%20Africa%20when%3A30d&hl=en-ZA&gl=ZA&ceid=ZA:en",
-    requireKeywords: true,
+    name: "Google News · Home Care brands",
+    url: "https://news.google.com/rss/search?q=OMO+OR+Domestos+OR+%22Handy+Andy%22+OR+Harpic+OR+Britelite+OR+%22Sta-soft%22+OR+MAQ+detergent+when:90d&hl=en-ZA&gl=ZA&ceid=ZA:en",
   },
-  { name: "Moneyweb", url: "https://www.moneyweb.co.za/feed/", requireKeywords: true },
-  { name: "The Citizen", url: "https://www.citizen.co.za/feed/", requireKeywords: true },
-  { name: "IOL", url: "https://www.iol.co.za/rss", requireKeywords: true },
+  { name: "Moneyweb", url: "https://www.moneyweb.co.za/feed/" },
+  { name: "The Citizen", url: "https://www.citizen.co.za/feed/" },
+  { name: "IOL", url: "https://www.iol.co.za/rss" },
 ];
 
 const BRANDS = [
@@ -73,12 +71,6 @@ const RETAILERS = [
   "Clicks",
   "Dis-Chem",
 ];
-
-const RELEVANCE =
-  /\b(unilever|omo|surf|maq|skip|ariel|sunlight|domestos|harpic|comfort|handy andy|sta-soft|britelite|shoprite|checkers|usave|pick n pay|boxer|spar|clicks|dis-chem|detergent|laundry|homecare|home care|fmcg|inflation|fuel price|petrol|diesel|sassa|social grant|load-?shedding|water (interruption|outage|shortage|crisis)|food price|cpi)\b/i;
-
-const DENY =
-  /\b(gepf|pension fund|sardines?|vida e caff|coffee shop|rugby|cricket|soccer|murder|homicide|celebrity)\b/i;
 
 function decode(text: string): string {
   const withTags = text
@@ -175,11 +167,11 @@ function classifyType(text: string, brand: string | null, retailer: string | nul
   if (/fuel|inflation|sassa|load-?shedding|water|interest rate|cpi|electricity/i.test(text)) {
     return "macro";
   }
-  if (brand && !/unilever|omo|surf|skip|sunlight|domestos|comfort|handy andy/i.test(brand)) {
-    return "competitor";
-  }
+  const own =
+    !!brand &&
+    /^(omo|surf|skip|sunlight|domestos|comfort|handy andy|jik)$/i.test(brand);
+  if (brand && !own) return "competitor";
   if (retailer) return "retailer";
-  if (brand) return "competitor";
   return "consumer";
 }
 
@@ -252,11 +244,9 @@ export async function runLiveScan(): Promise<LiveScanResult> {
   const results = await Promise.allSettled(
     FEEDS.map(async (feed) => {
       const xml = await fetchFeed(feed.url);
-      const items = parseRss(xml, feed.name).filter((item) => {
-        const blob = `${item.title} ${item.summary}`;
-        if (DENY.test(blob)) return false;
-        return feed.requireKeywords ? RELEVANCE.test(blob) : true;
-      });
+      const items = parseRss(xml, feed.name).filter((item) =>
+        isHomeCareRelevant(item.title, item.summary),
+      );
       return { feed: feed.name, items };
     }),
   );
@@ -280,8 +270,7 @@ export async function runLiveScan(): Promise<LiveScanResult> {
     if (seen.has(key) || seen.has(titleKey)) continue;
     seen.add(key);
     seen.add(titleKey);
-    if (DENY.test(`${item.title} ${item.summary}`)) continue;
-    if (!RELEVANCE.test(`${item.title} ${item.summary}`)) continue;
+    if (!isHomeCareRelevant(item.title, item.summary)) continue;
     signals.push(toSignal(item));
   }
 

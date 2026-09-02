@@ -31,8 +31,9 @@ export default function HomePage() {
             Home Care news
           </h1>
           <p className="mt-1 max-w-xl text-sm text-muted">
-            Live South African headlines. A product note appears only when a story
-            names a Unilever brand or a direct competitor.
+            Only South African stories that can affect Unilever Home Care
+            categories: laundry, dishwashing, toilet care, fabric conditioner
+            and hard-surface cleaners.
           </p>
           {scanMessage ? <p className="mt-2 text-sm text-teal">{scanMessage}</p> : null}
           {liveCount > 0 ? (
@@ -70,9 +71,11 @@ export default function HomePage() {
         </div>
         <NewsList
           items={latestNews}
-          emptyTitle={waiting ? "Loading live news…" : "No live stories yet."}
+          emptyTitle={waiting ? "Loading live news…" : "No Home Care stories yet."}
           emptyBody={
-            waiting ? "Fetching South African RSS feeds." : "Click Run New Scan to pull headlines."
+            waiting
+              ? "Fetching South African RSS feeds."
+              : "Click Run New Scan to pull headlines that name Unilever Home Care brands or categories."
           }
         />
       </section>
