@@ -1,9 +1,12 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { Download } from "lucide-react";
 import { Input, Select } from "@/components/ui/fields";
+import { Button } from "@/components/ui/button";
 import { NewsList } from "@/components/news/NewsList";
 import { useAppState } from "@/components/providers";
+import { newsCsvFilename, newsSignalsToCsv } from "@/lib/news-csv";
 import type { IntelligenceSignal, PeriodDays } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
@@ -36,6 +39,17 @@ export default function IntelligenceFeedPage() {
 
   const loading = !bootDone && pool.length === 0;
 
+  function downloadCsv() {
+    const csv = newsSignalsToCsv(stories);
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = newsCsvFilename();
+    link.click();
+    URL.revokeObjectURL(url);
+  }
+
   return (
     <div className="mx-auto max-w-[820px] space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
@@ -54,20 +68,31 @@ export default function IntelligenceFeedPage() {
           </p>
           {scanMessage ? <p className="mt-1 text-sm text-teal">{scanMessage}</p> : null}
         </div>
-        <div className="flex border border-rule bg-white" role="tablist" aria-label="Date range">
-          {PERIODS.map((p) => (
-            <button
-              key={p.id}
-              type="button"
-              onClick={() => setPeriod(p.id)}
-              className={cn(
-                "px-3 py-2 text-xs tracking-wide",
-                period === p.id ? "bg-ink text-white" : "text-muted hover:text-ink-text",
-              )}
-            >
-              {p.label}
-            </button>
-          ))}
+        <div className="flex flex-col items-stretch gap-2 sm:items-end">
+          <div className="flex border border-rule bg-white" role="tablist" aria-label="Date range">
+            {PERIODS.map((p) => (
+              <button
+                key={p.id}
+                type="button"
+                onClick={() => setPeriod(p.id)}
+                className={cn(
+                  "px-3 py-2 text-xs tracking-wide",
+                  period === p.id ? "bg-ink text-white" : "text-muted hover:text-ink-text",
+                )}
+              >
+                {p.label}
+              </button>
+            ))}
+          </div>
+          <Button
+            type="button"
+            variant="secondary"
+            onClick={downloadCsv}
+            disabled={stories.length === 0}
+          >
+            <Download size={14} />
+            Download CSV
+          </Button>
         </div>
       </div>
 

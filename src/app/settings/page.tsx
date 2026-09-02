@@ -50,9 +50,12 @@ export default function SettingsPage() {
       </section>
 
       <section className="border border-rule bg-white p-5">
-        <h2 className="font-serif text-xl">Scan</h2>
+        <h2 className="font-serif text-xl">POS agents</h2>
         <p className="mt-2 text-sm text-muted">
-          Use Run New Scan in the header to refresh headlines from the live feeds.
+          Download the summarised feed as CSV from Intelligence Feed, or fetch{" "}
+          <code className="text-ink-text">/api/news-csv?period=90</code>. Columns include
+          category, brand, product, what it means, and a POS check prompt for the
+          agents that handle store data.
         </p>
       </section>
     </div>
