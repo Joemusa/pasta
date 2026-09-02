@@ -16,7 +16,7 @@ const TYPES: { id: SignalType | "all"; label: string }[] = [
 ];
 
 export default function IntelligencePage() {
-  const { period, signals, liveCount, scanMessage, bootDone, scanStatus } = useAppState();
+  const { period, signals, liveCount, scanMessage, bootDone } = useAppState();
   const [type, setType] = useState<SignalType | "all">("all");
   const [search, setSearch] = useState("");
   const [source, setSource] = useState("");
@@ -38,7 +38,7 @@ export default function IntelligencePage() {
     .filter((s) => matchesSearch(s, search))
     .sort((a, b) => +new Date(b.publishedAt) - +new Date(a.publishedAt));
 
-  const loading = !bootDone || scanStatus === "scanning";
+  const loading = !bootDone && pool.length === 0;
 
   return (
     <div className="mx-auto max-w-[820px] space-y-6">

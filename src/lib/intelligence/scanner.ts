@@ -121,13 +121,15 @@ function parseRss(xml: string, feedName: string): RssItem[] {
     .filter((item) => item.title && item.link);
 }
 
+const FEED_TIMEOUT_MS = 6000;
+
 async function fetchFeed(url: string): Promise<string> {
   const res = await fetch(url, {
     headers: {
       "User-Agent": "Mozilla/5.0 (compatible; SAHomeCareIntelligence/1.0; +https://cursor.com)",
       Accept: "application/rss+xml, application/xml, text/xml, */*",
     },
-    signal: AbortSignal.timeout(12000),
+    signal: AbortSignal.timeout(FEED_TIMEOUT_MS),
     cache: "no-store",
   });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);

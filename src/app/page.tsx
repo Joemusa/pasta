@@ -13,7 +13,7 @@ const PERIODS: { id: PeriodDays; label: string }[] = [
 ];
 
 export default function HomePage() {
-  const { period, setPeriod, liveCount, scanMessage, signals, bootDone, scanStatus } = useAppState();
+  const { period, setPeriod, liveCount, scanMessage, signals, bootDone } = useAppState();
   const start = new Date();
   start.setDate(start.getDate() - period);
   const latestNews = signals
@@ -21,6 +21,7 @@ export default function HomePage() {
     .slice()
     .sort((a, b) => +new Date(b.publishedAt) - +new Date(a.publishedAt))
     .slice(0, 10);
+  const waiting = !bootDone && signals.length === 0;
 
   return (
     <div className="mx-auto max-w-[820px] space-y-8">
@@ -69,11 +70,9 @@ export default function HomePage() {
         </div>
         <NewsList
           items={latestNews}
-          emptyTitle={!bootDone || scanStatus === "scanning" ? "Loading live news…" : "No live stories yet."}
+          emptyTitle={waiting ? "Loading live news…" : "No live stories yet."}
           emptyBody={
-            !bootDone || scanStatus === "scanning"
-              ? "Fetching South African RSS feeds."
-              : "Click Run New Scan to pull headlines."
+            waiting ? "Fetching South African RSS feeds." : "Click Run New Scan to pull headlines."
           }
         />
       </section>

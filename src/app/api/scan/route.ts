@@ -4,6 +4,7 @@ import { runLiveScan } from "@/lib/intelligence/scanner";
 import { writeLiveCache } from "@/lib/intelligence/live-store";
 
 export async function POST() {
+  const started = Date.now();
   try {
     const result = await runLiveScan();
     ingestLiveSignals(result.signals);
@@ -20,6 +21,7 @@ export async function POST() {
       source: result.signals.length > 0 ? "live" : "empty",
       errors: result.errors,
       feedsAttempted: result.feedsAttempted,
+      durationMs: Date.now() - started,
     });
   } catch (error) {
     return NextResponse.json(
