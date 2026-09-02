@@ -4,16 +4,8 @@ import { useMemo, useState } from "react";
 import { Input, Select } from "@/components/ui/fields";
 import { NewsList } from "@/components/news/NewsList";
 import { useAppState } from "@/components/providers";
-import type { IntelligenceSignal, PeriodDays, SignalType } from "@/lib/types";
+import type { IntelligenceSignal, PeriodDays } from "@/lib/types";
 import { cn } from "@/lib/utils";
-
-const TYPES: { id: SignalType | "all"; label: string }[] = [
-  { id: "all", label: "All" },
-  { id: "competitor", label: "Competitors" },
-  { id: "retailer", label: "Retailers" },
-  { id: "promotion", label: "Promotions" },
-  { id: "macro", label: "Macro" },
-];
 
 const PERIODS: { id: PeriodDays; label: string }[] = [
   { id: 14, label: "Last 14 days" },
@@ -23,7 +15,6 @@ const PERIODS: { id: PeriodDays; label: string }[] = [
 
 export default function IntelligenceFeedPage() {
   const { period, setPeriod, signals, liveCount, scanMessage, bootDone } = useAppState();
-  const [type, setType] = useState<SignalType | "all">("all");
   const [search, setSearch] = useState("");
   const [source, setSource] = useState("");
 
@@ -39,7 +30,6 @@ export default function IntelligenceFeedPage() {
 
   const stories = pool
     .filter((s) => new Date(s.publishedAt) >= start)
-    .filter((s) => (type === "all" ? true : s.signalType === type))
     .filter((s) => (source ? s.source === source : true))
     .filter((s) => matchesSearch(s, search))
     .sort((a, b) => +new Date(b.publishedAt) - +new Date(a.publishedAt));
@@ -81,22 +71,6 @@ export default function IntelligenceFeedPage() {
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-1">
-        {TYPES.map((t) => (
-          <button
-            key={t.id}
-            type="button"
-            onClick={() => setType(t.id)}
-            className={cn(
-              "border px-3 py-1.5 text-xs",
-              type === t.id ? "border-ink bg-ink text-white" : "border-rule bg-white text-muted",
-            )}
-          >
-            {t.label}
-          </button>
-        ))}
-      </div>
-
       <div className="grid gap-2 sm:grid-cols-2">
         <Input placeholder="Search headlines" value={search} onChange={(e) => setSearch(e.target.value)} />
         <Select className="w-full" value={source} onChange={(e) => setSource(e.target.value)}>
@@ -113,7 +87,7 @@ export default function IntelligenceFeedPage() {
         emptyBody={
           loading
             ? "Fetching South African RSS feeds."
-            : "Try All, a wider date range, or Run New Scan."
+            : "Try a wider date range, or Run New Scan."
         }
       />
     </div>
