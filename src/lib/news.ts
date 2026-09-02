@@ -6,8 +6,18 @@ const BOILERPLATE =
 export function newsExcerpt(signal: IntelligenceSignal): string | null {
   if (signal.demo) return null;
   const title = signal.title.trim();
-  let text = signal.summary.replace(/\s+/g, " ").trim();
-  if (!text || BOILERPLATE.test(text)) return null;
+  let text = signal.summary
+    .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (!text || BOILERPLATE.test(text) || text.includes("<")) return null;
   if (title && text.toLowerCase().startsWith(title.toLowerCase())) {
     text = text.slice(title.length).replace(/^[\s:—–-]+/, "");
   }

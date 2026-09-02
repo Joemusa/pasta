@@ -81,17 +81,15 @@ const DENY =
   /\b(gepf|pension fund|sardines?|vida e caff|coffee shop|rugby|cricket|soccer|murder|homicide|celebrity)\b/i;
 
 function decode(text: string): string {
-  return text
+  const withTags = text
     .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1")
-    .replace(/<[^>]+>/g, " ")
-    .replace(/&amp;/g, "&")
     .replace(/&lt;/g, "<")
     .replace(/&gt;/g, ">")
     .replace(/&quot;/g, '"')
     .replace(/&#39;/g, "'")
     .replace(/&nbsp;/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
+    .replace(/&amp;/g, "&");
+  return withTags.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
 }
 
 function tag(block: string, name: string): string {
@@ -197,11 +195,11 @@ function prettySource(publisher: string, feedName: string): string {
 }
 
 function cleanExcerpt(raw: string, title: string): string {
-  let text = raw.replace(/View Full Coverage on Google News/gi, "").replace(/\s+/g, " ").trim();
+  let text = decode(raw).replace(/View Full Coverage on Google News/gi, "").trim();
   if (title && text.toLowerCase().startsWith(title.toLowerCase())) {
     text = text.slice(title.length).replace(/^[\s:—–-]+/, "");
   }
-  if (text.length < 48) return "";
+  if (text.includes("<") || text.length < 48) return "";
   if (text.length > 400) return `${text.slice(0, 397).replace(/\s+\S*$/, "")}…`;
   return text;
 }
