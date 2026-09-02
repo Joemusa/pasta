@@ -66,7 +66,6 @@ export function NewsItem({ signal }: { signal: IntelligenceSignal }) {
         ) : (
           <span>Source cited · no article URL</span>
         )}
-        {signal.demo ? <span>Demo record</span> : null}
       </div>
     </article>
   );
