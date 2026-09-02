@@ -36,7 +36,7 @@ The dashboard does not scrape websites in the browser. Click **Run New Scan** to
 - Headlines show the publisher and a real source URL.
 - A product-impact line appears only when a Unilever brand or a direct competitor is named.
 - Home Care brand articles are uncommon; retailer and macro stories (Shoprite, fuel, SASSA) are the usual live hits, shown without extra commentary unless a product is named.
-- Demo cards remain so the product still has category examples when news is thin.
+- The feed loads live RSS on startup. Demo headlines are not shown.
 - Supabase is optional later, to persist rows across deploys. You do not need it to run a live scan.
 
 If the tab still refuses to connect:
