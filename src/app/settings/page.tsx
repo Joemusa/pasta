@@ -53,9 +53,9 @@ export default function SettingsPage() {
         <h2 className="font-serif text-xl">POS agents</h2>
         <p className="mt-2 text-sm text-muted">
           Download the summarised feed as CSV from Intelligence Feed, or fetch{" "}
-          <code className="text-ink-text">/api/news-csv?period=90</code>. Columns include
-          category, brand, product, what it means, and a POS check prompt for the
-          agents that handle store data.
+          <code className="text-ink-text">/api/news-csv?period=90</code>. The file
+          has a single column, <code className="text-ink-text">what_it_means</code>,
+          for the agents that handle POS data.
         </p>
       </section>
     </div>
