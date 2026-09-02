@@ -27,16 +27,16 @@ type RssItem = {
 
 const FEEDS: { name: string; url: string }[] = [
   {
-    name: "Google News · Unilever Home Care",
-    url: "https://news.google.com/rss/search?q=Unilever+(laundry+OR+detergent+OR+%22home+care%22+OR+%22washing+powder%22)+when:90d&hl=en-ZA&gl=ZA&ceid=ZA:en",
+    name: "Google News · Unilever Home Care SA",
+    url: "https://news.google.com/rss/search?q=Unilever+%22South+Africa%22+(OMO+OR+Sunlight+OR+Domestos+OR+detergent+OR+laundry+OR+%22home+care%22)+when:90d&hl=en-ZA&gl=ZA&ceid=ZA:en",
   },
   {
     name: "Google News · SA Home Care products",
     url: "https://news.google.com/rss/search?q=%22dishwashing+liquid%22+OR+%22washing+powder%22+OR+%22laundry+detergent%22+OR+Domestos+OR+%22Handy+Andy%22+South+Africa+when:90d&hl=en-ZA&gl=ZA&ceid=ZA:en",
   },
   {
-    name: "Google News · Home Care brands",
-    url: "https://news.google.com/rss/search?q=OMO+OR+Domestos+OR+%22Handy+Andy%22+OR+Harpic+OR+Britelite+OR+%22Sta-soft%22+OR+MAQ+detergent+when:90d&hl=en-ZA&gl=ZA&ceid=ZA:en",
+    name: "Google News · News24 Home Care",
+    url: "https://news.google.com/rss/search?q=site:news24.com+(Sunlight+OR+OMO+OR+Domestos+OR+%22Handy+Andy%22+OR+dishwashing+OR+detergent)+when:90d&hl=en-ZA&gl=ZA&ceid=ZA:en",
   },
   { name: "Moneyweb", url: "https://www.moneyweb.co.za/feed/" },
   { name: "The Citizen", url: "https://www.citizen.co.za/feed/" },
@@ -245,7 +245,7 @@ export async function runLiveScan(): Promise<LiveScanResult> {
     FEEDS.map(async (feed) => {
       const xml = await fetchFeed(feed.url);
       const items = parseRss(xml, feed.name).filter((item) =>
-        isHomeCareRelevant(item.title, item.summary),
+        isHomeCareRelevant(item.title, item.summary, item.source, item.link),
       );
       return { feed: feed.name, items };
     }),
@@ -270,7 +270,7 @@ export async function runLiveScan(): Promise<LiveScanResult> {
     if (seen.has(key) || seen.has(titleKey)) continue;
     seen.add(key);
     seen.add(titleKey);
-    if (!isHomeCareRelevant(item.title, item.summary)) continue;
+    if (!isHomeCareRelevant(item.title, item.summary, item.source, item.link)) continue;
     signals.push(toSignal(item));
   }
 

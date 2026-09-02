@@ -21,11 +21,10 @@ export default function SettingsPage() {
           Active mode: <strong>Live RSS scanner</strong>
         </p>
         <p className="mt-2 text-sm text-muted">
-          The feed keeps only stories that can affect Unilever Home Care
-          categories (laundry detergent and bars, dishwashing, toilet care,
-          fabric conditioner, hard-surface cleaners). Fuel, SASSA, gold and
-          general retailer headlines are dropped unless they name a Home Care
-          brand or category.
+          The feed keeps only <strong>South African</strong> stories that can
+          affect Unilever Home Care categories (laundry detergent and bars,
+          dishwashing, toilet care, fabric conditioner, hard-surface cleaners).
+          India, Australia and other overseas Home Care coverage is dropped.
         </p>
         <p className="mt-3 text-sm">
           Last scan: {formatScanTime(lastScanAt)} · Status: {scanStatus} · {liveCount} live articles
