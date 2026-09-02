@@ -1,7 +1,7 @@
 export type Severity = "low" | "medium" | "high" | "critical";
 export type Confidence = "low" | "medium" | "high";
 export type Impact = "low" | "medium" | "high";
-export type PeriodDays = 7 | 14 | 30;
+export type PeriodDays = 7 | 14 | 30 | 90;
 export type ScanStatus = "online" | "scanning" | "degraded";
 
 export type SignalType =

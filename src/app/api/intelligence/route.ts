@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl;
   const period = Number(searchParams.get("period") ?? 14) as PeriodDays;
   const meta = getScanMeta();
-  const live = getSignals({ period: 30, type: "all" }).filter((s) => !s.demo);
+  const live = getSignals({ period: 90, type: "all" }).filter((s) => !s.demo);
   const payload = {
     lastScanAt: meta.lastScanAt,
     source: live.length > 0 ? "live" : "empty",
@@ -30,7 +30,7 @@ export async function GET(request: NextRequest) {
   return NextResponse.json({
     ...payload,
     data: getSignals({
-      period: period === 7 || period === 30 ? period : 14,
+      period: period === 7 || period === 30 || period === 90 ? period : 14,
       type,
       search: searchParams.get("search") ?? "",
       category: searchParams.get("category") ?? "",

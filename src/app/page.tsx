@@ -7,9 +7,9 @@ import type { PeriodDays } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 const PERIODS: { id: PeriodDays; label: string }[] = [
-  { id: 7, label: "Last 7 days" },
   { id: 14, label: "Last 14 days" },
   { id: 30, label: "Last 30 days" },
+  { id: 90, label: "Last 90 days" },
 ];
 
 export default function HomePage() {
