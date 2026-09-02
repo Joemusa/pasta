@@ -31,9 +31,8 @@ export default function HomePage() {
             Home Care news
           </h1>
           <p className="mt-1 max-w-xl text-sm text-muted">
-            Only South African stories that can affect Unilever Home Care
-            categories: laundry, dishwashing, toilet care, fabric conditioner
-            and hard-surface cleaners.
+            Only South African Home Care news. Each story includes what it means
+            for the Unilever category, brand and product.
           </p>
           {scanMessage ? <p className="mt-2 text-sm text-teal">{scanMessage}</p> : null}
           {liveCount > 0 ? (
@@ -63,7 +62,7 @@ export default function HomePage() {
         <div className="mb-4 flex items-end justify-between gap-4">
           <div>
             <h2 className="text-2xl text-ink-text">Latest news</h2>
-            <p className="text-sm text-muted">Headlines with the publisher that ran them</p>
+            <p className="text-sm text-muted">Headlines plus Unilever category, brand and product impact</p>
           </div>
           <Link href="/intelligence" className="text-sm text-teal hover:underline">
             Full feed

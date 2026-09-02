@@ -46,10 +46,10 @@ export default function IntelligencePage() {
         <h1 className="text-[32px] font-semibold">Intelligence Feed</h1>
         <p className="text-sm text-muted">
           {liveCount > 0
-            ? `${stories.length} live stories from South African sources.`
+            ? `${stories.length} live stories from South African sources, with Unilever category and brand impact.`
             : loading
               ? "Loading live South African news…"
-            : "No Home Care stories yet. Click Run New Scan."}
+              : "No Home Care stories yet. Click Run New Scan."}
         </p>
         {scanMessage ? <p className="mt-1 text-sm text-teal">{scanMessage}</p> : null}
       </div>
