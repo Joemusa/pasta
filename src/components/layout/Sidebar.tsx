@@ -2,33 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  ChevronLeft,
-  ChevronRight,
-  Compass,
-  Database,
-  FileText,
-  Globe2,
-  LayoutDashboard,
-  MessageSquare,
-  Radio,
-  Settings,
-  Store,
-  Users,
-} from "lucide-react";
+import { ChevronLeft, ChevronRight, LayoutDashboard, Radio, Settings } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAppState } from "../providers";
 
 const NAV = [
   { href: "/", label: "Home", icon: LayoutDashboard },
   { href: "/intelligence", label: "Intelligence Feed", icon: Radio },
-  { href: "/competitors", label: "Competitors", icon: Users },
-  { href: "/retailers", label: "Retailers", icon: Store },
-  { href: "/macro", label: "Macro Triggers", icon: Globe2 },
-  { href: "/opportunities", label: "Opportunity Radar", icon: Compass },
-  { href: "/internal", label: "Internal Analysis", icon: Database },
-  { href: "/ask", label: "Ask Intelligence", icon: MessageSquare },
-  { href: "/brief", label: "Weekly Brief", icon: FileText },
   { href: "/settings", label: "Settings", icon: Settings },
 ];
 

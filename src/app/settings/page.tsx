@@ -25,8 +25,8 @@ export default function SettingsPage() {
         <p className="mt-2 text-sm text-muted">
           Click <strong>Run New Scan</strong> in the header to pull live South African RSS
           (Google News ZA, Moneyweb, IOL, The Citizen). Each story shows the publisher and a
-          link to the original article. The dashboard does not scrape pages in the browser.
-          Supabase is optional later, to persist those rows across deploys.
+          link to the original article. A product-impact note is added only when a Unilever brand
+          or a direct competitor is named — there is no general market commentary.
         </p>
       </section>
 

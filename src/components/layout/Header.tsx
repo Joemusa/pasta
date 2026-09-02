@@ -1,17 +1,12 @@
 "use client";
 
-import { Bell, Menu, RefreshCw, User } from "lucide-react";
-import { useState } from "react";
+import { Menu, RefreshCw, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { SeverityDot } from "@/components/ui/severity";
-import { getNotifications } from "@/lib/intelligence/service";
 import { formatScanTime } from "@/lib/utils";
 import { useAppState } from "../providers";
 
 export function Header() {
   const { lastScanAt, scanStatus, runNewScan, setMobileNav, liveCount } = useAppState();
-  const [open, setOpen] = useState(false);
-  const notes = getNotifications();
 
   return (
     <header className="sticky top-0 z-20 flex items-center gap-4 border-b border-rule bg-paper/95 px-4 py-3 backdrop-blur sm:px-6">
@@ -27,9 +22,7 @@ export function Header() {
         <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-text">
           SA Home Care Intelligence
         </p>
-        <p className="truncate text-xs text-muted">
-          South African Home Care Market & Competitive Intelligence
-        </p>
+        <p className="truncate text-xs text-muted">South African Home Care news for Unilever</p>
       </div>
       <div className="hidden items-center gap-4 md:flex">
         <div className="text-right">
@@ -50,50 +43,17 @@ export function Header() {
             {scanStatus === "online"
               ? liveCount > 0
                 ? `Live news · ${liveCount} articles`
-                : "Intelligence System Online"
+                : "Ready"
               : scanStatus === "scanning"
                 ? "Scanning sources…"
-                : "System degraded"}
+                : "Scan failed"}
           </span>
         </div>
       </div>
-      <Button
-        variant="primary"
-        onClick={runNewScan}
-        disabled={scanStatus === "scanning"}
-      >
+      <Button variant="primary" onClick={runNewScan} disabled={scanStatus === "scanning"}>
         <RefreshCw size={14} className={scanStatus === "scanning" ? "animate-spin" : undefined} />
         Run New Scan
       </Button>
-      <div className="relative">
-        <button
-          type="button"
-          className="relative flex h-9 w-9 items-center justify-center border border-rule bg-white text-ink-text"
-          aria-label="Notifications"
-          onClick={() => setOpen((o) => !o)}
-        >
-          <Bell size={16} />
-          <span className="absolute right-1.5 top-1.5 h-1.5 w-1.5 rounded-full bg-high" />
-        </button>
-        {open ? (
-          <div className="absolute right-0 mt-2 w-72 border border-rule bg-white p-3 shadow-none">
-            <p className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-muted">
-              Alerts
-            </p>
-            <ul className="space-y-2">
-              {notes.map((n) => (
-                <li key={n.id} className="border-b border-rule pb-2 last:border-0 last:pb-0">
-                  <p className="text-sm text-ink-text">{n.title}</p>
-                  <div className="mt-1 flex items-center justify-between">
-                    <SeverityDot level={n.severity} />
-                    <span className="text-[11px] text-muted">{n.time}</span>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ) : null}
-      </div>
       <div className="hidden h-9 items-center gap-2 border border-rule bg-white px-2 sm:flex">
         <span className="flex h-6 w-6 items-center justify-center bg-ink text-[10px] text-white">
           <User size={12} />

@@ -216,13 +216,6 @@ function toSignal(item: RssItem): IntelligenceSignal {
   const id = `live-${createHash("sha1").update(item.link || item.title).digest("hex").slice(0, 16)}`;
 
   const fact = `${item.source} reported: "${item.title}".`;
-  const interpretation = brand
-    ? `This may be relevant to Unilever Home Care if it changes competitive pressure, distribution or demand around ${brand}. This is an interpretation, not a source claim.`
-    : retailer
-      ? `This may affect Home Care ranging, price architecture or trip mix in ${retailer}. This is an interpretation, not a source claim.`
-      : `This is an external South African consumer/macro signal that can move Home Care pack size, banner or brand choice. This is an interpretation, not a source claim.`;
-  const recommendation =
-    "Confirm with internal POS whether Unilever Home Care volume or share moved in the named banners and provinces. Do not treat this headline as a financial impact figure.";
 
   return {
     id,
@@ -238,11 +231,10 @@ function toSignal(item: RssItem): IntelligenceSignal {
     province,
     summary: item.summary,
     fact,
-    interpretation,
-    recommendation,
-    whyItMatters: interpretation,
-    suggestedInternalQuery:
-      "Latest 12-week Unilever Home Care scorecard by retailer and province, overlaying the date of this article.",
+    interpretation: "",
+    recommendation: "",
+    whyItMatters: "",
+    suggestedInternalQuery: "",
     severity: severityFor(signalType, blob),
     confidence: item.link.startsWith("http") ? "medium" : "low",
     commercialImpact: "unvalidated",

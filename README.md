@@ -1,10 +1,10 @@
 # SA Home Care Intelligence
 
-AI-powered South African FMCG market intelligence for the **Home Care** category. Built for Unilever commercial, marketing and category teams.
+AI-powered South African FMCG **Home Care news** for Unilever commercial, marketing and category teams.
 
-The product answers:
+The app shows sourced headlines. A product note is added only when a story names a Unilever brand (OMO, Surf, Skip, Sunlight, Domestos, Comfort, Handy Andy, Jik) or a mapped competitor (MAQ, Ariel, Harpic, Sta-soft, Britelite, Finish).
 
-> What changed in the South African Home Care market, why does it matter to Unilever, and where is the next opportunity to move the needle?
+Pages: **Home**, **Intelligence Feed**, **Settings**.
 
 ## Stack
 
@@ -12,7 +12,7 @@ The product answers:
 - Recharts · Lucide
 - Demo intelligence store today; Supabase schema ready in `supabase/schema.sql`
 
-This frontend is new on `main`. Internal POS agents (Price, Promotion, Distribution, Commercial Brain) already exist on other `pasta` branches — Internal Analysis is the connection layer.
+This frontend is new on `main`.
 
 ## Run locally
 
@@ -33,9 +33,9 @@ Wait until the terminal prints `Local: http://localhost:3000` (or `Ready`). **Le
 
 The dashboard does not scrape websites in the browser. Click **Run New Scan** to fetch public RSS feeds (Google News ZA, Moneyweb, IOL, The Citizen) on the server.
 
-- **Fact** = the headline the source published, with a real source URL.
-- **Interpretation / recommendation** = labelled as interpretation, not a source claim.
-- Home Care brand articles are uncommon; retailer and macro stories (Shoprite, fuel, SASSA, load-shedding) are the usual live hits.
+- Headlines show the publisher and a real source URL.
+- A product-impact line appears only when a Unilever brand or a direct competitor is named.
+- Home Care brand articles are uncommon; retailer and macro stories (Shoprite, fuel, SASSA) are the usual live hits, shown without extra commentary unless a product is named.
 - Demo cards remain so the product still has category examples when news is thin.
 - Supabase is optional later, to persist rows across deploys. You do not need it to run a live scan.
 
@@ -49,21 +49,17 @@ If the tab still refuses to connect:
 ## Architecture
 
 ```
-External sources  →  Scanner / research agent  →  Normalisation
-        →  Supabase (or demo store)  →  AI analysis  →  Dashboard
+External sources  →  Scanner  →  Dashboard (headline + source + optional product impact)
 ```
 
 The browser never scrapes. Pages consume `intelligenceService` (`src/lib/intelligence/service.ts`). HTTP surface:
 
 | Route | Purpose |
 | --- | --- |
-| `GET /api/intelligence` | Signals and overview |
+| `GET /api/intelligence` | Signals |
 | `POST /api/scan` | Run a scan |
-| `POST /api/internal/query` | Internal agent query |
-| `POST /api/ask` | Ask Intelligence |
-| `GET /api/brief` | Weekly brief payload |
 
-Demo records are labelled. Source buttons open the **publication homepage**, not invented article URLs. Financial impact is shown as **Requires Internal Validation** until POS is joined.
+Demo records are labelled. Source buttons open the original article URL when the feed provided one.
 
 ## Supabase
 

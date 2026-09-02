@@ -23,7 +23,7 @@ const sourceSerif = Source_Serif_4({
 export const metadata: Metadata = {
   title: "SA Home Care Intelligence",
   description:
-    "South African Home Care market and competitive intelligence for Unilever.",
+    "South African Home Care news for Unilever.",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

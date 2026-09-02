@@ -1,6 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import type { IntelligenceSignal } from "@/lib/types";
 import { newsExcerpt, newsHref } from "@/lib/news";
+import { productImpact } from "@/lib/product-impact";
 import { formatDate } from "@/lib/utils";
 
 export function NewsList({
@@ -33,6 +34,7 @@ export function NewsList({
 export function NewsItem({ signal }: { signal: IntelligenceSignal }) {
   const href = newsHref(signal);
   const excerpt = newsExcerpt(signal);
+  const impact = productImpact(signal);
 
   return (
     <article className="border-b border-rule px-5 py-5 last:border-b-0">
@@ -52,6 +54,7 @@ export function NewsItem({ signal }: { signal: IntelligenceSignal }) {
         <h2 className="mt-1.5 font-serif text-xl text-ink-text">{signal.title}</h2>
       )}
       {excerpt ? <p className="mt-2 text-sm leading-relaxed text-muted">{excerpt}</p> : null}
+      {impact ? <p className="mt-2 text-sm text-ink-text">{impact}</p> : null}
       <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted">
         {href ? (
           <a

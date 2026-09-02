@@ -51,7 +51,7 @@ export default function IntelligencePage() {
         <p className="text-sm text-muted">
           {liveCount > 0
             ? `${stories.length} stories from South African sources.`
-            : "Demo headlines until you click Run New Scan — that pulls live South African news."}
+            : "Demo headlines until you click Run New Scan. Product notes appear only when a Unilever brand or a direct competitor is named."}
         </p>
         {scanMessage ? <p className="mt-1 text-sm text-teal">{scanMessage}</p> : null}
       </div>
