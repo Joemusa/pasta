@@ -9,7 +9,7 @@ import { formatScanTime } from "@/lib/utils";
 import { useAppState } from "../providers";
 
 export function Header() {
-  const { lastScanAt, scanStatus, runNewScan, setMobileNav } = useAppState();
+  const { lastScanAt, scanStatus, runNewScan, setMobileNav, liveCount } = useAppState();
   const [open, setOpen] = useState(false);
   const notes = getNotifications();
 
@@ -34,7 +34,7 @@ export function Header() {
       <div className="hidden items-center gap-4 md:flex">
         <div className="text-right">
           <p className="text-[11px] uppercase tracking-wider text-muted">Last scan</p>
-          <p className="text-sm text-ink-text">{formatScanTime(lastScanAt, new Date("2026-09-01T12:00:00+02:00"))}</p>
+          <p className="text-sm text-ink-text">{formatScanTime(lastScanAt)}</p>
         </div>
         <div className="flex items-center gap-2 text-xs">
           <span
@@ -48,7 +48,9 @@ export function Header() {
           />
           <span className="text-muted">
             {scanStatus === "online"
-              ? "Intelligence System Online"
+              ? liveCount > 0
+                ? `Live news · ${liveCount} articles`
+                : "Intelligence System Online"
               : scanStatus === "scanning"
                 ? "Scanning sources…"
                 : "System degraded"}

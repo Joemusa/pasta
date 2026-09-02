@@ -55,7 +55,7 @@ export interface IntelligenceSignal {
   severity: Severity;
   confidence: Confidence;
   commercialImpact: Impact | "unvalidated";
-  demo: true;
+  demo: boolean;
 }
 
 export interface CompetitorBrand {

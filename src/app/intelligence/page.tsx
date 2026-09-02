@@ -27,7 +27,7 @@ const TYPES: { id: SignalType | "all"; label: string }[] = [
 ];
 
 export default function IntelligencePage() {
-  const { period, lastScanAt } = useAppState();
+  const { period, lastScanAt, signals: scanned, liveCount, scanMessage } = useAppState();
   const [type, setType] = useState<SignalType | "all">("all");
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
@@ -37,17 +37,38 @@ export default function IntelligencePage() {
   const [toast, setToast] = useState<string | null>(null);
   void lastScanAt;
 
-  const signals = getSignals({ period, type, search, category, brand, retailer, province });
+  const pool = scanned.length > 0 ? scanned : getSignals({ period: 30, type: "all" });
+  const start = new Date();
+  start.setDate(start.getDate() - period);
+  const signals = pool
+    .filter((s) => new Date(s.publishedAt) >= start)
+    .filter((s) => (type === "all" ? true : s.signalType === type))
+    .filter((s) => {
+      const q = search.trim().toLowerCase();
+      if (!q) return true;
+      return `${s.title} ${s.summary} ${s.brand ?? ""} ${s.retailer ?? ""} ${s.source}`
+        .toLowerCase()
+        .includes(q);
+    })
+    .filter((s) => (category ? s.category === category : true))
+    .filter((s) => (brand ? s.brand === brand : true))
+    .filter((s) => (retailer ? s.retailer === retailer : true))
+    .filter((s) => (province ? s.province === province : true));
 
-  const brands = Array.from(new Set(getSignals({ period, type: "all" }).map((s) => s.brand).filter(Boolean))) as string[];
-  const retailers = Array.from(new Set(getSignals({ period, type: "all" }).map((s) => s.retailer).filter(Boolean))) as string[];
-  const categories = Array.from(new Set(getSignals({ period, type: "all" }).map((s) => s.category).filter(Boolean))) as string[];
+  const brands = Array.from(new Set(pool.map((s) => s.brand).filter(Boolean))) as string[];
+  const retailers = Array.from(new Set(pool.map((s) => s.retailer).filter(Boolean))) as string[];
+  const categories = Array.from(new Set(pool.map((s) => s.category).filter(Boolean))) as string[];
 
   return (
     <div className="mx-auto max-w-[1100px] space-y-6">
       <div>
         <h1 className="text-[32px] font-semibold">Intelligence Feed</h1>
-        <p className="text-sm text-muted">All detected external market signals · demo records</p>
+        <p className="text-sm text-muted">
+          {liveCount > 0
+            ? `${liveCount} live articles from the last scan, plus demo records where still useful.`
+            : "Demo records until you click Run New Scan — that pulls live South African news feeds."}
+        </p>
+        {scanMessage ? <p className="mt-1 text-sm text-teal">{scanMessage}</p> : null}
       </div>
 
       <div className="flex flex-wrap gap-1">
@@ -172,7 +193,8 @@ function SignalCard({
         <FactBlock kicker="Suggested internal data query" body={signal.suggestedInternalQuery} />
       </div>
       <p className="mt-3 text-xs text-muted">
-        Source: {signal.source} · Published: {formatDate(signal.publishedAt)} · Demo record
+        Source: {signal.source} · Published: {formatDate(signal.publishedAt)} ·{" "}
+        {signal.demo ? "Demo record" : "Live source"}
         {signal.commercialImpact === "unvalidated"
           ? ` · ${commercialImpactLabel("unvalidated")}`
           : null}

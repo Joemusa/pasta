@@ -24,7 +24,7 @@ const PERIODS: { id: PeriodDays; label: string }[] = [
 ];
 
 export default function HomePage() {
-  const { period, setPeriod, lastScanAt } = useAppState();
+  const { period, setPeriod, lastScanAt, liveCount, scanMessage } = useAppState();
   const [dismissed, setDismissed] = useState<string[]>([]);
   const overview = getOverview(period);
   void lastScanAt;
@@ -43,6 +43,16 @@ export default function HomePage() {
           <p className="mt-1 max-w-xl text-sm text-muted">
             What changed in the market and where can Unilever move the needle?
           </p>
+          {scanMessage ? <p className="mt-2 text-sm text-teal">{scanMessage}</p> : null}
+          {liveCount > 0 ? (
+            <p className="mt-1 text-xs text-muted">
+              {liveCount} live news records in the Intelligence Feed. Open the feed to read sources.
+            </p>
+          ) : (
+            <p className="mt-1 text-xs text-muted">
+              Click Run New Scan to pull live South African news. Until then the feed is demo data.
+            </p>
+          )}
         </div>
         <div className="flex border border-rule bg-white" role="tablist" aria-label="Date range">
           {PERIODS.map((p) => (

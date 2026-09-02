@@ -17,14 +17,17 @@ export default function SettingsPage() {
       <section className="border border-rule bg-white p-5">
         <h2 className="font-serif text-xl">Data source</h2>
         <p className="mt-2 text-sm">
-          Active mode: <strong>{live ? "Supabase" : "Demo intelligence store"}</strong>
+          Active mode:{" "}
+          <strong>
+            {live ? "Supabase configured" : "News scanner + demo store"}
+          </strong>
         </p>
         <p className="mt-2 text-sm text-muted">
-          The UI reads structured records from <code className="text-xs">intelligenceService</code>.
-          Live ingestion belongs in a scanner/research agent, not in the browser. Set{" "}
-          <code className="text-xs">NEXT_PUBLIC_SUPABASE_URL</code> and{" "}
-          <code className="text-xs">NEXT_PUBLIC_SUPABASE_ANON_KEY</code> to switch the API layer to
-          Supabase without rebuilding pages.
+          Click <strong>Run New Scan</strong> in the header to pull live South African RSS
+          (Google News ZA, Moneyweb, IOL, The Citizen). The dashboard does not scrape pages
+          in the browser. FACT is the headline the source published; interpretation is labelled
+          separately and is not a source claim. Supabase is optional later, to persist those
+          rows across deploys.
         </p>
       </section>
 

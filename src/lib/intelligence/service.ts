@@ -36,6 +36,11 @@ export interface SignalFilters {
 
 const REFERENCE_NOW = new Date("2026-09-01T12:00:00+02:00");
 
+function nowForFilter(): Date {
+  const actual = new Date();
+  return actual > REFERENCE_NOW ? actual : REFERENCE_NOW;
+}
+
 type Store = {
   signals: IntelligenceSignal[];
   lastScanAt: string;
@@ -54,19 +59,47 @@ const store: Store = {
   briefIds: [],
 };
 
-function inPeriod(iso: string, period: PeriodDays, now = REFERENCE_NOW): boolean {
+function mergeSignals(live: IntelligenceSignal[], demo: IntelligenceSignal[]): IntelligenceSignal[] {
+  const ids = new Set(live.map((s) => s.id));
+  return [...live, ...demo.filter((s) => !ids.has(s.id))];
+}
+
+export function ingestLiveSignals(live: IntelligenceSignal[]) {
+  const unique = new Map<string, IntelligenceSignal>();
+  for (const signal of live) unique.set(signal.id, signal);
+  const liveList = [...unique.values()].sort(
+    (a, b) => +new Date(b.publishedAt) - +new Date(a.publishedAt),
+  );
+  store.signals = mergeSignals(liveList, SIGNALS);
+  store.lastScanAt = new Date().toISOString();
+  store.scanStatus = liveList.length > 0 ? "online" : "degraded";
+}
+
+export function hydrateLiveSignals(live: IntelligenceSignal[]) {
+  if (live.length === 0) return;
+  if (store.signals.some((s) => !s.demo)) return;
+  const previous = store.lastScanAt;
+  ingestLiveSignals(live);
+  store.lastScanAt = previous;
+}
+
+function inPeriod(iso: string, period: PeriodDays, now = nowForFilter()): boolean {
   const start = new Date(now);
   start.setDate(start.getDate() - period);
   return new Date(iso) >= start;
 }
 
-function previousWindow(iso: string, period: PeriodDays, now = REFERENCE_NOW): boolean {
+function previousWindow(iso: string, period: PeriodDays, now = nowForFilter()): boolean {
   const end = new Date(now);
   end.setDate(end.getDate() - period);
   const start = new Date(end);
   start.setDate(start.getDate() - period);
   const d = new Date(iso);
   return d >= start && d < end;
+}
+
+export function getAllSignals(): IntelligenceSignal[] {
+  return store.signals;
 }
 
 export function getSignals(filters?: Partial<SignalFilters>): IntelligenceSignal[] {

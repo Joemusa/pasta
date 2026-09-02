@@ -29,6 +29,16 @@ npm run dev
 
 Wait until the terminal prints `Local: http://localhost:3000` (or `Ready`). **Leave that terminal open**, then open [http://localhost:3000](http://localhost:3000) in a browser on the same computer.
 
+## Live news
+
+The dashboard does not scrape websites in the browser. Click **Run New Scan** to fetch public RSS feeds (Google News ZA, Moneyweb, IOL, The Citizen) on the server.
+
+- **Fact** = the headline the source published, with a real source URL.
+- **Interpretation / recommendation** = labelled as interpretation, not a source claim.
+- Home Care brand articles are uncommon; retailer and macro stories (Shoprite, fuel, SASSA, load-shedding) are the usual live hits.
+- Demo cards remain so the product still has category examples when news is thin.
+- Supabase is optional later, to persist rows across deploys. You do not need it to run a live scan.
+
 If the tab still refuses to connect:
 
 1. Confirm you are in the repo root (the folder that contains `package.json`).
