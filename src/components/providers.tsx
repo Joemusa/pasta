@@ -53,16 +53,26 @@ async function fetchWithTimeout(
   }
 }
 
-export function AppProvider({ children }: { children: ReactNode }) {
+export function AppProvider({
+  children,
+  initialSignals = [],
+  initialLastScanAt = "",
+}: {
+  children: ReactNode;
+  initialSignals?: IntelligenceSignal[];
+  initialLastScanAt?: string;
+}) {
+  const seeded = initialSignals.filter((s) => !s.demo);
+  const hasSeed = seeded.length > 0;
   const [period, setPeriod] = useState<PeriodDays>(14);
   const [collapsed, setCollapsed] = useState(false);
   const [mobileNav, setMobileNav] = useState(false);
-  const [lastScanAt, setLastScanAt] = useState("");
-  const [scanStatus, setStatus] = useState<ScanStatus>("scanning");
-  const [signals, setSignals] = useState<IntelligenceSignal[]>([]);
-  const [liveCount, setLiveCount] = useState(0);
-  const [scanMessage, setScanMessage] = useState<string | null>("Loading live news…");
-  const [bootDone, setBootDone] = useState(false);
+  const [lastScanAt, setLastScanAt] = useState(initialLastScanAt);
+  const [scanStatus, setStatus] = useState<ScanStatus>(hasSeed ? "online" : "scanning");
+  const [signals, setSignals] = useState<IntelligenceSignal[]>(seeded);
+  const [liveCount, setLiveCount] = useState(seeded.length);
+  const [scanMessage, setScanMessage] = useState<string | null>(hasSeed ? null : "Loading live news…");
+  const [bootDone, setBootDone] = useState(hasSeed);
 
   const applyLive = useCallback((live: IntelligenceSignal[], scannedAt?: string) => {
     const only = live.filter((s) => !s.demo);
@@ -117,6 +127,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }, [runScan]);
 
   useEffect(() => {
+    if (hasSeed) return;
     const ac = new AbortController();
     async function boot() {
       try {
@@ -140,7 +151,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     }
     void boot();
     return () => ac.abort();
-  }, [applyLive, runScan]);
+  }, [applyLive, hasSeed, runScan]);
 
   const value = useMemo(
     () => ({

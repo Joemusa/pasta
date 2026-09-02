@@ -1,12 +1,21 @@
 "use client";
 
+import type { IntelligenceSignal } from "@/lib/types";
 import { AppProvider } from "../providers";
 import { Header } from "./Header";
 import { Sidebar } from "./Sidebar";
 
-export function AppShell({ children }: { children: React.ReactNode }) {
+export function AppShell({
+  children,
+  initialSignals,
+  initialLastScanAt,
+}: {
+  children: React.ReactNode;
+  initialSignals: IntelligenceSignal[];
+  initialLastScanAt: string;
+}) {
   return (
-    <AppProvider>
+    <AppProvider initialSignals={initialSignals} initialLastScanAt={initialLastScanAt}>
       <div className="flex min-h-screen bg-paper">
         <Sidebar />
         <div className="flex min-w-0 flex-1 flex-col">

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Geist, Geist_Mono, Source_Serif_4 } from "next/font/google";
+import { connection } from "next/server";
 import { AppShell } from "@/components/layout/AppShell";
+import { loadInitialNews } from "@/lib/intelligence/bootstrap";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -26,14 +28,18 @@ export const metadata: Metadata = {
     "South African Home Care news for Unilever.",
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default async function RootLayout({ children }: { children: ReactNode }) {
+  await connection();
+  const initial = await loadInitialNews();
   return (
     <html
       lang="en-ZA"
       className={`${geistSans.variable} ${geistMono.variable} ${sourceSerif.variable} h-full antialiased`}
     >
       <body className="min-h-full">
-        <AppShell>{children}</AppShell>
+        <AppShell initialSignals={initial.signals} initialLastScanAt={initial.lastScanAt}>
+          {children}
+        </AppShell>
       </body>
     </html>
   );
