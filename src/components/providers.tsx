@@ -27,6 +27,7 @@ type AppState = {
   runNewScan: () => Promise<void>;
 };
 
+const Ctx = createContext<AppState | null>(null);
 let bootStarted = false;
 
 export function AppProvider({ children }: { children: ReactNode }) {
