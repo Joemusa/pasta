@@ -24,10 +24,9 @@ export default function SettingsPage() {
         </p>
         <p className="mt-2 text-sm text-muted">
           Click <strong>Run New Scan</strong> in the header to pull live South African RSS
-          (Google News ZA, Moneyweb, IOL, The Citizen). The dashboard does not scrape pages
-          in the browser. FACT is the headline the source published; interpretation is labelled
-          separately and is not a source claim. Supabase is optional later, to persist those
-          rows across deploys.
+          (Google News ZA, Moneyweb, IOL, The Citizen). Each story shows the publisher and a
+          link to the original article. The dashboard does not scrape pages in the browser.
+          Supabase is optional later, to persist those rows across deploys.
         </p>
       </section>
 
@@ -52,8 +51,7 @@ export default function SettingsPage() {
       <section className="border border-rule bg-white p-5">
         <h2 className="font-serif text-xl">Scan</h2>
         <p className="mt-2 text-sm text-muted">
-          Last demo scan: 1 September 2026, 08:42 SAST. Use Run New Scan in the header to append a
-          new Pick n Pay / MAQ leaflet signal.
+          Use Run New Scan in the header to refresh headlines from the sources listed above.
         </p>
       </section>
     </div>

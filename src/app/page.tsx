@@ -11,11 +11,13 @@ import {
   getKpiDelta,
   getOverview,
   getProvinces,
+  getSignals,
 } from "@/lib/intelligence/service";
 import { commercialImpactLabel } from "@/lib/scoring";
 import type { Opportunity, PeriodDays, Threat } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { SouthAfricaMap } from "@/components/map/SouthAfricaMap";
+import { NewsList } from "@/components/news/NewsList";
 
 const PERIODS: { id: PeriodDays; label: string }[] = [
   { id: 7, label: "Last 7 days" },
@@ -24,7 +26,7 @@ const PERIODS: { id: PeriodDays; label: string }[] = [
 ];
 
 export default function HomePage() {
-  const { period, setPeriod, lastScanAt, liveCount, scanMessage } = useAppState();
+  const { period, setPeriod, lastScanAt, liveCount, scanMessage, signals: scanned } = useAppState();
   const [dismissed, setDismissed] = useState<string[]>([]);
   const overview = getOverview(period);
   void lastScanAt;
@@ -32,6 +34,11 @@ export default function HomePage() {
   const [activeOpp, setActiveOpp] = useState<Opportunity | null>(
     overview.opportunities[0] ?? null,
   );
+  const liveStories = scanned.filter((s) => !s.demo);
+  const latestNews = (liveStories.length > 0 ? liveStories : getSignals({ period, type: "all" }))
+    .slice()
+    .sort((a, b) => +new Date(b.publishedAt) - +new Date(a.publishedAt))
+    .slice(0, 6);
 
   return (
     <div className="mx-auto max-w-[1280px] space-y-8">
@@ -46,11 +53,11 @@ export default function HomePage() {
           {scanMessage ? <p className="mt-2 text-sm text-teal">{scanMessage}</p> : null}
           {liveCount > 0 ? (
             <p className="mt-1 text-xs text-muted">
-              {liveCount} live news records in the Intelligence Feed. Open the feed to read sources.
+              {liveCount} live stories with source links. Open the Intelligence Feed for the full list.
             </p>
           ) : (
             <p className="mt-1 text-xs text-muted">
-              Click Run New Scan to pull live South African news. Until then the feed is demo data.
+              Click Run New Scan to pull live South African news with publisher links.
             </p>
           )}
         </div>
@@ -100,6 +107,19 @@ export default function HomePage() {
             </article>
           );
         })}
+      </section>
+
+      <section>
+        <div className="mb-4 flex items-end justify-between gap-4">
+          <div>
+            <h2 className="text-2xl text-ink-text">Latest news</h2>
+            <p className="text-sm text-muted">Headlines with the publisher that ran them</p>
+          </div>
+          <Link href="/intelligence" className="text-sm text-teal hover:underline">
+            Full feed
+          </Link>
+        </div>
+        <NewsList items={latestNews} />
       </section>
 
       <section>

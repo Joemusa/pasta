@@ -108,15 +108,16 @@ function parseRss(xml: string, feedName: string): RssItem[] {
       const block = chunk.split(/<\/item>/i)[0] ?? "";
       const title = tag(block, "title");
       const link = tag(block, "link") || tag(block, "guid");
-      const source =
+      const publisher =
         tag(block, "source") ||
-        (title.includes(" - ") ? title.split(" - ").slice(-1)[0] : feedName);
+        (title.includes(" - ") ? title.split(" - ").slice(-1)[0] : "");
+      const headline = title.replace(/\s+-\s+[^-]+$/, "").trim() || title;
       return {
-        title: title.replace(/\s+-\s+[^-]+$/, "").trim() || title,
+        title: headline,
         link,
         pubDate: tag(block, "pubDate") || tag(block, "published"),
-        source,
-        summary: tag(block, "description") || title,
+        source: prettySource(publisher, feedName),
+        summary: cleanExcerpt(tag(block, "description"), headline),
       };
     })
     .filter((item) => item.title && item.link);
@@ -188,6 +189,23 @@ function severityFor(type: SignalType, text: string): Severity {
   return "low";
 }
 
+function prettySource(publisher: string, feedName: string): string {
+  const name = publisher.trim();
+  if (name && !/^google news/i.test(name)) return name;
+  if (feedName.startsWith("Google News")) return "Google News";
+  return feedName;
+}
+
+function cleanExcerpt(raw: string, title: string): string {
+  let text = raw.replace(/View Full Coverage on Google News/gi, "").replace(/\s+/g, " ").trim();
+  if (title && text.toLowerCase().startsWith(title.toLowerCase())) {
+    text = text.slice(title.length).replace(/^[\s:—–-]+/, "");
+  }
+  if (text.length < 48) return "";
+  if (text.length > 400) return `${text.slice(0, 397).replace(/\s+\S*$/, "")}…`;
+  return text;
+}
+
 function toSignal(item: RssItem): IntelligenceSignal {
   const blob = `${item.title} ${item.summary}`;
   const brand = findBrand(blob);
@@ -220,7 +238,7 @@ function toSignal(item: RssItem): IntelligenceSignal {
     brand,
     retailer,
     province,
-    summary: item.summary.slice(0, 400),
+    summary: item.summary,
     fact,
     interpretation,
     recommendation,
@@ -275,13 +293,7 @@ export async function runLiveScan(): Promise<LiveScanResult> {
     signals.push(toSignal(item));
   }
 
-  signals.sort((a, b) => {
-    const score = (s: IntelligenceSignal) =>
-      (s.brand ? 3 : 0) + (s.retailer ? 2 : 0) + (s.signalType === "macro" ? 2 : 0);
-    const byScore = score(b) - score(a);
-    if (byScore !== 0) return byScore;
-    return +new Date(b.publishedAt) - +new Date(a.publishedAt);
-  });
+  signals.sort((a, b) => +new Date(b.publishedAt) - +new Date(a.publishedAt));
   return {
     signals: signals.slice(0, 40),
     errors,

@@ -16,7 +16,7 @@ export async function POST() {
     return NextResponse.json({
       lastScanAt: meta.lastScanAt,
       added: result.signals.length,
-      signals: getAllSignals(),
+      signals: result.signals.length > 0 ? result.signals : getAllSignals(),
       source: result.signals.length > 0 ? "live" : "demo",
       errors: result.errors,
       feedsAttempted: result.feedsAttempted,
