@@ -6,7 +6,9 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function formatScanTime(iso: string, now = new Date()): string {
+  if (!iso) return "Not yet";
   const date = new Date(iso);
+  if (Number.isNaN(+date)) return "Not yet";
   const sameDay =
     date.getFullYear() === now.getFullYear() &&
     date.getMonth() === now.getMonth() &&

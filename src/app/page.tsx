@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useAppState } from "@/components/providers";
 import { NewsList } from "@/components/news/NewsList";
-import { getSignals } from "@/lib/intelligence/service";
 import type { PeriodDays } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
@@ -14,9 +13,11 @@ const PERIODS: { id: PeriodDays; label: string }[] = [
 ];
 
 export default function HomePage() {
-  const { period, setPeriod, liveCount, scanMessage, signals: scanned } = useAppState();
-  const liveStories = scanned.filter((s) => !s.demo);
-  const latestNews = (liveStories.length > 0 ? liveStories : getSignals({ period, type: "all" }))
+  const { period, setPeriod, liveCount, scanMessage, signals, bootDone, scanStatus } = useAppState();
+  const start = new Date();
+  start.setDate(start.getDate() - period);
+  const latestNews = signals
+    .filter((s) => !s.demo && new Date(s.publishedAt) >= start)
     .slice()
     .sort((a, b) => +new Date(b.publishedAt) - +new Date(a.publishedAt))
     .slice(0, 10);
@@ -29,7 +30,7 @@ export default function HomePage() {
             Home Care news
           </h1>
           <p className="mt-1 max-w-xl text-sm text-muted">
-            Sourced South African headlines. A product note appears only when a story
+            Live South African headlines. A product note appears only when a story
             names a Unilever brand or a direct competitor.
           </p>
           {scanMessage ? <p className="mt-2 text-sm text-teal">{scanMessage}</p> : null}
@@ -37,11 +38,7 @@ export default function HomePage() {
             <p className="mt-1 text-xs text-muted">
               {liveCount} live stories. Open the Intelligence Feed for the full list.
             </p>
-          ) : (
-            <p className="mt-1 text-xs text-muted">
-              Click Run New Scan to pull live South African news with publisher links.
-            </p>
-          )}
+          ) : null}
         </div>
         <div className="flex border border-rule bg-white" role="tablist" aria-label="Date range">
           {PERIODS.map((p) => (
@@ -70,7 +67,15 @@ export default function HomePage() {
             Full feed
           </Link>
         </div>
-        <NewsList items={latestNews} />
+        <NewsList
+          items={latestNews}
+          emptyTitle={!bootDone || scanStatus === "scanning" ? "Loading live news…" : "No live stories yet."}
+          emptyBody={
+            !bootDone || scanStatus === "scanning"
+              ? "Fetching South African RSS feeds."
+              : "Click Run New Scan to pull headlines."
+          }
+        />
       </section>
     </div>
   );

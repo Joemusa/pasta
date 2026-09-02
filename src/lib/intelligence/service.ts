@@ -13,14 +13,12 @@ import { rankOpportunities } from "../scoring";
 import {
   COMPETITORS,
   HEATMAP,
-  LAST_SCAN_AT,
   MACRO_TRIGGERS,
   NEWS_SOURCES,
   OPPORTUNITIES,
   PROVINCES,
   RETAILERS,
   SCAN_NOTIFICATIONS,
-  SIGNALS,
   THREATS,
 } from "./demo-data";
 
@@ -51,36 +49,32 @@ type Store = {
 };
 
 const store: Store = {
-  signals: [...SIGNALS],
-  lastScanAt: LAST_SCAN_AT,
+  signals: [],
+  lastScanAt: "",
   scanStatus: "online",
   opportunities: OPPORTUNITIES.map((o) => ({ ...o })),
   dismissedOpportunityIds: [],
   briefIds: [],
 };
 
-function mergeSignals(live: IntelligenceSignal[], demo: IntelligenceSignal[]): IntelligenceSignal[] {
-  const ids = new Set(live.map((s) => s.id));
-  return [...live, ...demo.filter((s) => !ids.has(s.id))];
-}
-
 export function ingestLiveSignals(live: IntelligenceSignal[]) {
   const unique = new Map<string, IntelligenceSignal>();
-  for (const signal of live) unique.set(signal.id, signal);
+  for (const signal of live) {
+    if (signal.demo) continue;
+    unique.set(signal.id, signal);
+  }
   const liveList = [...unique.values()].sort(
     (a, b) => +new Date(b.publishedAt) - +new Date(a.publishedAt),
   );
-  store.signals = mergeSignals(liveList, SIGNALS);
+  store.signals = liveList;
   store.lastScanAt = new Date().toISOString();
   store.scanStatus = liveList.length > 0 ? "online" : "degraded";
 }
 
-export function hydrateLiveSignals(live: IntelligenceSignal[]) {
+export function hydrateLiveSignals(live: IntelligenceSignal[], lastScanAt?: string) {
   if (live.length === 0) return;
-  if (store.signals.some((s) => !s.demo)) return;
-  const previous = store.lastScanAt;
   ingestLiveSignals(live);
-  store.lastScanAt = previous;
+  if (lastScanAt) store.lastScanAt = lastScanAt;
 }
 
 function inPeriod(iso: string, period: PeriodDays, now = nowForFilter()): boolean {

@@ -1,23 +1,23 @@
 import { NextResponse } from "next/server";
-import { ingestLiveSignals, getAllSignals, getScanMeta } from "@/lib/intelligence/service";
+import { ingestLiveSignals, getScanMeta } from "@/lib/intelligence/service";
 import { runLiveScan } from "@/lib/intelligence/scanner";
-import { writeLiveSignals } from "@/lib/intelligence/live-store";
+import { writeLiveCache } from "@/lib/intelligence/live-store";
 
 export async function POST() {
   try {
     const result = await runLiveScan();
     ingestLiveSignals(result.signals);
+    const meta = getScanMeta();
     try {
-      writeLiveSignals(result.signals);
+      writeLiveCache({ lastScanAt: meta.lastScanAt, signals: result.signals });
     } catch {
       // Persist is best-effort.
     }
-    const meta = getScanMeta();
     return NextResponse.json({
       lastScanAt: meta.lastScanAt,
       added: result.signals.length,
-      signals: result.signals.length > 0 ? result.signals : getAllSignals(),
-      source: result.signals.length > 0 ? "live" : "demo",
+      signals: result.signals,
+      source: result.signals.length > 0 ? "live" : "empty",
       errors: result.errors,
       feedsAttempted: result.feedsAttempted,
     });
@@ -25,7 +25,7 @@ export async function POST() {
     return NextResponse.json(
       {
         error: error instanceof Error ? error.message : "Scan failed",
-        source: "demo",
+        source: "empty",
       },
       { status: 500 },
     );

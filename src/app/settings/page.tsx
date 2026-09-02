@@ -1,40 +1,40 @@
 "use client";
 
+import { useAppState } from "@/components/providers";
 import { getSources } from "@/lib/intelligence/service";
-import { isSupabaseConfigured } from "@/lib/supabase/client";
+import { formatScanTime } from "@/lib/utils";
 
 export default function SettingsPage() {
   const sources = getSources();
-  const live = isSupabaseConfigured();
+  const { liveCount, lastScanAt, scanStatus } = useAppState();
 
   return (
     <div className="mx-auto max-w-[800px] space-y-8">
       <div>
         <h1 className="text-[32px] font-semibold">Settings</h1>
-        <p className="text-sm text-muted">Configuration and data-source settings.</p>
+        <p className="text-sm text-muted">Live news source settings.</p>
       </div>
 
       <section className="border border-rule bg-white p-5">
         <h2 className="font-serif text-xl">Data source</h2>
         <p className="mt-2 text-sm">
-          Active mode:{" "}
-          <strong>
-            {live ? "Supabase configured" : "News scanner + demo store"}
-          </strong>
+          Active mode: <strong>Live RSS scanner</strong>
         </p>
         <p className="mt-2 text-sm text-muted">
-          Click <strong>Run New Scan</strong> in the header to pull live South African RSS
-          (Google News ZA, Moneyweb, IOL, The Citizen). Each story shows the publisher and a
-          link to the original article. A product-impact note is added only when a Unilever brand
-          or a direct competitor is named — there is no general market commentary.
+          The feed loads live South African RSS on startup (Google News ZA, Moneyweb, IOL, The
+          Citizen). Demo headlines are not shown. A product-impact note is added only when a
+          Unilever brand or a direct competitor is named.
+        </p>
+        <p className="mt-3 text-sm">
+          Last scan: {formatScanTime(lastScanAt)} · Status: {scanStatus} · {liveCount} live articles
         </p>
       </section>
 
       <section className="border border-rule bg-white p-5">
         <h2 className="font-serif text-xl">External sources</h2>
         <p className="mt-1 text-sm text-muted">
-          South African publications the scanner should prioritise. Demo records currently cite these
-          homepages — never fabricated article URLs.
+          Publications the scanner reads. Each story links to the original article when the feed
+          provides a URL.
         </p>
         <ul className="mt-4 divide-y divide-rule">
           {sources.map((s) => (
@@ -51,7 +51,7 @@ export default function SettingsPage() {
       <section className="border border-rule bg-white p-5">
         <h2 className="font-serif text-xl">Scan</h2>
         <p className="mt-2 text-sm text-muted">
-          Use Run New Scan in the header to refresh headlines from the sources listed above.
+          Use Run New Scan in the header to refresh headlines from the live feeds.
         </p>
       </section>
     </div>

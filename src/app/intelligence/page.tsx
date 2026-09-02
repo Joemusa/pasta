@@ -4,7 +4,6 @@ import { useMemo, useState } from "react";
 import { Input, Select } from "@/components/ui/fields";
 import { NewsList } from "@/components/news/NewsList";
 import { useAppState } from "@/components/providers";
-import { getSignals } from "@/lib/intelligence/service";
 import type { IntelligenceSignal, SignalType } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
@@ -17,17 +16,12 @@ const TYPES: { id: SignalType | "all"; label: string }[] = [
 ];
 
 export default function IntelligencePage() {
-  const { period, signals: scanned, liveCount, scanMessage } = useAppState();
+  const { period, signals, liveCount, scanMessage, bootDone, scanStatus } = useAppState();
   const [type, setType] = useState<SignalType | "all">("all");
   const [search, setSearch] = useState("");
   const [source, setSource] = useState("");
 
-  const pool = useMemo(() => {
-    const fallback = getSignals({ period: 30, type: "all" });
-    const base = scanned.length > 0 ? scanned : fallback;
-    const live = base.filter((s) => !s.demo);
-    return liveCount > 0 || live.length > 0 ? live : base;
-  }, [scanned, liveCount]);
+  const pool = useMemo(() => signals.filter((s) => !s.demo), [signals]);
 
   const sources = useMemo(
     () => Array.from(new Set(pool.map((s) => s.source))).sort((a, b) => a.localeCompare(b)),
@@ -44,14 +38,18 @@ export default function IntelligencePage() {
     .filter((s) => matchesSearch(s, search))
     .sort((a, b) => +new Date(b.publishedAt) - +new Date(a.publishedAt));
 
+  const loading = !bootDone || scanStatus === "scanning";
+
   return (
     <div className="mx-auto max-w-[820px] space-y-6">
       <div>
         <h1 className="text-[32px] font-semibold">Intelligence Feed</h1>
         <p className="text-sm text-muted">
           {liveCount > 0
-            ? `${stories.length} stories from South African sources.`
-            : "Demo headlines until you click Run New Scan. Product notes appear only when a Unilever brand or a direct competitor is named."}
+            ? `${stories.length} live stories from South African sources.`
+            : loading
+              ? "Loading live South African news…"
+              : "No live stories yet. Click Run New Scan."}
         </p>
         {scanMessage ? <p className="mt-1 text-sm text-teal">{scanMessage}</p> : null}
       </div>
@@ -82,7 +80,13 @@ export default function IntelligencePage() {
         </Select>
       </div>
 
-      <NewsList items={stories} />
+      <NewsList
+        items={stories}
+        emptyTitle={loading ? "Loading live news…" : "No live stories in this period."}
+        emptyBody={
+          loading ? "Fetching South African RSS feeds." : "Adjust filters or run a new scan."
+        }
+      />
     </div>
   );
 }
