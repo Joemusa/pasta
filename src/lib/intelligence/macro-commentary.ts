@@ -131,8 +131,12 @@ export function buildMacroCommentary(points: MacroPoint[]): MacroCommentary {
     if (latest.policyYearAgo != null) {
       facts.push(
         `A year earlier it was ${formatPct(latest.policyYearAgo)}, so the policy stance is ${
-          rateDir === "down" ? "easier" : rateDir === "up" ? "tighter" : "little changed"
-        } than twelve months ago.`,
+          rateDir === "down"
+            ? "easier than twelve months ago"
+            : rateDir === "up"
+              ? "tighter than twelve months ago"
+              : "broadly unchanged versus twelve months ago"
+        }.`,
       );
     }
   }
@@ -160,7 +164,7 @@ export function buildMacroCommentary(points: MacroPoint[]): MacroCommentary {
       "A CPI rebound inside the target band still tightens the weekly shop. Promo elasticity rises on OMO, Sunlight dishwashing liquid and Comfort; MAQ and Sta-soft features will convert more easily.",
     );
     behaviours.push(
-      "Sunlight laundry bars and value dishwash keep a defensive role. Do not read a quiet month in premium SKUs as a brand problem until the CPI bump is overlayed on POS.",
+      "Sunlight laundry bars and value dishwash keep a defensive role. Do not read a quiet month in premium SKUs as a brand problem until the CPI bump is overlaid on POS.",
     );
   } else if (cpi != null && cpi < 4) {
     behaviours.push(
