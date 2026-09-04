@@ -56,8 +56,8 @@ export default function IntelligenceFeedPage() {
         <div>
           <h1 className="text-[32px] font-semibold">Intelligence Feed</h1>
           <p className="mt-1 max-w-xl text-sm text-muted">
-            South African Home Care news, with what it means for the Unilever
-            category, brand and product.
+            South African Home Care news and live product promotions, with what
+            it means for the Unilever category, brand and product.
           </p>
           <p className="mt-2 text-sm text-muted">
             {loading

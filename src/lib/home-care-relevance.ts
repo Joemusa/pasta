@@ -44,7 +44,8 @@ const UNILEVER_NOT_HOME_CARE =
 
 function hasOmoBrand(text: string): boolean {
   if (!/\bomo\b/i.test(text) || FALSE_OMO.test(text)) return false;
-  return /\b(unilever|detergent|laundry|washing powder|handwash|2-in-1)\b/i.test(text);
+  if (/\b(unilever|detergent|laundry|washing powder|handwash|2-in-1)\b/i.test(text)) return true;
+  return /\b(shoprite|checkers|usave|pick n pay|boxer|spar|takealot|game)\b/i.test(text);
 }
 
 function hasSurfBrand(text: string): boolean {

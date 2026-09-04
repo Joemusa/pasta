@@ -1,5 +1,6 @@
 import { createHash } from "crypto";
 import { isHomeCareRelevant } from "../home-care-relevance";
+import { runPromoScan } from "./promotions";
 import type {
   CategoryName,
   IntelligenceSignal,
@@ -37,6 +38,10 @@ const FEEDS: { name: string; url: string }[] = [
   {
     name: "Google News · News24 Home Care",
     url: "https://news.google.com/rss/search?q=site:news24.com+(Sunlight+OR+OMO+OR+Domestos+OR+%22Handy+Andy%22+OR+dishwashing+OR+detergent)+when:90d&hl=en-ZA&gl=ZA&ceid=ZA:en",
+  },
+  {
+    name: "Google News · SA Home Care promotions",
+    url: "https://news.google.com/rss/search?q=(OMO+OR+Sunlight+OR+Domestos+OR+MAQ+OR+Comfort)+(specials+OR+catalogue+OR+leaflet+OR+%22on+promotion%22)+(Shoprite+OR+Checkers+OR+SPAR+OR+%22Pick+n+Pay%22+OR+Takealot)+when:90d&hl=en-ZA&gl=ZA&ceid=ZA:en",
   },
   { name: "Moneyweb", url: "https://www.moneyweb.co.za/feed/" },
   { name: "The Citizen", url: "https://www.citizen.co.za/feed/" },
@@ -274,11 +279,18 @@ export async function runLiveScan(): Promise<LiveScanResult> {
     signals.push(toSignal(item));
   }
 
+  const promo = await runPromoScan(fetchedAt);
+  errors.push(...promo.errors);
+  for (const signal of promo.signals) {
+    if (signals.some((existing) => existing.id === signal.id)) continue;
+    signals.push(signal);
+  }
+
   signals.sort((a, b) => +new Date(b.publishedAt) - +new Date(a.publishedAt));
   return {
     signals: signals.slice(0, 40),
     errors,
     fetchedAt,
-    feedsAttempted: FEEDS.length,
+    feedsAttempted: FEEDS.length + promo.feedsAttempted,
   };
 }

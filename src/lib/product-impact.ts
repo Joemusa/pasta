@@ -90,6 +90,7 @@ function inferMeaning(
   brand: string,
   product: string,
   rivals: string[],
+  retailer: string | null,
 ): string {
   if (/misleading|label|claim|advertising standard|\basa\b|packaging copy|plant-based/i.test(blob)) {
     return `${product} faces a claims or pack-copy issue in ${category}. If the wording on pack, ads or leaflets has to change, Unilever loses a selling line that Finish, retailer own-label and value dishwashing can attack. Check SA artwork, website claims and current Shoprite / Pick n Pay features for ${brand} until the label is clean.`;
@@ -100,8 +101,9 @@ function inferMeaning(
   if (/recall|contamination|quality issue|withdrawal/i.test(blob)) {
     return `This is a quality or availability risk on ${product}. Gaps on shelf in ${category} usually move volume to the next brand in the fixture within the same shopping trip.`;
   }
-  if (/promo|promotion|special|leaflet|discount|price cut|feature/i.test(blob)) {
-    return `This is a promotional event on ${product}. In South African grocery, a value-banner feature can decide the month’s share for ${brand}. Compare facings and price against the nearest competitor in Shoprite, Usave, Boxer and Pick n Pay.`;
+  if (/promo|promotion|special|leaflet|discount|price cut|feature|% off|\d-for|3x /i.test(blob)) {
+    const where = retailer ?? "Shoprite, Usave, Boxer, Pick n Pay and Takealot";
+    return `This is a live promotion on ${product} at ${where}. In South African Home Care, a featured price can move the week’s share for ${brand}. Check whether the same pack is on feature in Shoprite, Usave, Boxer and Pick n Pay, and compare volume and % sales on promo versus the prior 12 weeks.`;
   }
   if (rivals.length > 0) {
     return `${andList(rivals)} is competing in ${category} against Unilever’s ${brand}. That typically shows up as price, promo or listing pressure on ${product} in Shoprite, Usave and Boxer. Check the gap versus ${andList(rivals)} this week, not only the brand campaign.`;
@@ -131,7 +133,7 @@ export function analyseStory(signal: IntelligenceSignal): StoryAnalysis {
     category,
     brand,
     product,
-    meaning: inferMeaning(blob, category, brand, product, rivalNames),
+    meaning: inferMeaning(blob, category, brand, product, rivalNames, signal.retailer),
   };
 }
 
