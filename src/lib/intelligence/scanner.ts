@@ -1,5 +1,6 @@
 import { createHash } from "crypto";
 import { isHomeCareRelevant } from "../home-care-relevance";
+import { runHelloPeterScan } from "./hellopeter";
 import { runPromoScan } from "./promotions";
 import type {
   CategoryName,
@@ -279,9 +280,12 @@ export async function runLiveScan(): Promise<LiveScanResult> {
     signals.push(toSignal(item));
   }
 
-  const promo = await runPromoScan(fetchedAt);
-  errors.push(...promo.errors);
-  for (const signal of promo.signals) {
+  const [promo, complaints] = await Promise.all([
+    runPromoScan(fetchedAt),
+    runHelloPeterScan(fetchedAt),
+  ]);
+  errors.push(...promo.errors, ...complaints.errors);
+  for (const signal of [...promo.signals, ...complaints.signals]) {
     if (signals.some((existing) => existing.id === signal.id)) continue;
     signals.push(signal);
   }
@@ -291,6 +295,6 @@ export async function runLiveScan(): Promise<LiveScanResult> {
     signals: signals.slice(0, 40),
     errors,
     fetchedAt,
-    feedsAttempted: FEEDS.length + promo.feedsAttempted,
+    feedsAttempted: FEEDS.length + promo.feedsAttempted + complaints.feedsAttempted,
   };
 }

@@ -19,10 +19,10 @@ const SOUTH_AFRICA =
   /\b(south africa|south african|\bsa\b|gauteng|kwazulu-natal|\bkzn\b|western cape|eastern cape|limpopo|mpumalanga|free state|northern cape|north[- ]west|johannesburg|cape town|durban|pretoria|soweto|shoprite|checkers|usave|pick n pay|boxer)\b/i;
 
 const SA_PUBLISHER =
-  /\b(news24|iol|the citizen|moneyweb|sunday ?world|business ?tech|timeslive|times live|sowetan|daily maverick|ewn|jacaranda|capetalk|daily investor|the south african|businesstech|fin24|bizcommunity|engineering news|retailer news)\b/i;
+  /\b(news24|iol|the citizen|moneyweb|sunday ?world|business ?tech|timeslive|times live|sowetan|daily maverick|ewn|jacaranda|capetalk|daily investor|the south african|businesstech|fin24|bizcommunity|engineering news|retailer news|hellopeter)\b/i;
 
 const SA_HOST =
-  /\.co\.za\b|news24\.com|dailymaverick\.co\.za|businesstech\.co\.za|moneyweb\.co\.za|thesouthafrican\.com/i;
+  /\.co\.za\b|news24\.com|dailymaverick\.co\.za|businesstech\.co\.za|moneyweb\.co\.za|thesouthafrican\.com|hellopeter\.com/i;
 
 const FOREIGN_MARKET =
   /\b(india|indian|mumbai|delhi|hindustan unilever|\bhul\b|australia|australian|sydney|melbourne|ireland|irish|korea|korean|nigeria|nigerian|kenya|kenyan|ghana|ghanaian|zimbabwe|zambia|namibia|botswana|united kingdom|\buk\b|britain|british|united states|\busa\b|america|american|mexico|mexican|brazil|brazilian|china|chinese|japan|japanese|france|french|germany|german|netherlands|europe|european|indonesia|pakistan|bangladesh)\b/i;
@@ -40,7 +40,7 @@ const DENY =
   /\b(gepf|pension fund|sardines?|vida e caff|rugby|cricket|soccer|murder|homicide|celebrity|fintech|market size|industry report|fortune business insights|marketsandmarkets|comrades marathon)\b/i;
 
 const UNILEVER_NOT_HOME_CARE =
-  /\b(dove soap|ice cream|magnum|wall'?s|hellmann|knorr|lipton|colman'?s|mustard|beauty volume|personal care)\b/i;
+  /\b(dove soap|\bdove\b|tresemme|trésemmé|ice cream|magnum|wall'?s|hellmann|knorr|lipton|colman'?s|mustard|aromat|beauty volume|personal care|keratin)\b/i;
 
 function hasOmoBrand(text: string): boolean {
   if (!/\bomo\b/i.test(text) || FALSE_OMO.test(text)) return false;
@@ -65,10 +65,8 @@ function hasSunlightBrand(text: string): boolean {
 }
 
 function hasComfortBrand(text: string): boolean {
-  return (
-    /\bcomfort\b/i.test(text) &&
-    /\b(fabric|conditioner|softener|unilever|sta-?soft)\b/i.test(text)
-  );
+  if (!/\bcomfort\b/i.test(text)) return false;
+  return /\b(fabric|conditioner|softener|unilever|sta-?soft)\b/i.test(text);
 }
 
 function hasArielBrand(text: string): boolean {

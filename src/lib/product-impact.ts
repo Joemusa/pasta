@@ -92,14 +92,17 @@ function inferMeaning(
   rivals: string[],
   retailer: string | null,
 ): string {
-  if (/misleading|label|claim|advertising standard|\basa\b|packaging copy|plant-based/i.test(blob)) {
+  if (/misleading|label|claim|advertising standard|\basa\b|packaging copy/i.test(blob)) {
     return `${product} faces a claims or pack-copy issue in ${category}. If the wording on pack, ads or leaflets has to change, Unilever loses a selling line that Finish, retailer own-label and value dishwashing can attack. Check SA artwork, website claims and current Shoprite / Pick n Pay features for ${brand} until the label is clean.`;
   }
-  if (/liquid production|capacity|manufactur|plant|african demand|expands liquid/i.test(blob)) {
+  if (/liquid production|capacity|manufactur|african demand|expands liquid/i.test(blob)) {
     return `This is a supply and mix signal for Unilever Home Care in Africa, including South Africa. More liquid capacity supports ${product} and a shift away from powders and laundry bars. Watch fill rates, listings and share for OMO Auto/liquids and Sunlight liquid versus powder, bar and competitor value brands.`;
   }
   if (/recall|contamination|quality issue|withdrawal/i.test(blob)) {
     return `This is a quality or availability risk on ${product}. Gaps on shelf in ${category} usually move volume to the next brand in the fixture within the same shopping trip.`;
+  }
+  if (/hellopeter|complaint|poor quality|not what it used to|formula changed|disappoint/i.test(blob)) {
+    return `Shoppers are complaining about ${product} on HelloPeter. Quality or formula issues on ${brand} in ${category} can move the next basket to MAQ, Finish, Sta-soft or private label. Check recent repeat purchase, ratings and whether customer care is closing the loop.`;
   }
   if (/promo|promotion|special|leaflet|discount|price cut|feature|% off|\d-for|3x /i.test(blob)) {
     const where = retailer ?? "Shoprite, Usave, Boxer, Pick n Pay and Takealot";

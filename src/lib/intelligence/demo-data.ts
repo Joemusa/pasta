@@ -26,6 +26,7 @@ export const NEWS_SOURCES: NewsSource[] = [
   { id: "iol", name: "IOL", url: "https://www.iol.co.za", region: "South Africa", active: true },
   { id: "timeslive", name: "TimesLIVE", url: "https://www.timeslive.co.za", region: "South Africa", active: true },
   { id: "takealot", name: "Takealot", url: "https://www.takealot.com", region: "South Africa", active: true },
+  { id: "hellopeter", name: "HelloPeter", url: "https://www.hellopeter.com/unilever", region: "South Africa", active: true },
 ];
 
 export const SIGNALS: IntelligenceSignal[] = [
