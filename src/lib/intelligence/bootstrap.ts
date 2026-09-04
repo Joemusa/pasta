@@ -24,6 +24,12 @@ export async function loadInitialNews(): Promise<InitialNews> {
     };
   }
 
+  // Vercel serverless instances have no durable disk. Scanning during SSR
+  // would also exceed the page-function budget; the client boots a scan.
+  if (process.env.VERCEL) {
+    return { signals: [], lastScanAt: "" };
+  }
+
   try {
     const result = await runLiveScan();
     ingestLiveSignals(result.signals);

@@ -4,6 +4,8 @@ import { readLiveCache } from "@/lib/intelligence/live-store";
 import { newsCsvFilename, newsSignalsToCsv } from "@/lib/news-csv";
 import type { PeriodDays } from "@/lib/types";
 
+export const maxDuration = 30;
+
 function hydrate() {
   try {
     const cache = readLiveCache();

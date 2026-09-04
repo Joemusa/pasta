@@ -2,7 +2,9 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
 import path from "path";
 import type { IntelligenceSignal } from "../types";
 
-const LIVE_PATH = path.join(process.cwd(), "data", "live-signals.json");
+const LIVE_PATH = process.env.VERCEL
+  ? path.join("/tmp", "live-signals.json")
+  : path.join(process.cwd(), "data", "live-signals.json");
 
 export type LiveCache = {
   lastScanAt: string;

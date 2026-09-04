@@ -3,6 +3,8 @@ import { ingestLiveSignals, getScanMeta } from "@/lib/intelligence/service";
 import { runLiveScan } from "@/lib/intelligence/scanner";
 import { writeLiveCache } from "@/lib/intelligence/live-store";
 
+export const maxDuration = 60;
+
 export async function POST() {
   const started = Date.now();
   try {

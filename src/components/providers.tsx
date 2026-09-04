@@ -87,7 +87,7 @@ export function AppProvider({
       setStatus("scanning");
       setScanMessage("Fetching South African news feeds…");
       try {
-        const res = await fetchWithTimeout("/api/scan", { method: "POST" }, 18000, signal);
+        const res = await fetchWithTimeout("/api/scan", { method: "POST" }, 55000, signal);
         const json = (await res.json()) as {
           lastScanAt?: string;
           added?: number;
