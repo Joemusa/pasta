@@ -36,6 +36,7 @@ yarn-error.log*
 
 # live scan cache
 /data/live-signals.json
+/data/macro-series.json
 
 # vercel
 .vercel

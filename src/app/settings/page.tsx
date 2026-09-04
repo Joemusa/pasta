@@ -50,6 +50,36 @@ export default function SettingsPage() {
       </section>
 
       <section className="border border-rule bg-white p-5">
+        <h2 className="font-serif text-xl">Macro series</h2>
+        <p className="mt-2 text-sm text-muted">
+          The Macro trends sheet pulls live South African CPI inflation and the
+          SARB policy rate (Bank for International Settlements). World Bank annual
+          CPI and lending rates are a fallback only. Download the series as CSV
+          from that sheet, or fetch <code className="text-ink-text">/api/macro-csv</code>.
+        </p>
+        <ul className="mt-4 divide-y divide-rule text-sm">
+          <li className="flex items-center justify-between py-2">
+            <span>BIS / Stats SA CPI (year-on-year %)</span>
+            <a className="text-teal hover:underline" href="https://data.bis.org/topics/CPI" target="_blank" rel="noreferrer">
+              data.bis.org/topics/CPI
+            </a>
+          </li>
+          <li className="flex items-center justify-between py-2">
+            <span>BIS / SARB policy rate</span>
+            <a className="text-teal hover:underline" href="https://data.bis.org/topics/CBPOL" target="_blank" rel="noreferrer">
+              data.bis.org/topics/CBPOL
+            </a>
+          </li>
+          <li className="flex items-center justify-between py-2">
+            <span>World Bank (annual fallback)</span>
+            <a className="text-teal hover:underline" href="https://data.worldbank.org/country/south-africa" target="_blank" rel="noreferrer">
+              data.worldbank.org/country/south-africa
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section className="border border-rule bg-white p-5">
         <h2 className="font-serif text-xl">POS agents</h2>
         <p className="mt-2 text-sm text-muted">
           Download the summarised feed as CSV from Intelligence Feed, or fetch{" "}

@@ -7,7 +7,6 @@ const nextConfig: NextConfig = {
       { source: "/intelligence", destination: "/", permanent: false },
       { source: "/competitors", destination: "/", permanent: false },
       { source: "/retailers", destination: "/", permanent: false },
-      { source: "/macro", destination: "/", permanent: false },
       { source: "/opportunities", destination: "/", permanent: false },
       { source: "/internal", destination: "/", permanent: false },
       { source: "/ask", destination: "/", permanent: false },

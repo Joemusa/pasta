@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronLeft, ChevronRight, Radio, Settings } from "lucide-react";
+import { ChevronLeft, ChevronRight, LineChart, Radio, Settings } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAppState } from "../providers";
 
 const NAV = [
   { href: "/", label: "Intelligence Feed", icon: Radio },
+  { href: "/macro", label: "Macro trends", icon: LineChart },
   { href: "/settings", label: "Settings", icon: Settings },
 ];
 

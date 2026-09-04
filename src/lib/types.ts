@@ -198,3 +198,44 @@ export interface IntelligenceOverview {
   lastScanAt: string;
   scanStatus: ScanStatus;
 }
+
+export type MacroSeriesKind = "inflation" | "policyRate";
+
+export interface MacroPoint {
+  period: string;
+  inflation: number | null;
+  policyRate: number | null;
+}
+
+export interface MacroSource {
+  id: string;
+  name: string;
+  series: MacroSeriesKind;
+  url: string;
+  frequency: "monthly" | "annual";
+}
+
+export interface MacroLatest {
+  inflationPeriod: string | null;
+  inflation: number | null;
+  inflationYearAgo: number | null;
+  policyPeriod: string | null;
+  policyRate: number | null;
+  policyYearAgo: number | null;
+  realRate: number | null;
+}
+
+export interface MacroCommentary {
+  headline: string;
+  facts: string[];
+  behaviours: string[];
+}
+
+export interface MacroSnapshot {
+  fetchedAt: string;
+  points: MacroPoint[];
+  latest: MacroLatest;
+  commentary: MacroCommentary;
+  sources: MacroSource[];
+  errors: string[];
+}
