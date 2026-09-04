@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #10161c;
+  --ink-2: #1a232d;
+  --paper: #f3f0e8;
+  --paper-2: #e7e2d6;
+  --rule: #d4cec2;
+  --ink-text: #1c1915;
+  --muted: #6d665c;
+  --teal: #1e4f48;
+  --teal-2: #2a6a61;
+  --critical: #b42318;
+  --high: #c2410c;
+  --medium: #a16207;
+  --low: #3f6f4a;
+  --white: #ffffff;
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-rule: var(--rule);
+  --color-ink-text: var(--ink-text);
+  --color-muted: var(--muted);
+  --color-teal: var(--teal);
+  --color-teal-2: var(--teal-2);
+  --color-critical: var(--critical);
+  --color-high: var(--high);
+  --color-medium: var(--medium);
+  --color-low: var(--low);
+  --font-sans: var(--font-geist-sans);
+  --font-serif: var(--font-source-serif);
+  --font-mono: var(--font-geist-mono);
+}
+
+html,
+body {
+  background: var(--paper);
+  color: var(--ink-text);
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+h1,
+h2,
+.serif {
+  font-family: var(--font-source-serif), ui-serif, Georgia, serif;
+}
+
+@media print {
+  aside,
+  header button,
+  .no-print {
+    display: none !important;
+  }
+  main {
+    padding: 0 !important;
+  }
+  body {
+    background: white;
+  }
+}
