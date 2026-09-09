@@ -22,7 +22,7 @@ const SA_PUBLISHER =
   /\b(news24|iol|the citizen|moneyweb|sunday ?world|business ?tech|timeslive|times live|sowetan|daily maverick|ewn|jacaranda|capetalk|daily investor|the south african|businesstech|fin24|bizcommunity|engineering news|retailer news|hellopeter)\b/i;
 
 const SA_HOST =
-  /\.co\.za\b|news24\.com|dailymaverick\.co\.za|businesstech\.co\.za|moneyweb\.co\.za|thesouthafrican\.com|hellopeter\.com/i;
+  /\.co\.za\b|news24\.com|dailymaverick\.co\.za|businesstech\.co\.za|moneyweb\.co\.za|thesouthafrican\.com|hellopeter\.com|takealot\.com/i;
 
 const FOREIGN_MARKET =
   /\b(india|indian|mumbai|delhi|hindustan unilever|\bhul\b|australia|australian|sydney|melbourne|ireland|irish|korea|korean|nigeria|nigerian|kenya|kenyan|ghana|ghanaian|zimbabwe|zambia|namibia|botswana|united kingdom|\buk\b|britain|british|united states|\busa\b|america|american|mexico|mexican|brazil|brazilian|china|chinese|japan|japanese|france|french|germany|german|netherlands|europe|european|indonesia|pakistan|bangladesh)\b/i;

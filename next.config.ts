@@ -2,6 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   agentRules: false,
+  outputFileTracingIncludes: {
+    "/*": ["./src/data/bundled-signals.json"],
+  },
   async redirects() {
     return [
       { source: "/intelligence", destination: "/", permanent: false },

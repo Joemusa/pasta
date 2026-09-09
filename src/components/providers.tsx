@@ -6,6 +6,7 @@ import {
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
   type ReactNode,
 } from "react";
@@ -28,11 +29,18 @@ type AppState = {
 };
 
 const Ctx = createContext<AppState | null>(null);
+const FRESH_MS = 15 * 60 * 1000;
 
 function isAbortError(error: unknown): boolean {
   return error instanceof DOMException
     ? error.name === "AbortError"
     : error instanceof Error && error.name === "AbortError";
+}
+
+function isFresh(iso: string): boolean {
+  if (!iso) return false;
+  const ts = Date.parse(iso);
+  return Number.isFinite(ts) && Date.now() - ts < FRESH_MS;
 }
 
 async function fetchWithTimeout(
@@ -71,21 +79,30 @@ export function AppProvider({
   const [scanStatus, setStatus] = useState<ScanStatus>(hasSeed ? "online" : "scanning");
   const [signals, setSignals] = useState<IntelligenceSignal[]>(seeded);
   const [liveCount, setLiveCount] = useState(seeded.length);
-  const [scanMessage, setScanMessage] = useState<string | null>(hasSeed ? null : "Loading live news…");
+  const [scanMessage, setScanMessage] = useState<string | null>(
+    hasSeed ? null : "Loading live news…",
+  );
   const [bootDone, setBootDone] = useState(hasSeed);
+  const signalsRef = useRef(seeded);
+
+  useEffect(() => {
+    signalsRef.current = signals;
+  }, [signals]);
 
   const applyLive = useCallback((live: IntelligenceSignal[], scannedAt?: string) => {
     const only = live.filter((s) => !s.demo);
+    if (only.length === 0) return false;
     setSignals(only);
     setLiveCount(only.length);
     if (scannedAt) setLastScanAt(scannedAt);
-    setStatus(only.length > 0 ? "online" : "degraded");
+    setStatus("online");
+    return true;
   }, []);
 
   const runScan = useCallback(
-    async (signal?: AbortSignal) => {
+    async (signal?: AbortSignal, silent = false) => {
       setStatus("scanning");
-      setScanMessage("Fetching South African news feeds…");
+      if (!silent) setScanMessage("Fetching South African news feeds…");
       try {
         const res = await fetchWithTimeout("/api/scan", { method: "POST" }, 55000, signal);
         const json = (await res.json()) as {
@@ -94,23 +111,34 @@ export function AppProvider({
           signals?: IntelligenceSignal[];
           errors?: { feed: string; error: string }[];
           error?: string;
+          source?: string;
         };
         if (signal?.aborted) return;
         if (!res.ok) throw new Error(json.error ?? "Scan failed");
-        applyLive(json.signals ?? [], json.lastScanAt);
+        const applied = applyLive(json.signals ?? [], json.lastScanAt);
         const live = json.signals?.filter((s) => !s.demo).length ?? json.added ?? 0;
         const failed = json.errors?.length ?? 0;
+        if (applied || signalsRef.current.length > 0) {
+          setStatus("online");
+        } else {
+          setStatus("degraded");
+        }
         setScanMessage(
           live > 0
             ? `Loaded ${live} live articles${failed ? ` (${failed} feeds failed)` : ""}.`
-            : "Scan finished but no matching live articles were found.",
+            : signalsRef.current.length > 0
+              ? "Scan found no new matching articles; showing the last saved feed."
+              : "Scan finished but no matching live articles were found.",
         );
       } catch (error) {
-        if (signal?.aborted) return;
-        setStatus("degraded");
+        if (signal?.aborted) {
+          if (signalsRef.current.length > 0) setStatus("online");
+          return;
+        }
+        setStatus(signalsRef.current.length > 0 ? "online" : "degraded");
         setScanMessage(
           isAbortError(error)
-            ? "Scan timed out. Try Run New Scan again."
+            ? "Scan timed out. Showing the last saved feed — try Run New Scan again."
             : error instanceof Error
               ? error.message
               : "Scan failed",
@@ -127,31 +155,35 @@ export function AppProvider({
   }, [runScan]);
 
   useEffect(() => {
-    if (hasSeed) return;
     const ac = new AbortController();
     async function boot() {
-      try {
-        const res = await fetchWithTimeout("/api/intelligence?all=1", {}, 8000, ac.signal);
-        const json = (await res.json()) as {
-          data?: IntelligenceSignal[];
-          lastScanAt?: string;
-        };
-        if (ac.signal.aborted) return;
-        const live = (json.data ?? []).filter((s) => !s.demo);
-        if (live.length > 0) {
-          applyLive(live, json.lastScanAt);
-          setScanMessage(null);
-          setBootDone(true);
-          return;
+      if (!hasSeed) {
+        try {
+          const res = await fetchWithTimeout("/api/intelligence?all=1", {}, 8000, ac.signal);
+          const json = (await res.json()) as {
+            data?: IntelligenceSignal[];
+            lastScanAt?: string;
+          };
+          if (ac.signal.aborted) return;
+          const live = (json.data ?? []).filter((s) => !s.demo);
+          if (live.length > 0) {
+            applyLive(live, json.lastScanAt);
+            setScanMessage(null);
+            setBootDone(true);
+            if (isFresh(json.lastScanAt ?? "")) return;
+          }
+        } catch {
+          if (ac.signal.aborted) return;
         }
-      } catch {
-        if (ac.signal.aborted) return;
+      } else if (isFresh(initialLastScanAt)) {
+        setBootDone(true);
+        return;
       }
-      if (!ac.signal.aborted) await runScan(ac.signal);
+      if (!ac.signal.aborted) await runScan(ac.signal, hasSeed);
     }
     void boot();
     return () => ac.abort();
-  }, [applyLive, hasSeed, runScan]);
+  }, [applyLive, hasSeed, initialLastScanAt, runScan]);
 
   const value = useMemo(
     () => ({

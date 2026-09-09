@@ -1,6 +1,6 @@
 import { getScanMeta, hydrateLiveSignals, ingestLiveSignals } from "./service";
-import { readLiveCache, writeLiveCache } from "./live-store";
 import { runLiveScan } from "./scanner";
+import { loadSharedFeed, persistSharedFeed } from "./shared-feed";
 import { signalIsHomeCareRelevant } from "../home-care-relevance";
 import type { IntelligenceSignal } from "../types";
 
@@ -14,7 +14,7 @@ function keepHomeCare(signals: IntelligenceSignal[]): IntelligenceSignal[] {
 }
 
 export async function loadInitialNews(): Promise<InitialNews> {
-  const cache = readLiveCache();
+  const cache = await loadSharedFeed();
   const cached = keepHomeCare(cache.signals);
   if (cached.length > 0) {
     hydrateLiveSignals(cached, cache.lastScanAt);
@@ -24,22 +24,20 @@ export async function loadInitialNews(): Promise<InitialNews> {
     };
   }
 
-  // Vercel serverless instances have no durable disk. Scanning during SSR
-  // would also exceed the page-function budget; the client boots a scan.
+  // Vercel page budget is too short for a full scan; keep the request fast
+  // and let cron / Run New Scan fill the shared store.
   if (process.env.VERCEL) {
     return { signals: [], lastScanAt: "" };
   }
 
   try {
     const result = await runLiveScan();
-    ingestLiveSignals(result.signals);
+    const incoming = result.signals.filter((s) => !s.demo);
+    if (incoming.length === 0) return { signals: [], lastScanAt: "" };
+    ingestLiveSignals(incoming);
     const meta = getScanMeta();
-    try {
-      writeLiveCache({ lastScanAt: meta.lastScanAt, signals: result.signals });
-    } catch {
-      // Persist is best-effort.
-    }
-    return { signals: result.signals, lastScanAt: meta.lastScanAt };
+    const stored = await persistSharedFeed({ lastScanAt: meta.lastScanAt, signals: incoming });
+    return { signals: stored.signals, lastScanAt: stored.lastScanAt || meta.lastScanAt };
   } catch {
     return { signals: [], lastScanAt: "" };
   }

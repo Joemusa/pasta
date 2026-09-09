@@ -91,7 +91,11 @@ function inferMeaning(
   product: string,
   rivals: string[],
   retailer: string | null,
+  source: string,
 ): string {
+  if (source === "X") {
+    return `This is consumer opinion on X about ${product}, not a verified fact. Check HelloPeter, ratings and POS before treating it as a market move on ${brand} in ${category}.`;
+  }
   if (/misleading|label|claim|advertising standard|\basa\b|packaging copy/i.test(blob)) {
     return `${product} faces a claims or pack-copy issue in ${category}. If the wording on pack, ads or leaflets has to change, Unilever loses a selling line that Finish, retailer own-label and value dishwashing can attack. Check SA artwork, website claims and current Shoprite / Pick n Pay features for ${brand} until the label is clean.`;
   }
@@ -136,7 +140,7 @@ export function analyseStory(signal: IntelligenceSignal): StoryAnalysis {
     category,
     brand,
     product,
-    meaning: inferMeaning(blob, category, brand, product, rivalNames, signal.retailer),
+    meaning: inferMeaning(blob, category, brand, product, rivalNames, signal.retailer, signal.source),
   };
 }
 

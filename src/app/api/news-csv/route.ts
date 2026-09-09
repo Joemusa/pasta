@@ -1,22 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSignals, hydrateLiveSignals } from "@/lib/intelligence/service";
-import { readLiveCache } from "@/lib/intelligence/live-store";
+import { loadSharedFeed } from "@/lib/intelligence/shared-feed";
 import { newsCsvFilename, newsSignalsToCsv } from "@/lib/news-csv";
 import type { PeriodDays } from "@/lib/types";
 
+export const dynamic = "force-dynamic";
 export const maxDuration = 30;
+export const runtime = "nodejs";
 
-function hydrate() {
-  try {
-    const cache = readLiveCache();
-    hydrateLiveSignals(cache.signals, cache.lastScanAt);
-  } catch {
-    // ignore
-  }
+async function hydrate() {
+  const cache = await loadSharedFeed();
+  hydrateLiveSignals(cache.signals, cache.lastScanAt);
 }
 
 export async function GET(request: NextRequest) {
-  hydrate();
+  await hydrate();
   const periodRaw = Number(request.nextUrl.searchParams.get("period") ?? 90);
   const period = (periodRaw === 7 || periodRaw === 14 || periodRaw === 30 || periodRaw === 90
     ? periodRaw
