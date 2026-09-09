@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { runAndPersistScan } from "@/lib/intelligence/scan-persist";
 
+export const dynamic = "force-dynamic";
 export const maxDuration = 60;
 export const runtime = "nodejs";
 

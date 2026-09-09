@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start --port 3000",
     "lint": "eslint",
-    "test": "tsx --test src/lib/intelligence/merge.test.ts src/lib/intelligence/rss.test.ts src/lib/intelligence/gdelt.test.ts src/lib/home-care-relevance.test.ts src/lib/intelligence/x-agent.test.ts src/lib/intelligence/x-scan.test.ts",
+    "test": "tsx --test src/lib/intelligence/merge.test.ts src/lib/intelligence/rss.test.ts src/lib/intelligence/gdelt.test.ts src/lib/home-care-relevance.test.ts src/lib/intelligence/x-agent.test.ts src/lib/intelligence/x-scan.test.ts src/lib/intelligence/feed-store.test.ts src/lib/intelligence/durable-store.test.ts src/lib/intelligence/live-store.test.ts",
     "refresh-bundle": "tsx scripts/refresh-bundle.ts"
   },
   "dependencies": {

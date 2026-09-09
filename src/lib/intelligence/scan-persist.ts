@@ -1,7 +1,7 @@
 import { ingestLiveSignals, getScanMeta, hydrateLiveSignals } from "./service";
-import { readLiveCache, writeLiveCache } from "./live-store";
 import { runLiveScan, type LiveScanResult } from "./scanner";
 import { mergeSignals } from "./merge";
+import { loadSharedFeed, persistSharedFeed } from "./shared-feed";
 import type { IntelligenceSignal } from "../types";
 
 export type PersistedScan = {
@@ -16,16 +16,20 @@ export type PersistedScan = {
 
 export async function runAndPersistScan(): Promise<PersistedScan> {
   const started = Date.now();
-  const previous = readLiveCache();
+  const previous = await loadSharedFeed();
   const result = await runLiveScan();
   const incoming = result.signals.filter((s) => !s.demo);
 
   if (incoming.length === 0 && previous.signals.length > 0) {
     hydrateLiveSignals(previous.signals, previous.lastScanAt);
-    return {
+    const stored = await persistSharedFeed({
       lastScanAt: previous.lastScanAt || getScanMeta().lastScanAt,
-      added: 0,
       signals: previous.signals,
+    });
+    return {
+      lastScanAt: stored.lastScanAt || getScanMeta().lastScanAt,
+      added: 0,
+      signals: stored.signals,
       source: "cache",
       errors: result.errors,
       feedsAttempted: result.feedsAttempted,
@@ -36,15 +40,11 @@ export async function runAndPersistScan(): Promise<PersistedScan> {
   const merged = mergeSignals(previous.signals, incoming);
   ingestLiveSignals(merged);
   const meta = getScanMeta();
-  try {
-    writeLiveCache({ lastScanAt: meta.lastScanAt, signals: merged });
-  } catch {
-    // Persist is best-effort on read-only hosts.
-  }
+  const stored = await persistSharedFeed({ lastScanAt: meta.lastScanAt, signals: merged });
   return {
-    lastScanAt: meta.lastScanAt,
+    lastScanAt: stored.lastScanAt || meta.lastScanAt,
     added: incoming.length,
-    signals: merged,
+    signals: stored.signals,
     source: incoming.length > 0 ? "live" : "cache",
     errors: result.errors,
     feedsAttempted: result.feedsAttempted,

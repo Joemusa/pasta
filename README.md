@@ -46,6 +46,7 @@ Set a server-side bearer token from the X developer portal (API v2 recent search
 - Headlines show the publisher and a real source URL.
 - A product-impact line appears when a Unilever brand or a mapped competitor is named.
 - A last-good snapshot ships in `src/data/bundled-signals.json` so Vercel cold starts are not blank.
+- Live scans persist across serverless instances: in-memory on the instance that scanned, Next.js Data Cache (shared on Vercel), and — when configured — the `intelligence_feed` Supabase row. `/tmp` is only a same-instance backup.
 - Refresh that snapshot with `npm run refresh-bundle`.
 - Demo headlines are not shown.
 
@@ -75,8 +76,9 @@ Demo records are labelled. Source buttons open the original article URL when the
 
 ## Supabase
 
-1. Apply `supabase/schema.sql`
-2. Copy `.env.example` to `.env.local` and set the project URL and anon key
+1. Apply `supabase/schema.sql` (includes `intelligence_feed` for the shared live snapshot)
+2. Copy `.env.example` to `.env.local` and set the project URL, anon key, and **`SUPABASE_SERVICE_ROLE_KEY`** on Vercel so scans written on one instance are readable on the next
+3. Without the service role, the feed still stays populated from the bundled snapshot and the shared Data Cache after a scan on that deployment
 
 ## Deploy
 
