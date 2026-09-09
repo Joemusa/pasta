@@ -24,21 +24,29 @@ export function XAgentSettings({ initial }: { initial: XStatus }) {
     event.preventDefault();
     setSaving(true);
     setMessage(null);
+    const payload = {
+      enabled: status.enabled,
+      maxPosts: status.maxPosts,
+      relevanceThreshold: status.relevanceThreshold,
+      lookbackHours: status.lookbackHours,
+      extraQuery: status.extraQuery,
+    };
     try {
       const res = await fetch("/api/x-config", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          enabled: status.enabled,
-          maxPosts: status.maxPosts,
-          relevanceThreshold: status.relevanceThreshold,
-          lookbackHours: status.lookbackHours,
-          extraQuery: status.extraQuery,
-        }),
+        body: JSON.stringify(payload),
+        cache: "no-store",
       });
       const json = (await res.json()) as XStatus & { error?: string };
       if (!res.ok) throw new Error(json.error ?? "Save failed");
-      setStatus(json);
+      setStatus({
+        ...status,
+        ...payload,
+        tokenConfigured: json.tokenConfigured ?? status.tokenConfigured,
+        api: json.api ?? status.api,
+        maxLookbackHours: json.maxLookbackHours ?? status.maxLookbackHours,
+      });
       setMessage("X agent settings saved. They apply on the next scan.");
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "Save failed");
