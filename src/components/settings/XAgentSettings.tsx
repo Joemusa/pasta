@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useActionState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input, Textarea } from "@/components/ui/fields";
+import { saveXSettingsAction, type XSaveState } from "@/app/settings/x-actions";
 
 export type XStatus = {
   enabled: boolean;
@@ -16,58 +17,20 @@ export type XStatus = {
 };
 
 export function XAgentSettings({ initial }: { initial: XStatus }) {
-  const [status, setStatus] = useState<XStatus>(initial);
-  const [message, setMessage] = useState<string | null>(null);
-  const [saving, setSaving] = useState(false);
-
-  async function save(event: FormEvent) {
-    event.preventDefault();
-    setSaving(true);
-    setMessage(null);
-    const payload = {
-      enabled: status.enabled,
-      maxPosts: status.maxPosts,
-      relevanceThreshold: status.relevanceThreshold,
-      lookbackHours: status.lookbackHours,
-      extraQuery: status.extraQuery,
-    };
-    try {
-      const res = await fetch("/api/x-config", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-        cache: "no-store",
-      });
-      const json = (await res.json()) as XStatus & { error?: string };
-      if (!res.ok) throw new Error(json.error ?? "Save failed");
-      setStatus({
-        ...status,
-        ...payload,
-        tokenConfigured: json.tokenConfigured ?? status.tokenConfigured,
-        api: json.api ?? status.api,
-        maxLookbackHours: json.maxLookbackHours ?? status.maxLookbackHours,
-      });
-      setMessage("X agent settings saved. They apply on the next scan.");
-    } catch (error) {
-      setMessage(error instanceof Error ? error.message : "Save failed");
-    } finally {
-      setSaving(false);
-    }
-  }
+  const [state, action, pending] = useActionState<XSaveState, FormData>(
+    saveXSettingsAction,
+    null,
+  );
 
   return (
-    <form className="space-y-4" onSubmit={save}>
+    <form action={action} className="space-y-4">
       <p className="text-sm text-muted">
         Collects public Home Care posts through the official X API v2 recent search. The bearer
         token stays on the server as <code className="text-ink-text">X_BEARER_TOKEN</code> — it is
-        never shown here. Token {status.tokenConfigured ? "is configured" : "is not configured"}.
+        never shown here. Token {initial.tokenConfigured ? "is configured" : "is not configured"}.
       </p>
       <label className="flex items-center gap-2 text-sm">
-        <input
-          type="checkbox"
-          checked={status.enabled}
-          onChange={(e) => setStatus({ ...status, enabled: e.target.checked })}
-        />
+        <input type="checkbox" name="enabled" defaultChecked={initial.enabled} />
         Enable X agent
       </label>
       <div className="grid gap-3 sm:grid-cols-3">
@@ -75,10 +38,11 @@ export function XAgentSettings({ initial }: { initial: XStatus }) {
           <span className="mb-1 block text-[11px] uppercase tracking-wider text-muted">Max posts</span>
           <Input
             type="number"
+            name="maxPosts"
             min={1}
             max={40}
-            value={status.maxPosts}
-            onChange={(e) => setStatus({ ...status, maxPosts: Number(e.target.value) })}
+            defaultValue={initial.maxPosts}
+            key={`max-${initial.maxPosts}`}
           />
         </label>
         <label className="text-sm">
@@ -87,22 +51,24 @@ export function XAgentSettings({ initial }: { initial: XStatus }) {
           </span>
           <Input
             type="number"
+            name="relevanceThreshold"
             min={0}
             max={90}
-            value={status.relevanceThreshold}
-            onChange={(e) => setStatus({ ...status, relevanceThreshold: Number(e.target.value) })}
+            defaultValue={initial.relevanceThreshold}
+            key={`thr-${initial.relevanceThreshold}`}
           />
         </label>
         <label className="text-sm">
           <span className="mb-1 block text-[11px] uppercase tracking-wider text-muted">
-            Lookback hours (max {status.maxLookbackHours})
+            Lookback hours (max {initial.maxLookbackHours})
           </span>
           <Input
             type="number"
+            name="lookbackHours"
             min={1}
-            max={status.maxLookbackHours}
-            value={status.lookbackHours}
-            onChange={(e) => setStatus({ ...status, lookbackHours: Number(e.target.value) })}
+            max={initial.maxLookbackHours}
+            defaultValue={initial.lookbackHours}
+            key={`hrs-${initial.lookbackHours}`}
           />
         </label>
       </div>
@@ -112,9 +78,10 @@ export function XAgentSettings({ initial }: { initial: XStatus }) {
         </span>
         <Textarea
           rows={2}
-          value={status.extraQuery}
-          onChange={(e) => setStatus({ ...status, extraQuery: e.target.value })}
+          name="extraQuery"
+          defaultValue={initial.extraQuery}
           placeholder='e.g. ("handy andy" OR domestos)'
+          key={`q-${initial.extraQuery}`}
         />
       </label>
       <p className="text-xs text-muted">
@@ -122,10 +89,12 @@ export function XAgentSettings({ initial }: { initial: XStatus }) {
         search only covers the last 7 days. Low-relevance posts below the threshold stay out of the
         feed.
       </p>
-      <Button type="submit" variant="secondary" disabled={saving}>
-        {saving ? "Saving…" : "Save X settings"}
+      <Button type="submit" variant="secondary" disabled={pending}>
+        {pending ? "Saving…" : "Save X settings"}
       </Button>
-      {message ? <p className="text-sm text-teal">{message}</p> : null}
+      {state?.message ? (
+        <p className={`text-sm ${state.ok ? "text-teal" : "text-critical"}`}>{state.message}</p>
+      ) : null}
     </form>
   );
 }
