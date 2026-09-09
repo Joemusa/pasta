@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useState, type FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { Input, Textarea } from "@/components/ui/fields";
 
-type XStatus = {
+export type XStatus = {
   enabled: boolean;
   maxPosts: number;
   relevanceThreshold: number;
@@ -15,21 +15,13 @@ type XStatus = {
   maxLookbackHours: number;
 };
 
-export function XAgentSettings() {
-  const [status, setStatus] = useState<XStatus | null>(null);
+export function XAgentSettings({ initial }: { initial: XStatus }) {
+  const [status, setStatus] = useState<XStatus>(initial);
   const [message, setMessage] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
 
-  useEffect(() => {
-    void fetch("/api/x-config", { cache: "no-store" })
-      .then((res) => res.json())
-      .then((json) => setStatus(json as XStatus))
-      .catch(() => setMessage("Could not load X agent settings."));
-  }, []);
-
   async function save(event: FormEvent) {
     event.preventDefault();
-    if (!status) return;
     setSaving(true);
     setMessage(null);
     try {
@@ -53,10 +45,6 @@ export function XAgentSettings() {
     } finally {
       setSaving(false);
     }
-  }
-
-  if (!status) {
-    return <p className="text-sm text-muted">Loading X agent settings…</p>;
   }
 
   return (
