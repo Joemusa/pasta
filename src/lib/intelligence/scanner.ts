@@ -1,7 +1,11 @@
 import { createHash } from "crypto";
 import { isHomeCareRelevant } from "../home-care-relevance";
+import { runGdeltScan } from "./gdelt";
 import { runHelloPeterScan } from "./hellopeter";
+import { SIGNAL_CAP } from "./merge";
 import { runPromoScan } from "./promotions";
+import { parseRss, type RssItem } from "./rss";
+import { runXScan } from "./x-twitter";
 import type {
   CategoryName,
   IntelligenceSignal,
@@ -17,14 +21,6 @@ export type LiveScanResult = {
   errors: ScanFeedError[];
   fetchedAt: string;
   feedsAttempted: number;
-};
-
-type RssItem = {
-  title: string;
-  link: string;
-  pubDate: string;
-  source: string;
-  summary: string;
 };
 
 const FEEDS: { name: string; url: string }[] = [
@@ -43,6 +39,14 @@ const FEEDS: { name: string; url: string }[] = [
   {
     name: "Google News · SA Home Care promotions",
     url: "https://news.google.com/rss/search?q=(OMO+OR+Sunlight+OR+Domestos+OR+MAQ+OR+Comfort)+(specials+OR+catalogue+OR+leaflet+OR+%22on+promotion%22)+(Shoprite+OR+Checkers+OR+SPAR+OR+%22Pick+n+Pay%22+OR+Takealot)+when:90d&hl=en-ZA&gl=ZA&ceid=ZA:en",
+  },
+  {
+    name: "Google News · Bizcommunity",
+    url: "https://news.google.com/rss/search?q=site:bizcommunity.com+(Unilever+OR+OMO+OR+Sunlight+OR+Domestos+OR+detergent)+when:90d&hl=en-ZA&gl=ZA&ceid=ZA:en",
+  },
+  {
+    name: "Google News · Fin24 Unilever",
+    url: "https://news.google.com/rss/search?q=site:news24.com/fin24+(Unilever+OR+OMO+OR+Sunlight+OR+Domestos)+when:90d&hl=en-ZA&gl=ZA&ceid=ZA:en",
   },
   { name: "Moneyweb", url: "https://www.moneyweb.co.za/feed/" },
   { name: "The Citizen", url: "https://www.citizen.co.za/feed/" },
@@ -78,48 +82,7 @@ const RETAILERS = [
   "Dis-Chem",
 ];
 
-function decode(text: string): string {
-  const withTags = text
-    .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1")
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'")
-    .replace(/&nbsp;/g, " ")
-    .replace(/&amp;/g, "&");
-  return withTags.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
-}
-
-function tag(block: string, name: string): string {
-  const cdata = block.match(new RegExp(`<${name}[^>]*>\\s*<!\\[CDATA\\[([\\s\\S]*?)\\]\\]>`, "i"));
-  if (cdata) return decode(cdata[1]);
-  const plain = block.match(new RegExp(`<${name}[^>]*>([\\s\\S]*?)</${name}>`, "i"));
-  return plain ? decode(plain[1]) : "";
-}
-
-function parseRss(xml: string, feedName: string): RssItem[] {
-  const chunks = xml.split(/<item[\s>]/i).slice(1);
-  return chunks
-    .map((chunk) => {
-      const block = chunk.split(/<\/item>/i)[0] ?? "";
-      const title = tag(block, "title");
-      const link = tag(block, "link") || tag(block, "guid");
-      const publisher =
-        tag(block, "source") ||
-        (title.includes(" - ") ? title.split(" - ").slice(-1)[0] : "");
-      const headline = title.replace(/\s+-\s+[^-]+$/, "").trim() || title;
-      return {
-        title: headline,
-        link,
-        pubDate: tag(block, "pubDate") || tag(block, "published"),
-        source: prettySource(publisher, feedName),
-        summary: cleanExcerpt(tag(block, "description"), headline),
-      };
-    })
-    .filter((item) => item.title && item.link);
-}
-
-const FEED_TIMEOUT_MS = 6000;
+const FEED_TIMEOUT_MS = 8000;
 
 async function fetchFeed(url: string): Promise<string> {
   const res = await fetch(url, {
@@ -174,8 +137,7 @@ function classifyType(text: string, brand: string | null, retailer: string | nul
     return "macro";
   }
   const own =
-    !!brand &&
-    /^(omo|surf|skip|sunlight|domestos|comfort|handy andy|jik)$/i.test(brand);
+    !!brand && /^(omo|surf|skip|sunlight|domestos|comfort|handy andy|jik)$/i.test(brand);
   if (brand && !own) return "competitor";
   if (retailer) return "retailer";
   return "consumer";
@@ -185,23 +147,6 @@ function severityFor(type: SignalType, text: string): Severity {
   if (/unilever|omo|maq|shoprite|usave|boxer/i.test(text) && type !== "consumer") return "high";
   if (type === "macro" || type === "retailer") return "medium";
   return "low";
-}
-
-function prettySource(publisher: string, feedName: string): string {
-  const name = publisher.trim();
-  if (name && !/^google news/i.test(name)) return name;
-  if (feedName.startsWith("Google News")) return "Google News";
-  return feedName;
-}
-
-function cleanExcerpt(raw: string, title: string): string {
-  let text = decode(raw).replace(/View Full Coverage on Google News/gi, "").trim();
-  if (title && text.toLowerCase().startsWith(title.toLowerCase())) {
-    text = text.slice(title.length).replace(/^[\s:—–-]+/, "");
-  }
-  if (text.includes("<") || text.length < 48) return "";
-  if (text.length > 400) return `${text.slice(0, 397).replace(/\s+\S*$/, "")}…`;
-  return text;
 }
 
 function toSignal(item: RssItem): IntelligenceSignal {
@@ -242,24 +187,22 @@ function toSignal(item: RssItem): IntelligenceSignal {
   };
 }
 
-export async function runLiveScan(): Promise<LiveScanResult> {
-  const fetchedAt = new Date().toISOString();
+async function collectRssItems(): Promise<{ items: RssItem[]; errors: ScanFeedError[] }> {
   const errors: ScanFeedError[] = [];
-  const collected: RssItem[] = [];
-
+  const items: RssItem[] = [];
   const results = await Promise.allSettled(
     FEEDS.map(async (feed) => {
       const xml = await fetchFeed(feed.url);
-      const items = parseRss(xml, feed.name).filter((item) =>
+      const parsed = parseRss(xml, feed.name).filter((item) =>
         isHomeCareRelevant(item.title, item.summary, item.source, item.link),
       );
-      return { feed: feed.name, items };
+      return { feed: feed.name, items: parsed };
     }),
   );
 
   results.forEach((result, index) => {
     if (result.status === "fulfilled") {
-      collected.push(...result.value.items);
+      items.push(...result.value.items);
     } else {
       errors.push({
         feed: FEEDS[index]?.name ?? "unknown",
@@ -267,7 +210,10 @@ export async function runLiveScan(): Promise<LiveScanResult> {
       });
     }
   });
+  return { items, errors };
+}
 
+function dedupeItems(collected: RssItem[]): IntelligenceSignal[] {
   const seen = new Set<string>();
   const signals: IntelligenceSignal[] = [];
   for (const item of collected) {
@@ -279,22 +225,54 @@ export async function runLiveScan(): Promise<LiveScanResult> {
     if (!isHomeCareRelevant(item.title, item.summary, item.source, item.link)) continue;
     signals.push(toSignal(item));
   }
+  return signals;
+}
 
-  const [promo, complaints] = await Promise.all([
-    runPromoScan(fetchedAt),
-    runHelloPeterScan(fetchedAt),
+function isolateAgent(
+  promise: Promise<{ signals: IntelligenceSignal[]; errors: ScanFeedError[]; feedsAttempted: number }>,
+  feed: string,
+): Promise<{ signals: IntelligenceSignal[]; errors: ScanFeedError[]; feedsAttempted: number }> {
+  return promise.catch((error) => ({
+    signals: [],
+    errors: [
+      {
+        feed,
+        error: error instanceof Error ? error.message : String(error),
+      },
+    ],
+    feedsAttempted: 0,
+  }));
+}
+
+export async function runLiveScan(): Promise<LiveScanResult> {
+  const fetchedAt = new Date().toISOString();
+  const errors: ScanFeedError[] = [];
+
+  const [rss, gdelt] = await Promise.all([collectRssItems(), runGdeltScan()]);
+  errors.push(...rss.errors, ...gdelt.errors);
+  const signals = dedupeItems([...rss.items, ...gdelt.items]);
+
+  const [promo, complaints, twitter] = await Promise.all([
+    isolateAgent(runPromoScan(fetchedAt), "Takealot"),
+    isolateAgent(runHelloPeterScan(fetchedAt), "HelloPeter"),
+    isolateAgent(runXScan(fetchedAt), "X"),
   ]);
-  errors.push(...promo.errors, ...complaints.errors);
-  for (const signal of [...promo.signals, ...complaints.signals]) {
+  errors.push(...promo.errors, ...complaints.errors, ...twitter.errors);
+  for (const signal of [...promo.signals, ...complaints.signals, ...twitter.signals]) {
     if (signals.some((existing) => existing.id === signal.id)) continue;
     signals.push(signal);
   }
 
   signals.sort((a, b) => +new Date(b.publishedAt) - +new Date(a.publishedAt));
   return {
-    signals: signals.slice(0, 40),
+    signals: signals.slice(0, SIGNAL_CAP),
     errors,
     fetchedAt,
-    feedsAttempted: FEEDS.length + promo.feedsAttempted + complaints.feedsAttempted,
+    feedsAttempted:
+      FEEDS.length +
+      gdelt.feedsAttempted +
+      promo.feedsAttempted +
+      complaints.feedsAttempted +
+      twitter.feedsAttempted,
   };
 }

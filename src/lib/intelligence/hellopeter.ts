@@ -9,7 +9,7 @@ const BUSINESSES = [
   { slug: "maq", name: "MAQ" },
 ];
 
-const MAX_PAGES = 4;
+const MAX_PAGES = 2;
 const MAX_AGE_DAYS = 90;
 const MAX_COMPLAINTS = 12;
 
@@ -122,30 +122,32 @@ export async function runHelloPeterScan(fetchedAt: string): Promise<{
   const collected: HelloPeterReview[] = [];
   const now = new Date(fetchedAt);
 
-  for (const company of BUSINESSES) {
-    for (let page = 1; page <= MAX_PAGES; page += 1) {
-      try {
-        const rows = await fetchPage(company.slug, page);
-        if (rows.length === 0) break;
-        let reachedOld = false;
-        for (const row of rows) {
-          const when = publishedAt(row.created_at);
-          if (!isFresh(when, now)) {
-            reachedOld = true;
-            continue;
+  await Promise.all(
+    BUSINESSES.map(async (company) => {
+      for (let page = 1; page <= MAX_PAGES; page += 1) {
+        try {
+          const rows = await fetchPage(company.slug, page);
+          if (rows.length === 0) break;
+          let reachedOld = false;
+          for (const row of rows) {
+            const when = publishedAt(row.created_at);
+            if (!isFresh(when, now)) {
+              reachedOld = true;
+              continue;
+            }
+            collected.push(row);
           }
-          collected.push(row);
+          if (reachedOld) break;
+        } catch (error) {
+          errors.push({
+            feed: `HelloPeter · ${company.name}`,
+            error: error instanceof Error ? error.message : String(error),
+          });
+          break;
         }
-        if (reachedOld) break;
-      } catch (error) {
-        errors.push({
-          feed: `HelloPeter · ${company.name}`,
-          error: error instanceof Error ? error.message : String(error),
-        });
-        break;
       }
-    }
-  }
+    }),
+  );
 
   const seen = new Set<number>();
   const signals = collected

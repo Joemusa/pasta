@@ -105,7 +105,7 @@ async function searchTakealot(query: string): Promise<TakealotProductView[]> {
       "User-Agent": "Mozilla/5.0 (compatible; SAHomeCareIntelligence/1.0)",
       Accept: "application/json",
     },
-    signal: AbortSignal.timeout(8000),
+    signal: AbortSignal.timeout(6000),
     cache: "no-store",
   });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);

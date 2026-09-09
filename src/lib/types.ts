@@ -3,6 +3,7 @@ export type Confidence = "low" | "medium" | "high";
 export type Impact = "low" | "medium" | "high";
 export type PeriodDays = 7 | 14 | 30 | 90;
 export type ScanStatus = "online" | "scanning" | "degraded";
+export type Sentiment = "positive" | "neutral" | "negative";
 
 export type SignalType =
   | "competitor"
@@ -56,6 +57,18 @@ export interface IntelligenceSignal {
   confidence: Confidence;
   commercialImpact: Impact | "unvalidated";
   demo: boolean;
+  sourceType?: "news" | "retail" | "review" | "social_media";
+  sentiment?: Sentiment;
+  relevanceScore?: number;
+  importanceScore?: number;
+  attention?: "low" | "medium" | "high";
+  author?: string;
+  authorHandle?: string;
+  engagement?: { likes: number; replies: number; reposts: number };
+  hashtags?: string[];
+  searchQuery?: string;
+  topic?: string;
+  mediaType?: string;
 }
 
 export interface CompetitorBrand {

@@ -1,5 +1,6 @@
 "use client";
 
+import { XAgentSettings } from "@/components/settings/XAgentSettings";
 import { useAppState } from "@/components/providers";
 import { getSources } from "@/lib/intelligence/service";
 import { formatScanTime } from "@/lib/utils";
@@ -21,10 +22,13 @@ export default function SettingsPage() {
           Active mode: <strong>Live RSS scanner</strong>
         </p>
         <p className="mt-2 text-sm text-muted">
-          The feed keeps only <strong>South African</strong> Home Care news, live{" "}
-          <strong>product promotions</strong>, and relevant{" "}
-          <strong>HelloPeter complaints</strong> on Unilever and competitor Home
-          Care brands. Overseas Home Care coverage is dropped.
+          The feed keeps only <strong>South African</strong> Home Care news from
+          Google News RSS and <strong>GDELT</strong>, live{" "}
+          <strong>Takealot promotions</strong>, relevant{" "}
+          <strong>HelloPeter complaints</strong>, and public{" "}
+          <strong>X</strong> Home Care conversations. Overseas Home Care coverage is dropped. A snapshot of the
+          last successful scan ships with the app so Vercel cold starts are not
+          blank.
         </p>
         <p className="mt-3 text-sm">
           Last scan: {formatScanTime(lastScanAt)} · Status: {scanStatus} · {liveCount} live articles
@@ -47,6 +51,18 @@ export default function SettingsPage() {
             </li>
           ))}
         </ul>
+      </section>
+
+      <section className="border border-rule bg-white p-5">
+        <h2 className="font-serif text-xl">X agent</h2>
+        <p className="mt-1 text-sm text-muted">
+          Source = <strong>X</strong>, source type = <strong>social_media</strong>. Runs beside
+          News24/RSS, Takealot and HelloPeter in the same scan. A failure here does not stop the
+          other agents.
+        </p>
+        <div className="mt-4">
+          <XAgentSettings />
+        </div>
       </section>
 
       <section className="border border-rule bg-white p-5">

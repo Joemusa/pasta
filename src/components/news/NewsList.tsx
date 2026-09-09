@@ -31,16 +31,21 @@ export function NewsList({
   );
 }
 
+function isX(signal: IntelligenceSignal): boolean {
+  return signal.source === "X" || signal.sourceType === "social_media";
+}
+
 export function NewsItem({ signal }: { signal: IntelligenceSignal }) {
   const href = newsHref(signal);
   const excerpt = newsExcerpt(signal);
   const analysis = analyseStory(signal);
+  const social = isX(signal);
 
   return (
     <article className="border-b border-rule px-5 py-5 last:border-b-0">
       <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
         <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-teal">
-          {signal.source}
+          {social ? "X · social media" : signal.source}
         </p>
         <time className="text-xs text-muted" dateTime={signal.publishedAt}>
           {formatDate(signal.publishedAt)}
@@ -53,6 +58,15 @@ export function NewsItem({ signal }: { signal: IntelligenceSignal }) {
       ) : (
         <h2 className="mt-1.5 font-serif text-xl text-ink-text">{signal.title}</h2>
       )}
+      {social ? (
+        <p className="mt-2 text-xs text-muted">
+          Consumer opinion · unverified social-media discussion
+          {signal.authorHandle ? ` · @${signal.authorHandle.replace(/^@/, "")}` : ""}
+          {signal.sentiment ? ` · ${signal.sentiment}` : ""}
+          {signal.relevanceScore != null ? ` · relevance ${signal.relevanceScore}` : ""}
+          {signal.attention ? ` · attention ${signal.attention}` : ""}
+        </p>
+      ) : null}
       {excerpt ? <p className="mt-2 text-sm leading-relaxed text-muted">{excerpt}</p> : null}
       <div className="mt-3 border border-rule bg-paper-2/40 px-4 py-3">
         <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-teal">
@@ -72,7 +86,18 @@ export function NewsItem({ signal }: { signal: IntelligenceSignal }) {
             <dd className="text-ink-text">{analysis.product}</dd>
           </div>
         </dl>
-        <p className="mt-2 text-sm leading-relaxed text-ink-text">{analysis.meaning}</p>
+        {social ? (
+          <>
+            <p className="mt-2 text-[11px] uppercase tracking-wider text-muted">Fact from source</p>
+            <p className="text-sm leading-relaxed text-ink-text">{signal.fact}</p>
+            <p className="mt-2 text-[11px] uppercase tracking-wider text-muted">
+              Interpretation (not a verified fact)
+            </p>
+            <p className="text-sm leading-relaxed text-ink-text">{signal.interpretation || analysis.meaning}</p>
+          </>
+        ) : (
+          <p className="mt-2 text-sm leading-relaxed text-ink-text">{analysis.meaning}</p>
+        )}
       </div>
       <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted">
         {href ? (
@@ -82,12 +107,18 @@ export function NewsItem({ signal }: { signal: IntelligenceSignal }) {
             rel="noreferrer"
             className="inline-flex items-center gap-0.5 text-teal hover:underline"
           >
-            Read at {signal.source}
+            {social ? "Open on X" : `Read at ${signal.source}`}
             <ArrowUpRight size={12} />
           </a>
         ) : (
           <span>Source cited · no article URL</span>
         )}
+        {social && signal.engagement ? (
+          <span>
+            {signal.engagement.likes} likes · {signal.engagement.replies} replies ·{" "}
+            {signal.engagement.reposts} reposts
+          </span>
+        ) : null}
       </div>
     </article>
   );

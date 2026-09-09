@@ -21,7 +21,9 @@ export function newsExcerpt(signal: IntelligenceSignal): string | null {
   if (title && text.toLowerCase().startsWith(title.toLowerCase())) {
     text = text.slice(title.length).replace(/^[\s:—–-]+/, "");
   }
-  if (text.length < 48) return null;
+  if (text.length < (signal.source === "X" || signal.sourceType === "social_media" ? 12 : 48)) {
+    return null;
+  }
   if (text.length > 220) {
     return `${text.slice(0, 217).replace(/\s+\S*$/, "")}…`;
   }

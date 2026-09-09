@@ -4,7 +4,7 @@ AI-powered South African FMCG **Home Care news** for Unilever commercial, market
 
 The app shows sourced headlines. A product note is added only when a story names a Unilever brand (OMO, Surf, Skip, Sunlight, Domestos, Comfort, Handy Andy, Jik) or a mapped competitor (MAQ, Ariel, Harpic, Sta-soft, Britelite, Finish).
 
-Pages: **Home**, **Intelligence Feed**, **Settings**.
+Pages: **Intelligence Feed**, **Macro trends**, **Settings**.
 
 ## Stack
 
@@ -31,13 +31,23 @@ Wait until the terminal prints `Local: http://localhost:3000` (or `Ready`). **Le
 
 ## Live news
 
-The dashboard does not scrape websites in the browser. Click **Run New Scan** to fetch public RSS feeds (Google News ZA, Moneyweb, IOL, The Citizen) on the server.
+The dashboard does not scrape websites in the browser. Click **Run New Scan** (or wait for the 6-hour cron) to fetch:
+
+- Google News ZA RSS
+- GDELT document search (South Africa)
+- Takealot promotions
+- HelloPeter Home Care complaints
+- X (Twitter) public Home Care conversations, when `X_BEARER_TOKEN` is set
+
+X posts are labelled as social-media opinion, not verified facts. Configure the agent on **Settings**. Low-relevance posts are dropped before they reach the feed.
+
+Set a server-side bearer token from the X developer portal (API v2 recent search). Never expose it in `NEXT_PUBLIC_` variables.
 
 - Headlines show the publisher and a real source URL.
-- A product-impact line appears only when a Unilever brand or a direct competitor is named.
-- Home Care brand articles are uncommon; retailer and macro stories (Shoprite, fuel, SASSA) are the usual live hits, shown without extra commentary unless a product is named.
-- The feed loads live RSS on startup. Demo headlines are not shown.
-- Supabase is optional later, to persist rows across deploys. You do not need it to run a live scan.
+- A product-impact line appears when a Unilever brand or a mapped competitor is named.
+- A last-good snapshot ships in `src/data/bundled-signals.json` so Vercel cold starts are not blank.
+- Refresh that snapshot with `npm run refresh-bundle`.
+- Demo headlines are not shown.
 
 If the tab still refuses to connect:
 
@@ -57,7 +67,9 @@ The browser never scrapes. Pages consume `intelligenceService` (`src/lib/intelli
 | Route | Purpose |
 | --- | --- |
 | `GET /api/intelligence` | Signals |
-| `POST /api/scan` | Run a scan |
+| `POST /api/scan` | Run a scan (RSS, GDELT, Takealot, HelloPeter, X) |
+| `GET /api/cron/scan` | Same scan, used by the existing 6-hour Vercel cron |
+| `GET`/`POST /api/x-config` | Enable X, max posts, lookback, relevance threshold (no token) |
 
 Demo records are labelled. Source buttons open the original article URL when the feed provided one.
 

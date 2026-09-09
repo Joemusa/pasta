@@ -24,8 +24,8 @@ export async function loadInitialNews(): Promise<InitialNews> {
     };
   }
 
-  // Vercel serverless instances have no durable disk. Scanning during SSR
-  // would also exceed the page-function budget; the client boots a scan.
+  // Vercel serverless has no durable disk and a tight page budget.
+  // Client boot still runs a live scan; the bundled snapshot covers first paint.
   if (process.env.VERCEL) {
     return { signals: [], lastScanAt: "" };
   }
